@@ -1,4 +1,4 @@
-game.resources = [
+resources = [
 
 	/* Graphics. 
 	 * @example

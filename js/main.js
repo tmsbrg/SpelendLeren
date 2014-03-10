@@ -1,11 +1,12 @@
 
 /* Main object */
-var main = {
+var Main = {
     // Run on page load.
     "onload" : function () {
         // Initialize the video.
-        if (!me.video.init("screen", settings.width, settings.height,
-                                                     settings.browserResize)) {
+        if (!me.video.init("screen", Constants.screenWidth,
+                                     Constants.screenHeight,
+                                     Constants.resizeToBrowser)) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }
@@ -24,19 +25,20 @@ var main = {
         me.loader.onload = this.loaded.bind(this);
      
         // Load the resources.
-        me.loader.preload(game.resources);
+        me.loader.preload(resources);
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
     },
 
-
-
     // Run on game resources loaded.
     "loaded" : function () {
-        me.state.set(me.state.PLAY, new game.PlayScreen());
+        this.levelScreen = new LevelScreen();
+        me.state.set(me.state.PLAY, this.levelScreen);
 
         // Start the game.
         me.state.change(me.state.PLAY);
-    }
+    },
+
+    levelScreen: null, // reference to the levelScreen
 };

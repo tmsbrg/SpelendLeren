@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>melonJS Template</title>
+        <title>Spelend Leren</title>
         <link rel="stylesheet" type="text/css" media="screen" href="index.css">
         <meta charset="UTF-8" />
         <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,18 +23,15 @@
 		
 		<!-- Game Scripts -->
         <script type="text/javascript" src="js/constants.js"></script>
-        <script type="text/javascript" src="js/settings.js"></script>
-        <script type="text/javascript" src="js/game.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
         <script type="text/javascript" src="js/resources.js"></script>
 		
-		<script type="text/javascript" src="js/entities/entities.js"></script>
-
-        <script type="text/javascript" src="js/screens/play.js"></script>
+        <script type="text/javascript" src="js/screens/level.js"></script>
 		
 		<!-- Bootstrap & Mobile optimization tricks -->
 		<script type="text/javascript">
 			window.onReady(function onReady() {
-				main.onload();
+				Main.onload();
 
 				// Mobile browser hacks
 				if (me.sys.isMobile && !navigator.isCocoonJS) {

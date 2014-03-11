@@ -1,5 +1,5 @@
-/* Image: draws an image */
-Image = me.Renderable.extend({
+/* ImageObject: draws an image */
+ImageObject = me.Renderable.extend({
     init: function(x, y, image, w, h) {
         if (x == null) {
             x = 0;

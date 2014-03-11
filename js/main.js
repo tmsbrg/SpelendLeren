@@ -2,7 +2,7 @@
 /* Main object */
 var Main = {
     // Run on page load.
-    "onload" : function () {
+    onload: function () {
         // Initialize the video.
         if (!me.video.init("screen", Constants.screenWidth,
                                      Constants.screenHeight,
@@ -25,14 +25,17 @@ var Main = {
         me.loader.onload = this.loaded.bind(this);
      
         // Load the resources.
+        console.log(resources);
         me.loader.preload(resources);
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
+        console.log("1");
     },
 
     // Run on game resources loaded.
-    "loaded" : function () {
+    loaded: function () {
+        console.log("2");
         this.levelScreen = new LevelScreen();
         me.state.set(me.state.PLAY, this.levelScreen);
 

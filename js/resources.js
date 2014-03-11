@@ -4,6 +4,7 @@ resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
+    {name: "test", type: "image", src: "test.png"},
 	
 	/* Maps. 
 	 * @example

@@ -1,5 +1,5 @@
 /* ImageObject: draws an image */
-ImageObject = me.Renderable.extend({
+Main.Image = me.Renderable.extend({
     init: function(x, y, image, w, h) {
         if (x == null) {
             x = 0;
@@ -16,7 +16,7 @@ ImageObject = me.Renderable.extend({
         if (h == null) {
             h = 1;
         }
-        this.parent(new me.Vector2d(x, y, w, h));
+        this.parent(new me.Vector2d(x, y), w, h);
 
         this.loadImage(image);
         this.floating = true;

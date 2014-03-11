@@ -1,0 +1,2 @@
+Main.MouseEvents = Object.extend({
+});

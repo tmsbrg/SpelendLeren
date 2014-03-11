@@ -25,22 +25,19 @@ var Main = {
         me.loader.onload = this.loaded.bind(this);
      
         // Load the resources.
-        console.log(resources);
         me.loader.preload(resources);
 
         // Initialize melonJS and display a loading screen.
         me.state.change(me.state.LOADING);
-        console.log("1");
     },
 
     // Run on game resources loaded.
     loaded: function () {
-        console.log("2");
-        this.levelScreen = new LevelScreen();
+        this.levelScreen = new Main.LevelScreen();
         me.state.set(me.state.PLAY, this.levelScreen);
 
         // Start the game.
-        me.state.change(me.state.PLAY);
+        me.state.change(me.state.PLAY, levelData[0]);
     },
 
     levelScreen: null, // reference to the levelScreen

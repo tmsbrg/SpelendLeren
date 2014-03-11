@@ -1,4 +1,4 @@
-LevelScreen = me.ScreenObject.extend(
+Main.LevelScreen = me.ScreenObject.extend(
 {
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
@@ -7,9 +7,25 @@ LevelScreen = me.ScreenObject.extend(
     /**	
      *  action to perform on state change
      */
-    onResetEvent: function()
+    onResetEvent: function(level)
     {
         console.log("start of game");
+        this.background = new Main.Image(0, 0, level.background,
+                                         Constants.screenWidth,
+                                         Constants.screenHeight);
+        me.game.add(this.background, 0);
+
+        this.buildings = this.createBuildings(level.buildings);
+    },
+
+    createBuildings: function(buildings)
+    {
+        for (var i=0; i < buildings.length; i++)
+        {
+            // TODO: get size from external building settings
+            me.game.add(new Main.Image(buildings[i].x, buildings[i].y,
+                                       buildings[i].type, 64, 64), 10);
+        }
     },
 
     /**	
@@ -17,6 +33,5 @@ LevelScreen = me.ScreenObject.extend(
      */
     onDestroyEvent: function()
     {
-        ; // TODO
     }
 });

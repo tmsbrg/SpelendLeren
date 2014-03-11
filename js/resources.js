@@ -4,7 +4,8 @@ resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
-    {name: "test", type: "image", src: "test.png"},
+    {name: "bg", type: "image", src: "data/img/background/bg.png"},
+    {name: "farm", type: "image", src: "data/img/buildings/farm.png"},
 	
 	/* Maps. 
 	 * @example

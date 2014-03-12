@@ -2,14 +2,15 @@
 * the Army will be created if one of the player in 
 * a level attacks or support another building
 */
-Army = Main.Image({
+Army = Main.Image.extend(
+{
 	
-	speed: 10,
-	type: null,
-	owner: Constants.players.neutral,
-	startPoint: null,
-	targetPoint: null,
-	direction: null;
+	speed: 10, // the speed of the amry
+	type: null, // type of the army
+	owner: Constants.players.neutral, // contans who the owner of the Army is
+	startPoint: null, // is the point where the Army will be created
+	targetPoint: null, // the point where the amry is going to
+	direction: null; // the direction in which the Army is going
 	
 	// constructor function of Army needs two Vector2D the type of the Army and the owner of the amry
 	init: function(startPoint, targetPoint, type, owner)

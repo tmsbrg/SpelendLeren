@@ -50,9 +50,9 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		me.game.add(new Main.Army(this.pos, target.pos, this.unitType,
+		me.game.add(new Main.Army(this.pos, target, this.unitType,
                                   this.owner),
-                    10);
+                    20);
         this.unselect();
 	},
 	
@@ -83,7 +83,7 @@ Main.Building = Main.Button.extend(
 	
 	drawArrow: function()
 	{
-		
+		//TODO
 	},
 
     onClick: function(ev)

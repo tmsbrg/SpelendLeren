@@ -1,6 +1,8 @@
 /* ImageObject: draws an image */
-Main.Image = me.Renderable.extend({
-    init: function(x, y, image, w, h) {
+Main.Image = me.Renderable.extend(
+{
+    init: function(x, y, image, w, h)
+    {
         if (x == null) {
             x = 0;
         }
@@ -23,15 +25,18 @@ Main.Image = me.Renderable.extend({
 
     },
 
-    loadImage: function(image) {
+    loadImage: function(image)
+    {
         this.image = me.loader.getImage(image);
     },
 
-    update: function() {
+    update: function()
+    {
         return true;
     },
 
-    draw: function(ctx) {
+    draw: function(ctx)
+    {
         ctx.drawImage(this.image, this.pos.x, this.pos.y, this.width,
                                                                   this.height);
     }

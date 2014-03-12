@@ -1,5 +1,6 @@
 /* Constants: contains constant values used in the game */
-Constants = {
+Constants =
+{
 
     screenWidth: 1060,
     screenHeight: 760,

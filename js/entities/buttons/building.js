@@ -5,6 +5,9 @@ Main.Building = Main.Button.extend(
 	maxCapacity: 20, // the maximum capacity of the building
 	growthRate: 1, // how fast the building's population grows
 	level: 0, // contains upgrade level information
+    type: "", // type of building
+    //TODO: unitType should be taken from a building's game settings
+    unitType: "farmer", // type of unit this building creates
 	owner: Constants.players.neutral, // contains owner information
 	flag: null, // contains image object for the flag
 	currentCapacity: 20, // capacity of this building
@@ -47,7 +50,10 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		Main.levelScreen.buildings[target].takeOver(this.owner);
+		me.game.add(new Main.Army(this.pos, target.pos, this.unitType,
+                                  this.owner),
+                    10);
+        this.unselect();
 	},
 	
     // defends against an army

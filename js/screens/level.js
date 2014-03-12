@@ -41,7 +41,6 @@ Main.LevelScreen = me.ScreenObject.extend(
         {
             if (this.buildings[i].selected) {
                 this.buildings[i].attack(buildingId);
-                this.buildings[i].unselect();
             }
         }
     },

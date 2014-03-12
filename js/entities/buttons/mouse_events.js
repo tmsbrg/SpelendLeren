@@ -21,9 +21,13 @@ Main.MouseEvents = Object.extend(
         this.registerClickAndHover();
     },
 
+    // sets the onClick to given function, turns clickable to true unless false
+    // is given
     setOnClick: function(onClick, clickable)
     {
-        this.onClick = onClick;
+        if (this.onClick != null) {
+            this.onClick = onClick;
+        }
         if (clickable != null) {
             this.clickable = clickable;
         } else {
@@ -31,9 +35,13 @@ Main.MouseEvents = Object.extend(
         }
     },
 
+    // sets the onHover to given function, turns hoverable to true unless false
+    // is given
     setOnHover: function(onHover, hoverable)
     {
-        this.onHover = onHover;
+        if (this.onHover != null) {
+            this.onHover = onHover;
+        }
         if (hoverable != null) {
             this.hoverable = hoverable;
         } else {
@@ -50,6 +58,7 @@ Main.MouseEvents = Object.extend(
                                       this.hovered.bind(this));
     },
 
+    // called when clicked
     clicked: function(ev)
     {
         if (this.clickable) {
@@ -59,6 +68,7 @@ Main.MouseEvents = Object.extend(
         }
     },
  
+    // called when hovered
     hovered: function(ev)
     {
         if (this.hoverable) {

@@ -5,7 +5,15 @@ resources = [
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
     {name: "bg", type: "image", src: "data/img/background/bg.png"},
-    {name: "farm", type: "image", src: "data/img/buildings/farm.png"},
+    {name: "neutral_farm", type: "image",
+     src: "data/img/buildings/neutral_farm.png"},
+    {name: "user_farm", type: "image",
+     src: "data/img/buildings/user_farm.png"},
+    {name: "comp1_farm", type: "image",
+     src: "data/img/buildings/comp1_farm.png"},
+
+    {name: "building_selection", type: "image",
+     src: "data/img/buildings/building_selection.png"},
 	
 	/* Maps. 
 	 * @example

@@ -14,6 +14,14 @@ Constants =
         comp3: 4,
     },
 
+    playerStrings: [
+        "neutral",
+        "user",
+        "comp1",
+        "comp2",
+        "comp3",
+    ],
+
 }
 
 /* game engine settings */

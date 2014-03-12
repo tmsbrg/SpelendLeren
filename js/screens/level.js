@@ -1,12 +1,12 @@
+/* LevelScreen: the main game screen, shows a level and the buildings on the
+   level */
 Main.LevelScreen = me.ScreenObject.extend(
 {
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
     interface: null, // LevelInterface
 
-    /**	
-     *  action to perform on state change
-     */
+    // called when the level is started
     onResetEvent: function(level)
     {
         console.log("start of game");
@@ -18,20 +18,31 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.buildings = this.createBuildings(level.buildings);
     },
 
+    // creates and returns an array of building objects based on the levelData
     createBuildings: function(buildings)
     {
+        r = [];
         for (var i=0; i < buildings.length; i++)
         {
             // TODO: get size from external building settings
-            me.game.add(new Main.Image(buildings[i].x, buildings[i].y,
-                                       buildings[i].type, 64, 64), 10);
+            r[i] = new Main.Building(buildings[i].x, buildings[i].y,
+                                     buildings[i].type,
+                                     buildings[i].owner ?  buildings[i].owner :
+                                                    Constants.players.neutral,
+                                     i);
+            me.game.add(r[i], 10);
         }
+        return r
     },
 
-    /**	
-     *  action to perform when leaving this screen (state change)
-     */
-    onDestroyEvent: function()
-    {
-    }
+    //TODO: this function should be part of player, but player doesn't exist yet
+    attack: function(buildingId) {
+        for (var i=0; i < this.buildings.length; i++)
+        {
+            if (this.buildings[i].selected) {
+                this.buildings[i].attack(buildingId);
+                this.buildings[i].unselect();
+            }
+        }
+    },
 });

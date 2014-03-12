@@ -14,6 +14,13 @@ resources = [
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
+
+    {name: "neutral_farmer", type: "image",
+     src: "data/img/armies/neutral_farmer.png"},
+    {name: "user_farmer", type: "image",
+     src: "data/img/armies/user_farmer.png"},
+    {name: "comp1_farmer", type: "image",
+     src: "data/img/armies/comp1_farmer.png"},
 	
 	/* Maps. 
 	 * @example

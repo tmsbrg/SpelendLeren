@@ -40,7 +40,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         for (var i=0; i < this.buildings.length; i++)
         {
             if (this.buildings[i].selected) {
-                this.buildings[i].attack(buildingId);
+                this.buildings[i].attack(this.buildings[buildingId]);
             }
         }
     },

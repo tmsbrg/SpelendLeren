@@ -2,8 +2,8 @@
 Constants =
 {
 
-    screenWidth: 1060,
-    screenHeight: 760,
+    screenWidth: 1024,
+    screenHeight: 768,
     resizeToBrowser: false, /* resize canvas to browser size */
 
     players : {

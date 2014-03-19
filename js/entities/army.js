@@ -13,13 +13,15 @@ Main.Army = Main.Image.extend(
 	startPoint: null, // is the point where the Army will be created
 	targetPoint: null, // the point where the amry is going to
 	direction: null, // the direction in which the Army is going
+    amount: 0, // amount of soldiers in this army
 	
 	// constructor function of Army needs two Vector2d the type of the Army and the owner of the amry
-	init: function(startPoint, target, type, owner)
+	init: function(startPoint, target, type, owner, amount)
 	{
 		this.type = type;
 		this.owner = owner;
         this.target = target;
+        this.amount = amount;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
 		

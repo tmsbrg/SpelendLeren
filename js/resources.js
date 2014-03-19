@@ -21,6 +21,9 @@ resources = [
      src: "data/img/armies/user_farmer.png"},
     {name: "comp1_farmer", type: "image",
      src: "data/img/armies/comp1_farmer.png"},
+
+    {name: "ugly_font", type: "image",
+     src: "data/img/gui/ugly_font.png"},
 	
 	/* Maps. 
 	 * @example

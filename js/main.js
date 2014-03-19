@@ -33,6 +33,7 @@ var Main = {
 
     // Run on game resources loaded.
     loaded: function () {
+        this.font = new me.BitmapFont("ugly_font", 32, 0.25);
         this.levelScreen = new Main.LevelScreen();
         me.state.set(me.state.PLAY, this.levelScreen);
 

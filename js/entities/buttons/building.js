@@ -15,17 +15,22 @@ Main.Building = Main.Button.extend(
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
+    imageObject: null, // reference to the image object
+    textObject: null, // reference to the text object
 	
 	init: function(x, y, type, owner, id)
 	{
         this.type = type;
         this.owner = owner;
-        var img = new Main.Image(x, y,
+        this.imageObject = new Main.Image(0, 0,
                                  this.getImage(),
                                  64, 64);
         this.id = id;
         this.selectedImage = me.loader.getImage("building_selection");
-        this.parent(img, this.onClick.bind(this), this.onHover.bind(this));
+        this.textObject = new Main.TextObject(0, 64, this.currentCapacity+" / "+this.maxCapacity, Main.font);
+        var gui = new Main.GUIContainer(x, y, [this.imageObject,
+                                               this.textObject]);
+        this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
 	},
 
     // returns image string for this building
@@ -66,7 +71,7 @@ Main.Building = Main.Button.extend(
     takeOver: function(owner)
     {
         this.owner = owner;
-        this.displayObject.loadImage(this.getImage());
+        this.imageObject.loadImage(this.getImage());
     },
 	
     // turns selected to true

@@ -4,19 +4,21 @@ Main.Building = Main.Button.extend(
 {
 	maxCapacity: 20, // the maximum capacity of the building
 	growthRate: 1, // how fast the building's population grows
+	timeSinceLastSpawn: 0, // timer since the last resident spawned
 	level: 0, // contains upgrade level information
     type: "", // type of building
     //TODO: unitType should be taken from a building's game settings
     unitType: "farmer", // type of unit this building creates
 	owner: Constants.players.neutral, // contains owner information
 	flag: null, // contains image object for the flag
-	currentCapacity: 20, // capacity of this building
+	currentCapacity: 17, // capacity of this building
 	selected: false, // whether this building is selected
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
     imageObject: null, // reference to the image object
     textObject: null, // reference to the text object
+	
 	
 	init: function(x, y, type, owner, id)
 	{
@@ -40,9 +42,26 @@ Main.Building = Main.Button.extend(
 	
 	update: function()
 	{
-        return this.parent();
+        this.createResident();
+		return this.parent();
 	},
-
+	
+	// creates new residents based on the growthRate rate and the maximum capacity
+	createResident: function()
+	{
+		var spawnResidentTime = 5000;
+		if( this.currentCapacity < this.maxCapacity){
+			console.log(this.currentCapacity);
+			this.timeSinceLastSpawn += Main.timer.dt ; // * Main.timer.dt;
+			
+			if(this.timeSinceLastSpawn > spawnResidentTime ){
+				this.currentCapacity += this.growthRate;
+				this.timeSinceLastSpawn = 0;
+				console.log(this.currentCapacity);
+			}
+		}
+	},
+	
 	draw: function(ctx)
 	{
         if (this.selected) {
@@ -55,10 +74,17 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		me.game.add(new Main.Army(this.pos, target, this.unitType,
-                                  this.owner),
-                    20);
-        this.unselect();
+		
+		var amount = Math.ceil(this.currentCapacity * 0.5);
+		if(amount !== 0){
+			
+			this.currentCapacity -= amount;
+			console.log(this.currentCapacity);
+			me.game.add(new Main.Army(this.pos, target, this.unitType,
+									  this.owner, amount),
+						20);	
+		}
+		this.unselect();
 	},
 	
     // defends against an army

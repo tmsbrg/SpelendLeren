@@ -5,6 +5,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
     interface: null, // LevelInterface
+	
 
     // called when the level is started
     onResetEvent: function(level)
@@ -16,6 +17,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.game.add(this.background, 0);
 
         this.buildings = this.createBuildings(level.buildings);
+		Main.timer = new Main.TimeObject();
+		me.game.add(Main.timer);
     },
 
     // creates and returns an array of building objects based on the levelData

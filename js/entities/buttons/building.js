@@ -17,7 +17,6 @@ Main.Building = Main.Button.extend(
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
 	
-	
 	init: function(x, y, type, owner, id)
 	{
         this.type = type;
@@ -44,15 +43,14 @@ Main.Building = Main.Button.extend(
 	// creates new residents based on the growthRate rate and the maximum capacity
 	createResident: function()
 	{
-		var spawnResidentTime = 5000;
+		var spawnResidentTime = 3000;
 		if( this.currentCapacity < this.maxCapacity){
-			console.log(this.currentCapacity);
 			this.timeSinceLastSpawn += Main.timer.dt ; // * Main.timer.dt;
 			
 			if(this.timeSinceLastSpawn > spawnResidentTime ){
 				this.currentCapacity += this.growthRate;
 				this.timeSinceLastSpawn = 0;
-				console.log(this.currentCapacity);
+				//console.log(this.currentCapacity);
 			}
 		}
 	},
@@ -66,6 +64,19 @@ Main.Building = Main.Button.extend(
         this.parent(ctx);
 	},
 	
+	// changes the amount of the capacity and draws it on the screen
+	changeCapacity: function(amount)
+	{
+		this.setCapacity(this.currentCapacity + amount);
+	},
+	
+	// sets the value of the currentCapacity
+	setCapacity: function(amount)
+	{
+		this.currentCapacity = amount;
+		// TODO: draw crurrentcapacity to the screen
+	},
+	
     // attacks a target
 	attack: function(target)
 	{
@@ -73,8 +84,8 @@ Main.Building = Main.Button.extend(
 		var amount = Math.ceil(this.currentCapacity * 0.5);
 		if(amount !== 0){
 			
-			this.currentCapacity -= amount;
-			console.log(this.currentCapacity);
+			this.changeCapacity(-amount);
+			//console.log(this.currentCapacity);
 			me.game.add(new Main.Army(this.pos, target, this.unitType,
 									  this.owner, amount),
 						20);	
@@ -82,10 +93,40 @@ Main.Building = Main.Button.extend(
 		this.unselect();
 	},
 	
-    // defends against an army
-	defend: function(amount)
+    // depending of the arriving armies owner the Army either 
+	// attack or supports this building
+	arrivingArmy: function(owner, type, amount)
 	{
-		
+		if(owner === this.owner){
+			this.support(amount);
+		}else{
+			this.defend(owner, amount);
+		};
+	},
+	
+	// fights with the arriving Army if they losethe building changes from owner
+	defend: function(owner, amount)
+	{
+		// T0Do: add actually battleResult system;
+		console.log(amount);
+		var battleResult = this.currentCapacity - amount;
+		this.changeCapacity(-amount);
+		console.log("attack")
+		console.log(battleResult);
+		if(battleResult < 0){
+			
+			this.setCapacity(battleResult * (-1));
+			//this.changeCapacity(this.currentCapacity);
+			this.takeOver(owner);
+		}
+	},
+	
+	// the amount of the arriving Army getSelection added to the curretn 
+	// capacity of the building
+	support: function(amount)
+	{
+		this.currentCapacity += amount;
+			console.log("support")
 	},
 
     // changes ownership of building to given new owner

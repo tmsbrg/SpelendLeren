@@ -6,7 +6,7 @@ levelData = [
         background: "bg",
         buildings: [
             {type:"farm", x: 10, y: 10, owner: Constants.players.user},
-            {type:"farm", x: 200, y: 200},
+            {type:"farm", x: 200, y: 200, owner: Constants.players.user},
             {type:"farm", x: 150, y: 50},
             {type:"farm", x: 250, y: 80},
             {type:"farm", x: 100, y: 250},

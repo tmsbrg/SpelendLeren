@@ -4,7 +4,6 @@
 */
 Main.Army = Main.Image.extend(
 {
-	
 	speed: 1, // the speed of the army
     collisionRadius: 1, // radius for checking collision with target building
 	type: null, // type of the army
@@ -60,7 +59,7 @@ Main.Army = Main.Image.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.takeOver(this.owner);
+        this.target.arrivingArmy(this.owner, this.type, this.amount);
         me.game.remove(this);
 	},
 

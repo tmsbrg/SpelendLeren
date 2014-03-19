@@ -5,7 +5,6 @@ Main.LevelScreen = me.ScreenObject.extend(
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
     interface: null, // LevelInterface
-	
 
     // called when the level is started
     onResetEvent: function(level)

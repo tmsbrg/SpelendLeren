@@ -11,7 +11,7 @@ Main.Building = Main.Button.extend(
     unitType: "farmer", // type of unit this building creates
 	owner: Constants.players.neutral, // contains owner information
 	flag: null, // contains image object for the flag
-	currentCapacity: 17, // capacity of this building
+	currentCapacity: 20, // capacity of this building
 	selected: false, // whether this building is selected
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
@@ -23,15 +23,14 @@ Main.Building = Main.Button.extend(
 	{
         this.type = type;
         this.owner = owner;
-        this.imageObject = new Main.Image(0, 0,
-                                 this.getImage(),
-                                 64, 64);
+        this.imageObject = new Main.Image(0, 0, this.getImage(), 64, 64);
         this.id = id;
         this.selectedImage = me.loader.getImage("building_selection");
-        this.textObject = new Main.TextObject(0, 64, this.currentCapacity+" / "+this.maxCapacity, Main.font);
+        this.textObject = new Main.TextObject(0, 64, "", Main.font);
         var gui = new Main.GUIContainer(x, y, [this.imageObject,
                                                this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
+        this.setCapacity(this.currentCapacity);
 	},
 
     // returns image string for this building
@@ -53,9 +52,8 @@ Main.Building = Main.Button.extend(
 			this.timeSinceLastSpawn += Main.timer.dt ; // * Main.timer.dt;
 			
 			if(this.timeSinceLastSpawn > spawnResidentTime ){
-				this.currentCapacity += this.growthRate;
+				this.changeCapacity(this.growthRate);
 				this.timeSinceLastSpawn = 0;
-				//console.log(this.currentCapacity);
 			}
 		}
 	},
@@ -79,7 +77,7 @@ Main.Building = Main.Button.extend(
 	setCapacity: function(amount)
 	{
 		this.currentCapacity = amount;
-		// TODO: draw crurrentcapacity to the screen
+		this.textObject.setText(this.currentCapacity+" / "+this.maxCapacity);
 	},
 	
     // attacks a target
@@ -90,7 +88,6 @@ Main.Building = Main.Button.extend(
 		if(amount !== 0){
 			
 			this.changeCapacity(-amount);
-			//console.log(this.currentCapacity);
 			me.game.add(new Main.Army(this.pos, target, this.unitType,
 									  this.owner, amount),
 						20);	
@@ -112,16 +109,12 @@ Main.Building = Main.Button.extend(
 	// fights with the arriving Army if they losethe building changes from owner
 	defend: function(owner, amount)
 	{
-		// T0Do: add actually battleResult system;
-		console.log(amount);
+		// TODO: add actually battleResult system;
 		var battleResult = this.currentCapacity - amount;
 		this.changeCapacity(-amount);
-		console.log("attack")
-		console.log(battleResult);
 		if(battleResult < 0){
 			
 			this.setCapacity(battleResult * (-1));
-			//this.changeCapacity(this.currentCapacity);
 			this.takeOver(owner);
 		}
 	},
@@ -130,8 +123,7 @@ Main.Building = Main.Button.extend(
 	// capacity of the building
 	support: function(amount)
 	{
-		this.currentCapacity += amount;
-			console.log("support")
+		this.changeCapacity(amount);
 	},
 
     // changes ownership of building to given new owner

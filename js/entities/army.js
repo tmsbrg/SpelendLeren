@@ -4,7 +4,7 @@
 */
 Main.Army = Main.Image.extend(
 {
-	speed: 1, // the speed of the army
+	speed: 0, // the speed of the army
     collisionRadius: 1, // radius for checking collision with target building
 	type: null, // type of the army
 	owner: Constants.players.neutral, // contans who the owner of the Army is
@@ -23,12 +23,13 @@ Main.Army = Main.Image.extend(
         this.amount = amount;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
+        this.speed = Main.UnitConfig[type][0].speed;
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 
         this.parent(startPoint.x, startPoint.y,
-                    Constants.playerStrings[owner]+"_"+type, 40, 46);
+                    Constants.playerStrings[owner]+"_"+type, 64, 64);
 	},
 	
 	update: function()
@@ -52,8 +53,10 @@ Main.Army = Main.Image.extend(
 	move: function()
 	{
 		// direction
-		this.pos.add(new me.Vector2d(this.direction.x * this.speed,
-                                     this.direction.y * this.speed));
+		this.pos.add(new me.Vector2d(this.direction.x * this.speed *
+                                                     Main.timer.dt * 0.01,
+                                     this.direction.y * this.speed *
+                                                     Main.timer.dt * 0.01));
 	},
 	
 	// removes the Army if it reaches its destination point

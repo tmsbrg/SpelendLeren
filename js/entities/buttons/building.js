@@ -8,7 +8,7 @@ Main.Building = Main.Button.extend(
 	level: 0, // contains upgrade level information
     type: "", // type of building
     //TODO: unitType should be taken from a building's game settings
-    unitType: "farmer", // type of unit this building creates
+    unitType: "", // type of unit this building creates
 	owner: Constants.players.neutral, // contains owner information
 	flag: null, // contains image object for the flag
 	currentCapacity: 20, // capacity of this building
@@ -31,6 +31,7 @@ Main.Building = Main.Button.extend(
                                                this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
         this.setCapacity(this.currentCapacity);
+        this.unitType = Main.UnitConfig.unitForBuilding[type];
 	},
 
     // returns image string for this building
@@ -102,21 +103,21 @@ Main.Building = Main.Button.extend(
 		if(owner === this.owner){
 			this.support(amount);
 		}else{
-			this.defend(owner, amount);
+			this.defend(owner, type, amount);
 		};
 	},
 	
 	// fights with the arriving Army if they losethe building changes from owner
-	defend: function(owner, amount)
+	defend: function(owner, type, amount)
 	{
 		// TODO: add actually battleResult system;
-		var battleResult = this.currentCapacity - amount;
-		this.changeCapacity(-amount);
+		var battleResult = this.fight(owner, type, amount);
+
 		if(battleResult < 0){
-			
-			this.setCapacity(battleResult * (-1));
+            battleResult *= -1;
 			this.takeOver(owner);
 		}
+		this.setCapacity(battleResult);
 	},
 	
 	// the amount of the arriving Army getSelection added to the curretn 
@@ -125,6 +126,23 @@ Main.Building = Main.Button.extend(
 	{
 		this.changeCapacity(amount);
 	},
+
+    // returns the result of a battle between the garrison and the given
+    // attacking army
+    fight: function(owner, type, amount)
+    {
+        var attackPower = amount * Main.UnitConfig[type][0].attack;
+        var defensePower = this.currentCapacity *
+                           Main.UnitConfig[this.unitType][0].defense;
+
+        var result = defensePower - attackPower;
+        if (result > 0) {
+            return Math.ceil(result /
+                             Main.UnitConfig[this.unitType][0].defense);
+        } else {
+            return Math.ceil(result / Main.UnitConfig[type][0].attack);
+        }
+    },
 
     // changes ownership of building to given new owner
     takeOver: function(owner)

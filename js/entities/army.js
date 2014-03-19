@@ -28,7 +28,7 @@ Main.Army = Main.Image.extend(
 		this.direction.normalize();
 
         this.parent(startPoint.x, startPoint.y,
-                    Constants.playerStrings[owner]+"_"+type, 64, 64);
+                    Constants.playerStrings[owner]+"_"+type, 40, 46);
 	},
 	
 	update: function()

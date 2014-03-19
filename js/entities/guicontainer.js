@@ -10,7 +10,7 @@ Main.GUIContainer = me.Renderable.extend({
         if (objects == null) {
             objects = [];
         }
-        this.parent(new me.Vector2d(x, y), Infinity, Infinity);
+        this.parent(new me.Vector2d(x, y), 0, 0);
         this.setGUIObjects(objects);
 
         this.floating = true;
@@ -20,6 +20,8 @@ Main.GUIContainer = me.Renderable.extend({
     // sets the children of the GUIContainer
     setGUIObjects: function(objects) {
         this.GUIObjects = new Array();
+        this.width = 0;
+        this.height = 0;
         for (var i = 0; i < objects.length; i++) {
             this.addGUIObject(objects[i]);
         }
@@ -34,6 +36,12 @@ Main.GUIContainer = me.Renderable.extend({
     addGUIObject: function(object) {
         this.GUIObjects[this.GUIObjects.length] = object;
         object.floating = false;
+        if (object.pos.x + object.width > this.width) {
+            this.width = object.pos.x + object.width;
+        }
+        if (object.pos.y + object.height > this.height) {
+            this.height = object.pos.y + object.height;
+        }
     },
     update: function() {
         return true;

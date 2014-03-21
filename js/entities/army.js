@@ -5,7 +5,7 @@
 Main.Army = Main.Image.extend(
 {
 	speed: 0, // the speed of the army
-    collisionRadius: 1, // radius for checking collision with target building
+    collisionRadius: 2, // radius for checking collision with target building
 	type: null, // type of the army
 	owner: Constants.players.neutral, // contans who the owner of the Army is
     target: null, // reference to target building

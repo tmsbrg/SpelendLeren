@@ -8,7 +8,7 @@ Main.UnitConfig =
         {
             attack: 11,
             defense: 9,
-            speed: 10,
+            speed: 12,
         },
     ],
     knight:

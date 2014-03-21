@@ -7,7 +7,6 @@ Main.Building = Main.Button.extend(
 	timeSinceLastSpawn: 0, // timer since the last resident spawned
 	level: 0, // contains upgrade level information
     type: "", // type of building
-    //TODO: unitType should be taken from a building's game settings
     unitType: "", // type of unit this building creates
 	owner: Constants.players.neutral, // contains owner information
 	flag: null, // contains image object for the flag
@@ -36,7 +35,7 @@ Main.Building = Main.Button.extend(
 
     // returns image string for this building
     getImage: function() {
-        return Constants.playerStrings[this.owner] + "_" + this.type;
+        return this.owner+"_"+this.type;
     },
 	
 	update: function()
@@ -84,7 +83,6 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		
 		var amount = Math.ceil(this.currentCapacity * 0.5);
 		if(amount !== 0){
 			
@@ -147,7 +145,15 @@ Main.Building = Main.Button.extend(
     // changes ownership of building to given new owner
     takeOver: function(owner)
     {
+        var oldOwner = Main.levelScreen.getComp(this.owner);
+        var newOwner = Main.levelScreen.getComp(owner);
         this.owner = owner;
+        if (oldOwner) {
+            oldOwner.loseBuilding(this);
+        }
+        if (newOwner) {
+            newOwner.gainBuilding(this);
+        }
         this.imageObject.loadImage(this.getImage());
     },
 	
@@ -170,7 +176,7 @@ Main.Building = Main.Button.extend(
 
     onClick: function(ev)
     {
-        if (this.owner == Constants.players.user) {
+        if (this.owner == "user") {
             if (!this.selected) {
                 this.select();
             } else {

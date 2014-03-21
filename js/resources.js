@@ -11,6 +11,10 @@ resources = [
      src: "data/img/buildings/user_farm.png"},
     {name: "comp1_farm", type: "image",
      src: "data/img/buildings/comp1_farm.png"},
+    {name: "comp2_farm", type: "image",
+     src: "data/img/buildings/comp2_farm.png"},
+    {name: "comp3_farm", type: "image",
+     src: "data/img/buildings/comp3_farm.png"},
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
@@ -21,6 +25,10 @@ resources = [
      src: "data/img/armies/user_farmer.png"},
     {name: "comp1_farmer", type: "image",
      src: "data/img/armies/comp1_farmer.png"},
+    {name: "comp2_farmer", type: "image",
+     src: "data/img/armies/comp2_farmer.png"},
+    {name: "comp3_farmer", type: "image",
+     src: "data/img/armies/comp3_farmer.png"},
 
     {name: "ugly_font", type: "image",
      src: "data/img/gui/ugly_font.png"},

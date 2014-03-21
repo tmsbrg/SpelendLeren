@@ -5,9 +5,9 @@
 Main.Army = Main.Image.extend(
 {
 	speed: 0, // the speed of the army
-    collisionRadius: 2, // radius for checking collision with target building
+    collisionRadius: 3, // radius for checking collision with target building
 	type: null, // type of the army
-	owner: Constants.players.neutral, // contans who the owner of the Army is
+	owner: "neutral", // contans who the owner of the Army is
     target: null, // reference to target building
 	startPoint: null, // is the point where the Army will be created
 	targetPoint: null, // the point where the amry is going to
@@ -29,7 +29,7 @@ Main.Army = Main.Image.extend(
 		this.direction.normalize();
 
         this.parent(startPoint.x, startPoint.y,
-                    Constants.playerStrings[owner]+"_"+type, 64, 64);
+                    owner+"_"+type, 64, 64);
 	},
 	
 	update: function()

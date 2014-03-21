@@ -1,14 +1,13 @@
 /* TimeObject: Keeps deltaTime between every frame */
-Main.TimeObject = me.Renderable.extend(
+Main.TimeObject = Object.extend(
 {
 	updateWhenPaused: true,
-	dt: 0,
+	dt: 0, // delta time, usable in any update function
 	_currentDate: null,
 	_previousDate: null,
 	
 	init: function()
 	{
-		this.parent(new me.Vector2d(0, 0), 0, 0);
 		this.alwaysUpdate = true;
 		this._currentDate = me.timer.getTime();
 		this._previousDate = me.timer.getTime();
@@ -21,10 +20,5 @@ Main.TimeObject = me.Renderable.extend(
 		this._currentDate = me.timer.getTime();
 		return false;
 	},
-	
-	draw: function()
-	{
-		
-	}
 });
 

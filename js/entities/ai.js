@@ -29,6 +29,8 @@ Main.AI = Object.extend({
         return false;
     },
 
+    // searches for a target, returns false and turns the AI inactive when
+    // it has found none, otherwise returns true
     searchForTarget: function()
     {
         if (this.currentTarget == null) {
@@ -41,12 +43,14 @@ Main.AI = Object.extend({
         return true;
     },
 
+    // manages sending waves of attacks over time
     sendWaves: function()
     {
         if (this.attacking) {
             this.counter += Main.timer.dt;
             if (this.counter >= this.timeUntilNextWave) {
                 this.attack(this.currentTarget);
+                this.counter = 0;
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
                     this.wavesSent = 0;
@@ -90,6 +94,7 @@ Main.AI = Object.extend({
     {
         this.myBuildings.push(building);
         this.currentTarget = this.getNewTarget();
+        this.attacking = false;
     },
 
     // removes a building from the array of buildings owned by this AI
@@ -100,6 +105,9 @@ Main.AI = Object.extend({
             if (this.myBuildings[i] === building) {
                 this.myBuildings.splice(i, 1);
             }
+        }
+        if (!this.active) {
+            this.active = true;
         }
     },
 

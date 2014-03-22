@@ -154,6 +154,9 @@ Main.Building = Main.Button.extend(
         if (newOwner) {
             newOwner.gainBuilding(this);
         }
+        if (this.selected) {
+            this.selected = false;
+        }
         this.imageObject.loadImage(this.getImage());
     },
 	

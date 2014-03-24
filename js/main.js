@@ -38,7 +38,7 @@ var Main = {
         me.state.set(me.state.PLAY, this.levelScreen);
 
         // Start the game.
-        me.state.change(me.state.PLAY, levelData[0]);
+        me.state.change(me.state.PLAY, levelData[1]);
     },
 
     levelScreen: null, // reference to the levelScreen

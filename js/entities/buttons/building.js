@@ -3,12 +3,13 @@
 Main.Building = Main.Button.extend(
 {
 	maxCapacity: 20, // the maximum capacity of the building
+    spawnResidentTime: 3000, // miliseconds between spawning new soldiers
 	growthRate: 1, // how fast the building's population grows
 	timeSinceLastSpawn: 0, // timer since the last resident spawned
 	level: 0, // contains upgrade level information
     type: "", // type of building
     unitType: "", // type of unit this building creates
-	owner: Constants.players.neutral, // contains owner information
+	owner: "neutral", // contains owner information
 	flag: null, // contains image object for the flag
 	currentCapacity: 20, // capacity of this building
 	selected: false, // whether this building is selected
@@ -17,20 +18,29 @@ Main.Building = Main.Button.extend(
                          // building is selected
     imageObject: null, // reference to the image object
     textObject: null, // reference to the text object
+    active: true, // whether this building is creating units
 	
-	init: function(x, y, type, owner, id)
+	init: function(x, y, type, owner, id, capacity)
 	{
         this.type = type;
         this.owner = owner;
         this.imageObject = new Main.Image(0, 0, this.getImage(), 64, 64);
         this.id = id;
+        if (capacity != null) {
+            this.currentCapacity = capacity;
+        } else {
+            // TODO: Put capacity in a setting for buildings
+            this.currentCapacity = (this.owner === "neutral") ? 5 : 20;
+        }
         this.selectedImage = me.loader.getImage("building_selection");
         this.textObject = new Main.TextObject(0, 64, "", Main.font);
         var gui = new Main.GUIContainer(x, y, [this.imageObject,
                                                this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
-        this.setCapacity(this.currentCapacity);
         this.unitType = Main.UnitConfig.unitForBuilding[type];
+
+        this.setCapacity(this.currentCapacity);
+        this.checkActive();
 	},
 
     // returns image string for this building
@@ -40,18 +50,19 @@ Main.Building = Main.Button.extend(
 	
 	update: function()
 	{
-        this.createResident();
+        if (this.active) {
+            this.createResident();
+        }
 		return this.parent();
 	},
 	
 	// creates new residents based on the growthRate rate and the maximum capacity
 	createResident: function()
 	{
-		var spawnResidentTime = 3000;
 		if( this.currentCapacity < this.maxCapacity){
 			this.timeSinceLastSpawn += Main.timer.dt ; // * Main.timer.dt;
 			
-			if(this.timeSinceLastSpawn > spawnResidentTime ){
+			if(this.timeSinceLastSpawn > this.spawnResidentTime ){
 				this.changeCapacity(this.growthRate);
 				this.timeSinceLastSpawn = 0;
 			}
@@ -158,6 +169,14 @@ Main.Building = Main.Button.extend(
             this.selected = false;
         }
         this.imageObject.loadImage(this.getImage());
+        this.checkActive();
+    },
+
+    // sets whether this building is growing units based on whether it is
+    // neutral
+    checkActive: function()
+    {
+        this.active = (this.owner === "neutral") ? false : true;
     },
 	
     // turns selected to true

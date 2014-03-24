@@ -32,7 +32,8 @@ Main.LevelScreen = me.ScreenObject.extend(
                                      buildings[i].type,
                                      buildings[i].owner ?  buildings[i].owner :
                                                            "neutral",
-                                     i);
+                                     i,
+                                     buildings[i].capacity);
             me.game.add(r[i], 10);
         }
         return r
@@ -44,7 +45,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         compBuildings = {};
         for (var i=0; i < buildings.length; i++)
         {
-            if (buildings[i].owner.startsWith("comp")) {
+            if (buildings[i].owner.substr(0, 4) === "comp") {
                 if (compBuildings[buildings[i].owner] === undefined) {
                     compBuildings[buildings[i].owner] = [buildings[i]];
                 } else {

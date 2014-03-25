@@ -52,7 +52,7 @@ Main.MouseEvents = Object.extend(
     // register mouse click and hover
     registerClickAndHover: function()
     {
-        me.input.registerPointerEvent('mousedown', this.rect,
+        me.input.registerPointerEvent('mouseup', this.rect,
                                       this.clicked.bind(this));
         me.input.registerPointerEvent('mousemove', this.rect,
                                       this.hovered.bind(this));

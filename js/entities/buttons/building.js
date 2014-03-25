@@ -33,7 +33,7 @@ Main.Building = Main.Button.extend(
             this.currentCapacity = (this.owner === "neutral") ? 5 : 20;
         }
         this.selectedImage = me.loader.getImage("building_selection");
-        this.textObject = new Main.TextObject(0, 64, "", Main.font);
+        this.textObject = new Main.TextObject(12, -10, "", Main.font);
         var gui = new Main.GUIContainer(x, y, [this.imageObject,
                                                this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
@@ -88,7 +88,7 @@ Main.Building = Main.Button.extend(
 	setCapacity: function(amount)
 	{
 		this.currentCapacity = amount;
-		this.textObject.setText(this.currentCapacity+" / "+this.maxCapacity);
+		this.textObject.setText(this.currentCapacity+"/"+this.maxCapacity);
 	},
 	
     // attacks a target
@@ -199,9 +199,7 @@ Main.Building = Main.Button.extend(
     onClick: function(ev)
     {
         if (this.owner == "user") {
-            if (!this.selected) {
-                this.select();
-            } else {
+            if (this.selected) {
                 Main.levelScreen.attack(this.id);
             }
         } else {
@@ -211,5 +209,9 @@ Main.Building = Main.Button.extend(
 
     onHover: function(ev)
     {
+        if (me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
+            !this.selected) {
+            this.select();
+        }
     },
 });

@@ -198,13 +198,7 @@ Main.Building = Main.Button.extend(
 
     onClick: function(ev)
     {
-        if (this.owner == "user") {
-            if (this.selected) {
-                Main.levelScreen.attack(this.id);
-            }
-        } else {
-            Main.levelScreen.attack(this.id);
-        }
+        Main.levelScreen.attack(this.id);
     },
 
     onHover: function(ev)

@@ -1,9 +1,10 @@
-Main.AI = Object.extend({
+Main.AI = Object.extend(
+{
     name: "", // string containing information about which player this is
     myBuildings: null, // array of buildings owned by the AI
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
-    timeUntilNextWave: 6000, // amount of miliseconds until sending the next
+    timeUntilNextWave: 4000, // amount of miliseconds until sending the next
                              // wave of armies
     active: true, // whether this AI is doing stuff
     attacking: false, // whether this AI is currently attacking

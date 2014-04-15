@@ -1,8 +1,10 @@
 
 /* Main object */
-var Main = {
+var Main =
+{
     // Run on page load.
-    onload: function () {
+    onload: function () 
+    {
         // Initialize the video.
         if (!me.video.init("screen", Constants.screenWidth,
                                      Constants.screenHeight,
@@ -13,7 +15,8 @@ var Main = {
 		
 		// add "#debug" to the URL to enable the debug Panel
 		if (document.location.hash === "#debug") {
-			window.onReady(function () {
+			window.onReady(function ()
+            {
 				me.plugin.register.defer(debugPanel, "debug");
 			});
 		}
@@ -32,7 +35,8 @@ var Main = {
     },
 
     // Run on game resources loaded.
-    loaded: function () {
+    loaded: function ()
+    {
         this.font = new me.BitmapFont("ugly_font", 32, 0.25);
         this.levelScreen = new Main.LevelScreen();
         me.state.set(me.state.PLAY, this.levelScreen);
@@ -43,7 +47,7 @@ var Main = {
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
 
         // Start the game.
-        me.state.change(me.state.PLAY, levelData[1]);
+        me.state.change(me.state.PLAY, levelData[2]);
     },
 
     levelScreen: null, // reference to the levelScreen

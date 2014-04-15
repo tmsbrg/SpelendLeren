@@ -30,6 +30,9 @@ resources = [
     {name: "comp3_farmer", type: "image",
      src: "data/img/armies/comp3_farmer.png"},
 
+    {name: "battle_animation", type: "image",
+     src: "data/img/armies/battle_animation.png"},
+
     {name: "ugly_font", type: "image",
      src: "data/img/gui/ugly_font.png"},
 	

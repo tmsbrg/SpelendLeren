@@ -44,7 +44,8 @@ Main.Building = Main.Button.extend(
 	},
 
     // returns image string for this building
-    getImage: function() {
+    getImage: function()
+    {
         return this.owner+"_"+this.type;
     },
 	
@@ -119,6 +120,9 @@ Main.Building = Main.Button.extend(
 	// fights with the arriving Army if they losethe building changes from owner
 	defend: function(owner, type, amount)
 	{
+        me.game.add(new Main.Effect(this.pos.x - this.width/2,
+                                    this.pos.y - this.height/2),
+                    100);
 		// TODO: add actually battleResult system;
 		var battleResult = this.fight(owner, type, amount);
 

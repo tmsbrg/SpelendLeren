@@ -1,6 +1,8 @@
 /* GUIContainer: contains a group of GUI elements */
-Main.GUIContainer = me.Renderable.extend({
-    init: function(x, y, objects) {
+Main.GUIContainer = me.Renderable.extend(
+{
+    init: function(x, y, objects)
+    {
         if (x == null) {
             x = 0;
         }
@@ -18,7 +20,8 @@ Main.GUIContainer = me.Renderable.extend({
     visible: true,
     GUIObjects: null,
     // sets the children of the GUIContainer
-    setGUIObjects: function(objects) {
+    setGUIObjects: function(objects)
+    {
         this.GUIObjects = new Array();
         this.width = 0;
         this.height = 0;
@@ -27,7 +30,8 @@ Main.GUIContainer = me.Renderable.extend({
         }
     },
     // adds children to the GUIContainer
-    addGUIObjects: function(objects) {
+    addGUIObjects: function(objects)
+    {
         for (var i = 0; i < objects.length; i++) {
             this.addGUIObject(objects[i]);
         }
@@ -43,10 +47,12 @@ Main.GUIContainer = me.Renderable.extend({
             this.height = object.pos.y + object.height;
         }
     },
-    update: function() {
+    update: function() 
+    {
         return true;
     },
-    draw: function(ctx) {
+    draw: function(ctx)
+    {
         if (!this.visible) return;
         ctx.save();
         ctx.translate(this.pos.x, this.pos.y);

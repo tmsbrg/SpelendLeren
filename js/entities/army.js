@@ -35,7 +35,7 @@ Main.Army = Main.Image.extend(
 	update: function()
 	{
 		this.move();
-        if (this.distanceFromTarget() < this.collisionRadius) {
+        if (this.pos.distance(this.targetPoint) < this.collisionRadius) {
             this.reachedDestination();
         }
 	},
@@ -64,13 +64,5 @@ Main.Army = Main.Image.extend(
 	{
         this.target.arrivingArmy(this.owner, this.type, this.amount);
         me.game.remove(this);
-	},
-
-    // returns the difference between the army and target
-    distanceFromTarget: function() {
-        return Math.sqrt((this.targetPoint.x - this.pos.x) *
-                         (this.targetPoint.x - this.pos.x) +
-                         (this.targetPoint.y - this.pos.y) *
-                         (this.targetPoint.y - this.pos.y));
-    }
+	}
 });

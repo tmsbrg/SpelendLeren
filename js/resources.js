@@ -16,11 +16,14 @@ resources = [
     {name: "comp3_farm", type: "image",
      src: "data/img/buildings/comp3_farm.png"},
 
+    {name: "user_homestead", type: "image",
+     src: "data/img/buildings/user_homestead.png"},
+    {name: "comp1_homestead", type: "image",
+     src: "data/img/buildings/comp1_homestead.png"},
+
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
 
-    {name: "neutral_farmer", type: "image",
-     src: "data/img/armies/neutral_farmer.png"},
     {name: "user_farmer", type: "image",
      src: "data/img/armies/user_farmer.png"},
     {name: "comp1_farmer", type: "image",
@@ -29,6 +32,11 @@ resources = [
      src: "data/img/armies/comp2_farmer.png"},
     {name: "comp3_farmer", type: "image",
      src: "data/img/armies/comp3_farmer.png"},
+
+    {name: "user_knight", type: "image",
+     src: "data/img/armies/user_knight.png"},
+    {name: "comp1_knight", type: "image",
+     src: "data/img/armies/comp1_knight.png"},
 
     {name: "battle_animation", type: "image",
      src: "data/img/armies/battle_animation.png"},

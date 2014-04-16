@@ -10,6 +10,7 @@ Main.Building = Main.Button.extend(
     type: "", // type of building
     unitType: "", // type of unit this building creates
 	owner: "neutral", // contains owner information
+    size: 0, // contains size of building
 	flag: null, // contains image object for the flag
 	currentCapacity: 20, // capacity of this building
 	selected: false, // whether this building is selected
@@ -24,7 +25,9 @@ Main.Building = Main.Button.extend(
 	{
         this.type = type;
         this.owner = owner;
-        this.imageObject = new Main.Image(0, 0, this.getImage(), 64, 64);
+        this.size = Main.UnitConfig.buildingSizes[type];
+        this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
+                                          this.size);
         this.id = id;
         if (capacity != null) {
             this.currentCapacity = capacity;
@@ -120,8 +123,10 @@ Main.Building = Main.Button.extend(
 	// fights with the arriving Army if they losethe building changes from owner
 	defend: function(owner, type, amount)
 	{
-        me.game.add(new Main.Effect(this.pos.x - this.width/2,
-                                    this.pos.y - this.height/2),
+        // temporary hack to get it in the right place
+        var img_size = 128;
+        me.game.add(new Main.Effect(this.pos.x + (this.size - img_size)/2,
+                                    this.pos.y + (this.size - img_size)/2),
                     100);
 		// TODO: add actually battleResult system;
 		var battleResult = this.fight(owner, type, amount);

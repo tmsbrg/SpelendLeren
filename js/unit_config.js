@@ -28,9 +28,17 @@ Main.UnitConfig =
         },
     ],
 
-    unitForBuilding: {
+    unitForBuilding:
+    {
         farm: "farmer",
         homestead: "knight",
         church: "monk"
-    }
+    },
+
+    buildingSizes:
+    {
+        farm: 64,
+        homestead: 128,
+        church: 64
+    },
 }

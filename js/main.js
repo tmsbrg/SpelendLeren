@@ -47,7 +47,7 @@ var Main =
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
 
         // Start the game.
-        me.state.change(me.state.PLAY, levelData[2]);
+        me.state.change(me.state.PLAY, levelData[3]);
     },
 
     levelScreen: null, // reference to the levelScreen

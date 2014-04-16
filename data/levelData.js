@@ -48,8 +48,8 @@ levelData = [
         enemyTechLevel: 0,
     },
     {
-        name: "tourney",
-        infotext: "a map where everyone has equal chances",
+        name: "tourney-duel",
+        infotext: "a map where everyone has equal chances - duel mode",
         background: "bg",
         buildings: [
             {type:"farm", x: 100, y: 150, owner: "user"},
@@ -65,6 +65,26 @@ levelData = [
 
             {type:"farm", x: 600, y: 150, owner: "comp1"},
             {type:"farm", x: 600, y: 250, owner: "comp1"},
+        ],
+        startResources: 0,
+        enemyTechLevel: 0,
+    },
+    {
+        name: "homestead",
+        infotext: "Map for testing the homestead",
+        background: "bg",
+        buildings: [
+            {type:"homestead", x: 50, y: 250, owner: "user"},
+
+            {type:"farm", x: 200, y: 150},
+            {type:"farm", x: 200, y: 450},
+
+            {type:"farm", x: 425, y: 300, capacity: 2},
+
+            {type:"farm", x: 650, y: 150},
+            {type:"farm", x: 650, y: 450},
+
+            {type:"homestead", x: 800, y: 250, owner: "comp1"},
         ],
         startResources: 0,
         enemyTechLevel: 0,

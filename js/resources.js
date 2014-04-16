@@ -20,6 +20,8 @@ resources = [
      src: "data/img/buildings/user_homestead.png"},
     {name: "comp1_homestead", type: "image",
      src: "data/img/buildings/comp1_homestead.png"},
+    {name: "neutral_homestead", type: "image",
+     src: "data/img/buildings/neutral_homestead.png"},
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},

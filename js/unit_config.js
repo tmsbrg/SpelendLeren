@@ -1,7 +1,18 @@
 /* UnitConfig: contains the stats of the units, and what buildings produce
    which units */
-// TODO: Make getting unit config less fugly
-Main.UnitConfig =
+UnitConfig = function(type, level, attribute) {
+    return _UnitConfig[type][level][attribute];
+}
+
+GetBuildingSize = function(type) {
+    return _UnitConfig.buildingSizes[type];
+}
+
+UnitForBuilding = function(type) {
+    return _UnitConfig.unitForBuilding[type];
+}
+
+_UnitConfig =
 {
     farmer:
     [

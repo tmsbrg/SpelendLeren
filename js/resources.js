@@ -45,6 +45,8 @@ resources = [
 
     {name: "ugly_font", type: "image",
      src: "data/img/gui/ugly_font.png"},
+    {name: "ubuntu_font", type: "image",
+     src: "data/img/gui/ubuntu_font.png"},
 	
 	/* Maps. 
 	 * @example

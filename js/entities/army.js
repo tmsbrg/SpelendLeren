@@ -7,6 +7,7 @@ Main.Army = Main.Image.extend(
 	speed: 0, // the speed of the army
     collisionRadius: 32, // radius for checking collision with target building
 	type: null, // type of the army
+    level: 0, // upgrade level
 	owner: "neutral", // contans who the owner of the Army is
     target: null, // reference to target building
 	startPoint: null, // is the point where the Army will be created
@@ -23,7 +24,7 @@ Main.Army = Main.Image.extend(
         this.amount = amount;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
-        this.speed = Main.UnitConfig[type][0].speed;
+        this.speed = UnitConfig(type, this.level, "speed");
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();

@@ -25,7 +25,7 @@ Main.Building = Main.Button.extend(
 	{
         this.type = type;
         this.owner = owner;
-        this.size = Main.UnitConfig.buildingSizes[type];
+        this.size = GetBuildingSize(type);
         this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
                                           this.size);
         this.id = id;
@@ -40,7 +40,7 @@ Main.Building = Main.Button.extend(
         var gui = new Main.GUIContainer(x, y, [this.imageObject,
                                                this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
-        this.unitType = Main.UnitConfig.unitForBuilding[type];
+        this.unitType = UnitForBuilding(type);
 
         this.setCapacity(this.currentCapacity);
         this.checkActive();
@@ -149,16 +149,16 @@ Main.Building = Main.Button.extend(
     // attacking army
     fight: function(owner, type, amount)
     {
-        var attackPower = amount * Main.UnitConfig[type][0].attack;
+        var attackPower = amount * UnitConfig(type, 0, "attack");
         var defensePower = this.currentCapacity *
-                           Main.UnitConfig[this.unitType][0].defense;
+                           UnitConfig(this.unitType, 0, "defense");
 
         var result = defensePower - attackPower;
         if (result > 0) {
             return Math.ceil(result /
-                             Main.UnitConfig[this.unitType][0].defense);
+                             UnitConfig(this.unitType, 0, "defense"));
         } else {
-            return Math.ceil(result / Main.UnitConfig[type][0].attack);
+            return Math.ceil(result / UnitConfig(type, 0, "attack"));
         }
     },
 

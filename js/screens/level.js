@@ -10,7 +10,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(level)
     {
-        console.log("start of game");
+        /*console.log("start of game");
         this.background = new Main.Image(0, 0, level.background,
                                          Constants.screenWidth,
                                          Constants.screenHeight);
@@ -19,7 +19,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.buildings = this.createBuildings(level.buildings);
         this.createPlayers(this.buildings);
 		Main.timer = new Main.TimeObject();
-		me.game.add(Main.timer);
+		me.game.add(Main.timer); */
     },
 
     // creates and returns an array of building objects based on the levelData

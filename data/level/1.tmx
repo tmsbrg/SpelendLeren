@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="farm" tilewidth="64" tileheight="64">
+  <image source="../img/buildings/neutral_farm.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="2" name="homestead" tilewidth="128" tileheight="128">
+  <image source="../img/buildings/neutral_homestead.png" width="128" height="128"/>
+ </tileset>
+ <imagelayer name="Background Layer" width="32" height="24">
+  <image source="../img/background/bg.png"/>
+ </imagelayer>
+ <objectgroup name="Object Layer" width="32" height="24">
+  <object type="neutral" gid="2" x="691" y="581">
+   <properties>
+    <property name="capaciy" value="15"/>
+   </properties>
+  </object>
+  <object type="user" gid="2" x="875" y="135"/>
+  <object type="comp1" gid="2" x="-4" y="743"/>
+  <object type="neutral" gid="1" x="552" y="88"/>
+  <object type="neutral" gid="1" x="225" y="108"/>
+  <object type="neutral" gid="1" x="69" y="248"/>
+  <object type="neutral" gid="1" x="31" y="521"/>
+  <object type="neutral" gid="1" x="371" y="640"/>
+  <object type="neutral" gid="1" x="883" y="371"/>
+ </objectgroup>
+</map>

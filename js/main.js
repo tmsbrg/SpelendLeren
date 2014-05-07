@@ -43,13 +43,15 @@ var Main =
         this.levelScreen = new Main.LevelScreen();
         me.state.set(me.state.PLAY, this.levelScreen);
 
+        // me.pool.register("farm", 
+
         // warning, hack: getting mouse down checking to work without using
         // a key
         me.input.bindKey(1000, "mouseleft");
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
 
         // Start the game.
-        me.state.change(me.state.PLAY, "1");
+        me.state.change(me.state.PLAY, "level1");
     },
 
     levelScreen: null, // reference to the levelScreen

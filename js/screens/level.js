@@ -8,35 +8,88 @@ Main.LevelScreen = me.ScreenObject.extend(
     comps: null, // dictionary containing all computer players
 
     // called when the level is started
-    onResetEvent: function(level)
+    onResetEvent: function(levelname)
     {
-        /*console.log("start of game");
-        this.background = new Main.Image(0, 0, level.background,
+        var level = me.loader.getTMX(levelname);
+        if (level == null) {
+            console.log("Error: cannot find level: \""+levelname+"\"");
+            return;
+        }
+        this.background = new Main.Image(0, 0, null,
                                          Constants.screenWidth,
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
 
-        this.buildings = this.createBuildings(level.buildings);
+        this.tiles = new Array(1);
+        this.interpretLevel(level);
         this.createPlayers(this.buildings);
+
 		Main.timer = new Main.TimeObject();
-		me.game.add(Main.timer); */
+		me.game.add(Main.timer);
+        console.log("start of game");
     },
 
-    // creates and returns an array of building objects based on the levelData
-    createBuildings: function(buildings)
+    interpretLevel: function(xml)
     {
-        r = [];
-        for (var i=0; i < buildings.length; i++)
+        switch(xml.localName) {
+            case "imagelayer":
+                var image = xml.firstElementChild;
+                this.background.loadImage(srcToImageName(
+                                this.getAttribute(image, "source")));
+                break;
+            case "tileset":
+                this.tiles[Number(this.getAttribute(xml, "firstgid"))] = {
+                    type : this.getAttribute(xml, "name")
+                }
+                break;
+            case "objectgroup":
+                this.buildings = this.createBuildings(xml);
+                break;
+        }
+        for (var i=0; i<xml.childElementCount; i++) {
+            this.interpretLevel(xml.children[i]);
+        }
+    },
+
+    // creates and returns an array of building objects based on the an xml
+    // object layer
+    createBuildings: function(xml, gid)
+    {
+        var r = [];
+        for (var i=0; i < xml.childElementCount; i++)
         {
-            r[i] = new Main.Building(buildings[i].x, buildings[i].y,
-                                     buildings[i].type,
-                                     buildings[i].owner ?  buildings[i].owner :
-                                                           "neutral",
+            var obj = xml.children[i];
+            var gid = Number(this.getAttribute(obj, "gid"));
+            r[i] = new Main.Building(Number(this.getAttribute(obj, "x")),
+                                     Number(this.getAttribute(obj, "y")-64),
+                                     this.tiles[gid].type,
+                                     this.getAttribute(obj, "type") ?
+                                        this.getAttribute(obj, "type") :
+                                        "neutral",
                                      i,
-                                     buildings[i].capacity);
+                                     this.getProperty(obj, "capacity"));
             me.game.add(r[i], 10);
         }
-        return r
+        return r;
+    },
+
+    getProperty: function(obj, name)
+    {
+        var properties = obj.firstChild;
+        if (properties != null) {
+            for (var i=0; i < properties.childElementCount; i++)
+            {
+                if (this.getAttribute(properties[i], "name") === name) {
+                    return this.getAttribute(properties[i], "value");
+                }
+            }
+        }
+        return null;
+    },
+
+    getAttribute: function(xml, name)
+    {
+        return xml.attributes.getNamedItem(name).value;
     },
 
     // creates the computer players and gives them information needed for the AI

@@ -30,15 +30,15 @@ Main.Building = Main.Button.extend(
                                           this.size);
         this.id = id;
         if (capacity != null) {
-            this.currentCapacity = capacity;
+            this.currentCapacity = Number(capacity);
         } else {
             // TODO: Put capacity in a setting for buildings
             this.currentCapacity = (this.owner === "neutral") ? 5 : 20;
         }
         this.selectedImage = me.loader.getImage("building_selection");
         this.textObject = new Main.TextObject(12, -10, "", Main.font);
-        var gui = new Main.GUIContainer(x, y, [this.imageObject,
-                                               this.textObject]);
+        var gui = new Main.GUIContainer(x, y-this.size/2,
+                                        [this.imageObject, this.textObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
         this.unitType = UnitForBuilding(type);
 

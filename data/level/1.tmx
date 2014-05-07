@@ -15,10 +15,10 @@
     <property name="capaciy" value="15"/>
    </properties>
   </object>
-  <object type="user" gid="2" x="875" y="135"/>
-  <object type="comp1" gid="2" x="-4" y="743"/>
-  <object type="neutral" gid="1" x="552" y="88"/>
-  <object type="neutral" gid="1" x="225" y="108"/>
+  <object type="user" gid="2" x="887" y="148"/>
+  <object type="comp1" gid="2" x="8" y="760"/>
+  <object type="neutral" gid="1" x="557" y="125"/>
+  <object type="neutral" gid="1" x="234" y="141"/>
   <object type="neutral" gid="1" x="69" y="248"/>
   <object type="neutral" gid="1" x="31" y="521"/>
   <object type="neutral" gid="1" x="371" y="640"/>

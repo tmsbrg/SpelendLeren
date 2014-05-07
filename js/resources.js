@@ -25,6 +25,12 @@ resources = [
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
+	
+	{name: "farmer_icon", type: "image",
+	 src: "data/img/armies/icons/farmer_icon.png"},
+	 
+	{name: "knight_icon", type: "image",
+	 src: "data/img/armies/icons/knight_icon.png"},
 
     {name: "user_farmer", type: "image",
      src: "data/img/armies/user_farmer.png"},

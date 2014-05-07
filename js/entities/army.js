@@ -14,14 +14,16 @@ Main.Army = Main.Image.extend(
 	targetPoint: null, // the point where the amry is going to
 	direction: null, // the direction in which the Army is going
     amount: 0, // amount of soldiers in this army
+	upgradeLevel: null,
 	
 	// constructor function of Army needs two Vector2d the type of the Army and the owner of the amry
-	init: function(startPoint, target, type, owner, amount)
+	init: function(startPoint, target, type, owner, amount, upgradeLevel)
 	{
 		this.type = type;
 		this.owner = owner;
         this.target = target;
         this.amount = amount;
+		this.upgradeLevel = upgradeLevel;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
         this.speed = UnitConfig(type, this.level, "speed");
@@ -63,7 +65,7 @@ Main.Army = Main.Image.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.arrivingArmy(this.owner, this.type, this.amount);
+        this.target.arrivingArmy(this.owner, this.type, this.amount, this.upgradeLevel);
         me.game.remove(this);
 	}
 });

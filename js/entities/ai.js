@@ -59,7 +59,7 @@ Main.AI = Object.extend(
                 }
             }
         } else if (this.getTotalStrength() >=
-                   this.currentTarget.currentCapacity) {
+                   this.currentTarget.currentCapacity()) {
             this.attacking = true;
         }
     },
@@ -118,7 +118,7 @@ Main.AI = Object.extend(
         var strength = 0;
         for (var i=0; i < this.myBuildings.length; i++)
         {
-            strength += this.myBuildings[i].currentCapacity;
+            strength += this.myBuildings[i].currentCapacity();
         }
         return strength;
     },

@@ -4,7 +4,7 @@ Constants =
 
     screenWidth: 1024,
     screenHeight: 768,
-    resizeToBrowser: false, /* resize canvas to browser size */
+    resizeToBrowser: true, /* resize canvas to browser size */
 
     players: [
         "neutral",

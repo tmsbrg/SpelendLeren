@@ -8,7 +8,9 @@ var Main =
         // Initialize the video.
         if (!me.video.init("screen", Constants.screenWidth,
                                      Constants.screenHeight,
-                                     Constants.resizeToBrowser)) {
+                                     false,
+                                     Constants.resizeToBrowser ?
+                                        'auto' : undefined)) {
             alert("Your browser does not support HTML5 canvas.");
             return;
         }

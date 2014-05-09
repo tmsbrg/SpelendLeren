@@ -209,17 +209,17 @@ Main.Building = Main.Button.extend(
 	
     // depending of the arriving armies owner the Army either 
 	// attack or supports this building
-	arrivingArmy: function(owner, type, amount, upgradeLevel)
+	arrivingArmy: function(owner, units)
 	{
 		if (owner === this.owner) {
-			this.support(amount, type, upgradeLevel);
+			this.support(units);
 		} else {
-			this.defend(owner, type, amount, upgradeLevel);
-		};
+			this.defend(owner, units);
+		}
 	},
 	
 	// fights with the arriving Army if they losethe building changes from owner
-	defend: function(owner, type, amount, upgradeLevel)
+	defend: function(owner, units)
 	{
         // temporary hack to get it in the right place
         var img_size = 128;
@@ -227,7 +227,7 @@ Main.Building = Main.Button.extend(
                                     this.pos.y + (this.size - img_size)/2),
                     100);
 		// TODO: add actually battleResult system;
-		var battleResult = this.fight(owner, type, amount);
+		var battleResult = this.fight(owner, units);
 		console.log(battleResult);
 		if(battleResult < 0){
             battleResult *= -1;
@@ -239,29 +239,48 @@ Main.Building = Main.Button.extend(
 	
 	// the amount of the arriving Army getSelection added to the curretn 
 	// capacity of the building
-	support: function(amount, type, upgradeLevel)
+	support: function(units)
 	{
-		// change for different units
-		this.changeCapacity(amount, type, upgradeLevel);
+        var keys = units.keys();
+        for (var i=0; i<keys.length; i++)
+        {
+            var array = units.getValue(keys[i]);
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                if (array[j] > 0) {
+                    this.changeCapacity(array[j], keys[i], j);
+                }
+            }
+        }
 	},
 
     // returns the result of a battle between the garrison and the given
     // attacking army
-    fight: function(owner, type, amount)
+    fight: function(owner, units)
     {
-        var attackPower = amount * UnitConfig(type, 0, "attack");
-        var defensePower = this.units.getValue(this.unitType)[this.level] *
-                           UnitConfig(this.unitType, 0, "defense");
-		
-        var result = defensePower - attackPower;
-		
-		console.log(attackPower, defensePower , result);
-        if (result > 0) {
-            return Math.ceil(result /
-                             UnitConfig(this.unitType, 0, "defense"));
-        } else {
-            return Math.ceil(result / UnitConfig(type, 0, "attack"));
+        theirUnits = undefined;
+        for (var i=0; i<Constants.battle_order.length; i++)
+        {
+            var j = 0;
+            ourUnits = this.units.getValue(Constants.battle_order[i]);
+            if (theirUnits === undefined) {
+                theirUnits = units.getValue(Constants.battle_order[j]);
+            }
+            // loop through units for both armies instead
         }
+        // var attackPower = amount * UnitConfig(type, 0, "attack");
+        // var defensePower = this.units.getValue(this.unitType)[this.level] *
+                           // UnitConfig(this.unitType, 0, "defense");
+		// 
+        // var result = defensePower - attackPower;
+		// 
+		// console.log(attackPower, defensePower , result);
+        // if (result > 0) {
+            // return Math.ceil(result /
+                             // UnitConfig(this.unitType, 0, "defense"));
+        // } else {
+            // return Math.ceil(result / UnitConfig(type, 0, "attack"));
+        // }
     },
 
     // changes ownership of building to given new owner

@@ -65,7 +65,11 @@ Main.Army = Main.Image.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.arrivingArmy(this.owner, this.type, this.amount, this.upgradeLevel);
+        // test
+        var units = new Main.Dictionary();
+        units.setValue("knight", [10, 0]);
+        units.setValue("farmer", [15, 0]);
+        this.target.arrivingArmy(this.owner, units);
         me.game.remove(this);
 	}
 });

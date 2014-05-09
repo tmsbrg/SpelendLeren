@@ -2,7 +2,7 @@
    taken over */
 Main.Building = Main.Button.extend(
 {
-	units:  new Array(),
+	units: null,
 	maxCapacity: 20, // the maximum capacity of the building
     spawnResidentTime: 3000, // miliseconds between spawning new soldiers
 	growthRate: 1, // how fast the building's population grows
@@ -21,7 +21,7 @@ Main.Building = Main.Button.extend(
     imageObject: null, // reference to the image object
 	farmer_icon: null,
 	icons: new Array,
-    textObjects: new Array, // reference to the text object
+    textObjects: null, // reference to the text object
     active: true, // whether this building is creating units
 	unitCount: 0, // current count of the units who are currently in this
                   // building
@@ -53,6 +53,8 @@ Main.Building = Main.Button.extend(
         var gui = new Main.GUIContainer(x, y, this.icons);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
 		
+        this.units = new Main.Dictionary();
+        this.textObjects = new Main.Dictionary();
         this.setCapacity(capacity, this.unitType, this.level);
 		
         this.checkActive();
@@ -60,7 +62,7 @@ Main.Building = Main.Button.extend(
 	
 	currentCapacity: function()
 	{
-		var unitArray = this.values(this.units);
+		var unitArray = this.units.values();
 		var value = 0;
 		
 		for(var i = 0; i < unitArray.length; i++)
@@ -77,63 +79,56 @@ Main.Building = Main.Button.extend(
 	{
 		switch(type)
 		{
+            // TODO: add function for this stuff
 			case "farmer":
-			{	
-				
 				if(this.farmer_icon == null) {
 					
-					this.unitCount ++;
+					this.unitCount++;
 					this.farmer_icon = new Main.Image(12, -30, "farmer_icon",
                                                       16, 16);
 					
 					var textObject = new Main.TextObject(14, -10, "",
                                                          Main.font);
-					this.textObjects[type] = textObject;
+					this.textObjects.setValue(type, textObject);
 					
 					this.displayObject.addGUIObjects([this.farmer_icon,
                                                       textObject]);
 				}
-			}
-			break;
+                break;
 			
 			case "knight":
-			{	
 				if(this.knight_icon == null) {
 					
-					this.unitCount ++;
+					this.unitCount++;
 					this.knight_icon = new Main.Image(57, -30, "knight_icon",
                                                       16, 16);
 					
 					
 					var textObject = new Main.TextObject(49, -10, "",
                                                          Main.font);
-					this.textObjects[type] = textObject;
+					this.textObjects.setValue(type, textObject);
 					
 					this.displayObject.addGUIObjects([this.knight_icon,
                                                       textObject]);
-					
-				}
-			}
-			break;
+                }
+                break;
 		}
 	},
+
 	// add a unknow unit to the dictionary
-	addUnits: function(type, amount, upgradeLevel) 
+	addUnitType: function(type) 
 	{
-		if (this.units[type] == null) {
+		if (this.units.getValue(type) == null) {
 			this.addUnitUI(type);
-			console.log("new unit type");
-			this.units[type] = new Array(Constants.upgradeLevels);
+			this.units.setValue(type, new Array(Constants.upgradeLevels));
 			
-			for(var i = 0; i < this.units[type].length; i++)
+			for(var i = 0; i < this.units.getValue(type).length; i++)
 			{
-				this.units[type][i] = 0;
+				this.units.getValue(type)[i] = 0;
 			}
 		}
-		
-		//this.units[type][upgradeLevel] += amount;
-		
 	},
+
     // returns image string for this building
     getImage: function()
     {
@@ -153,7 +148,7 @@ Main.Building = Main.Button.extend(
 	createResident: function()
 	{
 		
-		if (this.units[this.unitType][this.level] < this.maxCapacity) {
+		if (this.units.getValue(this.unitType)[this.level] < this.maxCapacity) {
 			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
 			if(this.timeSinceLastSpawn > this.spawnResidentTime) {
@@ -176,18 +171,18 @@ Main.Building = Main.Button.extend(
 	changeCapacity: function(amount, type, upgradeLevel)
 	{
 		
-		this.setCapacity(this.units[type][upgradeLevel] + amount, type,
+        this.addUnitType(type);
+		this.setCapacity(this.units.getValue(type)[upgradeLevel] + amount, type,
                          upgradeLevel);
 	},
 	
 	// sets the value of the currentCapacity
 	setCapacity: function(amount, type, upgradeLevel)
 	{
-		//console.log(this.units);
-		this.addUnits(type, amount, upgradeLevel);
-		this.units[type][upgradeLevel] = amount;
-		var dicArray = this.values(this.textObjects);
-		var unitArray = this.values(this.units);
+		this.addUnitType(type);
+		this.units.getValue(type)[upgradeLevel] = amount;
+		var dicArray = this.textObjects.values();
+		var unitArray = this.units.values();
 		
 		for(var i = 0; i < dicArray.length; i++)
 		{
@@ -196,43 +191,13 @@ Main.Building = Main.Button.extend(
 		
 	},
 	
-	// returns the values of a dictionary as an array
-	values: function (obj)
-	{
-		var values = [];
-
-		for(var key in obj)
-		{
-			
-			if(obj.hasOwnProperty(key))
-			{
-				values.push(obj[key]);
-			}
-		}
-
-		return values;
-	},
-	// returns the keys of a dictionary as an array
-	keys: function (obj)
-	{
-		var keys = [];
-
-		for(var key in obj)
-		{	
-			if(obj.hasOwnProperty(key))
-			{
-				keys.push(key);
-			}
-		}
-		return keys;
-	},
-	
     // attacks a target
 	attack: function(target)
 	{
-		var amount = Math.ceil(this.units[this.unitType][this.level] * 0.5);
+		var amount = Math.ceil(this.units.getValue(this.unitType)[this.level] * 0.5);
 		if (amount !== 0) {
 			
+            // TODO: send units of all types
 			this.changeCapacity(-amount, this.unitType, this.level);
 			
 			me.game.add(new Main.Army(this.pos, target, this.unitType,
@@ -277,7 +242,6 @@ Main.Building = Main.Button.extend(
 	support: function(amount, type, upgradeLevel)
 	{
 		// change for different units
-		this.addUnits(type, amount, upgradeLevel);
 		this.changeCapacity(amount, type, upgradeLevel);
 	},
 
@@ -286,7 +250,7 @@ Main.Building = Main.Button.extend(
     fight: function(owner, type, amount)
     {
         var attackPower = amount * UnitConfig(type, 0, "attack");
-        var defensePower = this.units[this.unitType][this.level] *
+        var defensePower = this.units.getValue(this.unitType)[this.level] *
                            UnitConfig(this.unitType, 0, "defense");
 		
         var result = defensePower - attackPower;

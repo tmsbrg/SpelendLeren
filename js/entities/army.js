@@ -15,24 +15,24 @@ Main.Army = Main.Image.extend(
 	direction: null, // the direction in which the Army is going
     amount: 0, // amount of soldiers in this army
 	upgradeLevel: null,
+	units: null, // dictionary with all the different value sof the units inside
 	
 	// constructor function of Army needs two Vector2d the type of the Army and the owner of the amry
-	init: function(startPoint, target, type, owner, amount, upgradeLevel)
+	init: function(startPoint, target, owner, units)
 	{
-		this.type = type;
+		this.units = units;
 		this.owner = owner;
         this.target = target;
-        this.amount = amount;
-		this.upgradeLevel = upgradeLevel;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
-        this.speed = UnitConfig(type, this.level, "speed");
+		// toDo: speed should be based on ht e slowest unit
+        this.speed = UnitConfig("farmer", this.level, "speed");
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 
         this.parent(startPoint.x, startPoint.y,
-                    owner+"_"+type, 64, 64);
+                    owner+"_"+units.keys()[0], 64, 64);
 	},
 	
 	update: function()
@@ -65,7 +65,7 @@ Main.Army = Main.Image.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.arrivingArmy(this.owner, this.type, this.amount, this.upgradeLevel);
+        this.target.arrivingArmy(this.owner, this.units);
         me.game.remove(this);
 	}
 });

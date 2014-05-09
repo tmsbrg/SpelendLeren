@@ -24,7 +24,8 @@ Main.Dictionary = Object.extend(
 		for(var key in this.dict)
 		{
 			
-			if(this.dict.hasOwnProperty(key)) {
+			if(this.dict.hasOwnProperty(key)) 
+			{
 				values.push(this.dict[key]);
 			}
 		}

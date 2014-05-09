@@ -170,7 +170,6 @@ Main.Building = Main.Button.extend(
 	// changes the amount of the capacity and draws it on the screen
 	changeCapacity: function(amount, type, upgradeLevel)
 	{
-		
         this.addUnitType(type);
 		this.setCapacity(this.units.getValue(type)[upgradeLevel] + amount, type,
                          upgradeLevel);
@@ -194,28 +193,62 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		var amount = Math.ceil(this.units.getValue(this.unitType)[this.level] * 0.5);
-		if (amount !== 0) {
+		var armyDictionary = new Main.Dictionary();
+		var keys = this.units.keys();
+		
+		for(var i = 0; i < this.units.values().length; i++)
+		{
+			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
 			
-            // TODO: send units of all types
-			this.changeCapacity(-amount, this.unitType, this.level);
+			if(keys[i] == "knight" || keys[i] == "farmer")
+			{
+				// TODO: make a function for adding the array
+				for(var j = 0; j < this.units.getValue(keys[i]).length; j++)
+				{
+					var amount = Math.ceil(this.units.getValue(keys[i])[j] * 0.5);
+					
+					armyDictionary.getValue([keys[i]])[j] = amount;
+					console.log("amount: "+amount);
+					if(amount !== 0)
+						this.changeCapacity(-amount, keys[i], j);
+				}
+			}
+			else
+			{
+				
+				for(var j = 0; j < this.units.getValue(keys[i]).length; j++)
+				{
+					var amount = -1;
+					dictionary.getValue([keys[i]])[j] = amount;
+					if(amount !== 0)
+						this.changeCapacity(-amount, keys[i], j);
+				}
+				//addingUnitsToArmy(amount, armyDictionary);
+			}
 			
-			me.game.add(new Main.Army(this.pos, target, this.unitType,
-									  this.owner, amount, this.level),
-						20);	
 		}
+		// TODO: send units of all types
+		
+		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary), 20);	
+		
 		this.unselect();
+	},
+	
+	addingUnitsToArmy: function (amount, dictionary)
+	{
+		
 	},
 	
     // depending of the arriving armies owner the Army either 
 	// attack or supports this building
-	arrivingArmy: function(owner, type, amount, upgradeLevel)
+	arrivingArmy: function(owner, units)
 	{
-		if (owner === this.owner) {
+		console.log("units "+units);
+		/*if (owner === this.owner) {
 			this.support(amount, type, upgradeLevel);
 		} else {
 			this.defend(owner, type, amount, upgradeLevel);
-		};
+		};*/
 	},
 	
 	// fights with the arriving Army if they losethe building changes from owner

@@ -10,18 +10,18 @@
   <image source="../img/background/bg.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object type="neutral" gid="2" x="691" y="581">
+  <object type="neutral" gid="2" x="678" y="571">
    <properties>
     <property name="capaciy" value="15"/>
    </properties>
   </object>
-  <object type="user" gid="2" x="887" y="148"/>
-  <object type="comp1" gid="2" x="8" y="760"/>
-  <object type="neutral" gid="1" x="557" y="125"/>
-  <object type="neutral" gid="1" x="234" y="141"/>
-  <object type="neutral" gid="1" x="69" y="248"/>
-  <object type="neutral" gid="1" x="31" y="521"/>
-  <object type="neutral" gid="1" x="371" y="640"/>
-  <object type="neutral" gid="1" x="883" y="371"/>
+  <object type="user" gid="2" x="878" y="317"/>
+  <object type="comp1" gid="2" x="19" y="573"/>
+  <object type="neutral" gid="1" x="294" y="251"/>
+  <object type="neutral" gid="1" x="253" y="95"/>
+  <object type="neutral" gid="1" x="26" y="149"/>
+  <object type="neutral" gid="1" x="171" y="372"/>
+  <object type="neutral" gid="1" x="461" y="516"/>
+  <object type="neutral" gid="1" x="851" y="467"/>
  </objectgroup>
 </map>

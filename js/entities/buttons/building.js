@@ -23,7 +23,8 @@ Main.Building = Main.Button.extend(
 	icons: new Array,
     textObjects: new Array, // reference to the text object
     active: true, // whether this building is creating units
-	unitCount: 0, // curretn count of the units who are curretnly in this building
+	unitCount: 0, // current count of the units who are currently in this
+                  // building
 	knight_icon: null,
 	
 	
@@ -79,33 +80,37 @@ Main.Building = Main.Button.extend(
 			case "farmer":
 			{	
 				
-				if(this.farmer_icon == null)
-				{
+				if(this.farmer_icon == null) {
 					
 					this.unitCount ++;
-					this.farmer_icon = new Main.Image(12, -30, "farmer_icon", 16, 16);
+					this.farmer_icon = new Main.Image(12, -30, "farmer_icon",
+                                                      16, 16);
 					
-					var textObject = new Main.TextObject(14, -10, "", Main.font);
+					var textObject = new Main.TextObject(14, -10, "",
+                                                         Main.font);
 					this.textObjects[type] = textObject;
 					
-					this.displayObject.addGUIObjects([this.farmer_icon, textObject]);
+					this.displayObject.addGUIObjects([this.farmer_icon,
+                                                      textObject]);
 				}
 			}
 			break;
 			
 			case "knight":
 			{	
-				if(this.knight_icon == null)
-				{
+				if(this.knight_icon == null) {
 					
 					this.unitCount ++;
-					this.knight_icon = new Main.Image(57, -30, "knight_icon", 16, 16);
+					this.knight_icon = new Main.Image(57, -30, "knight_icon",
+                                                      16, 16);
 					
 					
-					var textObject = new Main.TextObject( 49, -10, "", Main.font);
+					var textObject = new Main.TextObject(49, -10, "",
+                                                         Main.font);
 					this.textObjects[type] = textObject;
 					
-					this.displayObject.addGUIObjects([this.knight_icon, textObject]);
+					this.displayObject.addGUIObjects([this.knight_icon,
+                                                      textObject]);
 					
 				}
 			}
@@ -115,8 +120,7 @@ Main.Building = Main.Button.extend(
 	// add a unknow unit to the dictionary
 	addUnits: function(type, amount, upgradeLevel) 
 	{
-		if(this.units[type] == null)
-		{
+		if (this.units[type] == null) {
 			this.addUnitUI(type);
 			console.log("new unit type");
 			this.units[type] = new Array(Constants.upgradeLevels);
@@ -144,14 +148,15 @@ Main.Building = Main.Button.extend(
 		return this.parent();
 	},
 	
-	// creates new residents based on the growthRate rate and the maximum capacity
+	// creates new residents based on the growthRate rate and the
+    // maximum capacity
 	createResident: function()
 	{
 		
-		if(this.units[this.unitType][this.level] < this.maxCapacity){
-			this.timeSinceLastSpawn += Main.timer.dt ; // * Main.timer.dt;
+		if (this.units[this.unitType][this.level] < this.maxCapacity) {
+			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
-			if(this.timeSinceLastSpawn > this.spawnResidentTime ){
+			if(this.timeSinceLastSpawn > this.spawnResidentTime) {
 				this.changeCapacity(this.growthRate, this.unitType, this.level);
 				this.timeSinceLastSpawn = 0;
 			}
@@ -171,7 +176,8 @@ Main.Building = Main.Button.extend(
 	changeCapacity: function(amount, type, upgradeLevel)
 	{
 		
-		this.setCapacity(this.units[type][upgradeLevel] + amount, type, upgradeLevel);
+		this.setCapacity(this.units[type][upgradeLevel] + amount, type,
+                         upgradeLevel);
 	},
 	
 	// sets the value of the currentCapacity
@@ -225,7 +231,7 @@ Main.Building = Main.Button.extend(
 	attack: function(target)
 	{
 		var amount = Math.ceil(this.units[this.unitType][this.level] * 0.5);
-		if(amount !== 0){
+		if (amount !== 0) {
 			
 			this.changeCapacity(-amount, this.unitType, this.level);
 			
@@ -240,9 +246,9 @@ Main.Building = Main.Button.extend(
 	// attack or supports this building
 	arrivingArmy: function(owner, type, amount, upgradeLevel)
 	{
-		if(owner === this.owner){
+		if (owner === this.owner) {
 			this.support(amount, type, upgradeLevel);
-		}else{
+		} else {
 			this.defend(owner, type, amount, upgradeLevel);
 		};
 	},

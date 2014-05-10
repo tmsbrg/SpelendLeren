@@ -75,12 +75,13 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     getProperty: function(obj, name)
     {
-        var properties = obj.firstChild;
+        var properties = obj.firstElementChild;
         if (properties != null) {
+            console.log(properties.children);
             for (var i=0; i < properties.childElementCount; i++)
             {
-                if (this.getAttribute(properties[i], "name") === name) {
-                    return this.getAttribute(properties[i], "value");
+                if (this.getAttribute(properties.children[i], "name") === name){
+                    return this.getAttribute(properties.children[i], "value");
                 }
             }
         }

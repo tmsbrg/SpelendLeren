@@ -12,14 +12,14 @@
  <objectgroup name="Object Layer" width="32" height="24">
   <object type="neutral" gid="2" x="678" y="571">
    <properties>
-    <property name="capaciy" value="15"/>
+    <property name="capacity" value="15"/>
    </properties>
   </object>
   <object type="user" gid="2" x="878" y="317"/>
   <object type="comp1" gid="2" x="19" y="573"/>
   <object type="neutral" gid="1" x="294" y="251"/>
-  <object type="neutral" gid="1" x="253" y="95"/>
-  <object type="neutral" gid="1" x="26" y="149"/>
+  <object type="neutral" gid="1" x="260" y="127"/>
+  <object type="neutral" gid="1" x="24" y="194"/>
   <object type="neutral" gid="1" x="171" y="372"/>
   <object type="neutral" gid="1" x="461" y="516"/>
   <object type="neutral" gid="1" x="851" y="467"/>

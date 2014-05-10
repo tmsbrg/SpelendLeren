@@ -11,12 +11,6 @@ Constants =
         "user",
     ],
 
-    battle_order: [
-        "farmer",
-        "knight",
-        "monk"
-    ],
-
 }
 
 /* game engine settings */

@@ -36,7 +36,7 @@ Main.GUIContainer = me.Renderable.extend(
             this.addGUIObject(objects[i]);
         }
     },
-    /* addGUIObject: adds a child to the GUIContainer */
+    // addGUIObject: adds a child to the GUIContainer
     addGUIObject: function(object) {
        
 		this.GUIObjects[this.GUIObjects.length] = object;
@@ -46,6 +46,21 @@ Main.GUIContainer = me.Renderable.extend(
         }
         if (object.pos.y + object.height > this.height) {
             this.height = object.pos.y + object.height;
+        }
+    },
+    // remove objects from the GUIContainer
+    removeGUIObjects: function(objects)
+    {
+        for (var i = 0; i < objects.length; i++) {
+            this.removeGUIObject(objects[i]);
+        }
+    },
+    // removes object from the GUIContainer
+    removeGUIObject: function(object) {
+        for (var i = 0; i < this.GUIObjects.length; i++) {
+            if (this.GUIObjects[i] === object) {
+                this.GUIObjects.splice(i, 1);
+            }
         }
     },
     update: function() 

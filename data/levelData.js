@@ -81,7 +81,7 @@ levelData = [
 			{type:"farm", x: 280, y: 175},
 			{type:"farm", x: 150, y: 380, capacity: 2},
 
-            {type:"homestead", x: 448, y: 320, capacity: 15},
+            {type:"church", x: 448, y: 320, capacity: 15},
 
             {type:"farm", x: 380, y: 650, capacity: 2},
             {type:"farm", x: 720, y: 490},

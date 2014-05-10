@@ -53,6 +53,6 @@ _UnitConfig =
     {
         farm: 64,
         homestead: 128,
-        church: 64
+        church: 90,
     },
 }

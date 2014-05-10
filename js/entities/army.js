@@ -16,7 +16,8 @@ Main.Army = me.AnimationSheet.extend(
 	upgradeLevel: null,
 	units: null, // dictionary with all the different value sof the units inside
 	
-	// constructor function of Army needs two Vector2d the type of the Army and the owner of the amry
+	// constructor function of Army needs two Vector2d the type of the Army and
+    // the owner of the army
 	init: function(startPoint, target, owner, units)
 	{
 		this.units = units;
@@ -25,7 +26,6 @@ Main.Army = me.AnimationSheet.extend(
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
 		// TODO: speed should be based on the slowest unit
-		console.log(units.keys()[0]);
         this.speed = UnitConfig(units.keys()[0], 0, "speed");
 		
 		
@@ -33,9 +33,11 @@ Main.Army = me.AnimationSheet.extend(
 		this.direction.normalize();
 
 		// var image_name = owner +_+ unittype +_+ unitlevel
-		this.parent(startPoint.x, startPoint.y, me.loader.getImage(owner+"_"+units.keys()[0]+"_0"), 64);
+		this.parent(startPoint.x, startPoint.y,
+                    me.loader.getImage(owner+"_"+units.keys()[0]+"_0"), 64);
 		// TODO: changes 0 to the current level of the unit
-		this.addAnimation("walk", [0,1,2,3], UnitConfig(units.keys()[0], 0, "animationSpeed"));
+		this.addAnimation("walk", [0,1,2,3], UnitConfig(units.keys()[0], 0,
+                          "animationSpeed"));
 		this.setCurrentAnimation("walk");
 		
 	},

@@ -1,6 +1,8 @@
 /* UnitConfig: contains the stats of the units, and what buildings produce
    which units */
 UnitConfig = function(type, level, attribute) {
+    // TODO: add exception handling for this, so error messages become more
+    // understandable
     return _UnitConfig[type][level][attribute];
 }
 
@@ -22,6 +24,11 @@ _UnitConfig =
             speed: 10,
 			animationSpeed: 100,
         },
+        {
+            attack: 22,
+            defense: 18,
+            speed: 20,
+        },
     ],
     knight:
     [
@@ -31,6 +38,11 @@ _UnitConfig =
             speed: 6,
 			animationSpeed: 130,
         },
+        {
+            attack: 32,
+            defense: 28,
+            speed: 12,
+        },
     ],
     monk:
     [
@@ -39,6 +51,11 @@ _UnitConfig =
             defense: 4,
             speed: 6,
 			animationSpeed: 250,
+        },
+        {
+            attack: 4,
+            defense: 8,
+            speed: 16,
         },
     ],
 

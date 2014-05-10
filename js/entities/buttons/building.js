@@ -7,7 +7,8 @@ Main.Building = Main.Button.extend(
     spawnResidentTime: 3000, // miliseconds between spawning new soldiers
 	growthRate: 1, // how fast the building's population grows
 	timeSinceLastSpawn: 0, // timer since the last resident spawned
-	maxLevel: 2, // value of the the current maxium level a building can have
+	maxLevel: Constants.upgradeLevels, // value of the the current maxium level
+                                       // a building can have
 	level: 0, // contains upgrade level information
     type: "", // type of building
     unitType: "", // type of unit this building creates
@@ -19,18 +20,12 @@ Main.Building = Main.Button.extend(
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
     imageObject: null, // reference to the image object
-	farmer_icon: null,
-	icons: new Array,
-    textObjects: null, // reference to the text object
     active: true, // whether this building is creating units
-	unitCount: 0, // current count of the units who are currently in this
-                  // building
-	knight_icon: null,
+	unitGUI: null, // dictionary containing the GUI for units
 	
 	
 	init: function(x, y, type, owner, id, capacity)
 	{
-        
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
@@ -48,75 +43,52 @@ Main.Building = Main.Button.extend(
 		this.unitType = UnitForBuilding(type);
         this.selectedImage = me.loader.getImage("building_selection");
 		
-		this.icons.push(this.imageObject);
 		
-		
-        var gui = new Main.GUIContainer(x, y, this.icons);
+        var gui = new Main.GUIContainer(x, y, [this.imageObject]);
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
 		
         this.units = new Main.Dictionary();
-        this.textObjects = new Main.Dictionary();
+        this.unitGUI = new Main.Dictionary();
         this.setCapacity(capacity, this.unitType, this.level);
 		
         this.checkActive();
 	},
-	
-	currentCapacity: function()
-	{
-		var unitArray = this.units.values();
-		var value = 0;
-		
-		for(var i = 0; i < unitArray.length; i++)
-		{
-			for(var j = 0; j < this.maxLevel; j++)
-			{
-				value += unitArray[i][j]
-			}
-		}
-		return value;
-	},
+
+    // returns number of units in this building
+    currentCapacity: function()
+    {
+        return this.unitAmount(this.units);
+    },
 	
 	addUnitUI: function(type)
 	{
-		switch(type)
-		{
-            // TODO: add function for this stuff
-			case "farmer":
-				if(this.farmer_icon == null) {
-					
-					this.unitCount++;
-					this.farmer_icon = new Main.Image(12, -30, "farmer_icon",
-                                                      16, 16);
-					
-					var textObject = new Main.TextObject(14, -10, "",
-                                                         Main.font);
-					this.textObjects.setValue(type, textObject);
-					
-					this.displayObject.addGUIObjects([this.farmer_icon,
-                                                      textObject]);
-				}
+        // temporary way of doing the position, this should really be dynamic
+        var xpos;
+        switch (type)
+        {
+            case "farmer":
+                xpos = 12;
                 break;
-			
-			case "knight":
-				if(this.knight_icon == null) {
-					
-					this.unitCount++;
-					this.knight_icon = new Main.Image(57, -30, "knight_icon",
-                                                      16, 16);
-					
-					
-					var textObject = new Main.TextObject(49, -10, "",
-                                                         Main.font);
-					this.textObjects.setValue(type, textObject);
-					
-					this.displayObject.addGUIObjects([this.knight_icon,
-                                                      textObject]);
-                }
+            case "knight":
+                xpos = 57;
                 break;
+            case "monk":
+                xpos = 102;
+                break;
+        }
+        if (this.unitGUI.getValue(type) == null) {
+            
+            var icon = new Main.Image(xpos, -30, type+"_icon", 16, 16);
+            
+            var textObject = new Main.TextObject(xpos + 3, -10, "",
+                                                 Main.font);
+            this.unitGUI.setValue(type, [icon, textObject]);
+            
+            this.displayObject.addGUIObjects([icon, textObject]);
 		}
 	},
 
-	// add a unknow unit to the dictionary
+	// add a unknown unit to the dictionary
 	addUnitType: function(type) 
 	{
 		if (this.units.getValue(type) == null) {
@@ -148,7 +120,7 @@ Main.Building = Main.Button.extend(
     // maximum capacity
 	createResident: function()
 	{
-		
+		this.addUnitType(this.unitType);
 		if (this.units.getValue(this.unitType)[this.level] < this.maxCapacity) {
 			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
@@ -181,15 +153,55 @@ Main.Building = Main.Button.extend(
 	{
 		this.addUnitType(type);
 		this.units.getValue(type)[upgradeLevel] = amount;
-		var dicArray = this.textObjects.values();
+		var textObjects = this.getTextObjects();
 		var unitArray = this.units.values();
 		
-		for(var i = 0; i < dicArray.length; i++)
+		for(var i = 0; i < textObjects.length; i++)
 		{
-			dicArray[i].setText(unitArray[i][upgradeLevel]);
+			textObjects[i].setText(unitArray[i][upgradeLevel]);
 		}
 		
 	},
+
+    // returns array of current text objects in the UnitGUI
+    getTextObjects: function()
+    {
+        var values = this.unitGUI.values();
+        var r = [];
+		for(var i = 0; i < values.length; i++)
+		{
+			r[i] = values[i][1];
+		}
+        return r;
+    },
+
+    // sets units to given unit dictionary
+    setUnits: function(units)
+    {
+        this.units = units;
+        this.updateUnitTexts();
+    },
+
+    // updates unit texts in the building's GUI
+    updateUnitTexts: function()
+    {
+        var values = this.unitGUI.values();
+        for (var i=0; i<values.length; i++)
+        {
+            this.displayObject.removeGUIObjects(values[i]);
+        }
+
+        this.unitGUI = new Main.Dictionary();
+
+        keys = this.units.keys();
+        for (i=0; i<keys.length; i++)
+        {
+            this.addUnitUI(keys[i]);
+            // TODO, it should print units of different types
+            this.unitGUI.getValue(keys[i])[1].setText(
+                                               this.units.getValue(keys[i])[0]);
+        }
+    },
 	
     // attacks a target
 	attack: function(target)
@@ -199,12 +211,10 @@ Main.Building = Main.Button.extend(
 		
 		for(var i = 0; i < this.units.values().length; i++)
 		{
-			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
-			
+			armyDictionary.setValue(keys[i],new Array(Constants.upgradeLevels));
+
 			if(keys[i] == "knight" || keys[i] == "farmer")
 			{
-				
-				//var amount = Math.ceil(this.units.getValue(keys[i])[j] * 0.5);
 				
 				this.addingUnitsToArmy(armyDictionary, keys[i]);
 			}
@@ -212,19 +222,16 @@ Main.Building = Main.Button.extend(
 			{
 				this.addingUnitsToArmy(armyDictionary, keys[i]);
 			}
-			
 		}
-		// TODO: send units of all types
-		
-		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary), 20);	
+		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
+                    20);	
 		
 		this.unselect();
 	},
 	
-	//
+	// Adds units to given units dictionary and removes them from the building
 	addingUnitsToArmy: function (dictionary, keys)
 	{
-		
 		for(var j = 0; j < this.units.getValue(keys).length; j++)
 		{
 			var amount = 0;
@@ -243,58 +250,141 @@ Main.Building = Main.Button.extend(
 	// attack or supports this building
 	arrivingArmy: function(owner, units)
 	{
-		//console.log(units);
-		/*if (owner === this.owner) {
-			this.support(units, type, upgradeLevel);
+		if (owner === this.owner) {
+			this.support(units);
 		} else {
-			this.defend(units, type, amount, upgradeLevel);
-		};*/
+			this.defend(owner, units);
+		}
 	},
 	
 	// fights with the arriving Army if they losethe building changes from owner
-	defend: function(owner, type, amount, upgradeLevel)
+	defend: function(owner, units)
 	{
         // temporary hack to get it in the right place
         var img_size = 128;
         me.game.add(new Main.Effect(this.pos.x + (this.size - img_size)/2,
                                     this.pos.y + (this.size - img_size)/2),
                     100);
-		// TODO: add actually battleResult system;
-		var battleResult = this.fight(owner, type, amount);
-		console.log(battleResult);
-		if(battleResult < 0){
-            battleResult *= -1;
+
+		var battleResult = this.fight(owner, units);
+
+		if (battleResult < 0) {
+            this.setUnits(units);
 			this.takeOver(owner);
-		}
-		// change for different units
-		this.setCapacity(battleResult, type, upgradeLevel);
+		} else {
+            this.updateUnitTexts();
+        }
 	},
 	
 	// the amount of the arriving Army getSelection added to the curretn 
 	// capacity of the building
-	support: function(amount, type, upgradeLevel)
+	support: function(units)
 	{
-		// change for different units
-		this.changeCapacity(amount, type, upgradeLevel);
+        var keys = units.keys();
+        for (var i=0; i<keys.length; i++)
+        {
+            var array = units.getValue(keys[i]);
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                if (array[j] > 0) {
+                    this.changeCapacity(array[j], keys[i], j);
+                }
+            }
+        }
 	},
+
+    // Maybe fight should be in army? It's an army thing, building is full
+    // enough, and it will have to move there if we want armies to fight outside
+    // of buildings
 
     // returns the result of a battle between the garrison and the given
     // attacking army
-    fight: function(owner, type, amount)
+    fight: function(owner, units)
     {
-        var attackPower = amount * UnitConfig(type, 0, "attack");
-        var defensePower = this.units.getValue(this.unitType)[this.level] *
-                           UnitConfig(this.unitType, 0, "defense");
+        var attackPower = this.calculatePower(owner, units, "attack");
+        var defensePower = this.calculatePower(this.owner, this.units,
+                                               "defense");
 		
         var result = defensePower - attackPower;
-		
-		console.log(attackPower, defensePower , result);
-        if (result > 0) {
-            return Math.ceil(result /
-                             UnitConfig(this.unitType, 0, "defense"));
+
+        // TODO: Really, units dictionary should just have an "owner" part,
+        // if that's done, we can just return a new dictionary instead of
+        // changing the given units object
+        if (result >= 0) {
+            this.killUnits(this.units, defensePower, result);
         } else {
-            return Math.ceil(result / UnitConfig(type, 0, "attack"));
+            this.killUnits(units, attackPower, -result);
         }
+
+        return result;
+    },
+
+    // returns the power of all units in the army combined,
+    // attackOrDefense is a string which can be either "attack" or "defense"
+    // and determines whether the units are defending or attacking
+    calculatePower: function(owner, units, attackOrDefense)
+    {
+        var power = 0;
+        var keys = units.keys();
+        for (var i=0; i<keys.length; i++)
+        {
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                power += UnitConfig(keys[i], j, attackOrDefense) *
+                         units.getValue(keys[i])[j];
+            }
+        }
+        return power;
+    },
+    
+    // removes units from the given units dictionary based on its original
+    // power and its power after the battle
+    killUnits: function(units, originalPower, finalPower)
+    {
+        var ratio = finalPower / originalPower;
+        var keys = units.keys();
+        for (var i=0; i<keys.length; i++)
+        {
+            array = units.getValue(keys[i]);
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                array[j] = Math.round(array[j] * ratio);
+            }
+        }
+    },
+
+    // returns the composition of all units in the given units dictionary,
+    // basically normalizing it
+    calculateComposition: function(units)
+    {
+        var keys = units.keys();
+        var normalized = new Main.Dictionary();
+        var length = this.unitAmount(units);
+        for (var i=0; i<keys.length; i++)
+        {
+            var array = new Array(Constants.upgradeLevels);
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                array[j] = units.getValue(keys[i])[j] / length;
+            }
+            normalized.setValue(keys[i], array);
+        }
+        return normalized;
+    },
+
+    // returns total amount of units in the given units dictionary
+    unitAmount: function(units)
+    {
+        var keys = units.keys();
+        var amount = 0;
+        for (var i=0; i<keys.length; i++)
+        {
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                amount += units.getValue(keys[i])[j];
+            }
+        }
+        return amount;
     },
 
     // changes ownership of building to given new owner

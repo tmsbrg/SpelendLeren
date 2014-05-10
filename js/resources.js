@@ -38,9 +38,10 @@ resources = [
 	
 	{name: "farmer_icon", type: "image",
 	 src: "data/img/armies/icons/farmer_icon.png"},
-	 
 	{name: "knight_icon", type: "image",
 	 src: "data/img/armies/icons/knight_icon.png"},
+	{name: "monk_icon", type: "image",
+	 src: "data/img/armies/icons/monk_icon.png"},
 
     {name: "user_farmer", type: "image",
      src: "data/img/armies/user_farmer.png"},

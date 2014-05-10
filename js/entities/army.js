@@ -25,7 +25,7 @@ Main.Army = me.AnimationSheet.extend(
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
 		// TODO: speed should be based on the slowest unit
-        this.speed = UnitConfig("monk", 0, "speed");
+        this.speed = UnitConfig("farmer", 0, "speed");
 		
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
@@ -33,12 +33,20 @@ Main.Army = me.AnimationSheet.extend(
 
         //this.parent(startPoint.x, startPoint.y,
         //            owner+"_"+units.keys()[0], 64, 64);
-					
+		var maxUnit = 5;
+		/*for(var i = 0; i < maxUnit; i++ )
+		{
+			this.parent(startPoint.x + (i * 15), startPoint.y + (i * 15), me.loader.getImage("user_farmer_0"), 64);
+			// TODO: changes 0 to the current level of the unit
+			this.addAnimation("walk", [0,1,2,3], UnitConfig("farmer", 0, "animationSpeed"));
+			this.setCurrentAnimation("walk");
+		};*/
 		// var image_name = owner +_+ unittype +_+ unitlevel
-		this.parent(startPoint.x, startPoint.y, me.loader.getImage("comp1_monk_0"), 64);
+		this.parent(startPoint.x, startPoint.y, me.loader.getImage("user_farmer_0"), 64);
 		// TODO: changes 0 to the current level of the unit
 		this.addAnimation("walk", [0,1,2,3], UnitConfig("farmer", 0, "animationSpeed"));
 		this.setCurrentAnimation("walk");
+		
 	},
 	
 	update: function()

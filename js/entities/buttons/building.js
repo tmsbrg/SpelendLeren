@@ -30,7 +30,8 @@ Main.Building = Main.Button.extend(
 	
 	init: function(x, y, type, owner, id, capacity)
 	{
-        this.type = type;
+        
+		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
 		

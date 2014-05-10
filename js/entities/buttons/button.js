@@ -50,7 +50,7 @@ Main.Button = me.Renderable.extend(
 	
 	destroy: function()
 	{
-		me.input.releasePointerEvent("mousedown",this);
+		me.input.releasePointerEvent("mouseup",this);
 		me.input.releasePointerEvent("mousemove",this);
 	},
 

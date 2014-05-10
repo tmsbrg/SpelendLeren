@@ -152,6 +152,9 @@ Main.Building = Main.Button.extend(
 	setCapacity: function(amount, type, upgradeLevel)
 	{
 		this.addUnitType(type);
+        if (amount < 0) {
+            amount = 0;
+        }
 		this.units.getValue(type)[upgradeLevel] = amount;
 		var textObjects = this.getTextObjects();
 		var unitArray = this.units.values();
@@ -209,19 +212,10 @@ Main.Building = Main.Button.extend(
 		var armyDictionary = new Main.Dictionary();
 		var keys = this.units.keys();
 		
-		for(var i = 0; i < this.units.values().length; i++)
+		for(var i = 0; i < keys.length; i++)
 		{
 			armyDictionary.setValue(keys[i],new Array(Constants.upgradeLevels));
-
-			if(keys[i] == "knight" || keys[i] == "farmer")
-			{
-				
-				this.addingUnitsToArmy(armyDictionary, keys[i]);
-			}
-			else
-			{
-				this.addingUnitsToArmy(armyDictionary, keys[i]);
-			}
+            this.addingUnitsToArmy(armyDictionary, keys[i]);
 		}
 		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
                     20);	
@@ -230,19 +224,19 @@ Main.Building = Main.Button.extend(
 	},
 	
 	// Adds units to given units dictionary and removes them from the building
-	addingUnitsToArmy: function (dictionary, keys)
+	addingUnitsToArmy: function (dictionary, key)
 	{
-		for(var j = 0; j < this.units.getValue(keys).length; j++)
+		for(var j = 0; j < this.units.getValue(key).length; j++)
 		{
 			var amount = 0;
-			if(keys == "knight" || keys == "farmer")
-				amount = Math.ceil(this.units.getValue(keys)[j] * 0.5);
+			if(key == "knight" || key == "farmer")
+				amount = Math.ceil(this.units.getValue(key)[j] * 0.5);
 			else
-				amount = -1;
+				amount = 1;
 				
-			dictionary.getValue([keys])[j] = amount;
+			dictionary.getValue(key)[j] = amount;
 			if(amount !== 0)
-				this.changeCapacity(-amount, keys, j);
+				this.changeCapacity(-amount, key, j);
 		}
 	},
 	

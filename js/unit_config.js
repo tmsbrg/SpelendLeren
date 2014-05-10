@@ -20,6 +20,7 @@ _UnitConfig =
             attack: 11,
             defense: 9,
             speed: 10,
+			animationSpeed: 100,
         },
     ],
     knight:
@@ -28,6 +29,7 @@ _UnitConfig =
             attack: 16,
             defense: 14,
             speed: 6,
+			animationSpeed: 130,
         },
     ],
     monk:
@@ -35,7 +37,8 @@ _UnitConfig =
         {
             attack: 2,
             defense: 4,
-            speed: 8,
+            speed: 6,
+			animationSpeed: 250,
         },
     ],
 

@@ -4,7 +4,10 @@ resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
-    {name: "bg", type: "image", src: "data/img/background/bg.png"},
+    {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
+	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
+	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
+	
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/neutral_farm.png"},
     {name: "user_farm", type: "image",
@@ -40,14 +43,29 @@ resources = [
      src: "data/img/armies/comp2_farmer.png"},
     {name: "comp3_farmer", type: "image",
      src: "data/img/armies/comp3_farmer.png"},
+	 
+	{name: "user_farmer_0", type: "image",
+     src: "data/img/armies/animations/user_farmer_0.png"},
+	{name: "comp1_farmer_0", type: "image",
+     src: "data/img/armies/animations/comp1_farmer_0.png"},
 
     {name: "user_knight", type: "image",
      src: "data/img/armies/user_knight.png"},
     {name: "comp1_knight", type: "image",
      src: "data/img/armies/comp1_knight.png"},
+	 
+	{name: "user_knight_0", type: "image",
+     src: "data/img/armies/animations/user_knight_0.png"},
+	 {name: "comp1_knight_0", type: "image",
+     src: "data/img/armies/animations/comp1_knight_0.png"},
+	 
+	{name: "user_monk_0", type: "image",
+     src: "data/img/armies/animations/user_monk_0.png"},
+	{name: "comp1_monk_0", type: "image",
+     src: "data/img/armies/animations/comp1_monk_0.png"},
 
     {name: "battle_animation", type: "image",
-     src: "data/img/armies/battle_animation.png"},
+     src: "data/img/armies/animations/battle_animation.png"},
 
     {name: "ugly_font", type: "image",
      src: "data/img/gui/ugly_font.png"},

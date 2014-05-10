@@ -2,12 +2,11 @@
 * the Army will be created if one of the player in 
 * a level attacks or support another building
 */
-Main.Army = Main.Image.extend(
+Main.Army = me.AnimationSheet.extend(
 {
 	speed: 0, // the speed of the army
     collisionRadius: 32, // radius for checking collision with target building
 	type: null, // type of the army
-    level: 0, // upgrade level
 	owner: "neutral", // contans who the owner of the Army is
     target: null, // reference to target building
 	startPoint: null, // is the point where the Army will be created
@@ -25,19 +24,27 @@ Main.Army = Main.Image.extend(
         this.target = target;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
-		// toDo: speed should be based on ht e slowest unit
-        this.speed = UnitConfig("farmer", this.level, "speed");
+		// TODO: speed should be based on the slowest unit
+        this.speed = UnitConfig("monk", 0, "speed");
+		
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 
-        this.parent(startPoint.x, startPoint.y,
-                    owner+"_"+units.keys()[0], 64, 64);
+        //this.parent(startPoint.x, startPoint.y,
+        //            owner+"_"+units.keys()[0], 64, 64);
+					
+		// var image_name = owner +_+ unittype +_+ unitlevel
+		this.parent(startPoint.x, startPoint.y, me.loader.getImage("comp1_monk_0"), 64);
+		// TODO: changes 0 to the current level of the unit
+		this.addAnimation("walk", [0,1,2,3], UnitConfig("farmer", 0, "animationSpeed"));
+		this.setCurrentAnimation("walk");
 	},
 	
 	update: function()
 	{
 		this.move();
+		this.parent(Main.timer.dt);
         if (this.pos.distance(this.targetPoint) < this.collisionRadius) {
             this.reachedDestination();
         }

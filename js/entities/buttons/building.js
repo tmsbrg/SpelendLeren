@@ -242,7 +242,7 @@ Main.Building = Main.Button.extend(
 	// attack or supports this building
 	arrivingArmy: function(owner, units)
 	{
-		console.log(units);
+		//console.log(units);
 		/*if (owner === this.owner) {
 			this.support(units, type, upgradeLevel);
 		} else {

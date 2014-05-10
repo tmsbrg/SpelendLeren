@@ -3,7 +3,7 @@ levelData = [
     {
         name: "testmap",
         infotext: "test stuff with this map",
-        background: "bg",
+        background: "bg_level_01",
         buildings: [
             {type:"farm", x: 10, y: 10, owner: "user"},
             {type:"farm", x: 200, y: 200},
@@ -20,7 +20,7 @@ levelData = [
     {
         name: "tourney",
         infotext: "a map where everyone has equal chances",
-        background: "bg",
+        background: "bg_level_01",
         buildings: [
             {type:"farm", x: 100, y: 150, owner: "user"},
             {type:"farm", x: 100, y: 250, owner: "user"},
@@ -50,7 +50,7 @@ levelData = [
     {
         name: "tourney-duel",
         infotext: "a map where everyone has equal chances - duel mode",
-        background: "bg",
+        background: "bg_level_01",
         buildings: [
             {type:"farm", x: 100, y: 150, owner: "user"},
             {type:"farm", x: 100, y: 250, owner: "user"},
@@ -72,7 +72,7 @@ levelData = [
     {
         name: "homestead",
         infotext: "Map for testing the homestead",
-        background: "bg",
+        background: "bg_level_01",
         buildings: [
             {type:"homestead", x: 880, y: 20, owner: "user"},
 

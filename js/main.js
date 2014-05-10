@@ -2,7 +2,10 @@
 /* Main object */
 var Main =
 {
-    // Run on page load.
+    levelScreen: null, // reference to the levelScreen
+	menuScreen: null, // reference to the menuScreen
+	
+	// Run on page load.
     onload: function () 
     {
         // Initialize the video.
@@ -41,7 +44,9 @@ var Main =
         this.font = new me.BitmapFont("ugly_font", 32, 0.4);
 
         this.levelScreen = new Main.LevelScreen();
-        me.state.set(me.state.PLAY, this.levelScreen);
+		this.menuScreen = new Main.MenuScreen();
+        me.state.set(me.state.MENU, this.menuScreen);
+		me.state.set(me.state.PLAY, this.levelScreen);
 
         // warning, hack: getting mouse down checking to work without using
         // a key
@@ -49,8 +54,9 @@ var Main =
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
 
         // Start the game.
-        me.state.change(me.state.PLAY, levelData[3]);
+		//me.state.change(me.state.PLAY, levelData[3]);
+        me.state.change(me.state.MENU);
     },
 
-    levelScreen: null, // reference to the levelScreen
+    
 };

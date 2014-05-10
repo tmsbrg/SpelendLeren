@@ -202,28 +202,14 @@ Main.Building = Main.Button.extend(
 			
 			if(keys[i] == "knight" || keys[i] == "farmer")
 			{
-				// TODO: make a function for adding the array
-				for(var j = 0; j < this.units.getValue(keys[i]).length; j++)
-				{
-					var amount = Math.ceil(this.units.getValue(keys[i])[j] * 0.5);
-					
-					armyDictionary.getValue([keys[i]])[j] = amount;
-					console.log("amount: "+amount);
-					if(amount !== 0)
-						this.changeCapacity(-amount, keys[i], j);
-				}
+				
+				//var amount = Math.ceil(this.units.getValue(keys[i])[j] * 0.5);
+				
+				this.addingUnitsToArmy(armyDictionary, keys[i]);
 			}
 			else
 			{
-				
-				for(var j = 0; j < this.units.getValue(keys[i]).length; j++)
-				{
-					var amount = -1;
-					dictionary.getValue([keys[i]])[j] = amount;
-					if(amount !== 0)
-						this.changeCapacity(-amount, keys[i], j);
-				}
-				//addingUnitsToArmy(amount, armyDictionary);
+				this.addingUnitsToArmy(armyDictionary, keys[i]);
 			}
 			
 		}
@@ -234,20 +220,33 @@ Main.Building = Main.Button.extend(
 		this.unselect();
 	},
 	
-	addingUnitsToArmy: function (amount, dictionary)
+	//
+	addingUnitsToArmy: function (dictionary, keys)
 	{
 		
+		for(var j = 0; j < this.units.getValue(keys).length; j++)
+		{
+			var amount = 0;
+			if(keys == "knight" || keys == "farmer")
+				amount = Math.ceil(this.units.getValue(keys)[j] * 0.5);
+			else
+				amount = -1;
+				
+			dictionary.getValue([keys])[j] = amount;
+			if(amount !== 0)
+				this.changeCapacity(-amount, keys, j);
+		}
 	},
 	
     // depending of the arriving armies owner the Army either 
 	// attack or supports this building
 	arrivingArmy: function(owner, units)
 	{
-		console.log("units "+units);
+		console.log(units);
 		/*if (owner === this.owner) {
-			this.support(amount, type, upgradeLevel);
+			this.support(units, type, upgradeLevel);
 		} else {
-			this.defend(owner, type, amount, upgradeLevel);
+			this.defend(units, type, amount, upgradeLevel);
 		};*/
 	},
 	

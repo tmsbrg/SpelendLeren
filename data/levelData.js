@@ -74,21 +74,21 @@ levelData = [
         infotext: "Map for testing the homestead",
         background: "bg_level_01",
         buildings: [
-            {type:"homestead", x: 880, y: 20, owner: "user"},
+            {type:"homestead", x: 880, y: 20},
 
             {type:"farm", x: 620, y: 80, capacity: 2},
-            {type:"farm", x: 220, y: 30, owner: "user"},
-			{type:"farm", x: 280, y: 175},
+            {type:"farm", x: 220, y: 30},
+			{type:"farm", x: 280, y: 175, owner: "user"},
 			{type:"farm", x: 150, y: 380, capacity: 2},
 
-            {type:"church", x: 448, y: 320, capacity: 15},
+            {type:"church", x: 448, y: 320, capacity: 15, owner: "user"},
 
             {type:"farm", x: 380, y: 650, capacity: 2},
-            {type:"farm", x: 720, y: 490, owner: "comp1"},
+            {type:"farm", x: 720, y: 490},
 			{type:"farm", x: 850, y: 650},
             {type:"farm", x: 850, y: 300, capacity: 2},
 
-            {type:"homestead", x: 00, y: 640, owner: "comp1"},
+            {type:"homestead", x: 00, y: 640},
         ],
         startResources: 0,
         enemyTechLevel: 0,

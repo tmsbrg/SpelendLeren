@@ -63,6 +63,7 @@ Main.Building = Main.Button.extend(
 	addUnitUI: function(type)
 	{
         // temporary way of doing the position, this should really be dynamic
+		//console.log("type: "+type);
         var xpos;
         switch (type)
         {
@@ -85,6 +86,7 @@ Main.Building = Main.Button.extend(
             this.unitGUI.setValue(type, [icon, textObject]);
             
             this.displayObject.addGUIObjects([icon, textObject]);
+			//console.log(this.unitGUI);
 		}
 	},
 
@@ -214,8 +216,10 @@ Main.Building = Main.Button.extend(
 		
 		for(var i = 0; i < keys.length; i++)
 		{
-			armyDictionary.setValue(keys[i],new Array(Constants.upgradeLevels));
+			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
+			
             this.addingUnitsToArmy(armyDictionary, keys[i]);
+			console.log(armyDictionary);
 		}
 		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
                     20);	
@@ -232,7 +236,7 @@ Main.Building = Main.Button.extend(
 			if(key == "knight" || key == "farmer")
 				amount = Math.ceil(this.units.getValue(key)[j] * 0.5);
 			else
-				amount = 1;
+				amount = (this.units.getValue(key)[j] > 0) ? 1 : 0;
 				
 			dictionary.getValue(key)[j] = amount;
 			if(amount !== 0)
@@ -245,6 +249,7 @@ Main.Building = Main.Button.extend(
 	arrivingArmy: function(owner, units)
 	{
 		if (owner === this.owner) {
+			console.log(units);
 			this.support(units);
 		} else {
 			this.defend(owner, units);
@@ -278,7 +283,7 @@ Main.Building = Main.Button.extend(
         for (var i=0; i<keys.length; i++)
         {
             var array = units.getValue(keys[i]);
-            for (var j=0; j<Constants.upgradeLevels; j++)
+            for (var j=0; j < Constants.upgradeLevels; j++)
             {
                 if (array[j] > 0) {
                     this.changeCapacity(array[j], keys[i], j);
@@ -342,7 +347,7 @@ Main.Building = Main.Button.extend(
             array = units.getValue(keys[i]);
             for (var j=0; j<Constants.upgradeLevels; j++)
             {
-                array[j] = Math.round(array[j] * ratio);
+                array[j] = Math.ceil(array[j] * ratio);
             }
         }
     },

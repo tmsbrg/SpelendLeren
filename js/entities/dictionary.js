@@ -17,6 +17,11 @@ Main.Dictionary = Object.extend(
         this.dict[key] = value;
     },
 
+    removeKey: function(key)
+    {
+        delete this.dict[key];
+    },
+
     values: function()
     {
 		var values = [];

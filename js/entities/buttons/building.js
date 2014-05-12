@@ -102,6 +102,16 @@ Main.Building = Main.Button.extend(
 		}
 	},
 
+    removeUnitType: function(type) {
+        if (this.units.getValue(type) != null) {
+            this.displayObject.removeGUIObjects(this.unitGUI.getValue(type));
+            this.unitGUI.removeKey(type);
+            this.units.removeKey(type);
+        }
+    },
+
+	
+
     // returns image string for this building
     getImage: function()
     {
@@ -120,7 +130,6 @@ Main.Building = Main.Button.extend(
     // maximum capacity
 	createResident: function()
 	{
-		this.addUnitType(this.unitType);
 		if (this.units.getValue(this.unitType)[this.level] < this.maxCapacity) {
 			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
@@ -161,7 +170,7 @@ Main.Building = Main.Button.extend(
 		
 		for(var i = 0; i < textObjects.length; i++)
 		{
-			textObjects[i].setText(unitArray[i][upgradeLevel]);
+            textObjects[i].setText(unitArray[i][upgradeLevel]);
 		}
 		
 	},
@@ -217,6 +226,9 @@ Main.Building = Main.Button.extend(
 			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
 			
             this.addingUnitsToArmy(armyDictionary, keys[i]);
+            if (keys[i] != this.unitType && this.unitsOfType(keys[i]) == 0) {
+                this.removeUnitType(keys[i]);
+            }
 		}
 		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
                     20);	
@@ -240,7 +252,21 @@ Main.Building = Main.Button.extend(
 				this.changeCapacity(-amount, key, j);
 		}
 	},
-	
+
+    // returns amount of units of given type
+    unitsOfType: function(type) {
+        var units = this.units.getValue(type);
+        if (units == null) {
+            return 0;
+        }
+        var r = 0;
+		for(var i = 0; i < units.length; i++)
+		{
+            r += units[i];
+        }
+        return r;
+    },
+
     // depending of the arriving armies owner the Army either 
 	// attack or supports this building
 	arrivingArmy: function(owner, units)
@@ -269,6 +295,7 @@ Main.Building = Main.Button.extend(
 		} else {
             this.updateUnitTexts();
         }
+        this.addUnitType(this.unitType);
 	},
 	
 	// the amount of the arriving Army getSelection added to the curretn 

@@ -79,7 +79,6 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         var properties = obj.firstElementChild;
         if (properties != null) {
-            console.log(properties.children);
             for (var i=0; i < properties.childElementCount; i++)
             {
                 if (this.getAttribute(properties.children[i], "name") === name){
@@ -92,7 +91,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     getAttribute: function(xml, name)
     {
-        return xml.attributes.getNamedItem(name).value;
+        r = xml.attributes.getNamedItem(name);
+        return (r == null) ? null : r.value;
     },
 
     // creates the computer players and gives them information needed for the AI

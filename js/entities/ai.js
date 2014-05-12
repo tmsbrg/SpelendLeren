@@ -4,12 +4,12 @@ Main.AI = Object.extend(
     myBuildings: null, // array of buildings owned by the AI
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
-    timeUntilNextWave: 4000, // amount of miliseconds until sending the next
+    timeUntilNextWave: 6000, // amount of miliseconds until sending the next
                              // wave of armies
     active: true, // whether this AI is doing stuff
     attacking: false, // whether this AI is currently attacking
     wavesSent: 0, // how many waves have been sent to the current target
-    wavesToSend: 3, // how many waves of attacks will be sent to any target
+    wavesToSend: 2, // how many waves of attacks will be sent to any target
     init: function(name, buildings)
     {
         this.name = name;

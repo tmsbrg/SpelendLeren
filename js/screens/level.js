@@ -60,6 +60,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         {
             var obj = xml.children[i];
             var gid = Number(this.getAttribute(obj, "gid"));
+            var capacity = this.getProperty(obj, "capacity");
             r[i] = new Main.Building(Number(this.getAttribute(obj, "x")),
                                      Number(this.getAttribute(obj, "y")-64),
                                      this.tiles[gid].type,
@@ -67,7 +68,8 @@ Main.LevelScreen = me.ScreenObject.extend(
                                         this.getAttribute(obj, "type") :
                                         "neutral",
                                      i,
-                                     this.getProperty(obj, "capacity"));
+                                     (capacity != null) ? Number(capacity) :
+                                                          null );
             me.game.add(r[i], 10);
         }
         return r;

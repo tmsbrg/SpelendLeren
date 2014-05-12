@@ -2,40 +2,50 @@
 * the Army will be created if one of the player in 
 * a level attacks or support another building
 */
-Main.Army = Main.Image.extend(
+Main.Army = me.AnimationSheet.extend(
 {
 	speed: 0, // the speed of the army
     collisionRadius: 32, // radius for checking collision with target building
 	type: null, // type of the army
-    level: 0, // upgrade level
 	owner: "neutral", // contans who the owner of the Army is
     target: null, // reference to target building
 	startPoint: null, // is the point where the Army will be created
 	targetPoint: null, // the point where the amry is going to
 	direction: null, // the direction in which the Army is going
     amount: 0, // amount of soldiers in this army
+	upgradeLevel: null,
+	units: null, // dictionary with all the different value sof the units inside
 	
-	// constructor function of Army needs two Vector2d the type of the Army and the owner of the amry
-	init: function(startPoint, target, type, owner, amount)
+	// constructor function of Army needs two Vector2d the type of the Army and
+    // the owner of the army
+	init: function(startPoint, target, owner, units)
 	{
-		this.type = type;
+		this.units = units;
 		this.owner = owner;
         this.target = target;
-        this.amount = amount;
 		this.startPoint = startPoint;
 		this.targetPoint = target.pos;
-        this.speed = UnitConfig(type, this.level, "speed");
+		// TODO: speed should be based on the slowest unit
+        this.speed = UnitConfig(units.keys()[0], 0, "speed");
+		
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 
-        this.parent(startPoint.x, startPoint.y,
-                    owner+"_"+type, 64, 64);
+		// var image_name = owner +_+ unittype +_+ unitlevel
+		this.parent(startPoint.x, startPoint.y,
+                    me.loader.getImage(owner+"_"+units.keys()[0]+"_0"), 64);
+		// TODO: changes 0 to the current level of the unit
+		this.addAnimation("walk", [0,1,2,3], UnitConfig(units.keys()[0], 0,
+                          "animationSpeed"));
+		this.setCurrentAnimation("walk");
+		
 	},
 	
 	update: function()
 	{
 		this.move();
+		this.parent(Main.timer.dt);
         if (this.pos.distance(this.targetPoint) < this.collisionRadius) {
             this.reachedDestination();
         }
@@ -63,7 +73,7 @@ Main.Army = Main.Image.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.arrivingArmy(this.owner, this.type, this.amount);
+        this.target.arrivingArmy(this.owner, this.units);
         me.game.remove(this);
 	}
 });

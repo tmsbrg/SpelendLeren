@@ -1,7 +1,7 @@
 /* Constants: contains constant values used in the game */
 Constants =
 {
-
+	upgradeLevels: 2,
     screenWidth: 1024,
     screenHeight: 768,
     resizeToBrowser: true, /* resize canvas to browser size */

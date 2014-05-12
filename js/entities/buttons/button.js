@@ -47,6 +47,12 @@ Main.Button = me.Renderable.extend(
 		this.displayObject.draw(ctx);
         ctx.restore();
 	},
+	
+	destroy: function()
+	{
+		me.input.releasePointerEvent("mouseup",this);
+		me.input.releasePointerEvent("mousemove",this);
+	},
 
 	onClick: function(ev)
 	{

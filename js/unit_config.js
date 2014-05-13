@@ -6,6 +6,10 @@ UnitConfig = function(type, level, attribute) {
     return _UnitConfig[type][level][attribute];
 }
 
+GetBuildingSpawnTime = function(type) {
+    return _UnitConfig.buildingSpawnTime[type];
+}
+
 GetBuildingSize = function(type) {
     return _UnitConfig.buildingSizes[type];
 }
@@ -71,5 +75,12 @@ _UnitConfig =
         farm: 64,
         homestead: 128,
         church: 90,
+    },
+	
+	buildingSpawnTime:
+    {
+        farm: 1000,
+        homestead: 3000,
+        church: 6000,
     },
 }

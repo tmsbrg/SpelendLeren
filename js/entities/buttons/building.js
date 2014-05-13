@@ -22,13 +22,20 @@ Main.Building = Main.Button.extend(
     imageObject: null, // reference to the image object
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
+	line: null, // reference to line object
 	
 	
-	init: function(x, y, type, owner, id, capacity)
+	init: function(x, y, type, owner, id, capacity, spawnResidentTime)
 	{
+		this.x = x;
+		this
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
+		if(spawnResidentTime != null)
+			this.spawnResidentTime = spawnResidentTime;
+		else
+			this.spawnResidentTime = GetBuildingSpawnTime(this.type);
 		
         this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
                                           this.size);
@@ -53,11 +60,12 @@ Main.Building = Main.Button.extend(
 		
         this.checkActive();
 	},
+	
 
     // returns number of units in this building
     currentCapacity: function()
     {
-        return this.unitAmount(this.units);
+		return this.unitAmount(this.units);
     },
 	
 	addUnitUI: function(type)
@@ -110,8 +118,6 @@ Main.Building = Main.Button.extend(
         }
     },
 
-	
-
     // returns image string for this building
     getImage: function()
     {
@@ -140,11 +146,14 @@ Main.Building = Main.Button.extend(
 		}
 	},
 	
+	
 	draw: function(ctx)
 	{
         if (this.selected) {
-            ctx.drawImage(this.selectedImage, this.pos.x, this.pos.y,
+            
+			ctx.drawImage(this.selectedImage, this.pos.x, this.pos.y,
                           this.width, this.height);
+			
         }
         this.parent(ctx);
 	},
@@ -218,22 +227,25 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		var armyDictionary = new Main.Dictionary();
-		var keys = this.units.keys();
 		
-		for(var i = 0; i < keys.length; i++)
+		if(this.currentCapacity() > 0)
 		{
-			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
+			var armyDictionary = new Main.Dictionary();
+			var keys = this.units.keys();
+			for(var i = 0; i < keys.length; i++)
+			{
+				armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
+				
+				this.addingUnitsToArmy(armyDictionary, keys[i]);
+				if (keys[i] != this.unitType && this.unitsOfType(keys[i]) == 0) {
+					this.removeUnitType(keys[i]);
+				}
+			}
+			me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
+						20);	
 			
-            this.addingUnitsToArmy(armyDictionary, keys[i]);
-            if (keys[i] != this.unitType && this.unitsOfType(keys[i]) == 0) {
-                this.removeUnitType(keys[i]);
-            }
+			this.unselect();
 		}
-		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
-                    20);	
-		
-		this.unselect();
 	},
 	
 	// Adds units to given units dictionary and removes them from the building
@@ -292,6 +304,7 @@ Main.Building = Main.Button.extend(
 		if (battleResult < 0) {
             this.setUnits(units);
 			this.takeOver(owner);
+			this.unselect();
 		} else {
             this.updateUnitTexts();
         }
@@ -439,17 +452,27 @@ Main.Building = Main.Button.extend(
 	select: function()
 	{
 		this.selected = true;
+		this.drawArrow();
 	},
 
     // turns selected to false
 	unselect: function()
 	{
 		this.selected = false;
+		if(this.line != null)
+		{
+			me.game.remove(this.line);
+			this.line = null;
+		}
 	},
 	
 	drawArrow: function()
 	{
 		//TODO
+		var halfsize = GetBuildingSize(this.type) * 0.5;
+		var centerPos = new me.Vector2d(this.pos.x + halfsize , this.pos.y + halfsize);
+		this.line = new Main.Line(centerPos, me.input.mouse.pos);
+		me.game.add(this.line, 5);
 	},
 
     onClick: function(ev)

@@ -16,9 +16,12 @@ Main.Building = Main.Button.extend(
     size: 0, // contains size of building
 	flag: null, // contains image object for the flag
 	selected: false, // whether this building is selected
+	enemySelected: false, // when an enemy_building_selection building is selected
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
+	enemy_selectedImage: null,	// contains image object that is drawn ifthe 
+								//player selects an building which is not his his
     imageObject: null, // reference to the image object
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
@@ -53,6 +56,7 @@ Main.Building = Main.Button.extend(
         }
 		this.unitType = UnitForBuilding(type);
         this.selectedImage = me.loader.getImage("building_selection");
+		this.enemy_selectedImage = me.loader.getImage("enemy_building_selection");
 
         var gui = new Main.GUIContainer(x, y, [this.imageObject]);
 
@@ -162,6 +166,10 @@ Main.Building = Main.Button.extend(
                           this.width, this.height);
 			
         }
+		if(this.enemySelected){
+			ctx.drawImage(this.enemy_selectedImage, this.pos.x, this.pos.y,
+							this.width, this.height);
+		}
         this.parent(ctx);
 	},
 	
@@ -463,11 +471,17 @@ Main.Building = Main.Button.extend(
 		this.selected = true;
 		this.drawArrow();
 	},
+	
+	enemySelect: function()
+	{
+		this.enemySelected = true;
+	},
 
     // turns selected to false
 	unselect: function()
 	{
 		this.selected = false;
+		this.enemySelected = false;
 		if(this.line != null)
 		{
 			me.game.remove(this.line);
@@ -484,14 +498,18 @@ Main.Building = Main.Button.extend(
 
     onClick: function(ev)
     {
-        Main.levelScreen.attack(this.id);
+		Main.levelScreen.attack(this.id);
     },
 
     onHover: function(ev)
     {
-        if (me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
+        if(me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
             !this.selected) {
             this.select();
         }
+		
+		if(me.input.isKeyPressed("mouseleft") && this.owner != "user" && !this.selected){
+			this.enemySelect();
+		}
     },
 });

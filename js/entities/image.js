@@ -27,7 +27,7 @@ Main.Image = me.Renderable.extend(
 
     loadImage: function(image)
     {
-        this.image = me.loader.getImage(image);
+		this.image = me.loader.getImage(image);
     },
 
     update: function()

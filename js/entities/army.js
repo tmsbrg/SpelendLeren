@@ -8,8 +8,8 @@ Main.Army = me.Renderable.extend(
 	upgradeLevel: null,
 	units: null, // dictionary with all the different value sof the units inside
 	squadArray: null,
-	timeSinceLastSpawn: 1000,
-	spawnSquadTime: 1000,
+	timeSinceLastSpawn: 500,
+	spawnSquadTime:500,
 	
 	// constructor function of Army needs two Vector2d the type of the Army and
     // the owner of the army

@@ -5,6 +5,7 @@ resources = [
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
     {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
+	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
 	
@@ -35,6 +36,8 @@ resources = [
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
+	{name: "enemy_building_selection", type: "image",
+     src: "data/img/buildings/enemy_building_selection.png"},
 	
 	{name: "farmer_icon", type: "image",
 	 src: "data/img/armies/icons/farmer_icon.png"},

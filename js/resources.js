@@ -86,6 +86,11 @@ resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
     {name: "level1", type: "tmx", src: "data/level/1.tmx"},
+	{name: "level2", type: "tmx", src: "data/level/2.tmx"},
+	{name: "level3", type: "tmx", src: "data/level/3.tmx"},
+	{name: "level4", type: "tmx", src: "data/level/4.tmx"},
+	{name: "level5", type: "tmx", src: "data/level/5.tmx"},
+	
 
 	/* Background music. 
 	 * @example

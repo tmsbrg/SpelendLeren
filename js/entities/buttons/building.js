@@ -23,15 +23,19 @@ Main.Building = Main.Button.extend(
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
 	line: null, // reference to line object
-	
+	halfsize: null, // the halfsize of the width from the building size
+	centerPos: null, // the centerPos position of the building
 	
 	init: function(x, y, type, owner, id, capacity, spawnResidentTime)
 	{
+		
 		this.x = x;
 		this
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
+		
+		
 		if(spawnResidentTime != null)
 			this.spawnResidentTime = spawnResidentTime;
 		else
@@ -53,6 +57,9 @@ Main.Building = Main.Button.extend(
         var gui = new Main.GUIContainer(x, y, [this.imageObject]);
 
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
+		
+		this.halfsize = this.size * 0.5;
+		this.centerPos = new me.Vector2d(this.pos.x + this.halfsize , this.pos.y + this.halfsize);
 		
         this.units = new Main.Dictionary();
         this.unitGUI = new Main.Dictionary();
@@ -227,9 +234,8 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-		
-		if(this.currentCapacity() > 0)
-		{
+		if(this.currentCapacity() > 0) {
+			
 			var armyDictionary = new Main.Dictionary();
 			var keys = this.units.keys();
 			for(var i = 0; i < keys.length; i++)
@@ -241,9 +247,12 @@ Main.Building = Main.Button.extend(
 					this.removeUnitType(keys[i]);
 				}
 			}
-			me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
+			
+			me.game.add(new Main.Army(this.centerPos, target, this.owner, armyDictionary),
 						20);	
 			
+			this.unselect();
+		} else {
 			this.unselect();
 		}
 	},
@@ -468,10 +477,8 @@ Main.Building = Main.Button.extend(
 	
 	drawArrow: function()
 	{
-		//TODO
-		var halfsize = GetBuildingSize(this.type) * 0.5;
-		var centerPos = new me.Vector2d(this.pos.x + halfsize , this.pos.y + halfsize);
-		this.line = new Main.Line(centerPos, me.input.mouse.pos);
+		
+		this.line = new Main.Line(this.centerPos, me.input.mouse.pos);
 		me.game.add(this.line, 5);
 	},
 

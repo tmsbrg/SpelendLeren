@@ -13,34 +13,44 @@
   <image source="../img/background/bg_level_01.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object type="user" gid="2" x="36" y="160">
+  <object type="user" gid="2" x="802" y="223">
    <properties>
-    <property name="capacity" value="30"/>
+    <property name="capacity" value="25"/>
    </properties>
   </object>
-  <object type="comp1" gid="2" x="863" y="736">
+  <object type="comp1" gid="2" x="96" y="640">
    <properties>
     <property name="capacity" value="15"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="257" y="128">
+  <object type="neutral" gid="1" x="257" y="160">
    <properties>
-    <property name="capacity" value="3"/>
+    <property name="capacity" value="7"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="289" y="320">
+  <object type="neutral" gid="1" x="417" y="256">
    <properties>
-    <property name="capacity" value="6"/>
+    <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="448" y="543">
+  <object type="neutral" gid="1" x="353" y="574">
+   <properties>
+    <property name="capacity" value="5"/>
+   </properties>
+  </object>
+  <object type="neutral" gid="1" x="769" y="606">
+   <properties>
+    <property name="capacity" value="10"/>
+   </properties>
+  </object>
+  <object type="neutral" gid="1" x="769" y="542">
    <properties>
     <property name="capacity" value="8"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="798" y="511">
+  <object type="neutral" gid="1" x="705" y="575">
    <properties>
-    <property name="capacity" value="9"/>
+    <property name="capacity" value="3"/>
    </properties>
   </object>
  </objectgroup>

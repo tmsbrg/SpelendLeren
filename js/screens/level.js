@@ -26,7 +26,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
-        console.log("start of game");
+        
     },
 
     interpretLevel: function(xml)
@@ -118,8 +118,9 @@ Main.LevelScreen = me.ScreenObject.extend(
     },
 
     //TODO: this function should be part of player, but player doesn't exist yet
-    attack: function(buildingId) {
-        for (var i=0; i < this.buildings.length; i++)
+    attack: function(buildingId) 
+	{
+        for (var i = 0; i < this.buildings.length; i++)
         {
             if (this.buildings[i].selected) {
                 this.buildings[i].attack(this.buildings[buildingId]);

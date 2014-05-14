@@ -4,6 +4,7 @@ resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
+    {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
     {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},

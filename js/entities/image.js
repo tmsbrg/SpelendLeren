@@ -10,7 +10,7 @@ Main.Image = me.Renderable.extend(
             y = 0;
         }
         if (image == null) {
-            image = "bg";
+            image = "bg_01";
         }
         if (w == null) {
             w = 1;
@@ -27,7 +27,9 @@ Main.Image = me.Renderable.extend(
 
     loadImage: function(image)
     {
-        this.image = me.loader.getImage(image);
+        if ((this.image = me.loader.getImage(image)) == null) {
+            throw "Cannot find image \""+image+"\"";
+        }
     },
 
     update: function()

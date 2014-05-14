@@ -59,6 +59,7 @@ _UnitConfig =
         },
     ],
 
+    // TODO: buildings should have their own config objects
     unitForBuilding:
     {
         farm: "farmer",

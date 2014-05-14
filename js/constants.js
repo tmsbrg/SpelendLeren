@@ -11,6 +11,12 @@ Constants =
         "user",
     ],
 
+    actions: [
+        "select",
+        "takeover",
+        "sendarmyfrom",
+        "support",
+    ],
 }
 
 /* game engine settings */

@@ -2,7 +2,8 @@
    taken over */
 Main.Building = Main.Button.extend(
 {
-	units: null,
+	units: null, // dictionary containing units
+    name: null, // string containing name from tiled
 	maxCapacity: 20, // the maximum capacity of the building
     spawnResidentTime: 3000, // miliseconds between spawning new soldiers
 	growthRate: 1, // how fast the building's population grows
@@ -22,9 +23,10 @@ Main.Building = Main.Button.extend(
     imageObject: null, // reference to the image object
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
+    triggers: null, // array of triggers with callbacks
 	
 	
-	init: function(x, y, type, owner, id, capacity)
+	init: function(x, y, type, owner, id, capacity, name)
 	{
 		this.type = type;
         this.owner = owner;
@@ -35,6 +37,8 @@ Main.Building = Main.Button.extend(
 										  
 		
         this.id = id;
+
+        this.triggers = [];
 
         if (capacity == null) {
             // TODO: Put capacity in a setting for buildings
@@ -52,6 +56,7 @@ Main.Building = Main.Button.extend(
         this.setCapacity(capacity, this.unitType, this.level);
 		
         this.checkActive();
+        this.name = (name != null) ? name : "";
 	},
 
     // returns number of units in this building
@@ -134,6 +139,7 @@ Main.Building = Main.Button.extend(
 			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
 			if(this.timeSinceLastSpawn > this.spawnResidentTime) {
+                if (!this.checkTrigger("createres")) return;
 				this.changeCapacity(this.growthRate, this.unitType, this.level);
 				this.timeSinceLastSpawn = 0;
 			}
@@ -218,6 +224,7 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
+        if (!this.checkTrigger("sendunitsfrom", target.name)) return;
 		var armyDictionary = new Main.Dictionary();
 		var keys = this.units.keys();
 		
@@ -302,6 +309,7 @@ Main.Building = Main.Button.extend(
 	// capacity of the building
 	support: function(units)
 	{
+        if (!this.checkTrigger("support")) return;
         var keys = units.keys();
         for (var i=0; i<keys.length; i++)
         {
@@ -412,6 +420,7 @@ Main.Building = Main.Button.extend(
     // changes ownership of building to given new owner
     takeOver: function(owner)
     {
+        if (!this.checkTrigger("takeover", owner)) return;
         var oldOwner = Main.levelScreen.getComp(this.owner);
         var newOwner = Main.levelScreen.getComp(owner);
         this.owner = owner;
@@ -428,6 +437,39 @@ Main.Building = Main.Button.extend(
         this.checkActive();
     },
 
+    // adds a trigger to the list of triggers and adds the callback function to
+    // call when triggered, and an extra arg // trigger for it to actually
+    // trigger
+    // example: building.addTrigger("takeover", this.actionComplete.bind(this),
+    //                              "user");
+    addTrigger: function(trigger, callback, args)
+    {
+        this.triggers.push({
+            name: trigger,
+            call: callback,
+            arg: args
+        });
+    },
+
+    // checks triggers for given building and returns whether the given action
+    // can be performed or not
+    checkTrigger: function(trigger, arg)
+    {
+        // TODO: we shouldn't depend on Main.levelScreen, use something else
+        // instead
+        if (!Main.levelScreen.actionAllowed(this, trigger, arg)) return false;
+
+        for (var i=0; i<this.triggers.length; i++)
+        {
+            if (this.triggers[i].name === trigger && 
+                (this.triggers[i].arg == null || arg === this.triggers[i].arg)){
+                this.triggers[i].call(this);
+                this.triggers.splice(i, 1);
+            }
+        }
+        return true;
+    },
+
     // sets whether this building is growing units based on whether it is
     // neutral
     checkActive: function()
@@ -438,6 +480,7 @@ Main.Building = Main.Button.extend(
     // turns selected to true
 	select: function()
 	{
+        if (!this.checkTrigger("select")) return;
 		this.selected = true;
 	},
 

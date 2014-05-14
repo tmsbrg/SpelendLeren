@@ -122,4 +122,16 @@ Main.AI = Object.extend(
         }
         return strength;
     },
+
+    // disables this AI
+    disable: function()
+    {
+        this.active = false;
+    },
+
+    // enables this AI
+    enable: function()
+    {
+        this.active = true;
+    },
 });

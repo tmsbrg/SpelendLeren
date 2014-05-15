@@ -402,14 +402,10 @@ Main.Building = Main.Button.extend(
         var keys = units.keys();
         for (var i=0; i<keys.length; i++)
         {
-            for (var j=0; j<Constants.upgradeLevels; j++)
+            for (var j=0; j < Constants.upgradeLevels; j++)
             {
                 power += UnitConfig(keys[i], j, attackOrDefense) *
                          units.getValue(keys[i])[j];
-				
-				console.log(units.getValue("monk"));
-				if(units.getValue("monk") != undefined)
-					power += power * 0.1;
             }
         }
         return power;

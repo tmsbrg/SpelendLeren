@@ -1,7 +1,8 @@
 /* ImageObject: draws an image */
 Main.Image = me.Renderable.extend(
 {
-    init: function(x, y, image, w, h)
+    
+	init: function(x, y, image, w, h)
     {
         if (x == null) {
             x = 0;

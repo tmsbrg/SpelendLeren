@@ -10,7 +10,7 @@
   <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_level_01.png"/>
+  <image source="../img/background/bg_level_02.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
   <object type="user" gid="2" x="802" y="223">
@@ -38,17 +38,17 @@
     <property name="capacity" value="5"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="769" y="606">
+  <object type="neutral" gid="1" x="863" y="638">
    <properties>
     <property name="capacity" value="10"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="769" y="542">
+  <object type="neutral" gid="1" x="834" y="512">
    <properties>
     <property name="capacity" value="8"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="705" y="575">
+  <object type="neutral" gid="1" x="673" y="607">
    <properties>
     <property name="capacity" value="3"/>
    </properties>

@@ -10,12 +10,12 @@
   <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_01.png"/>
+  <image source="../img/background/bg_level_01.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
   <object type="comp1" gid="2" x="448" y="446">
    <properties>
-    <property name="capacity" value="20"/>
+    <property name="capacity" value="100"/>
    </properties>
   </object>
   <object type="neutral" gid="1" x="641" y="607">
@@ -28,12 +28,12 @@
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="800" y="704">
+  <object type="neutral" gid="1" x="802" y="702">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="418" y="736">
+  <object type="neutral" gid="1" x="418" y="671">
    <properties>
     <property name="capacity" value="7"/>
    </properties>
@@ -43,9 +43,9 @@
     <property name="capacity" value="5"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="738" y="256">
+  <object type="comp1" gid="1" x="738" y="256">
    <properties>
-    <property name="capacity" value="2"/>
+    <property name="capacity" value="5"/>
    </properties>
   </object>
   <object type="neutral" gid="1" x="321" y="350">
@@ -60,10 +60,10 @@
   </object>
   <object type="user" gid="1" x="193" y="129">
    <properties>
-    <property name="capacity" value="3"/>
+    <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="898" y="449">
+  <object type="comp1" gid="1" x="898" y="449">
    <properties>
     <property name="capacity" value="5"/>
    </properties>

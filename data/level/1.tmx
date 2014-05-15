@@ -21,34 +21,34 @@
   <image source="../img/background/bg_level_01.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object name="starthoeve" type="user" gid="2" x="36" y="160">
+  <object name="starthoeve" type="user" gid="2" x="32" y="176">
    <properties>
     <property name="capacity" value="30"/>
    </properties>
   </object>
-  <object type="comp1" gid="2" x="863" y="736">
+  <object type="comp1" gid="2" x="879" y="703">
    <properties>
     <property name="capacity" value="30"/>
     <property name="trigger_select" value="popup hoeve"/>
    </properties>
   </object>
-  <object name="boerderij 1" type="neutral" gid="1" x="262" y="112">
+  <object name="boerderij 1" type="neutral" gid="1" x="260" y="129">
    <properties>
     <property name="capacity" value="0"/>
     <property name="trigger_takeover" value="popup takeover"/>
    </properties>
   </object>
-  <object name="boerderij 4" type="neutral" gid="1" x="809" y="468">
+  <object name="boerderij 4" type="neutral" gid="1" x="811" y="505">
    <properties>
     <property name="capacity" value="4"/>
    </properties>
   </object>
-  <object name="boerderij 2" type="neutral" gid="1" x="291" y="268">
+  <object name="boerderij 2" type="neutral" gid="1" x="299" y="317">
    <properties>
     <property name="capacity" value="1"/>
    </properties>
   </object>
-  <object name="boerderij 3" type="neutral" gid="1" x="493" y="488">
+  <object name="boerderij 3" type="neutral" gid="1" x="454" y="540">
    <properties>
     <property name="capacity" value="3"/>
    </properties>

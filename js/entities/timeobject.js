@@ -2,7 +2,7 @@
 Main.TimeObject = Object.extend(
 {
 	updateWhenPaused: true,
-	dt: 0, // delta time, usable in any update function
+	dt: 0, // delta time in miliseconds, usable in any update function
 	_currentDate: null,
 	_previousDate: null,
 	

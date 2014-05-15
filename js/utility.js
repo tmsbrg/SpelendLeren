@@ -14,3 +14,9 @@ function srcToImageName(path)
 {
     return path.substring(path.lastIndexOf("/")+1, path.lastIndexOf("."))
 }
+
+// linear interpolation
+function lerp(a, b, t)
+{
+    return a + t * (b - a);
+}

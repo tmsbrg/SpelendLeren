@@ -80,6 +80,9 @@ resources = [
      src: "data/img/gui/ugly_font.png"},
     {name: "ubuntu_font", type: "image",
      src: "data/img/gui/ubuntu_font.png"},
+
+    {name: "here_icon", type: "image",
+     src: "data/img/gui/here_icon.png"},
 	
 	/* Maps. 
 	 * @example

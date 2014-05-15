@@ -11,6 +11,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     waitingForTriggers: false, // whether the game is waiting for triggers to
                                // complete before continuing
     currentAction : 0, // keeps what trigger we're currently on
+    here: null,
 
     // called when the level is started
     onResetEvent: function(levelname)
@@ -24,6 +25,8 @@ Main.LevelScreen = me.ScreenObject.extend(
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
 
+        this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
+
 
         this.tiles = new Array(1);
         this.actions = [];
@@ -34,6 +37,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
         console.log("start of game");
+
     },
 
     interpretLevel: function(xml)
@@ -268,6 +272,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         this.waitingForTriggers = true;
         this.disableAI();
+        me.game.add(this.here, 20);
+        this.setHereIcon(this.currentAction);
     },
 
     // continues the game, should be used as a callback by a building's trigger
@@ -278,7 +284,17 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (this.actions[this.currentAction] == undefined) {
             this.waitingForTriggers = false;
             this.enableAI();
+            me.game.remove(this.here);
+        } else {
+            this.setHereIcon(this.currentAction);
         }
+    },
+
+    // sets the here icon's position to target building for current action
+    setHereIcon: function(ca)
+    {
+        var building = this.getBuilding(this.actions[ca].target);
+        this.here.setPos(building.pos.x + 16, building.pos.y - 32);
     },
 
     // disables all AIs in the level

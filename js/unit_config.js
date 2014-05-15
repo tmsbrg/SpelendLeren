@@ -14,6 +14,10 @@ GetBuildingSize = function(type) {
     return _UnitConfig.buildingSizes[type];
 }
 
+GetUnitSize = function(type) {
+    return _UnitConfig.unitSizes[type];
+}
+
 UnitForBuilding = function(type) {
     return _UnitConfig.unitForBuilding[type];
 }
@@ -27,6 +31,7 @@ _UnitConfig =
             defense: 9,
             speed: 10,
 			animationSpeed: 100,
+			
         },
         {
             attack: 22,
@@ -76,6 +81,13 @@ _UnitConfig =
         homestead: 128,
         church: 90,
     },
+	
+	unitSizes:
+	{
+		farmer: 64,
+		knight: 64,
+		monk: 64,
+	},
 	
 	buildingSpawnTime:
     {

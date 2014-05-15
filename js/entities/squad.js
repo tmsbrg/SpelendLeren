@@ -1,3 +1,6 @@
+/*
+	TODO: comment
+*/
 Main.Squad = me.AnimationSheet.extend(
 {
 	speed: 0, // the speed of the army
@@ -10,28 +13,50 @@ Main.Squad = me.AnimationSheet.extend(
 	direction: null, // the direction in which the Army is going
 	units: null,
 	
-	init: function(startPoint, target, units, owner)
+	init: function(startPoint, target, units, owner, speed)
 	{
 		this.units = units;
 		this.owner = owner;
 		this.target = target;
-		this.startPoint = startPoint;
-		this.targetPoint = target.pos;
-		this.speed = UnitConfig(units.keys()[0], 0, "speed");
+		var keys = units.keys();
+		
+		var width = GetUnitSize(keys[0]);
+		
+		
+		this.startPoint = new me.Vector2d(startPoint.x - ( width* 0.5), startPoint.y - (width * 0.5));
+		this.targetPoint = /*new me.Vector2d(target.pos.x);*/target.pos;
+		
+		this.speed = speed;
 		
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 		
-		var key = units.keys()[0];
-		var image = me.loader.getImage(owner+"_"+key+"_0");
+		var key = keys[0];
+		var image = me.loader.getImage(owner+"_"+key+"_"+this.getDirectionName(this.direction)+"_0");
 		
-		this.parent(startPoint.x, startPoint.y,
-                    image, 64);
+		
+		this.parent(this.startPoint.x , this.startPoint.y, image, 64);
 		
 		this.addAnimation("walk", [0,1,2,3], UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
 		//console.log(units);
+	},
+	
+	
+	
+	// returns the name of the direction the suqad is curretnly moving in
+	getDirectionName: function(dir)
+	{
+		if (dir.x >= 0 && dir.y >= 0) {
+			return "downright";
+		} else if (dir.x >= 0 && dir.y <= 0) {
+			return "topright";
+		} else if (dir.x <= 0 && dir.y <= 0) {
+			return "topleft";
+		} else if (dir.x <= 0 && dir.y >= 0) {
+			return "downleft";
+		}
 	},
 	
 	update: function()

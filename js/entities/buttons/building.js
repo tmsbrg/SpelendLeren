@@ -384,6 +384,10 @@ Main.Building = Main.Button.extend(
             {
                 power += UnitConfig(keys[i], j, attackOrDefense) *
                          units.getValue(keys[i])[j];
+				
+				console.log(units.getValue("monk"));
+				if(units.getValue("monk") != undefined)
+					power += power * 0.1;
             }
         }
         return power;
@@ -474,6 +478,7 @@ Main.Building = Main.Button.extend(
 	
 	enemySelect: function()
 	{
+		
 		this.enemySelected = true;
 	},
 
@@ -491,7 +496,6 @@ Main.Building = Main.Button.extend(
 	
 	drawArrow: function()
 	{
-		
 		this.line = new Main.Line(this.centerPos, me.input.mouse.pos);
 		me.game.add(this.line, 5);
 	},

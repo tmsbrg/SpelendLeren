@@ -10,6 +10,7 @@ Main.Army = me.Renderable.extend(
 	squadArray: null,
 	timeSinceLastSpawn: 500,
 	spawnSquadTime:500,
+	speed: 0,
 	
 	// constructor function of Army needs two Vector2d the type of the Army and
     // the owner of the army
@@ -23,6 +24,8 @@ Main.Army = me.Renderable.extend(
 		
 		// TODO: speed should be based on the slowest unit
 		var keys = units.keys();
+		
+		this.speed = this.getSpeed(keys);
 		if(keys.length > 1){
 			
 			for(var i = 0; i < keys.length; i++)
@@ -39,17 +42,28 @@ Main.Army = me.Renderable.extend(
 			this.createSquad(units, 21);
 		}
 		
-		
-		//console.log();
-		
 		// var image_name = owner +_+ unittype +_+ unitlevel
 		this.parent(startPoint, 0 ,0);
 		
 	},
 	
+	getSpeed: function(keys)
+	{
+		var speed = 30;
+		for(var i = 0; i < keys.length; i++)
+		{
+			if(UnitConfig(keys[i], 0, "speed") < speed ) {
+				speed = UnitConfig(keys[i], 0, "speed");
+			}
+		}
+		
+		return speed;
+	},
+	
+	
 	createSquad: function(dictionary, layer)
 	{
-		var squad = new Main.Squad(this.startPoint, this.target, dictionary, this.owner);
+		var squad = new Main.Squad(this.startPoint, this.target, dictionary, this.owner, this.speed);
 		me.game.add(squad, layer);
 	},
 	
@@ -64,7 +78,6 @@ Main.Army = me.Renderable.extend(
 				this.timeSinceLastSpawn = 0;
 			}
 		} else {
-			console.log("remove");
 			me.game.remove(this);
 			
 		}

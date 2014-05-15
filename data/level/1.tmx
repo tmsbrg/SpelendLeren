@@ -18,7 +18,7 @@
     <property name="capacity" value="30"/>
    </properties>
   </object>
-  <object type="comp1" gid="2" x="863" y="736">
+  <object type="comp1" gid="2" x="865" y="704">
    <properties>
     <property name="capacity" value="15"/>
    </properties>

@@ -61,7 +61,7 @@ Main.MouseEvents = Object.extend(
     // called when clicked
     clicked: function(ev)
     {
-        if (this.clickable) {
+		if (this.clickable) {
             return this.onClick(ev);
         } else {
             return true;

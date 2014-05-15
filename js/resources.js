@@ -6,6 +6,7 @@ resources = [
 	 */
     {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
     {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
+	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
 	
@@ -36,6 +37,8 @@ resources = [
 
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
+	{name: "enemy_building_selection", type: "image",
+     src: "data/img/buildings/enemy_building_selection.png"},
 	
 	{name: "farmer_icon", type: "image",
 	 src: "data/img/armies/icons/farmer_icon.png"},
@@ -90,6 +93,11 @@ resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
     {name: "level1", type: "tmx", src: "data/level/1.tmx"},
+	{name: "level2", type: "tmx", src: "data/level/2.tmx"},
+	{name: "level3", type: "tmx", src: "data/level/3.tmx"},
+	{name: "level4", type: "tmx", src: "data/level/4.tmx"},
+	{name: "level5", type: "tmx", src: "data/level/5.tmx"},
+	
 
 	/* Background music. 
 	 * @example

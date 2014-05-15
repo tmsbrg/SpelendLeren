@@ -20,9 +20,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
-        this.background = new Main.Image(0, 0, null,
-                                         Constants.screenWidth,
-                                         Constants.screenHeight);
+		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth, Constants.screenHeight)
+        this.background = new Main.Button(img, this.click.bind(this), this.hover.bind(this));
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
@@ -36,10 +35,27 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
-        console.log("start of game");
-
     },
-
+	
+	click: function()
+	{
+		for(var i = 0 ; i < this.buildings.length; i++)
+		{
+			this.buildings[i].unselect();
+		}
+	},
+	
+	hover: function()
+	{
+		/*or(var i = 0 ; i < this.buildings.length; i++)
+		{
+			if(this.buildings[i].enemySelected){
+				console.log("red");
+				this.buildings[i].enemySelected = false;
+			}
+		}*/
+	},
+	
     interpretLevel: function(xml)
     {
         switch(xml.localName)
@@ -47,6 +63,7 @@ Main.LevelScreen = me.ScreenObject.extend(
             case "properties":
                 if (xml.parentElement.localName == "map")
                 this.interpretProperties(xml);
+                break;
             case "tileset":
                 this.tiles[Number(this.getAttribute(xml, "firstgid"))] = {
                     type : this.getAttribute(xml, "name")
@@ -55,7 +72,7 @@ Main.LevelScreen = me.ScreenObject.extend(
             case "imagelayer":
                 var image = xml.firstElementChild;
                 try {
-                    this.background.loadImage(srcToImageName(
+                    this.background.displayObject.loadImage(srcToImageName(
                                           this.getAttribute(image, "source")));
                 } catch (e) {
                     alert(e);
@@ -276,12 +293,15 @@ Main.LevelScreen = me.ScreenObject.extend(
     },
 
     //TODO: this function should be part of player, but player doesn't exist yet
-    attack: function(buildingId)
-    {
-        for (var i=0; i < this.buildings.length; i++)
+    attack: function(buildingId) 
+	{
+		for (var i = 0; i < this.buildings.length; i++)
         {
             if (this.buildings[i].selected) {
-                this.buildings[i].attack(this.buildings[buildingId]);
+                if(this.buildings[i].id != buildingId)
+					this.buildings[i].attack(this.buildings[buildingId]);
+				else
+					this.buildings[i].unselect();
             }
         }
     },
@@ -338,7 +358,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     setHereIcon: function(ca)
     {
         var building = this.getBuilding(this.actions[ca].target);
-        this.here.setPos(building.pos.x + 16, building.pos.y - 32);
+        this.here.setPos(building.centerPos.x, building.pos.y - 32);
     },
 
     // disables all AIs in the level

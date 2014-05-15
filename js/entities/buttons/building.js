@@ -17,20 +17,35 @@ Main.Building = Main.Button.extend(
     size: 0, // contains size of building
 	flag: null, // contains image object for the flag
 	selected: false, // whether this building is selected
+	enemySelected: false, // when an enemy_building_selection building is selected
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
+	enemy_selectedImage: null,	// contains image object that is drawn ifthe 
+								//player selects an building which is not his his
     imageObject: null, // reference to the image object
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
     triggers: null, // array of triggers with callbacks
 	
+	line: null, // reference to line object
+	halfsize: null, // the halfsize of the width from the building size
+	centerPos: null, // the centerPos position of the building
 	
-	init: function(x, y, type, owner, id, capacity, name)
+	init: function(x, y, type, owner, id, capacity, name, spawnResidentTime)
 	{
+		
+		this.x = x;
+		this
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
+		
+		
+		if(spawnResidentTime != null)
+			this.spawnResidentTime = spawnResidentTime;
+		else
+			this.spawnResidentTime = GetBuildingSpawnTime(this.type);
 		
         this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
                                           this.size);
@@ -46,10 +61,16 @@ Main.Building = Main.Button.extend(
         }
 		this.unitType = UnitForBuilding(type);
         this.selectedImage = me.loader.getImage("building_selection");
+		this.enemy_selectedImage =
+                                me.loader.getImage("enemy_building_selection");
 
         var gui = new Main.GUIContainer(x, y, [this.imageObject]);
 
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
+		
+		this.halfsize = this.size * 0.5;
+		this.centerPos = new me.Vector2d(this.pos.x + this.halfsize,
+                                         this.pos.y + this.halfsize);
 		
         this.units = new Main.Dictionary();
         this.unitGUI = new Main.Dictionary();
@@ -58,11 +79,12 @@ Main.Building = Main.Button.extend(
         this.checkActive();
         this.name = (name != null) ? name : "";
 	},
+	
 
     // returns number of units in this building
     currentCapacity: function()
     {
-        return this.unitAmount(this.units);
+		return this.unitAmount(this.units);
     },
 	
 	addUnitUI: function(type)
@@ -115,8 +137,6 @@ Main.Building = Main.Button.extend(
         }
     },
 
-	
-
     // returns image string for this building
     getImage: function()
     {
@@ -146,12 +166,19 @@ Main.Building = Main.Button.extend(
 		}
 	},
 	
+	
 	draw: function(ctx)
 	{
         if (this.selected) {
-            ctx.drawImage(this.selectedImage, this.pos.x, this.pos.y,
+            
+			ctx.drawImage(this.selectedImage, this.pos.x, this.pos.y,
                           this.width, this.height);
+			
         }
+		if(this.enemySelected){
+			ctx.drawImage(this.enemy_selectedImage, this.pos.x, this.pos.y,
+							this.width, this.height);
+		}
         this.parent(ctx);
 	},
 	
@@ -230,17 +257,33 @@ Main.Building = Main.Button.extend(
 		
 		for(var i = 0; i < keys.length; i++)
 		{
-			armyDictionary.setValue(keys[i], new Array(Constants.upgradeLevels));
+			armyDictionary.setValue(keys[i],
+                                    new Array(Constants.upgradeLevels));
+
+            if(this.currentCapacity() > 0) {
 			
-            this.addingUnitsToArmy(armyDictionary, keys[i]);
-            if (keys[i] != this.unitType && this.unitsOfType(keys[i]) == 0) {
-                this.removeUnitType(keys[i]);
+                var armyDictionary = new Main.Dictionary();
+                var keys = this.units.keys();
+
+                for(var i = 0; i < keys.length; i++)
+                {
+                    armyDictionary.setValue(keys[i],
+                                            new Array(Constants.upgradeLevels));
+                    
+                    this.addingUnitsToArmy(armyDictionary, keys[i]);
+                    if (keys[i] != this.unitType &&
+                        this.unitsOfType(keys[i]) == 0) {
+                        this.removeUnitType(keys[i]);
+                    }
+                }
+                
+                me.game.add(new Main.Army(this.centerPos, target, this.owner,
+                                          armyDictionary),
+                            20);	
+                
             }
+            this.unselect();
 		}
-		me.game.add(new Main.Army(this.pos, target, this.owner, armyDictionary),
-                    20);	
-		
-		this.unselect();
 	},
 	
 	// Adds units to given units dictionary and removes them from the building
@@ -299,6 +342,7 @@ Main.Building = Main.Button.extend(
 		if (battleResult < 0) {
             this.setUnits(units);
 			this.takeOver(owner);
+			this.unselect();
 		} else {
             this.updateUnitTexts();
         }
@@ -487,29 +531,47 @@ Main.Building = Main.Button.extend(
 	{
         if (!this.checkTrigger("select")) return;
 		this.selected = true;
+		this.drawArrow();
+	},
+	
+	enemySelect: function()
+	{
+		this.enemySelected = true;
 	},
 
     // turns selected to false
 	unselect: function()
 	{
 		this.selected = false;
+		this.enemySelected = false;
+		if(this.line != null)
+		{
+			me.game.remove(this.line);
+			this.line = null;
+		}
 	},
 	
 	drawArrow: function()
 	{
-		//TODO
+		
+		this.line = new Main.Line(this.centerPos, me.input.mouse.pos);
+		me.game.add(this.line, 5);
 	},
 
     onClick: function(ev)
     {
-        Main.levelScreen.attack(this.id);
+		Main.levelScreen.attack(this.id);
     },
 
     onHover: function(ev)
     {
-        if (me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
+        if(me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
             !this.selected) {
             this.select();
         }
+		
+		if(me.input.isKeyPressed("mouseleft") && this.owner != "user" && !this.selected){
+			this.enemySelect();
+		}
     },
 });

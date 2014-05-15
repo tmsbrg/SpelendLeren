@@ -59,7 +59,7 @@ _UnitConfig =
             attack: 2,
             defense: 4,
             speed: 6,
-			animationSpeed: 250,
+			animationSpeed: 160,
         },
         {
             attack: 4,

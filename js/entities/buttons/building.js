@@ -442,12 +442,15 @@ Main.Building = Main.Button.extend(
     // trigger
     // example: building.addTrigger("takeover", this.actionComplete.bind(this),
     //                              "user");
-    addTrigger: function(trigger, callback, args)
+    addTrigger: function(trigger, callback, checkarg, cbarg)
     {
         this.triggers.push({
-            name: trigger,
-            call: callback,
-            arg: args
+            name: trigger, // name of the trigger, e.g. "select"
+            callback: callback, // function to call when complete
+            checkarg: checkarg, // argument that has to be corrent when
+                                 // checking the trigger, leave null for
+                                 // anything to be correct
+            cbarg: cbarg, // argument to send to the callback function
         });
     },
 
@@ -462,9 +465,11 @@ Main.Building = Main.Button.extend(
         for (var i=0; i<this.triggers.length; i++)
         {
             if (this.triggers[i].name === trigger && 
-                (this.triggers[i].arg == null || arg === this.triggers[i].arg)){
-                this.triggers[i].call(this);
+                (this.triggers[i].checkarg == null ||
+                    arg === this.triggers[i].checkarg)){
+                this.triggers[i].callback(this.triggers[i].cbarg);
                 this.triggers.splice(i, 1);
+                i--; // H4XX!!
             }
         }
         return true;

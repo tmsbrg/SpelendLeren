@@ -177,11 +177,53 @@ Main.LevelScreen = me.ScreenObject.extend(
                                      (capacity != null) ? Number(capacity) :
                                                           null,
                                     this.getAttribute(obj, "name"));
+            this.createBuildingTriggers(r[i], obj);
             me.game.add(r[i], 10);
         }
         return r;
     },
 
+    // creates building triggers for given building and corresponding xml object
+    createBuildingTriggers: function(building, obj)
+    {
+        var properties = obj.firstElementChild;
+        if (properties != null) {
+            for (var i=0; i < properties.childElementCount; i++)
+            {
+                var name = this.getAttribute(properties.children[i], "name");
+                var value = this.getAttribute(properties.children[i], "value");
+                var nameparts = name.split("_");
+                if (nameparts[0] == "trigger") {
+                    var values;
+                    values = this.getTriggerCallback(value);
+                    if (values[0] != null) {
+                        building.addTrigger(nameparts[1], values[0], null,
+                                            values[1]);
+                    } else {
+                        alert("Don't know trigger command \""+value+
+                              "\" for building: "+building.name);
+                    }
+                }
+            }
+        }
+    },
+
+    // returns the trigger callback and argument for given trigger value
+    getTriggerCallback: function(value)
+    {
+        var args = value.split(" ");
+        r = new Array(2);
+        switch (args[0])
+        {
+            case "popup":
+            r[0] = this.showPopup.bind(this);
+            r[1] = args[1];
+            break;
+        }
+        return r;
+    },
+
+    // returns given building's position
     getBuildingPos: function(obj, type)
     {
         var x = Number(this.getAttribute(obj, "x"));
@@ -189,6 +231,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         return new me.Vector2d(x, y);
     },
 
+    // returns property of xml element obj with name name, or null if inexistant
     getProperty: function(obj, name)
     {
         var properties = obj.firstElementChild;
@@ -203,6 +246,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         return null;
     },
 
+    // returns attribute of xml object with given name, or null of inexistant
     getAttribute: function(xml, name)
     {
         r = xml.attributes.getNamedItem(name);
@@ -341,5 +385,12 @@ Main.LevelScreen = me.ScreenObject.extend(
                 return (action == "createres" || action == "takeover" ||
                         action == "support");
         }
-    }
+    },
+
+    // shows popup with given name
+    showPopup: function(name)
+    {
+        //TODO
+        console.log("popup: "+name);
+    },
 });

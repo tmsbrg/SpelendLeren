@@ -21,7 +21,7 @@ Main.LevelScreen = me.ScreenObject.extend(
             throw "Error: cannot find level: \""+levelname+"\"";
         }
 		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth, Constants.screenHeight)
-        this.background = new Main.Button(img, this.click.bind(this), this.hover.bind(this));
+        this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
@@ -41,19 +41,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 	{
 		for(var i = 0 ; i < this.buildings.length; i++)
 		{
-			this.buildings[i].unselect();
+			this.buildings[i].deselect();
 		}
-	},
-	
-	hover: function()
-	{
-		/*or(var i = 0 ; i < this.buildings.length; i++)
-		{
-			if(this.buildings[i].enemySelected){
-				console.log("red");
-				this.buildings[i].enemySelected = false;
-			}
-		}*/
 	},
 	
     interpretLevel: function(xml)
@@ -300,8 +289,9 @@ Main.LevelScreen = me.ScreenObject.extend(
             if (this.buildings[i].selected) {
                 if(this.buildings[i].id != buildingId)
 					this.buildings[i].attack(this.buildings[buildingId]);
-				else
-					this.buildings[i].unselect();
+            }
+            if (this.buildings[i].enemySelected) {
+                this.buildings[i].enemyDeselect();
             }
         }
     },

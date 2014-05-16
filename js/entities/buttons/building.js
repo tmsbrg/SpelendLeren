@@ -17,7 +17,8 @@ Main.Building = Main.Button.extend(
     size: 0, // contains size of building
 	flag: null, // contains image object for the flag
 	selected: false, // whether this building is selected
-	enemySelected: false, // when an enemy_building_selection building is selected
+	enemySelected: false, // when an enemy_building_selection building is
+                          // selected
     id: -1, // the id for this building
     selectedImage: null, // contains image object that is drawn when the
                          // building is selected
@@ -35,8 +36,6 @@ Main.Building = Main.Button.extend(
 	init: function(x, y, type, owner, id, capacity, name, spawnResidentTime)
 	{
 		
-		this.x = x;
-		this
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
@@ -147,6 +146,11 @@ Main.Building = Main.Button.extend(
 	{
         if (this.active) {
             this.createResident();
+        }
+        if (this.enemySelected && 
+            !this.containsPoint(me.input.mouse.pos.x, me.input.mouse.pos.y)) {
+
+            this.enemyDeselect();
         }
 		return this.parent();
 	},
@@ -282,7 +286,6 @@ Main.Building = Main.Button.extend(
                             20);	
                 
             }
-            this.unselect();
 		}
 	},
 	
@@ -342,7 +345,7 @@ Main.Building = Main.Button.extend(
 		if (battleResult < 0) {
             this.setUnits(units);
 			this.takeOver(owner);
-			this.unselect();
+			this.deselect();
 		} else {
             this.updateUnitTexts();
         }
@@ -536,15 +539,18 @@ Main.Building = Main.Button.extend(
 	
 	enemySelect: function()
 	{
-		
 		this.enemySelected = true;
 	},
 
+    enemyDeselect: function()
+    {
+        this.enemySelected = false;
+    },
+
     // turns selected to false
-	unselect: function()
+	deselect: function()
 	{
 		this.selected = false;
-		this.enemySelected = false;
 		if(this.line != null)
 		{
 			me.game.remove(this.line);
@@ -565,13 +571,14 @@ Main.Building = Main.Button.extend(
 
     onHover: function(ev)
     {
-        if(me.input.isKeyPressed("mouseleft") && this.owner == "user" &&
-            !this.selected) {
-            this.select();
+        if(me.input.isKeyPressed("mouseleft")) {
+            if (this.owner === "user") {
+                if (!this.selected) {
+                    this.select();
+                }
+            } else if (!this.enemySelected) {
+                this.enemySelect();
+            }
         }
-		
-		if(me.input.isKeyPressed("mouseleft") && this.owner != "user" && !this.selected){
-			this.enemySelect();
-		}
     },
 });

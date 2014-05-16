@@ -11,7 +11,7 @@ resources = [
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
-	{name: "level_button", type: "image", src: "data/img/gui/button_map.png"},
+	{name: "level_button", type: "image", src: "data/img/gui/button.png"},
 	
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},

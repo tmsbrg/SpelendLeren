@@ -9,6 +9,8 @@ Main.MenuScreen = me.ScreenObject.extend(
 	
 	onResetEvent: function()
 	{
+		me.audio.play("menu", true);
+		
 		this.background = new Main.Image(0, 0, "bg_menu",
                                          Constants.screenWidth,
                                          Constants.screenHeight);
@@ -24,6 +26,7 @@ Main.MenuScreen = me.ScreenObject.extend(
 	
 	start_game: function()
 	{
+		me.audio.stop("menu");
 		me.state.change(me.state.READY); 
 	},
 });

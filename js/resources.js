@@ -131,9 +131,18 @@ resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/", channel : 1},
 	 */	
+	 
+	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "campaign", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level1", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level2", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level3", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level4", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level5", type: "audio", src: "data/audio/background/", channel : 1},
 	
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
 	 */
+	 {name: "fight", type: "audio", src: "data/audio/sound/", channel : 2}
 ];

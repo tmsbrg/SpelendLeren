@@ -16,7 +16,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(levelname)
     {
-        var level = me.loader.getTMX(levelname);
+        me.audio.play(levelname, true);
+		var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }

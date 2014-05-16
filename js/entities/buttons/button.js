@@ -5,7 +5,7 @@ Main.Button = me.Renderable.extend(
 	mouseEvents: null,
 	displayObject: null,
 
-	init: function (displayObject, onClick, onHover)
+	init: function (displayObject, onClick, onHover, clickArgs, hoverArgs)
 	{
 		this.mouseEvents = new Main.MouseEvents(this); 
 		this.displayObject = displayObject;
@@ -16,8 +16,8 @@ Main.Button = me.Renderable.extend(
         // button object
         this.displayObject.pos = new me.Vector2d(0, 0);
 
-        this.setOnClick(onClick);
-        this.setOnHover(onHover);
+        this.setOnClick(onClick, clickArgs);
+        this.setOnHover(onHover, hoverArgs);
 	},
 
     // sets onClick to given value, sets clickable to true unless false is given

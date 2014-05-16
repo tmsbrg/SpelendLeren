@@ -2,6 +2,7 @@
    level */
 Main.LevelScreen = me.ScreenObject.extend(
 {
+    name: "", // string containing name of the level
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
     interface: null, // LevelInterface
@@ -20,7 +21,9 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(levelname)
     {
-        var level = me.loader.getTMX(levelname);
+        me.audio.play(levelname, true);
+        this.name = levelname;
+		var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
@@ -426,10 +429,12 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.paused = true;
         Main.timer.pause();
 
+        me.audio.stop(this.name);
+
         var endText = new Main.TextObject(460, 340, "", Main.font);
         var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
                                                        90, 78),
-                                    function(){me.state.change(me.state.MENU)});
+                                function(){me.state.change(me.state.READY)});
         var rect = new Main.RectObject(300, 300, 400, 200);
         if (userWon) {
             endText.setText("YOU WIN!");

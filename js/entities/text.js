@@ -21,10 +21,18 @@ Main.TextObject = me.Renderable.extend(
     {
         this.pos = new me.Vector2d(x, y);
     },
+	
+	// handles the alignmetn of the textobject
+	setAlignment: function(alignment)
+	{
+		this.font.set(alignment);
+	},
+	
     update: function()
     {
         return true;
     },
+	
     draw: function(ctx)
     {
         this.font.draw(ctx, this.text, this.pos.x, this.pos.y);

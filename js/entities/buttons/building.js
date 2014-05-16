@@ -377,7 +377,8 @@ Main.Building = Main.Button.extend(
     // attacking army
     fight: function(owner, units)
     {
-        var attackPower = this.calculatePower(owner, units, "attack");
+        me.audio.play("fight");
+		var attackPower = this.calculatePower(owner, units, "attack");
         var defensePower = this.calculatePower(this.owner, this.units,
                                                "defense");
 		

@@ -9,9 +9,10 @@ resources = [
 	{name: "bg_level_02", type: "image", src: "data/img/background/bg_level_02.png"},
 	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
+	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
-
 	{name: "back_button", type: "image", src: "data/img/gui/back_button.png"},
+	{name: "level_button", type: "image", src: "data/img/gui/button.png"},
 	
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},
@@ -131,9 +132,18 @@ resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/", channel : 1},
 	 */	
+	 
+	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "campaign", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level1", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level2", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level3", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level4", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "level5", type: "audio", src: "data/audio/background/", channel : 1},
 	
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
 	 */
+	 {name: "fight", type: "audio", src: "data/audio/sound/", channel : 2}
 ];

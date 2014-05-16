@@ -5,6 +5,7 @@ var Main =
     levelScreen: null, // reference to the levelScreen
 	menuScreen: null, // reference to the menuScreen
     font: null, // standard game font
+	campaignScreen: null, // reference to the campaignScreen
 	
 	// Run on page load.
     onload: function () 
@@ -48,7 +49,10 @@ var Main =
 
         this.levelScreen = new Main.LevelScreen();
 		this.menuScreen = new Main.MenuScreen();
+		this.campaignScreen = new Main.CampaignScreen();
+		
         me.state.set(me.state.MENU, this.menuScreen);
+		me.state.set(me.state.READY, this.campaignScreen);
 		me.state.set(me.state.PLAY, this.levelScreen);
 
         // me.pool.register("farm", 

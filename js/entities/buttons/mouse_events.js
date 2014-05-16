@@ -8,25 +8,26 @@ Main.MouseEvents = Object.extend(
     clickable: false, // whether currently listening to click events
     hoverable: false, // whether currently listening to hover events
 
-    init: function(rect, onClick, onHover, onHoverOut, onDoubleClick)
+    init: function(rect, onClick, onHover, clickArgs, hoverArgs)
     {
-        //TODO: make onhoverout and ondoubleclick work
+		//TODO: make onhoverout and ondoubleclick work
         this.rect = rect;
         if (onClick != null) {
-            this.setOnClick(onClick);
+            this.setOnClick(onClick, clickArgs);
         }
         if (onHover != null) {
-            this.setOnHover(onHover);
+            this.setOnHover(onHover, hoverArgs);
         }
         this.registerClickAndHover();
     },
 
     // sets the onClick to given function, turns clickable to true unless false
     // is given
-    setOnClick: function(onClick, clickable)
+    setOnClick: function(onClick, args, clickable)
     {
         if (this.onClick != null) {
             this.onClick = onClick;
+			this.clickArgs = args;
         }
         if (clickable != null) {
             this.clickable = clickable;
@@ -37,10 +38,11 @@ Main.MouseEvents = Object.extend(
 
     // sets the onHover to given function, turns hoverable to true unless false
     // is given
-    setOnHover: function(onHover, hoverable)
+    setOnHover: function(onHover, args, hoverable)
     {
         if (this.onHover != null) {
             this.onHover = onHover;
+			this.hoverArgs = args;
         }
         if (hoverable != null) {
             this.hoverable = hoverable;
@@ -62,7 +64,7 @@ Main.MouseEvents = Object.extend(
     clicked: function(ev)
     {
 		if (this.clickable) {
-            return this.onClick(ev);
+            return this.onClick(this.clickArgs);
         } else {
             return true;
         }
@@ -72,7 +74,7 @@ Main.MouseEvents = Object.extend(
     hovered: function(ev)
     {
         if (this.hoverable) {
-            return this.onHover(ev);
+            return this.onHover(this.hoverArgs);
         } else {
             return true;
         }

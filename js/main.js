@@ -4,6 +4,7 @@ var Main =
 {
     levelScreen: null, // reference to the levelScreen
 	menuScreen: null, // reference to the menuScreen
+    font: null, // standard game font
 	
 	// Run on page load.
     onload: function () 

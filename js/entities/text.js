@@ -1,14 +1,15 @@
 // TextObject: Draws a text
 Main.TextObject = me.Renderable.extend(
 {
+    text: null,
+
     init: function(x, y, text, font)
     {
-        this.parent(new me.Vector2d(x, y), font.height, font.height);
+        this.parent(new me.Vector2d(x, y), font.size, font.size);
         this.text = text;
         this.font = font;
         this.floating = true;
     },
-    text: null,
     /* setText: sets the text */
     setText: function(text)
     {

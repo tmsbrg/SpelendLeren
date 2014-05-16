@@ -10,7 +10,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                    // at the start of the level
     waitingForTriggers: false, // whether the game is waiting for triggers to
                                // complete before continuing
-    currentAction : 0, // keeps what trigger we're currently on
+    currentAction: 0, // keeps what trigger we're currently on
     here: null,
 
     armies: null, // array of currently moving armies
@@ -30,6 +30,11 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
+
+        // reinitialize for restart
+        this.currentAction = 0; 
+        this.paused = false;
+        this.waitingForTriggers = false;
 
 
         this.tiles = new Array(1);
@@ -417,13 +422,22 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     endLevel: function(userWon)
     {
-        // var endScreen = 
+        // TODO: Need an endscreen, really
         this.paused = true;
         Main.timer.pause();
+
+        var endText = new Main.TextObject(460, 340, "", Main.font);
+        var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
+                                                       90, 78),
+                                    function(){me.state.change(me.state.MENU)});
+        var rect = new Main.RectObject(300, 300, 400, 200);
         if (userWon) {
-            console.log("You win!");
+            endText.setText("YOU WIN!");
         } else {
-            console.log("You lose!");
+            endText.setText("YOU LOSE");
         }
+        me.game.add(endText, 100);
+        me.game.add(endButton, 100);
+        me.game.add(rect, 90);
     },
 });

@@ -69,7 +69,6 @@ Main.Player = Object.extend(
 
     checkLose: function()
     {
-        console.log(this.name + ": " + this.armies);
         if (this.buildings.length == 0 && this.armies <= 0) {
             switch(this.name)
             {

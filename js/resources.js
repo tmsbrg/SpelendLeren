@@ -10,6 +10,8 @@ resources = [
 	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
+
+	{name: "back_button", type: "image", src: "data/img/gui/back_button.png"},
 	
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},

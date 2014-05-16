@@ -24,6 +24,6 @@ Main.MenuScreen = me.ScreenObject.extend(
 	
 	start_game: function()
 	{
-		me.state.change(me.state.PLAY, "level4"); 
+		me.state.change(me.state.PLAY, "level1"); 
 	},
 });

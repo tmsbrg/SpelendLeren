@@ -7,9 +7,10 @@ Main.Army = me.Renderable.extend(
     amount: 0, // amount of soldiers in this army
 	upgradeLevel: null,
 	units: null, // dictionary with all the different value sof the units inside
+    owner: "neutral", // string containing ownership information
 	squadArray: null,
 	timeSinceLastSpawn: 500,
-	spawnSquadTime:500,
+	spawnSquadTime: 500,
 	speed: 0,
 	
 	// constructor function of Army needs two Vector2d the type of the Army and
@@ -26,22 +27,14 @@ Main.Army = me.Renderable.extend(
 		var keys = units.keys();
 		
 		this.speed = this.getSpeed(keys);
-		if(keys.length > 1){
-			
-			for(var i = 0; i < keys.length; i++)
-			{
-				var squadDic = new Main.Dictionary();
-				squadDic.setValue(keys[i], units.getValue(keys[i]));
-				
-				this.squadArray.push(squadDic);
-				
-				//this.createSquad(squadDic, 30-i);
-			}
-		} else {
-			this.createSquad(units, 21);
-		}
+        for(var i = 0; i < keys.length; i++)
+        {
+            var squadDic = new Main.Dictionary();
+            squadDic.setValue(keys[i], units.getValue(keys[i]));
+            
+            this.squadArray.push(squadDic);
+        }
 		
-		// var image_name = owner +_+ unittype +_+ unitlevel
 		this.parent(startPoint, 0 ,0);
 		
 	},
@@ -62,7 +55,8 @@ Main.Army = me.Renderable.extend(
 	
 	createSquad: function(dictionary, layer)
 	{
-		var squad = new Main.Squad(this.startPoint, this.target, dictionary, this.owner, this.speed);
+		var squad = new Main.Squad(this.startPoint, this.target, dictionary, 
+                                   this.owner, this.speed);
 		me.game.add(squad, layer);
 	},
 	
@@ -72,9 +66,14 @@ Main.Army = me.Renderable.extend(
 			this.timeSinceLastSpawn += Main.timer.dt; // * Main.timer.dt;
 			
 			if(this.timeSinceLastSpawn > this.spawnSquadTime) {
-				this.createSquad(this.squadArray[this.squadArray.length -1], 30 - (this.squadArray.length -1));
+				this.createSquad(this.squadArray[this.squadArray.length -1],
+                                 30 - (this.squadArray.length -1));
 				this.squadArray.pop();
 				this.timeSinceLastSpawn = 0;
+
+                if (this.squadArray.length == 0) {
+                    this.squadArray
+                }
 			}
 		} else {
 			me.game.remove(this);

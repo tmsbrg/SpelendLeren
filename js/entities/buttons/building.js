@@ -281,10 +281,9 @@ Main.Building = Main.Button.extend(
                     }
                 }
                 
-                me.game.add(new Main.Army(this.centerPos, target, this.owner,
-                                          armyDictionary),
-                            20);	
-                
+                var player = Main.levelScreen.getPlayer(this.owner);
+                player.addArmy(new Main.Army(this.centerPos, target,
+                                                  this.owner, armyDictionary));	
             }
 		}
 	},
@@ -468,15 +467,11 @@ Main.Building = Main.Button.extend(
     takeOver: function(owner)
     {
         if (!this.checkTrigger("takeover", owner)) return;
-        var oldOwner = Main.levelScreen.getComp(this.owner);
-        var newOwner = Main.levelScreen.getComp(owner);
+        var oldOwner = Main.levelScreen.getPlayer(this.owner);
+        var newOwner = Main.levelScreen.getPlayer(owner);
         this.owner = owner;
-        if (oldOwner) {
-            oldOwner.loseBuilding(this);
-        }
-        if (newOwner) {
-            newOwner.gainBuilding(this);
-        }
+        oldOwner.loseBuilding(this);
+        newOwner.gainBuilding(this);
         if (this.selected) {
             this.selected = false;
         }

@@ -1,7 +1,5 @@
 Main.AI = Object.extend(
 {
-    name: "", // string containing information about which player this is
-    myBuildings: null, // array of buildings owned by the AI
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
     timeUntilNextWave: 8000, // amount of miliseconds until sending the next
@@ -10,10 +8,16 @@ Main.AI = Object.extend(
     attacking: false, // whether this AI is currently attacking
     wavesSent: 0, // how many waves have been sent to the current target
     wavesToSend: 2, // how many waves of attacks will be sent to any target
-    init: function(name, buildings)
+
+    player: null, // reference to the player for this AI
+
+    init: function()
     {
-        this.name = name;
-        this.myBuildings = buildings;
+    },
+
+    setPlayer: function(player)
+    {
+        this.player = player;
     },
 
     update: function()
@@ -71,7 +75,7 @@ Main.AI = Object.extend(
         var buildings = Main.levelScreen.getBuildings();
         var i = Math.round(Math.random() * (buildings.length-1));
         var start_i = i;
-        while (buildings[i].owner === this.name)
+        while (buildings[i].owner === this.player.name)
         {
             i = (i + 1) % buildings.length;
             if (i == start_i) {
@@ -84,16 +88,15 @@ Main.AI = Object.extend(
     // sends all his units to attack given target
     attack: function(target)
     {
-        for (var i=0; i < this.myBuildings.length; i++)
+        for (var i=0; i < this.player.buildings.length; i++)
         {
-            this.myBuildings[i].attack(target);
+            this.player.buildings[i].attack(target);
         }
     },
 
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-        this.myBuildings.push(building);
         this.currentTarget = this.getNewTarget();
         this.attacking = false;
     },
@@ -101,12 +104,6 @@ Main.AI = Object.extend(
     // removes a building from the array of buildings owned by this AI
     loseBuilding: function(building)
     {
-        for (var i=0; i < this.myBuildings.length; i++)
-        {
-            if (this.myBuildings[i] === building) {
-                this.myBuildings.splice(i, 1);
-            }
-        }
         if (!this.active) {
             this.active = true;
         }
@@ -116,9 +113,9 @@ Main.AI = Object.extend(
     getTotalStrength: function()
     {
         var strength = 0;
-        for (var i=0; i < this.myBuildings.length; i++)
+        for (var i=0; i < this.player.buildings.length; i++)
         {
-            strength += this.myBuildings[i].currentCapacity();
+            strength += this.player.buildings[i].currentCapacity();
         }
         return strength;
     },

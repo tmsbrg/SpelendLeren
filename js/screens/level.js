@@ -5,13 +5,17 @@ Main.LevelScreen = me.ScreenObject.extend(
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
     interface: null, // LevelInterface
-    comps: null, // dictionary containing all computer players
+    players: null, // dictionary containing all players
     actions: null, // array of action objects containing what should happen
                    // at the start of the level
     waitingForTriggers: false, // whether the game is waiting for triggers to
                                // complete before continuing
     currentAction : 0, // keeps what trigger we're currently on
     here: null,
+
+    armies: null, // array of currently moving armies
+
+    paused: false, // whether game is paused
 
     // called when the level is started
     onResetEvent: function(levelname)
@@ -20,7 +24,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
-		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth, Constants.screenHeight)
+		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
+                                 Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
 
@@ -259,25 +264,29 @@ Main.LevelScreen = me.ScreenObject.extend(
         return (r != null) ? r.value : null;
     },
 
-    // creates the computer players and gives them information needed for the AI
+    // creates the puter players and gives them information needed for the AI
     createPlayers: function(buildings)
     {
-        compBuildings = {};
+        playerBuildings = {};
         for (var i=0; i < buildings.length; i++)
         {
-            if (buildings[i].owner.substr(0, 4) === "comp") {
-                if (compBuildings[buildings[i].owner] === undefined) {
-                    compBuildings[buildings[i].owner] = [buildings[i]];
-                } else {
-                    compBuildings[buildings[i].owner].push(buildings[i]);
-                }
+            if (playerBuildings[buildings[i].owner] === undefined) {
+                playerBuildings[buildings[i].owner] = [buildings[i]];
+            } else {
+                playerBuildings[buildings[i].owner].push(buildings[i]);
             }
         }
-        this.comps = new Main.Dictionary();
-        for (var comp in compBuildings)
+        this.players = new Main.Dictionary();
+        for (var player in playerBuildings)
         {
-            this.comps.setValue(comp, new Main.AI(comp, compBuildings[comp]));
-            me.game.add(this.comps.getValue(comp));
+            var ai = null;
+            if (player.substr(0, 4) == "comp") {
+                ai = new Main.AI();
+            }
+            this.players.setValue(player,
+                                  new Main.Player(player,
+                                                  playerBuildings[player],
+                                                  ai));
         }
     },
 
@@ -296,10 +305,10 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
-    // returns comp object for given comp string
-    getComp: function(comp)
+    // returns player with given name
+    getPlayer: function(player)
     {
-        return this.comps.getValue(comp);
+        return this.players.getValue(player);
     },
 
     // returns array of buildings
@@ -354,26 +363,28 @@ Main.LevelScreen = me.ScreenObject.extend(
     // disables all AIs in the level
     disableAI: function()
     {
-        var keys = this.comps.keys();
+        var keys = this.players.keys();
         for (var i=0; i<keys.length; i++)
         {
-            this.comps.getValue(keys[i]).disable();
+            this.players.getValue(keys[i]).disableAI();
         }
     },
 
     // enables all AIs in the level
     enableAI: function()
     {
-        var keys = this.comps.keys();
+        var keys = this.players.keys();
         for (var i=0; i<keys.length; i++)
         {
-            this.comps.getValue(keys[i]).enable();
+            this.players.getValue(keys[i]).enableAI();
         }
     },
 
     // returns whether given action is allowed for given building
     actionAllowed: function(building, action, arg)
     {
+        if (this.paused) return false;
+
         var currentAction = this.actions[this.currentAction];
         return (!this.waitingForTriggers ||
             (building.name == currentAction.target &&
@@ -402,5 +413,17 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         //TODO
         console.log("popup: "+name);
+    },
+
+    endLevel: function(userWon)
+    {
+        // var endScreen = 
+        this.paused = true;
+        Main.timer.pause();
+        if (userWon) {
+            console.log("You win!");
+        } else {
+            console.log("You lose!");
+        }
     },
 });

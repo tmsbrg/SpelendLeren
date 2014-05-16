@@ -6,7 +6,7 @@ Main.Squad = me.AnimationSheet.extend(
 	speed: 0, // the speed of the army
 	collisionRadius: 32, // radius for checking collision with target building
 	type: null, // type of the army
-	owner: "neutral", // contans who the owner of the Army is
+	owner: "", // string containing owner of the squad
     target: null, // reference to target building
 	startPoint: null, // is the point where the Army will be created
 	targetPoint: null, // the point where the amry is going to
@@ -24,7 +24,7 @@ Main.Squad = me.AnimationSheet.extend(
 		
 		
 		this.startPoint = new me.Vector2d(startPoint.x - ( width* 0.5), startPoint.y - (width * 0.5));
-		this.targetPoint = /*new me.Vector2d(target.pos.x);*/target.pos;
+		this.targetPoint = target.pos;
 		
 		this.speed = speed;
 		
@@ -32,7 +32,8 @@ Main.Squad = me.AnimationSheet.extend(
 		this.direction.normalize();
 		
 		var key = keys[0];
-		var image = me.loader.getImage(owner+"_"+key+"_"+this.getDirectionName(this.direction)+"_0");
+		var image = me.loader.getImage(owner+"_"+key+"_"+
+                                this.getDirectionName(this.direction)+"_0");
 		
 		
 		this.parent(this.startPoint.x , this.startPoint.y, image, 64);
@@ -92,5 +93,8 @@ Main.Squad = me.AnimationSheet.extend(
 	{
         this.target.arrivingArmy(this.owner, this.units);
         me.game.remove(this);
+        // temporary hack while we have to remember squads
+        var player = Main.levelScreen.getPlayer(this.owner);
+        player.removeArmy();
 	},
 });

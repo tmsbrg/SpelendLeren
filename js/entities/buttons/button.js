@@ -4,8 +4,10 @@ Main.Button = me.Renderable.extend(
 {
 	mouseEvents: null,
 	displayObject: null,
+    isHovered: false,
 
-	init: function (displayObject, onClick, onHover, clickArgs, hoverArgs)
+	init: function (displayObject, onClick, onHover, onHoverOut, clickArgs,
+                    hoverArgs, hoverOutArgs)
 	{
 		this.mouseEvents = new Main.MouseEvents(this); 
 		this.displayObject = displayObject;
@@ -18,24 +20,38 @@ Main.Button = me.Renderable.extend(
 
         this.setOnClick(onClick, clickArgs);
         this.setOnHover(onHover, hoverArgs);
+        this.setOnHoverOut(onHoverOut, hoverOutArgs);
 	},
 
     // sets onClick to given value, sets clickable to true unless false is given
-    setOnClick: function(onClick, clickable)
+    setOnClick: function(onClick, args, clickable)
     {
         this.onClick = onClick ? onClick : this.onClick;
-        this.mouseEvents.setOnClick(this.onClick.bind(this), clickable);
+        this.mouseEvents.setOnClick(this.onClick.bind(this), args, clickable);
     },
 
     // sets onHover to given value, sets hoverable to true unless false is given
-    setOnHover: function(onHover, hoverable)
+    setOnHover: function(onHover, args, hoverable)
     {
         this.onHover = onHover ? onHover : this.onHover;
-        this.mouseEvents.setOnHover(this.onHover.bind(this), hoverable);
+        this.mouseEvents.setOnHover(this.onHoverWrapper.bind(this), args,
+                                    hoverable);
+    },
+
+    setOnHoverOut: function(onHoverOut, args)
+    {
+        this.onHoverOut = onHoverOut ? onHoverOut : this.onHoverOut;
+        this.onHoverOutArgs = args;
     },
     
 	update: function()
 	{
+        // onHoverOut hack
+        if (this.isHovered && 
+            !this.containsPoint(me.input.mouse.pos.x, me.input.mouse.pos.y)) {
+            this.isHovered = false;
+            this.onHoverOut(this.onHoverOutArgs);
+        }
 		return this.displayObject.update();
 	},
 
@@ -54,19 +70,21 @@ Main.Button = me.Renderable.extend(
 		me.input.releasePointerEvent("mousemove",this);
 	},
 
-	onClick: function(ev)
+	onClick: function(args)
 	{
 	},
 
-	onHover: function(ev)
+    onHoverWrapper: function(args)
+    {
+        this.isHovered = true;
+        this.onHover(args);
+    },
+
+	onHover: function(args)
 	{
 	},
 	
-	onHoverOut: function(ev)
+	onHoverOut: function(args)
 	{
 	},
-
-	onDoubleClick: function(ev)
-	{
-	}
 });

@@ -27,7 +27,7 @@ Main.CampaignScreen = me.ScreenObject.extend(
 			me.game.add(textObject, 30);
 			textObject.setText(text);
 			
-			var level_button = new Main.Button(this.level_button, this.start_level.bind(this), null, "level"+(i+1));
+			var level_button = new Main.Button(this.level_button, this.start_level.bind(this), null, null, "level"+(i+1));
 			me.game.add(level_button, 20);
 			this.level_buttons.push(level_button);
 		}

@@ -147,11 +147,6 @@ Main.Building = Main.Button.extend(
         if (this.active) {
             this.createResident();
         }
-        if (this.enemySelected && 
-            !this.containsPoint(me.input.mouse.pos.x, me.input.mouse.pos.y)) {
-
-            this.enemyDeselect();
-        }
 		return this.parent();
 	},
 	
@@ -337,7 +332,7 @@ Main.Building = Main.Button.extend(
         var img_size = 128;
         me.game.add(new Main.Effect(this.pos.x + (this.size - img_size)/2,
                                     this.pos.y + (this.size - img_size)/2),
-                    100);
+                    50);
 
 		var battleResult = this.fight(owner, units);
 
@@ -576,5 +571,10 @@ Main.Building = Main.Button.extend(
                 this.enemySelect();
             }
         }
+    },
+
+    onHoverOut: function()
+    {
+        this.enemyDeselect();
     },
 });

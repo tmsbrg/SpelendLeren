@@ -65,7 +65,9 @@ Main.GUIContainer = me.Renderable.extend(
     },
     update: function() 
     {
-        return true;
+        for (var i = 0; i < this.GUIObjects.length; i++) {
+            this.GUIObjects[i].update();
+        }
     },
     draw: function(ctx)
     {

@@ -13,44 +13,59 @@
   <image source="../img/background/bg_level_01.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object type="comp1" gid="2" x="770" y="159">
+  <object type="comp1" gid="2" x="448" y="446">
    <properties>
-    <property name="capacity" value="25"/>
+    <property name="capacity" value="100"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="768" y="447">
+  <object type="neutral" gid="1" x="641" y="607">
+   <properties>
+    <property name="capacity" value="4"/>
+   </properties>
+  </object>
+  <object type="neutral" gid="1" x="129" y="574">
    <properties>
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="512" y="224">
+  <object type="neutral" gid="1" x="802" y="702">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="737" y="674">
+  <object type="neutral" gid="1" x="418" y="671">
+   <properties>
+    <property name="capacity" value="7"/>
+   </properties>
+  </object>
+  <object type="user" gid="1" x="62" y="190">
    <properties>
     <property name="capacity" value="5"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="162" y="510">
+  <object type="comp1" gid="1" x="738" y="256">
+   <properties>
+    <property name="capacity" value="5"/>
+   </properties>
+  </object>
+  <object type="neutral" gid="1" x="321" y="350">
+   <properties>
+    <property name="capacity" value="6"/>
+   </properties>
+  </object>
+  <object type="user" gid="1" x="160" y="226">
    <properties>
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="194" y="159">
-   <properties>
-    <property name="capacity" value="1"/>
-   </properties>
-  </object>
-  <object type="user" gid="2" x="97" y="704">
-   <properties>
-    <property name="capacity" value="20"/>
-   </properties>
-  </object>
-  <object type="neutral" gid="3" x="417" y="415">
+  <object type="user" gid="1" x="193" y="129">
    <properties>
     <property name="capacity" value="2"/>
+   </properties>
+  </object>
+  <object type="comp1" gid="1" x="898" y="449">
+   <properties>
+    <property name="capacity" value="5"/>
    </properties>
   </object>
  </objectgroup>

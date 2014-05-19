@@ -59,6 +59,7 @@ Main.AI = Object.extend(
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
                     this.wavesSent = 0;
+                    this.currentTarget = null;
                     this.attacking = false;
                 }
             }

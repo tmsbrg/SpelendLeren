@@ -24,12 +24,12 @@
   <object name="starthoeve" type="user" gid="2" x="32" y="176">
    <properties>
     <property name="capacity" value="30"/>
+    <property name="trigger_select" value="popup hoeve"/>
    </properties>
   </object>
   <object type="comp1" gid="2" x="879" y="703">
    <properties>
     <property name="capacity" value="30"/>
-    <property name="trigger_select" value="popup hoeve"/>
    </properties>
   </object>
   <object name="boerderij 1" type="neutral" gid="1" x="260" y="129">

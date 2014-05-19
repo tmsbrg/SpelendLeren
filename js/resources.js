@@ -5,14 +5,24 @@ resources = [
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
     {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
-    {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
-	{name: "bg_level_02", type: "image", src: "data/img/background/bg_level_02.png"},
+    {name: "bg_level_01", type: "image",
+     src: "data/img/background/bg_level_01.png"},
+	{name: "bg_level_02", type: "image",
+     src: "data/img/background/bg_level_02.png"},
 	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
-	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
-	{name: "back_button", type: "image", src: "data/img/gui/back_button.png"},
-	{name: "level_button", type: "image", src: "data/img/gui/button.png"},
+	{name: "menu_start_button", type: "image",
+     src: "data/img/gui/button/menu_start_button.png"},
+	{name: "back_button", type: "image",
+     src: "data/img/gui/button/back_button.png"},
+	{name: "level_button", type: "image",
+     src: "data/img/gui/button/button.png"},
+
+	{name: "popup_ok", type: "image",
+     src: "data/img/gui/button/popup_ok.png"},
+	{name: "popup_ok_hovered", type: "image",
+     src: "data/img/gui/button/popup_ok_hovered.png"},
 	
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},
@@ -109,12 +119,20 @@ resources = [
      src: "data/img/armies/animations/battle_animation.png"},
 
     {name: "ugly_font", type: "image",
-     src: "data/img/gui/ugly_font.png"},
+     src: "data/img/gui/font/ugly_font.png"},
     {name: "ubuntu_font", type: "image",
-     src: "data/img/gui/ubuntu_font.png"},
+     src: "data/img/gui/font/ubuntu_font.png"},
+    {name: "luxi_font", type: "image",
+     src: "data/img/gui/font/luxi_font.png"},
+    {name: "luxio_font", type: "image",
+     src: "data/img/gui/font/luxio_font.png"},
 
     {name: "here_icon", type: "image",
      src: "data/img/gui/here_icon.png"},
+
+    // Pop up screens for the tutorial
+    {name: "popup_blank", type: "image",
+     src: "data/img/gui/popup/popup_blank.png"},
 	
 	/* Maps. 
 	 * @example
@@ -134,7 +152,7 @@ resources = [
 	 */	
 	 
 	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "campaign", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "campaign", type: "audio", src: "data/audio/background/", channel:1},
 	{name: "level1", type: "audio", src: "data/audio/background/", channel : 1},
 	{name: "level2", type: "audio", src: "data/audio/background/", channel : 1},
 	{name: "level3", type: "audio", src: "data/audio/background/", channel : 1},

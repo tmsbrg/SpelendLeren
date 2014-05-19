@@ -43,7 +43,7 @@ Main.Squad = me.AnimationSheet.extend(
 		
 		this.parent(this.startPoint.x , this.startPoint.y, image, 64);
 		
-		this.addAnimation("walk", [0,1,2,3], UnitConfig(key, 0,
+		this.addAnimation("walk", [0,1,2,3,4,5], UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
 		//console.log(units);

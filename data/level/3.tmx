@@ -10,35 +10,35 @@
   <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_level_01.png"/>
+  <image source="../img/background/bg_level_03.png"/>
  </imagelayer>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object type="user" gid="2" x="737" y="224">
+  <object type="user" gid="2" x="754" y="189">
    <properties>
     <property name="capacity" value="25"/>
    </properties>
   </object>
-  <object type="comp1" gid="2" x="97" y="672">
+  <object type="comp1" gid="2" x="84" y="695">
    <properties>
     <property name="capacity" value="25"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="609" y="128">
+  <object type="neutral" gid="1" x="617" y="127">
    <properties>
     <property name="capacity" value="6"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="897" y="351">
+  <object type="neutral" gid="1" x="878" y="319">
    <properties>
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="643" y="479">
+  <object type="neutral" gid="1" x="631" y="480">
    <properties>
     <property name="capacity" value="4"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="577" y="415">
+  <object type="neutral" gid="1" x="568" y="418">
    <properties>
     <property name="capacity" value="0"/>
    </properties>
@@ -53,7 +53,7 @@
     <property name="capacity" value="7"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="193" y="158">
+  <object type="neutral" gid="1" x="178" y="159">
    <properties>
     <property name="capacity" value="4"/>
    </properties>

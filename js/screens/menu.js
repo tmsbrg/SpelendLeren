@@ -17,11 +17,19 @@ Main.MenuScreen = me.ScreenObject.extend(
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
 		
-		this.startButtonObject = new Main.Image(100, 200, "menu_start_button",
+		/*var text = new Main.TextObject(410 +75, 300 +30, "CAMPAIGN", Main.font);
+		me.game.add(text, 100);
+		
+		this.startButtonObject = new Main.Image(410, 300, "menu_start_button",
                                         this.buttonWidth,
                                         this.buttonHeight);
 		
 		var start_game_button = new Main.Button(this.startButtonObject, this.start_game.bind(this));
+		me.game.add(start_game_button, 20);*/
+		
+		
+		
+		var start_game_button = new Main.TextButton("CAMPAIGN", this.start_game.bind(this));
 		me.game.add(start_game_button, 20);
 	},
 	

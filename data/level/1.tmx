@@ -35,7 +35,7 @@
   <object name="boerderij 1" type="neutral" gid="1" x="260" y="129">
    <properties>
     <property name="capacity" value="0"/>
-    <property name="trigger_takeover" value="popup takeover"/>
+    <property name="trigger_takeover" value="popup farm"/>
    </properties>
   </object>
   <object name="boerderij 4" type="neutral" gid="1" x="811" y="505">

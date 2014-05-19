@@ -141,6 +141,10 @@ resources = [
     // Pop up screens for the tutorial
     {name: "popup_blank", type: "image",
      src: "data/img/gui/popup/popup_blank.png"},
+    {name: "popup_farm", type: "image",
+     src: "data/img/gui/popup/popup_farm.png"},
+    {name: "popup_hoeve", type: "image",
+     src: "data/img/gui/popup/popup_hoeve.png"},
 	
 	/* Maps. 
 	 * @example

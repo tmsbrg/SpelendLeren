@@ -7,10 +7,14 @@ resources = [
     {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
     {name: "bg_level_01", type: "image", src: "data/img/background/bg_level_01.png"},
 	{name: "bg_level_02", type: "image", src: "data/img/background/bg_level_02.png"},
+	{name: "bg_level_03", type: "image", src: "data/img/background/bg_level_03.png"},
+	{name: "bg_level_04", type: "image", src: "data/img/background/bg_level_04.png"},
+	{name: "bg_level_05", type: "image", src: "data/img/background/bg_level_05.png"},
+	
 	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
-	{name: "menu_start_button", type: "image", src: "data/img/gui/menu/menu_start_button.png"},
+	{name: "menu_start_button", type: "image", src: "data/img/gui/button.png"},
 	{name: "back_button", type: "image", src: "data/img/gui/back_button.png"},
 	{name: "level_button", type: "image", src: "data/img/gui/button.png"},
 	

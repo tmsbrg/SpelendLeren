@@ -6,18 +6,21 @@
 Main.TextButton = Main.Button.extend(
 {
 	text: null, // placeholder Form the textobject whichs disaplys the name of the button
-	buttonWidth: 249,
-	buttonHeight: 61,
+	font_size: null, // size of the font
+	margin_vertical: 60, // verticalAlign margin
+	margin_horizontal: 80, // horizontal margin
 	
-	init: function(textinput, onClick, onHover, clickArgs, hoverArgs)
+	init: function(x, y, textinput, onClick, onHover, clickArgs, hoverArgs)
 	{
+		this.font_size = Main.font.fontSize.x * 0.4;
 		
-		var displayObject = new Main.Image(410, 300, "menu_start_button",
-                                        this.getTextWidth(textinput),
-                                        this.buttonHeight);
+		var displayObject = new Main.Image(x, y, "menu_start_button",
+                                        this.getTextWidth(textinput) + this.margin_horizontal,
+                                        this.font_size + this.margin_vertical);
+		
 		this.parent(displayObject, onClick, onHover, clickArgs, hoverArgs);
-		console.log(Main.font.fontSize.x);
-		this.text = new Main.TextObject(this.pos.x, this.pos.y, textinput, Main.font);
+		
+		this.text = new Main.TextObject(this.pos.x + (this.margin_horizontal * 0.5), this.pos.y + (this.margin_vertical * 0.5), textinput, Main.font);
 		me.game.add(this.text, 50);
 	},
 	
@@ -26,8 +29,7 @@ Main.TextButton = Main.Button.extend(
 		var count = 0;
 		for(var i = 0 ; i < textinput.length; i++)
 		{
-			console.log(i);
-			count += (Main.font.fontSize.x * 0.4);
+			count += this.font_size;
 		}
 		return count;
 	},

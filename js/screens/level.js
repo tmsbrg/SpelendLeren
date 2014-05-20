@@ -21,12 +21,13 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(levelname)
     {
-        me.audio.play(levelname, true);
+        levelname = String(levelname);
         this.name = levelname;
 		var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
+		me.audio.play(levelname, true);
 		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
                                  Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));

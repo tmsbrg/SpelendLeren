@@ -18,8 +18,10 @@ Main.CampaignScreen = me.ScreenObject.extend(
 		{
 			var xPos = this.levelPos[i][0];
 			var yPos = this.levelPos[i][1];
+			
 			var level = "level"+(i+1)
-			var level_button = new Main.TextButton(xPos, yPos, "LEVEL"+(i+1), this.start_level.bind(this), null, level);
+			var level_button = new Main.TextButton(xPos, yPos, "LEVEL"+(i+1), this.start_level.bind(this), null, null, level);
+
 			me.game.add(level_button, 20);
 			this.level_buttons.push(level_button);
 			

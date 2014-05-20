@@ -3,8 +3,10 @@
 Main.MenuScreen = me.ScreenObject.extend(
 {
 	background: null, // ImageObject with the background image
-	startButtonObject: null, // Image object with the placeholder of the start button
-	
+	startButtonObject: null, // Image object with the placeholder of the start
+                             // button
+	buttonWidth: 249,
+	buttonHeight: 61,
 	
 	onResetEvent: function()
 	{

@@ -24,18 +24,18 @@
   <object name="starthoeve" type="user" gid="2" x="32" y="176">
    <properties>
     <property name="capacity" value="30"/>
+    <property name="trigger_select" value="popup hoeve"/>
    </properties>
   </object>
   <object type="comp1" gid="2" x="879" y="703">
    <properties>
     <property name="capacity" value="30"/>
-    <property name="trigger_select" value="popup hoeve"/>
    </properties>
   </object>
   <object name="boerderij 1" type="neutral" gid="1" x="260" y="129">
    <properties>
     <property name="capacity" value="0"/>
-    <property name="trigger_takeover" value="popup takeover"/>
+    <property name="trigger_takeover" value="popup farm"/>
    </properties>
   </object>
   <object name="boerderij 4" type="neutral" gid="1" x="811" y="505">

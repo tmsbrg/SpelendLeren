@@ -13,15 +13,17 @@ Main.Image = me.Renderable.extend(
         if (image == null) {
             image = "bg_01";
         }
+
+        this.loadImage(image);
+
         if (w == null) {
-            w = 1;
+            w = this.image.naturalWidth;
         }
         if (h == null) {
-            h = 1;
+            h = this.image.naturalHeight;
         }
         this.parent(new me.Vector2d(x, y), w, h);
 
-        this.loadImage(image);
         this.floating = true;
 
     },

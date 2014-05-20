@@ -420,17 +420,15 @@ Main.LevelScreen = me.ScreenObject.extend(
     // shows popup with given name
     showPopup: function(name)
     {
-        //TODO
-        console.log("popup: "+name);
+        me.game.add(new Main.PopupScreen(name, this.unPause.bind(this)), 200);
+        this.pause();
     },
 
     endLevel: function(userWon)
     {
         // TODO: Need an endscreen, really
-        this.paused = true;
-        Main.timer.pause();
-
         me.audio.stop(this.name);
+        this.pause();
 
         var endText = new Main.TextObject(460, 340, "", Main.font);
         var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
@@ -446,4 +444,22 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.game.add(endButton, 100);
         me.game.add(rect, 90);
     },
+
+    closePopup: function()
+    {
+        this.unPause();
+    },
+
+    pause: function()
+    {
+        this.paused = true;
+        Main.timer.pause();
+    },
+
+    unPause: function()
+    {
+        this.paused = false;
+        Main.timer.unPause();
+    },
+
 });

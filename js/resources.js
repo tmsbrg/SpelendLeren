@@ -152,6 +152,8 @@ resources = [
      src: "data/img/gui/popup/popup_klooster.png"},
     {name: "popup_standen", type: "image",
      src: "data/img/gui/popup/popup_standen.png"},
+    {name: "popup_start", type: "image",
+     src: "data/img/gui/popup/popup_start.png"},
 
      {name: "halo", type: "image",
       src: "data/img/armies/halo.png"},

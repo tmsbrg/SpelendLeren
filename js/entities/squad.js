@@ -11,6 +11,7 @@ Main.Squad = me.AnimationSheet.extend(
 	startPoint: null, // is the point where the Army will be created
 	targetPoint: null, // the point where the amry is going to
 	direction: null, // the direction in which the Army is going
+	halfUnitWidth: null,
 	units: null,
 	countText: null,
 	textOffset: null,
@@ -24,10 +25,15 @@ Main.Squad = me.AnimationSheet.extend(
         this.buffLevel = (buffLevel != null) ? buffLevel : 1.0
 		var keys = units.keys();
 		var key = keys[0];
-		var width = GetUnitSize(keys[0]);
+		this.halfUnitWidth = (GetUnitSize(keys[0]) * 0.5);
 		
-		this.startPoint = new me.Vector2d(startPoint.x - ( width* 0.5), startPoint.y - (width * 0.5));
-		this.targetPoint = target.pos;
+		this.startPoint = new me.Vector2d(startPoint.x - this.halfUnitWidth, startPoint.y - this.halfUnitWidth);
+		
+		/*var centerTargetX = target.pos.x + this.target.halfsize - this.halfUnitWidth;
+		var centerTargetY = target.pos.y + this.target.halfsize - this.halfUnitWidth;
+		*/
+		
+		this.targetPoint = new me.Vector2d(target.pos.x + target.doorLocation.x - this.halfUnitWidth, target.pos.y + target.doorLocation.y- this.halfUnitWidth);
 		
 		this.speed = speed;
 		

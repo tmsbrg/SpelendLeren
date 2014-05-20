@@ -32,6 +32,7 @@ Main.Building = Main.Button.extend(
 	line: null, // reference to line object
 	halfsize: null, // the halfsize of the width from the building size
 	centerPos: null, // the centerPos position of the building
+	doorLocation: null, // the position of the visible doorLocation of the building
 	
 	init: function(x, y, type, owner, id, capacity, name, spawnResidentTime)
 	{
@@ -39,7 +40,7 @@ Main.Building = Main.Button.extend(
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
-		
+		this.doorLocation = GetBuildingDoorLocation(type);
 		
 		if(spawnResidentTime != null)
 			this.spawnResidentTime = spawnResidentTime;
@@ -250,7 +251,8 @@ Main.Building = Main.Button.extend(
     // attacks a target
 	attack: function(target)
 	{
-        if (!this.checkTrigger("sendunitsfrom", target.name)) return;
+        
+		if (!this.checkTrigger("sendunitsfrom", target.name)) return;
 		var armyDictionary = new Main.Dictionary();
 		var keys = this.units.keys();
 		
@@ -277,8 +279,10 @@ Main.Building = Main.Button.extend(
                 }
                 
                 var player = Main.levelScreen.getPlayer(this.owner);
-                player.addArmy(new Main.Army(this.centerPos, target,
-                                             this.owner, armyDictionary));	
+
+				var doorLocation = new me.Vector2d(this.pos.x + this.doorLocation.x, this.pos.y + this.doorLocation.y);
+                player.addArmy(new Main.Army(doorLocation, target,
+											 this.owner, armyDictionary));	
             }
 		}
 	},

@@ -24,7 +24,6 @@ Main.Army = me.Renderable.extend(
 		this.target = target;
         this.squadArray = [];
 		
-		// TODO: speed should be based on the slowest unit
 		var keys = units.keys();
 		
 		this.speed = this.getSpeed(keys);

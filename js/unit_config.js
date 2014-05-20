@@ -10,6 +10,11 @@ GetBuildingSpawnTime = function(type) {
     return _UnitConfig.buildingSpawnTime[type];
 }
 
+GetBuildingDoorLocation = function(type) {
+	var pos = _UnitConfig.buildingDoorLocation[type];
+	return new me.Vector2d(pos[0], pos[1]);
+}
+
 GetBuildingSize = function(type) {
     return _UnitConfig.buildingSizes[type];
 }
@@ -77,6 +82,13 @@ _UnitConfig =
         homestead: "knight",
         church: "monk"
     },
+	
+	buildingDoorLocation:
+	{
+		farm: [44, 47],
+		homestead: [35, 108],
+		church: [71, 74],
+	},
 
     buildingSizes:
     {

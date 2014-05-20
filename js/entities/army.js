@@ -12,6 +12,7 @@ Main.Army = me.Renderable.extend(
 	timeSinceLastSpawn: 500,
 	spawnSquadTime: 500,
 	speed: 0,
+    buffLevel: 1.0,
 	
 	// constructor function of Army needs two Vector2d the type of the Army and
     // the owner of the army
@@ -32,6 +33,14 @@ Main.Army = me.Renderable.extend(
             squadDic.setValue(keys[i], units.getValue(keys[i]));
             
             this.squadArray.push(squadDic);
+
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                if (this.units.getValue(keys[i])[j] > 0) {
+                    var buff = UnitConfig(keys[i], j, "buffLevel") || 1.0;
+                    this.buffLevel = Math.max(this.buffLevel, buff);
+                }
+            }
         }
 		
 		this.parent(startPoint, 0 ,0);
@@ -55,7 +64,7 @@ Main.Army = me.Renderable.extend(
 	createSquad: function(dictionary, layer)
 	{
 		var squad = new Main.Squad(this.startPoint, this.target, dictionary, 
-                                   this.owner, this.speed);
+                                   this.owner, this.speed, this.buffLevel);
 		me.game.add(squad, layer);
 	},
 	

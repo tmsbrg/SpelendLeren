@@ -5,6 +5,7 @@ Constants =
     screenWidth: 1024,
     screenHeight: 768,
     resizeToBrowser: true, /* resize canvas to browser size */
+    playerIsAI: false, /* if true, player is played by the AI (for testing) */
 
     players: [
         "neutral",

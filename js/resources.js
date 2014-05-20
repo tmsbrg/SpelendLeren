@@ -19,6 +19,9 @@ resources = [
 	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
+	
+	{name: "trees", type: "image",
+     src: "data/img/scenery/trees.png"},
 
 	{name: "back_button", type: "image",
      src: "data/img/gui/button/back_button.png"},

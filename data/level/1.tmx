@@ -17,6 +17,12 @@
  <tileset firstgid="3" name="church" tilewidth="90" tileheight="90">
   <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
+ <tileset firstgid="4" name="Trees" tilewidth="88" tileheight="95">
+  <image source="../img/scenery/trees.png" width="176" height="190"/>
+ </tileset>
+ <tileset firstgid="8" name="veld" tilewidth="242" tileheight="47">
+  <image source="../img/scenery/veld.png" width="242" height="47"/>
+ </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
   <image source="../img/background/bg_level_01.png"/>
  </imagelayer>

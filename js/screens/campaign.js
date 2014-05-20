@@ -24,7 +24,6 @@ Main.CampaignScreen = me.ScreenObject.extend(
 
 			me.game.add(level_button, 20);
 			this.level_buttons.push(level_button);
-			
 		}
 	},
 	

@@ -145,6 +145,9 @@ resources = [
      src: "data/img/gui/popup/popup_farm.png"},
     {name: "popup_hoeve", type: "image",
      src: "data/img/gui/popup/popup_hoeve.png"},
+
+     {name: "halo", type: "image",
+      src: "data/img/armies/halo.png"},
 	
 	/* Maps. 
 	 * @example

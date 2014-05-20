@@ -42,14 +42,14 @@ _UnitConfig =
     knight:
     [
         {
-            attack: 16,
-            defense: 14,
+            attack: 24,
+            defense: 20,
             speed: 6,
 			animationSpeed: 100,
         },
         {
-            attack: 32,
-            defense: 28,
+            attack: 48,
+            defense: 40,
             speed: 12,
         },
     ],
@@ -60,11 +60,13 @@ _UnitConfig =
             defense: 4,
             speed: 6,
 			animationSpeed: 100,
+            buffLevel: 1.5,
         },
         {
             attack: 4,
             defense: 8,
             speed: 16,
+            buffLevel: 2.0,
         },
     ],
 
@@ -92,7 +94,7 @@ _UnitConfig =
 	
 	buildingSpawnTime:
     {
-        farm: 1000,
+        farm: 1500,
         homestead: 3000,
         church: 6000,
     },

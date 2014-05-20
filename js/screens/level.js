@@ -288,7 +288,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         for (var player in playerBuildings)
         {
             var ai = null;
-            if (player.substr(0, 4) == "comp") {
+            if (player.substr(0, 4) == "comp" ||
+                (player == "user" && Constants.playerIsAI)) {
                 ai = new Main.AI();
             }
             this.players.setValue(player,

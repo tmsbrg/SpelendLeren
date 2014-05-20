@@ -14,12 +14,14 @@ Main.Squad = me.AnimationSheet.extend(
 	units: null,
 	countText: null,
 	textOffset: null,
+    buffLevel: 1.0,
 	
-	init: function(startPoint, target, units, owner, speed)
+	init: function(startPoint, target, units, owner, speed, buffLevel)
 	{
 		this.units = units;
 		this.owner = owner;
 		this.target = target;
+        this.buffLevel = (buffLevel != null) ? buffLevel : 1.0
 		var keys = units.keys();
 		var key = keys[0];
 		var width = GetUnitSize(keys[0]);
@@ -46,7 +48,8 @@ Main.Squad = me.AnimationSheet.extend(
 		this.addAnimation("walk", [0,1,2,3,4,5], UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
-		//console.log(units);
+
+        this.halo = new Main.Image(0, 0, "halo");
 	},
 	
 	
@@ -98,11 +101,22 @@ Main.Squad = me.AnimationSheet.extend(
 	// removes the Army if it reaches its destination point
 	reachedDestination: function()
 	{
-        this.target.arrivingArmy(this.owner, this.units);
+        this.target.arrivingArmy(this.owner, this.units, this.buffLevel);
 		me.game.remove(this.countText);
         me.game.remove(this);
         // temporary hack while we have to remember squads
         var player = Main.levelScreen.getPlayer(this.owner);
         player.removeArmy();
 	},
+
+    draw: function(ctx)
+    {
+        if (this.buffLevel > 1.0) {
+            ctx.save();
+            ctx.translate(this.pos.x, this.pos.y);
+            this.halo.draw(ctx);
+            ctx.restore();
+        }
+        this.parent(ctx);
+    },
 });

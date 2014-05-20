@@ -25,7 +25,6 @@ Main.TextButton = Main.Button.extend(
 		var count = 0;
 		for(var i = 0 ; i < textinput.length; i++)
 		{
-			console.log(i);
 			count += (Main.font.fontSize.x * 0.4);
 		}
 		return count;

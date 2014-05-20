@@ -278,7 +278,7 @@ Main.Building = Main.Button.extend(
                 
                 var player = Main.levelScreen.getPlayer(this.owner);
                 player.addArmy(new Main.Army(this.centerPos, target,
-                                                  this.owner, armyDictionary));	
+                                             this.owner, armyDictionary));	
             }
 		}
 	},
@@ -316,17 +316,17 @@ Main.Building = Main.Button.extend(
 
     // depending of the arriving armies owner the Army either 
 	// attack or supports this building
-	arrivingArmy: function(owner, units)
+	arrivingArmy: function(owner, units, buffLevel)
 	{
 		if (owner === this.owner) {
 			this.support(units);
 		} else {
-			this.defend(owner, units);
+			this.defend(owner, units, buffLevel);
 		}
 	},
 	
 	// fights with the arriving Army if they losethe building changes from owner
-	defend: function(owner, units)
+	defend: function(owner, units, buffLevel)
 	{
         // temporary hack to get it in the right place
         var img_size = 128;
@@ -334,7 +334,7 @@ Main.Building = Main.Button.extend(
                                     this.pos.y + (this.size - img_size)/2),
                     50);
 
-		var battleResult = this.fight(owner, units);
+		var battleResult = this.fight(owner, units, buffLevel);
 
 		if (battleResult < 0) {
             this.setUnits(units);
@@ -370,12 +370,13 @@ Main.Building = Main.Button.extend(
 
     // returns the result of a battle between the garrison and the given
     // attacking army
-    fight: function(owner, units)
+    fight: function(owner, units, buffLevel)
     {
         me.audio.play("fight");
-		var attackPower = this.calculatePower(owner, units, "attack");
+		var attackPower = this.calculatePower(owner, units, buffLevel,
+                                              "attack");
         var defensePower = this.calculatePower(this.owner, this.units,
-                                               "defense");
+                                               this.getBuffLevel(), "defense");
 		
         var result = defensePower - attackPower;
 
@@ -394,7 +395,7 @@ Main.Building = Main.Button.extend(
     // returns the power of all units in the army combined,
     // attackOrDefense is a string which can be either "attack" or "defense"
     // and determines whether the units are defending or attacking
-    calculatePower: function(owner, units, attackOrDefense)
+    calculatePower: function(owner, units, buffLevel, attackOrDefense)
     {
         var power = 0;
         var keys = units.keys();
@@ -406,7 +407,7 @@ Main.Building = Main.Button.extend(
                          units.getValue(keys[i])[j];
             }
         }
-        return power;
+        return power * buffLevel;
     },
     
     // removes units from the given units dictionary based on its original
@@ -457,6 +458,24 @@ Main.Building = Main.Button.extend(
             }
         }
         return amount;
+    },
+
+    // returns the buff level of this building
+    getBuffLevel: function()
+    {
+        var keys = this.units.keys();
+        var buffLevel = 1.0;
+        for (var i=0; i<keys.length; i++)
+        {
+            for (var j=0; j<Constants.upgradeLevels; j++)
+            {
+                if (this.units.getValue(keys[i])[j] > 0) {
+                    var buff = UnitConfig(keys[i], j, "buffLevel") || 1.0;
+                    buffLevel = Math.max(buffLevel, buff);
+                }
+            }
+        }
+        return buffLevel;
     },
 
     // changes ownership of building to given new owner

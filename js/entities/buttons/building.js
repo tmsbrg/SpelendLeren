@@ -376,7 +376,8 @@ Main.Building = Main.Button.extend(
 		var attackPower = this.calculatePower(owner, units, buffLevel,
                                               "attack");
         var defensePower = this.calculatePower(this.owner, this.units,
-                                               this.getBuffLevel(), "defense");
+                                               this.getBuffLevel(),
+                                               "defense");
 		
         var result = defensePower - attackPower;
 

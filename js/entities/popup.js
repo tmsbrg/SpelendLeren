@@ -17,7 +17,7 @@ Main.PopupScreen = Main.GUIContainer.extend(
 
         imageObject.pos = new me.Vector2d(x, y);
 
-        var buttonImage = new Main.Image(x + imageObject.width * 0.7,
+        var buttonImage = new Main.Image(x + imageObject.width * 0.6,
                                          y + imageObject.height * 0.8,
                                          "popup_ok")
         buttonImage.baseImage = "popup_ok";

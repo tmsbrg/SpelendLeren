@@ -239,6 +239,10 @@ Main.LevelScreen = me.ScreenObject.extend(
             r[0] = this.showPopup.bind(this);
             r[1] = args[1];
             break;
+            case "win":
+            r[0] = this.endLevel.bind(this);
+            r[1] = true;
+            break;
         }
         return r;
     },

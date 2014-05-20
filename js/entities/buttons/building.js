@@ -268,6 +268,10 @@ Main.Building = Main.Button.extend(
 
                 for(var i = 0; i < keys.length; i++)
                 {
+                    // skip empty arrays, so it doesn't send "0" units of own
+                    // type
+                    if (this.unitsOfType(keys[i]) == 0) continue;
+
                     armyDictionary.setValue(keys[i],
                                             new Array(Constants.upgradeLevels));
                     
@@ -280,7 +284,10 @@ Main.Building = Main.Button.extend(
                 
                 var player = Main.levelScreen.getPlayer(this.owner);
 
-				var doorLocation = new me.Vector2d(this.pos.x + this.doorLocation.x, this.pos.y + this.doorLocation.y);
+				var doorLocation =
+                    new me.Vector2d(this.pos.x + this.doorLocation.x,
+                                    this.pos.y + this.doorLocation.y);
+
                 player.addArmy(new Main.Army(doorLocation, target,
 											 this.owner, armyDictionary));	
             }

@@ -14,6 +14,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     currentAction: 0, // keeps what trigger we're currently on
     here: null,
 
+    levelContainer: null, // contains all units, armies and scenery in a level
+
     armies: null, // array of currently moving armies
 
     paused: false, // whether game is paused

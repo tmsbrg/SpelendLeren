@@ -14,8 +14,8 @@ Main.Army = me.Renderable.extend(
 	speed: 0,
     buffLevel: 1.0,
 	
-	// constructor function of Army needs two Vector2d the type of the Army and
-    // the owner of the army
+	// constructor function of Army needs two Vector2d the type of the
+    // Army and the owner of the army
 	init: function(startPoint, target, owner, units)
 	{
 		this.units = units;
@@ -24,6 +24,7 @@ Main.Army = me.Renderable.extend(
 		this.target = target;
         this.squadArray = [];
 		
+		// TODO: speed should be based on the slowest unit
 		var keys = units.keys();
 		
 		this.speed = this.getSpeed(keys);

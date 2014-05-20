@@ -29,7 +29,7 @@ Main.MenuScreen = me.ScreenObject.extend(
 		
 		
 		
-		var start_game_button = new Main.TextButton("CAMPAIGN", this.start_game.bind(this));
+		var start_game_button = new Main.TextButton(410, 320, "CAMPAIGN", this.start_game.bind(this));
 		me.game.add(start_game_button, 20);
 	},
 	

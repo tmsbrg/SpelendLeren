@@ -20,11 +20,9 @@ resources = [
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	{name: "bg_map", type: "image", src: "data/img/background/bg_map.png"},
 
-	{name: "menu_start_button", type: "image",
-     src: "data/img/gui/button/menu_start_button.png"},
 	{name: "back_button", type: "image",
      src: "data/img/gui/button/back_button.png"},
-	{name: "level_button", type: "image",
+	{name: "button", type: "image",
      src: "data/img/gui/button/button.png"},
 
 	{name: "popup_ok", type: "image",

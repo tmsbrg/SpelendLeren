@@ -8,7 +8,7 @@ Main.TextButton = Main.Button.extend(
 	text: null, // placeholder Form the textobject whichs disaplys the name of the button
 	font_size: null, // size of the font
 	margin_vertical: 60, // verticalAlign margin
-	margin_horizontal: 80, // horizontal margin
+	margin_horizontal: 160, // horizontal margin
 	
 	init: function(x, y, textinput, onClick, onHover, onHoverOut, clickArgs, hoverArgs)
 	{

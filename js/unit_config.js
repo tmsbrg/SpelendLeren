@@ -23,6 +23,10 @@ GetUnitSize = function(type) {
     return _UnitConfig.unitSizes[type];
 }
 
+GetUnit= function(type) {
+    return _UnitConfig[type];
+}
+
 UnitForBuilding = function(type) {
     return _UnitConfig.unitForBuilding[type];
 }

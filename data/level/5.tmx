@@ -3,6 +3,7 @@
  <properties>
   <property name="1action" value="select"/>
   <property name="1target" value="boerderij"/>
+  <property name="music" value="awesome1"/>
  </properties>
  <tileset firstgid="1" name="farm" tilewidth="64" tileheight="64">
   <image source="../img/buildings/farm/neutral_farm.png" width="64" height="64"/>

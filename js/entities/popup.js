@@ -3,7 +3,6 @@ Main.PopupScreen = Main.GUIContainer.extend(
 {
     init: function(name, onClose)
     {
-        console.log("popup: "+name);
         this.onClose = onClose;
         var img = "popup_" + name;
         if (me.loader.getImage(img) == null) {

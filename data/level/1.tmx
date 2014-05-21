@@ -6,6 +6,7 @@
   <property name="2action" value="takeover"/>
   <property name="2target" value="boerderij 1"/>
   <property name="difficulty" value="1"/>
+  <property name="music" value="drum"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">

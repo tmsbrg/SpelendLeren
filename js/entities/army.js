@@ -66,7 +66,7 @@ Main.Army = me.Renderable.extend(
 	{
 		var squad = new Main.Squad(this.startPoint, this.target, dictionary, 
                                    this.owner, this.speed, this.buffLevel);
-		Main.levelScreen.add(squad)
+		Main.levelScreen.add(squad);
 	},
 	
 	update: function()

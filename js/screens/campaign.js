@@ -4,7 +4,8 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	level_buttons: new Array(),
 	buttonWidth: 337,
 	buttonHeight: 83,
-	levelPos: new Array([100, 200],[200, 10],[300, 464],[234, 607],[434, 123]),
+	levelPos: new Array([100, 200],[200, 10],[300, 464],[234, 607],[434, 123],
+                        [0, 0]),
 	
 	onResetEvent: function()
 	{

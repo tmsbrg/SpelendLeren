@@ -5,6 +5,7 @@ resources = [
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
     {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
+    {name: "bg_test", type: "image", src: "data/img/background/bg_test.png"},
     {name: "bg_level_01", type: "image",
      src: "data/img/background/bg_level_01.png"},
 	{name: "bg_level_02", type: "image",
@@ -155,8 +156,32 @@ resources = [
     {name: "popup_start", type: "image",
      src: "data/img/gui/popup/popup_start.png"},
 
-     {name: "halo", type: "image",
-      src: "data/img/armies/halo.png"},
+    {name: "halo", type: "image",
+     src: "data/img/armies/halo.png"},
+
+    // Scenery tilesets
+    {name: "bushes", type: "image",
+     src: "data/img/scenery/bushes.png"},
+    {name: "deadtrees", type: "image",
+     src: "data/img/scenery/deadtrees.png"},
+    {name: "fence", type: "image",
+     src: "data/img/scenery/fence.png"},
+    {name: "field1", type: "image",
+     src: "data/img/scenery/field1.png"},
+    {name: "field2", type: "image",
+     src: "data/img/scenery/field2.png"},
+    {name: "pinktrees", type: "image",
+     src: "data/img/scenery/pinktrees.png"},
+    {name: "scarecrow", type: "image",
+     src: "data/img/scenery/scarecrow.png"},
+    {name: "smalltrees", type: "image",
+     src: "data/img/scenery/smalltrees.png"},
+    {name: "stones", type: "image",
+      src: "data/img/scenery/stones.png"},
+     {name: "trees", type: "image",
+      src: "data/img/scenery/trees.png"},
+     {name: "willows", type: "image",
+      src: "data/img/scenery/willows.png"},
 	
 	/* Maps. 
 	 * @example
@@ -168,6 +193,7 @@ resources = [
 	{name: "level3", type: "tmx", src: "data/level/3.tmx"},
 	{name: "level4", type: "tmx", src: "data/level/4.tmx"},
 	{name: "level5", type: "tmx", src: "data/level/5.tmx"},
+	{name: "level6", type: "tmx", src: "data/level/6.tmx"},
 	
 
 	/* Background music. 
@@ -176,12 +202,14 @@ resources = [
 	 */	
 	 
 	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "menu_lotr", type: "audio", src: "data/audio/background/",channel:1},
 	{name: "campaign", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "level1", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "level2", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "level3", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "level4", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "level5", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "drum", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "harps", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "trumpet", type: "audio", src: "data/audio/background/", channel:1},
+	{name: "verynice", type: "audio", src: "data/audio/background/", channel:1},
+	{name: "awesome1", type: "audio", src: "data/audio/background/", channel:1},
+	{name: "awesome2", type: "audio", src: "data/audio/background/", channel:1},
 	
 	/* Sound effects. 
 	 * @example

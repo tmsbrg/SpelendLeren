@@ -17,6 +17,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     levelContainer: null, // contains all units, armies and scenery in a level
 
     armies: null, // array of currently moving armies
+    music: "", // background music id string
 
     paused: false, // whether game is paused
 
@@ -41,7 +42,6 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.levelContainer.sortOn = "y"
         me.game.add(this.levelContainer, 10)
 
-		me.audio.play(levelname, true);
 		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
                                  Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));
@@ -87,8 +87,12 @@ Main.LevelScreen = me.ScreenObject.extend(
                 this.interpretProperties(xml);
                 break;
             case "tileset":
+                var img = xml.firstElementChild;
                 this.tiles[Number(this.getAttribute(xml, "firstgid"))] = {
-                    type : this.getAttribute(xml, "name")
+                    type : this.getAttribute(xml, "name"),
+                    width : this.getAttribute(xml, "tilewidth"),
+                    height : this.getAttribute(xml, "tileheight"),
+                    source : this.getAttribute(img, "source"),
                 }
                 break;
             case "imagelayer":
@@ -102,7 +106,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                 }
                 break;
             case "objectgroup":
-                this.buildings = this.createBuildings(xml);
+                this.buildings = this.createObjects(xml);
                 break;
         }
         for (var i=0; i<xml.childElementCount; i++)
@@ -126,6 +130,9 @@ Main.LevelScreen = me.ScreenObject.extend(
                 case "difficulty":
                     this.setDifficulty(value)
                     break;
+                case "music":
+                    me.audio.play(value);
+                    this.music = value;
                 default:
                     if (name != null && name[0] >= "0" && name[0] <= "9") {
                         this.interpretNumbered(name, value);
@@ -196,30 +203,46 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     // creates and returns an array of building objects based on the an xml
     // object layer
-    createBuildings: function(xml, gid)
+    createObjects: function(xml, gid)
     {
         var r = [];
         for (var i=0; i < xml.childElementCount; i++)
         {
             var obj = xml.children[i];
-            var gid = Number(this.getAttribute(obj, "gid"));
-            var type = this.tiles[gid].type;
-            var capacity = this.getProperty(obj, "capacity");
-            var pos = this.getBuildingPos(obj, type);
-            r[i] = new Main.Building(pos.x,
-                                     pos.y,
-                                     type,
-                                     this.getAttribute(obj, "type") ?
-                                        this.getAttribute(obj, "type") :
-                                        "neutral",
-                                     i,
-                                     (capacity != null) ? Number(capacity) :
-                                                          null,
-                                    this.getAttribute(obj, "name"));
-            this.createBuildingTriggers(r[i], obj);
-            this.add(r[i]);
+            var gid =
+                this.getPreviousGid(Number(this.getAttribute(obj, "gid")));
+            var type = gid.type;
+            if (UnitForBuilding(type) != null) {
+                var capacity = this.getProperty(obj, "capacity");
+                var pos = this.getBuildingPos(obj, type);
+                r[i] = new Main.Building(pos.x,
+                                         pos.y,
+                                         type,
+                                         this.getAttribute(obj, "type") ?
+                                            this.getAttribute(obj, "type") :
+                                            "neutral",
+                                         i,
+                                         (capacity != null) ? Number(capacity) :
+                                                              null,
+                                        this.getAttribute(obj, "name"));
+                this.createBuildingTriggers(r[i], obj);
+                this.add(r[i]);
+            } else {
+                var x = Number(this.getAttribute(obj, "x"));
+                var y = Number(this.getAttribute(obj, "y") - gid.height);
+                var img = srcToImageName(gid.source);
+                this.add(new Main.TileImage(x, y, img, gid.width, gid.height));
+            }
         }
         return r;
+    },
+
+    getPreviousGid: function(gid)
+    {
+        while (this.tiles[gid] == null) {
+            gid--;
+        }
+        return this.tiles[gid];
     },
 
     // creates building triggers for given building and corresponding xml object
@@ -436,8 +459,7 @@ Main.LevelScreen = me.ScreenObject.extend(
             case "support":
                 return arg == currentAction.target || action == "select";
             default:
-                return (action == "createres" || action == "takeover" ||
-                        action == "support");
+                return (action == "takeover" || action == "support");
         }
     },
 
@@ -451,7 +473,11 @@ Main.LevelScreen = me.ScreenObject.extend(
     endLevel: function(userWon)
     {
         // TODO: Need an endscreen, really
-        me.audio.stop(this.name);
+        try {
+            me.audio.stop(this.music);
+        } catch (e if e instanceof TypeError) {
+            //
+        }
         this.pause();
 
         var endText = new Main.TextObject(460, 340, "", Main.font);

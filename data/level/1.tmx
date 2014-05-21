@@ -35,7 +35,7 @@
   </object>
   <object type="comp1" gid="2" x="879" y="703">
    <properties>
-    <property name="capacity" value="30"/>
+    <property name="capacity" value="15"/>
    </properties>
   </object>
   <object name="boerderij 1" type="neutral" gid="1" x="260" y="129">

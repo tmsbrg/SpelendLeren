@@ -20,6 +20,12 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     paused: false, // whether game is paused
 
+    init: function()
+    {
+        this.parent(true); // make the game call the levels update function
+    },
+	
+
     // called when the level is started
     onResetEvent: function(levelname)
     {
@@ -29,6 +35,12 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
+        this.levelContainer = new me.ObjectContainer(0, 0,
+                                                     Constants.screenWidth,
+                                                     Constants.screenHeight)
+        this.levelContainer.sortOn = "y"
+        me.game.add(this.levelContainer, 10)
+
 		me.audio.play(levelname, true);
 		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
                                  Constants.screenHeight)
@@ -51,6 +63,11 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
+    },
+
+    update: function()
+    {
+        this.levelContainer.sort()
     },
 	
 	click: function()
@@ -200,7 +217,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                                                           null,
                                     this.getAttribute(obj, "name"));
             this.createBuildingTriggers(r[i], obj);
-            me.game.add(r[i], 10);
+            this.add(r[i]);
         }
         return r;
     },
@@ -469,4 +486,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.unPause();
     },
 
+    add: function(obj)
+    {
+        this.levelContainer.addChild(obj);
+    },
 });

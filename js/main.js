@@ -6,7 +6,7 @@ var Main =
 	menuScreen: null, // reference to the menuScreen
     font: null, // standard game font
 	campaignScreen: null, // reference to the campaignScreen
-	
+
 	// Run on page load.
     onload: function () 
     {

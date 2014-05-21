@@ -25,6 +25,15 @@ Main.CampaignScreen = me.ScreenObject.extend(
 			me.game.add(level_button, 20);
 			this.level_buttons.push(level_button);
 		}
+		
+		var back_button = new Main.TextButton(790, 680, "BACK", this.back_menu.bind(this), null, null, level);
+		me.game.add(back_button, 21);
+	},
+	
+	back_menu: function()
+	{
+		me.audio.stop("campaign");
+		me.state.change(me.state.MENU); 
 	},
 	
 	start_level: function(level)

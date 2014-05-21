@@ -46,6 +46,7 @@ var Main =
     {
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, 0.5);
         this.font = new me.BitmapFont("ugly_font", 32, 0.4);
+		
 
         this.levelScreen = new Main.LevelScreen();
 		this.menuScreen = new Main.MenuScreen();
@@ -61,8 +62,14 @@ var Main =
         // a key
         me.input.bindKey(1000, "mouseleft");
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
-
+		
+		me.input.bindKey(me.input.KEY.M ,"mute");
+		
+		var gui = new Main.GUI();
+		me.game.add(gui, 101);
+		
         // Start the game.
         me.state.change(me.state.MENU);
+		
     },
 };

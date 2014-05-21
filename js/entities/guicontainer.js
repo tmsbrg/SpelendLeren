@@ -3,7 +3,8 @@ Main.GUIContainer = me.Renderable.extend(
 {
     init: function(x, y, objects)
     {
-        if (x == null) {
+        
+		if (x == null) {
             x = 0;
         }
         if (y == null) {

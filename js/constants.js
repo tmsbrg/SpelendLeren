@@ -4,8 +4,9 @@ Constants =
 	upgradeLevels: 2,
     screenWidth: 1024,
     screenHeight: 768,
-    resizeToBrowser: true, /* resize canvas to browser size */
-    playerIsAI: false, /* if true, player is played by the AI (for testing) */
+    resizeToBrowser: true, // resize canvas to browser size 
+    playerIsAI: false, // if true, player is played by the AI (for testing) 
+	disableAI: false, // disable enemy AIs
 
     players: [
         "neutral",

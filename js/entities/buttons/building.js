@@ -36,7 +36,6 @@ Main.Building = Main.Button.extend(
 	
 	init: function(x, y, type, owner, id, capacity, name, spawnResidentTime)
 	{
-		
 		this.type = type;
         this.owner = owner;
         this.size = GetBuildingSize(type);
@@ -49,7 +48,7 @@ Main.Building = Main.Button.extend(
 		
         this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
                                           this.size);
-										  
+		
 		
         this.id = id;
 
@@ -162,6 +161,7 @@ Main.Building = Main.Button.extend(
                 if (!this.checkTrigger("createres")) return;
 				this.changeCapacity(this.growthRate, this.unitType, this.level);
 				this.timeSinceLastSpawn = 0;
+				Main.levelScreen.addScore(this.owner, this.unitType, "spawned", this.growthRate);
 			}
 		}
 	},
@@ -346,7 +346,7 @@ Main.Building = Main.Button.extend(
                     50);
 
 		var battleResult = this.fight(owner, units, buffLevel);
-
+		
 		if (battleResult < 0) {
             this.setUnits(units);
 			this.takeOver(owner);
@@ -392,15 +392,29 @@ Main.Building = Main.Button.extend(
 		
         var result = defensePower - attackPower;
 
-        // TODO: Really, units dictionary should just have an "owner" part,
-        // if that's done, we can just return a new dictionary instead of
-        // changing the given units object
         if (result >= 0) {
-            this.killUnits(this.units, defensePower, result);
+			
+			/*if (this.owner = "user") {
+				this.killUnits(this.units, defensePower, result, "lost");
+				this.killUnits(units, 1, 0, "killed");
+			} else {
+				this.killUnits(this.units, defensePower, result, "killed");
+				this.killUnits(units, 1, 0, "lost");
+			}*/
+			this.killUnits(this.units, defensePower, result, "lost");
+			this.killUnits(units, 1, 0, "killed");
         } else {
-            this.killUnits(units, attackPower, -result);
+            
+			/*if (this.owner = "user") {
+				this.killUnits(units, attackPower, -result, "lost");
+				this.killUnits(this.units, 1, 0, "killed");
+			} else {
+				this.killUnits(units, attackPower, -result, "lost");
+				this.killUnits(this.units, 1, 0, "killed");
+			}*/
+			this.killUnits(units, attackPower, -result, "lost");
+			this.killUnits(this.units, 1, 0, "killed");
         }
-
         return result;
     },
 
@@ -424,16 +438,25 @@ Main.Building = Main.Button.extend(
     
     // removes units from the given units dictionary based on its original
     // power and its power after the battle
-    killUnits: function(units, originalPower, finalPower)
+    killUnits: function(units, originalPower, finalPower, battleOutcome)
     {
         var ratio = finalPower / originalPower;
+		//console.log(ratio);
         var keys = units.keys();
         for (var i=0; i<keys.length; i++)
         {
             array = units.getValue(keys[i]);
-            for (var j=0; j<Constants.upgradeLevels; j++)
+            for (var j = 0; j < Constants.upgradeLevels; j++)
             {
-                array[j] = Math.ceil(array[j] * ratio);
+                var oldstrength = array[j];
+				var newstrength = Math.ceil(array[j] * ratio);
+				array[j] = Math.ceil(array[j] * ratio);
+				
+				var killedunits = oldstrength - newstrength;
+				//console.log("newstrength: "+newstrength, "killedunits: "+killedunits, "oldstrength: "+oldstrength);
+				if (killedunits > 0) {
+					Main.levelScreen.addScore(this.owner, keys[i], battleOutcome, killedunits);
+				}	
             }
         }
     },

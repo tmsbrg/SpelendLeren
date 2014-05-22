@@ -44,6 +44,7 @@ var Main =
     // Run on game resources loaded.
     loaded: function ()
     {
+
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, Constants.textScale);
         // this.font = new me.BitmapFont("ugly_font", 32,
                                       // Constants.textScale);

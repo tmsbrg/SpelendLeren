@@ -46,6 +46,14 @@
  <imagelayer name="Background Layer" width="32" height="24">
   <image source="../img/background/bg_test.png"/>
  </imagelayer>
+ <objectgroup name="background_scenery" width="32" height="24">
+  <object gid="38" x="263" y="595"/>
+  <object gid="38" x="305" y="304"/>
+  <object gid="38" x="159" y="389"/>
+  <object gid="38" x="225" y="101"/>
+  <object gid="38" x="657" y="566"/>
+  <object gid="38" x="784" y="480"/>
+ </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="starthoeve" type="user" gid="36" x="32" y="176">
    <properties>
@@ -111,11 +119,5 @@
   <object gid="32" x="918" y="574"/>
   <object gid="32" x="898" y="755"/>
   <object gid="32" x="657" y="731"/>
-  <object gid="38" x="263" y="595"/>
-  <object gid="38" x="305" y="304"/>
-  <object gid="38" x="159" y="389"/>
-  <object gid="38" x="225" y="101"/>
-  <object gid="38" x="657" y="566"/>
-  <object gid="38" x="784" y="480"/>
  </objectgroup>
 </map>

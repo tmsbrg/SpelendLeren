@@ -57,7 +57,7 @@
   <object type="neutral" gid="3" x="417" y="415">
    <properties>
     <property name="capacity" value="2"/>
-    <property name="trigger_takeover" value="popup klooster"/>
+    <property name="trigger_takeover_user" value="popup klooster"/>
    </properties>
   </object>
  </objectgroup>

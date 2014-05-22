@@ -106,7 +106,8 @@ Main.LevelScreen = me.ScreenObject.extend(
                 }
                 break;
             case "objectgroup":
-                this.buildings = this.createObjects(xml);
+                this.buildings = this.createObjects(xml,
+                        this.getAttribute(xml, "name") == "background_scenery");
                 break;
         }
         for (var i=0; i<xml.childElementCount; i++)
@@ -203,7 +204,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     // creates and returns an array of building objects based on the an xml
     // object layer
-    createObjects: function(xml, gid)
+    createObjects: function(xml, bg)
     {
         var r = [];
         for (var i=0; i < xml.childElementCount; i++)
@@ -226,12 +227,13 @@ Main.LevelScreen = me.ScreenObject.extend(
                                                               null,
                                         this.getAttribute(obj, "name"));
                 this.createBuildingTriggers(r[i], obj);
-                this.add(r[i]);
+                this.add(r[i], bg);
             } else {
                 var x = Number(this.getAttribute(obj, "x"));
                 var y = Number(this.getAttribute(obj, "y") - gid.height);
                 var img = srcToImageName(gid.source);
-                this.add(new Main.TileImage(x, y, img, gid.width, gid.height));
+                this.add(new Main.TileImage(x, y, img, gid.width, gid.height),
+                         bg);
             }
         }
         return r;
@@ -259,7 +261,9 @@ Main.LevelScreen = me.ScreenObject.extend(
                     var values;
                     values = this.getTriggerCallback(value);
                     if (values[0] != null) {
-                        building.addTrigger(nameparts[1], values[0], null,
+                        var arg = (nameparts[2] != null) ? nameparts[2] : null;
+                        console.log(arg);
+                        building.addTrigger(nameparts[1], values[0], arg,
                                             values[1]);
                     } else {
                         alert("Don't know trigger command \""+value+
@@ -512,8 +516,12 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.unPause();
     },
 
-    add: function(obj)
+    add: function(obj, bg)
     {
-        this.levelContainer.addChild(obj);
+        if (bg) {
+            me.game.add(obj, 5);
+        } else {
+            this.levelContainer.addChild(obj);
+        }
     },
 });

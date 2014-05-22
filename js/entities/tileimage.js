@@ -13,6 +13,12 @@ Main.TileImage = Main.Image.extend(
         this.setTileNumber(tileNumber);
     },
 
+    loadImage: function(image)
+    {
+        this.parent(image);
+        this.setTileNumber(0);
+    },
+
     setTileNumber: function(tileNumber)
     {
         this.tileNumber = tileNumber;

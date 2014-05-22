@@ -6,30 +6,34 @@ Main.Effect = me.AnimationSheet.extend(
             image = "battle_animation";
         }
         this.parent(x, y, me.loader.getImage(image), 138);
-        this.addAnimation("0", this.range(54));
-        // this.addAnimation("1", [7,8,9,10,11,12,13,14,15,16,17]);
-        // this.addAnimation("2", [17,18,19,20,21,22,23,24,25,26]);
-        // this.addAnimation("3", [27,28,29,30,31,32,33,34,35,36,37,38]);
-        this.setCurrentAnimation("0", (
+        this.addAnimation("0", this.range(8));
+        this.addAnimation("1", this.range(8, 14));
+        this.addAnimation("2", this.range(14, 23));
+        this.addAnimation("3", this.range(23, 33));
+        this.addAnimation("4", this.range(33, 44));
+        this.addAnimation("5", this.range(44, 54));
+        this.setCurrentAnimation("" + Math.round(Math.random()*5), (
                                  function()
                                  {
                                      me.game.remove(this);
                                  }.bind(this)));
     },
 
+    // returns a range between n1 and n2-1, or between 0 and n1-1 of n2 is not
+    // given
     range: function(n1, n2)
     {
         if (n2 == null) {
-            start = 0;
-            end = n1;
+            var start = 0;
+            var end = n1;
         } else {
-            start = n1;
-            end = n2;
+            var start = n1;
+            var end = n2;
         }
-        var r = new Array(end);
-        for (var i = start; i < r.length; i++)
+        var r = new Array(end - start);
+        for (var i = 0; i < r.length; i++)
         {
-            r[i] = i;
+            r[i] = i + start;
         }
         return r;
     },

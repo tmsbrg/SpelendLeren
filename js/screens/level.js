@@ -16,7 +16,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     levelContainer: null, // contains all units, armies and scenery in a level
 
-    armies: null, // array of currently moving armies
+    scoreData: null, // placeholder for the scoreData class
+	armies: null, // array of currently moving armies
     music: "", // background music id string
 
     paused: false, // whether game is paused
@@ -48,6 +49,9 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
+		
+		this.scoreData = new Main.ScoreData();
+		
 
         // reinitialize for restart
         this.currentAction = 0; 
@@ -64,6 +68,36 @@ Main.LevelScreen = me.ScreenObject.extend(
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
     },
+	
+	addScore: function(owner, unitType, category, amount)
+	{
+		
+		this.scoreData.addScore(unitType, category, amount);
+		/*if (category == "killed_win") {
+			if (owner == "user") {
+				console.log("unit lost");
+				category = "killed";
+			} else {
+				console.log("unit lost");
+				category = "lost";
+			}
+			this.scoreData.addScore(unitType, category, amount);
+		} else if (category == "killed_lose") {
+			if (owner == "user") {
+				console.log("unit lost");
+				category = "lost";
+			} else {
+				console.log("unit lost");
+				category = "killed";
+			}
+			this.scoreData.addScore(unitType, category, amount);
+		} else {
+			if (owner == "user") {
+				
+				this.scoreData.addScore(unitType, category, amount);
+			}
+		}*/
+	},
 
     update: function()
     {
@@ -484,19 +518,21 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
         this.pause();
 
-        var endText = new Main.TextObject(460, 340, "", Main.font);
+        //var endText = new Main.TextObject(460, 340, "", Main.font);
         var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
                                                        90, 78),
                                 function(){me.state.change(me.state.READY)});
-        var rect = new Main.RectObject(300, 300, 400, 200);
+        //var rect = new Main.RectObject(300, 300, 400, 200);
         if (userWon) {
-            endText.setText("YOU WIN!");
+            //endText.setText("YOU WIN!");
+			me.game.add(new Main.Image(0, 0, "popup_win", 1024, 768), 90);
         } else {
-            endText.setText("YOU LOSE");
+            //endText.setText("YOU LOSE");
+			me.game.add(new Main.Image(0, 0, "popup_lose", 1024, 768), 90);
         }
-        me.game.add(endText, 100);
+        //me.game.add(endText, 100);
         me.game.add(endButton, 100);
-        me.game.add(rect, 90);
+        //me.game.add(rect, 90);
     },
 
     closePopup: function()

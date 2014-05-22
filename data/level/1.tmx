@@ -18,8 +18,8 @@
  <tileset firstgid="9" name="stones" tilewidth="65" tileheight="40">
   <image source="../img/scenery/stones.png" width="195" height="120"/>
  </tileset>
- <tileset firstgid="18" name="veld" tilewidth="242" tileheight="47">
-  <image source="../img/scenery/veld.png" width="242" height="47"/>
+ <tileset firstgid="18" name="field1" tilewidth="242" tileheight="47">
+  <image source="../img/scenery/field1.png" width="242" height="47"/>
  </tileset>
  <tileset firstgid="19" name="deadtrees" tilewidth="72" tileheight="66">
   <image source="../img/scenery/deadtrees.png" width="144" height="66"/>
@@ -45,8 +45,8 @@
  <tileset firstgid="37" name="church" tilewidth="90" tileheight="90">
   <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
- <tileset firstgid="38" name="veld2" tilewidth="287" tileheight="67">
-  <image source="../img/scenery/veld2.png" width="287" height="67"/>
+ <tileset firstgid="38" name="field2" tilewidth="287" tileheight="67">
+  <image source="../img/scenery/field2.png" width="287" height="67"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
   <image source="../img/background/bg_level_01.png"/>

@@ -45,7 +45,7 @@ var Main =
     loaded: function ()
     {
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, 0.5);
-        this.font = new me.BitmapFont("luxi_font", {x:20,y:32}, 0.5);
+        this.font = new me.BitmapFont("luxi_font", {x:20,y:38}, 0.5);
 		
 
         this.levelScreen = new Main.LevelScreen();

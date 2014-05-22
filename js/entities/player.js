@@ -10,7 +10,7 @@ Main.Player = Object.extend(
         this.name = name;
         this.buildings = buildings;
         this.ai = ai;
-        if (this.ai) {
+        if (this.ai && !Constants.disableAI) {
             this.ai.setPlayer(this);
             me.game.add(this.ai);
         }

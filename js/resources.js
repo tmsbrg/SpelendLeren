@@ -73,6 +73,9 @@ resources = [
 	 
 	{name: "here_icon", type: "image",
      src: "data/img/gui/here_icon.png"},
+	{name: "flag", type: "image",
+     src: "data/img/gui/flag_blue.png"},
+	 
 	 
 	{name: "sound_on", type: "image",
      src: "data/img/gui/audio_icon_on.png"},
@@ -163,6 +166,10 @@ resources = [
      src: "data/img/gui/popup/popup_standen.png"},
     {name: "popup_start", type: "image",
      src: "data/img/gui/popup/popup_start.png"},
+	{name: "popup_win", type: "image",
+     src: "data/img/gui/popup/popup_win.png"},
+	 {name: "popup_lose", type: "image",
+     src: "data/img/gui/popup/popup_lose.png"},
 
     {name: "halo", type: "image",
      src: "data/img/armies/halo.png"},

@@ -14,6 +14,7 @@ Main.TextButton = Main.Button.extend(
 	{
 		this.font_size = Main.font.fontSize.x * 0.5;
 		
+		
 		var displayObject = new Main.Image(x, y, "button",
                                         this.getTextWidth(textinput) + this.margin_horizontal,
                                         this.font_size + this.margin_vertical);

@@ -4,8 +4,8 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	level_buttons: new Array(),
 	buttonWidth: 337,
 	buttonHeight: 83,
-	levelPos: new Array([100, 200],[200, 10],[300, 464],[234, 607],[434, 123],
-                        [0, 0]),
+	levelPos: new Array([478, 177],[508, 135],[555, 122],[729, 328],[611, 347],
+                        [600, 407]),
 	
 	onResetEvent: function()
 	{
@@ -15,19 +15,22 @@ Main.CampaignScreen = me.ScreenObject.extend(
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
 		
+		
+		
 		for(var i = 0; i < this.levelPos.length; i++)
 		{
 			var xPos = this.levelPos[i][0];
 			var yPos = this.levelPos[i][1];
 			
 			var level = "level"+(i+1)
-			var level_button = new Main.TextButton(xPos, yPos, "LEVEL "+(i+1), this.start_level.bind(this), null, null, level);
+			var flag = new Main.Image(xPos, yPos, "flag", 31, 42);
+			var level_flag = new Main.Button(flag, this.start_level.bind(this), null, null, level);
 
-			me.game.add(level_button, 20);
-			this.level_buttons.push(level_button);
+			me.game.add(level_flag, 20);
+			this.level_buttons.push(level_flag);
 		}
 		
-		var back_button = new Main.TextButton(790, 680, "BACK", this.back_menu.bind(this), null, null, level);
+		var back_button = new Main.TextButton(790, 680, "back",  this.back_menu.bind(this), null, null, level);
 		me.game.add(back_button, 21);
 	},
 	

@@ -24,7 +24,7 @@ Main.TileImage = Main.Image.extend(
         this.tileNumber = tileNumber;
         this.offsetX = (tileNumber * this.width) % this.image.naturalWidth;
         this.offsetY = Math.floor((tileNumber * this.width) /
-                                   this.image.naturalWidth);
+                                   this.image.naturalWidth) * this.height;
     },
 
     draw: function(ctx)

@@ -44,8 +44,16 @@ var Main =
     // Run on game resources loaded.
     loaded: function ()
     {
+<<<<<<< HEAD
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, 0.5);
         this.font = new me.BitmapFont("luxi_font", {x:20,y:38}, 0.5);
+=======
+        // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, Constants.textScale);
+        // this.font = new me.BitmapFont("ugly_font", 32,
+                                      // Constants.textScale);
+        this.font = new me.BitmapFont("luxi_font", {x:20,y:32},
+                                      Constants.textScale);
+>>>>>>> 38937eae658cb8e70d2f0b1a7c332ba26ca14296
 		
 
         this.levelScreen = new Main.LevelScreen();

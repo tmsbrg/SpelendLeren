@@ -14,7 +14,9 @@ Main.LevelScreen = me.ScreenObject.extend(
     currentAction: 0, // keeps what trigger we're currently on
     here: null,
 
-    levelContainer: null, // contains all units, armies and scenery in a level
+    frontLayer: null, // contains LayerObject for armies, buildings and front
+                      // scenery
+    backLayer: null, // LayerObject for background scenery
 
     scoreData: null, // placeholder for the scoreData class
 	armies: null, // array of currently moving armies
@@ -37,11 +39,11 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
-        this.levelContainer = new me.ObjectContainer(0, 0,
-                                                     Constants.screenWidth,
-                                                     Constants.screenHeight)
-        this.levelContainer.sortOn = "y"
-        me.game.add(this.levelContainer, 10)
+
+        this.frontLayer = new Main.LayerContainer(true);
+        me.game.add(this.frontLayer, 10)
+        this.backLayer = new Main.LayerContainer(false);
+        me.game.add(this.backLayer, 5)
 
 		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
                                  Constants.screenHeight)
@@ -67,6 +69,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
+<<<<<<< HEAD
     },
 	
 	addScore: function(owner, unitType, category, amount)
@@ -98,12 +101,12 @@ Main.LevelScreen = me.ScreenObject.extend(
 			}
 		}*/
 	},
+=======
+>>>>>>> 38937eae658cb8e70d2f0b1a7c332ba26ca14296
 
-    update: function()
-    {
-        this.levelContainer.sort()
+        this.backLayer.sort();
     },
-	
+
 	click: function()
 	{
 		for(var i = 0 ; i < this.buildings.length; i++)
@@ -238,47 +241,50 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     // creates and returns an array of building objects based on the an xml
     // object layer
-    createObjects: function(xml, bg)
+    createObjects: function(xml, onBackground)
     {
         var r = [];
         for (var i=0; i < xml.childElementCount; i++)
         {
             var obj = xml.children[i];
-            var gid =
-                this.getPreviousGid(Number(this.getAttribute(obj, "gid")));
-            var type = gid.type;
+            var gid = Number(this.getAttribute(obj, "gid"));
+            var pgid = this.getTilesetGid(gid);
+            var tileset = this.tiles[pgid];
+            var type = tileset.type;
             if (UnitForBuilding(type) != null) {
                 var capacity = this.getProperty(obj, "capacity");
                 var pos = this.getBuildingPos(obj, type);
-                r[i] = new Main.Building(pos.x,
+                var ri = r.length;
+                r[ri] = new Main.Building(pos.x,
                                          pos.y,
                                          type,
                                          this.getAttribute(obj, "type") ?
                                             this.getAttribute(obj, "type") :
                                             "neutral",
-                                         i,
+                                         ri,
                                          (capacity != null) ? Number(capacity) :
                                                               null,
                                         this.getAttribute(obj, "name"));
-                this.createBuildingTriggers(r[i], obj);
-                this.add(r[i], bg);
+                this.createBuildingTriggers(r[ri], obj);
+                this.add(r[ri], onBackground);
             } else {
                 var x = Number(this.getAttribute(obj, "x"));
-                var y = Number(this.getAttribute(obj, "y") - gid.height);
-                var img = srcToImageName(gid.source);
-                this.add(new Main.TileImage(x, y, img, gid.width, gid.height),
-                         bg);
+                var y = Number(this.getAttribute(obj, "y") - tileset.height);
+                var img = srcToImageName(tileset.source);
+                this.add(new Main.TileImage(x, y, img, tileset.width,
+                                            tileset.height, gid - pgid),
+                         onBackground);
             }
         }
         return r;
     },
 
-    getPreviousGid: function(gid)
+    getTilesetGid: function(gid)
     {
         while (this.tiles[gid] == null) {
             gid--;
         }
-        return this.tiles[gid];
+        return gid;
     },
 
     // creates building triggers for given building and corresponding xml object
@@ -296,7 +302,6 @@ Main.LevelScreen = me.ScreenObject.extend(
                     values = this.getTriggerCallback(value);
                     if (values[0] != null) {
                         var arg = (nameparts[2] != null) ? nameparts[2] : null;
-                        console.log(arg);
                         building.addTrigger(nameparts[1], values[0], arg,
                                             values[1]);
                     } else {
@@ -552,12 +557,12 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.unPause();
     },
 
-    add: function(obj, bg)
+    add: function(obj, onBackground)
     {
-        if (bg) {
-            me.game.add(obj, 5);
+        if (onBackground) {
+            this.backLayer.addChild(obj);
         } else {
-            this.levelContainer.addChild(obj);
+            this.frontLayer.addChild(obj);
         }
     },
 });

@@ -12,6 +12,8 @@ Main.TimeObject = Object.extend(
 		this.alwaysUpdate = true;
 		this._currentDate = me.timer.getTime();
 		this._previousDate = me.timer.getTime();
+        me.event.subscribe(me.event.STATE_PAUSE, this.pause.bind(this));
+        me.event.subscribe(me.event.STATE_RESUME, this.unPause.bind(this));
 	},
  
 	update: function() 

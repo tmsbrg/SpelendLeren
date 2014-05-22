@@ -1,6 +1,8 @@
-/* PopupScreen: Shows a tutorial popup*/
+/* PopupScreen: Shows a tutorial popup */
 Main.PopupScreen = Main.GUIContainer.extend(
 {
+    // name: name of the popup to show(looks for popup_name)
+    // onClose: function to call when closed button is pressed
     init: function(name, onClose)
     {
         this.onClose = onClose;
@@ -37,6 +39,7 @@ Main.PopupScreen = Main.GUIContainer.extend(
         this.parent(0, 0, [imageObject, buttonObject]);
     },
 
+    // called when the OK button is clicked
     onButtonClick: function()
     {
         this.onClose();

@@ -264,7 +264,6 @@ Main.LevelScreen = me.ScreenObject.extend(
                     values = this.getTriggerCallback(value);
                     if (values[0] != null) {
                         var arg = (nameparts[2] != null) ? nameparts[2] : null;
-                        console.log(arg);
                         building.addTrigger(nameparts[1], values[0], arg,
                                             values[1]);
                     } else {

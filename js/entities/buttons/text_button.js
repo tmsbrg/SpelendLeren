@@ -12,7 +12,7 @@ Main.TextButton = Main.Button.extend(
 	
 	init: function(x, y, textinput, onClick, onHover, onHoverOut, clickArgs, hoverArgs)
 	{
-		this.font_size = Main.font.fontSize.x * 0.5;
+		this.font_size = Main.font.fontSize.x * Constants.textScale;
 		
 		var displayObject = new Main.Image(x, y, "button",
                                         this.getTextWidth(textinput) + this.margin_horizontal,

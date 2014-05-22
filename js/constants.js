@@ -18,9 +18,11 @@ Constants =
         "sendarmyfrom",
         "support",
     ],
+
+    textScale : 0.6,
 }
 
 /* game engine settings */
 me.sys.fps = 60; /* max FPS */
-me.sys.pauseOnBlur = false; /* pause the game when out of focus */
+me.sys.pauseOnBlur = true; /* pause the game when out of focus */
 me.sys.preRender = true;

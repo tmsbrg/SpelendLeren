@@ -69,7 +69,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
-<<<<<<< HEAD
+		
+        this.backLayer.sort();
     },
 	
 	addScore: function(owner, unitType, category, amount)
@@ -101,11 +102,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 			}
 		}*/
 	},
-=======
->>>>>>> 38937eae658cb8e70d2f0b1a7c332ba26ca14296
 
-        this.backLayer.sort();
-    },
+
 
 	click: function()
 	{

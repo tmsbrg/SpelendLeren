@@ -40,8 +40,6 @@ Main.Squad = me.AnimationSheet.extend(
 		this.direction = this.getDirection(this.targetPoint, this.startPoint);
 		this.direction.normalize();
 		
-		
-		
 		var image = me.loader.getImage(owner+"_"+key+"_"+
                                 this.getDirectionName(this.direction)+"_0");
 		

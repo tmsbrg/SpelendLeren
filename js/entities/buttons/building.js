@@ -105,7 +105,7 @@ Main.Building = Main.Button.extend(
         }
         if (this.unitGUI.getValue(type) == null) {
             
-            var icon = new Main.Image(xpos, -30, type+"_icon", 16, 16);
+            var icon = new Main.Image(xpos, -35, type+"_icon", 20, 20);
             
             var textObject = new Main.TextObject(xpos + 3, -10, "",
                                                  Main.font);

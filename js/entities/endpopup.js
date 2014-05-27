@@ -1,9 +1,11 @@
 Main.Endpopup =  Main.GUIContainer.extend(
 {
-	imageObject: null,
-	retryButton: null,
-	campaignButton: null,
-	levelname: null,
+	imageObject: null, // placeholder for th eimagebackground
+	retryButton: null, // placeholder for the retry button
+	campaignButton: null, // placeholder for the campaing button
+	levelname: null, // name of the current level
+	unitTypes: [], // Array with all the different unittypes
+	categories: [], // Array with all the categories
 	
 	init: function(userWon, scoreData, levelname)
 	{	
@@ -11,7 +13,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		
 		this.initBackground(userWon);
 		this.initButtons();
-		this.initTextobjects();
+		this.initTextobjects(scoreData);
 		
 		this.parent(0, 0, [this.imageObject, this.retryButton, this.campaignButton]);
 	},
@@ -71,10 +73,22 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		me.game.remove(this);
 	},
 	
-	initTextobjects: function()
+	initTextobjects: function(scoreData)
 	{
+		this.unitTypes = GetUnits();
 		
+		this.categories = ["spawned", "lost", "killed"];
+		
+		for(var i = 0; i < this.unitTypes.length; i++)
+		{
+			for(var j = 0; j < this.categories.length; j++)
+			{
+				//console.log(this.unitTypes[i] + " : "+ this.categories[j]+ " " + scoreData.getScore(this.unitTypes[i], this.categories[j]));
+				var text = scoreData.getScore(this.unitTypes[i], this.categories[j]);
+				var textObject = new Main.TextObject(500, (300 + ((100*i) +(20*j))), text, Main.font);
+				me.game.add(textObject, 300);
+			}
+		}
 	},
-	
 	
 });

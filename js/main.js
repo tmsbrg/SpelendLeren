@@ -48,7 +48,7 @@ var Main =
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, Constants.textScale);
         // this.font = new me.BitmapFont("ugly_font", 32,
                                       // Constants.textScale);
-        this.font = new me.BitmapFont("luxi_font", {x:20,y:32},
+        this.font = new me.BitmapFont("luxi_font", {x:20,y:38},
                                       Constants.textScale);
 		
 

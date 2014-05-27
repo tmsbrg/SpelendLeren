@@ -38,6 +38,7 @@ Main.Building = Main.Button.extend(
 	{
 		this.type = type;
         this.owner = owner;
+		
         this.size = GetBuildingSize(type);
 		this.doorLocation = GetBuildingDoorLocation(type);
 		
@@ -144,7 +145,7 @@ Main.Building = Main.Button.extend(
 	
 	update: function()
 	{
-        if (this.active) {
+		if (this.active) {
             this.createResident();
         }
 		return this.parent();
@@ -344,7 +345,7 @@ Main.Building = Main.Button.extend(
         me.game.add(new Main.Effect(this.pos.x + (this.size - img_size)/2,
                                     this.pos.y + (this.size - img_size)/2),
                     50);
-
+		
 		var battleResult = this.fight(owner, units, buffLevel);
 		
 		if (battleResult < 0) {
@@ -383,7 +384,8 @@ Main.Building = Main.Button.extend(
     // attacking army
     fight: function(owner, units, buffLevel)
     {
-        me.audio.play("fight");
+        
+		me.audio.play("fight");
 		var attackPower = this.calculatePower(owner, units, buffLevel,
                                               "attack");
         var defensePower = this.calculatePower(this.owner, this.units,
@@ -391,29 +393,14 @@ Main.Building = Main.Button.extend(
                                                "defense");
 		
         var result = defensePower - attackPower;
-
+		
         if (result >= 0) {
+			this.killUnits(owner, this.units, defensePower, result, "lost");
+			this.killUnits(owner, units, 1, 0, "killed");
 			
-			/*if (this.owner = "user") {
-				this.killUnits(this.units, defensePower, result, "lost");
-				this.killUnits(units, 1, 0, "killed");
-			} else {
-				this.killUnits(this.units, defensePower, result, "killed");
-				this.killUnits(units, 1, 0, "lost");
-			}*/
-			this.killUnits(this.units, defensePower, result, "lost");
-			this.killUnits(units, 1, 0, "killed");
         } else {
-            
-			/*if (this.owner = "user") {
-				this.killUnits(units, attackPower, -result, "lost");
-				this.killUnits(this.units, 1, 0, "killed");
-			} else {
-				this.killUnits(units, attackPower, -result, "lost");
-				this.killUnits(this.units, 1, 0, "killed");
-			}*/
-			this.killUnits(units, attackPower, -result, "lost");
-			this.killUnits(this.units, 1, 0, "killed");
+			this.killUnits(owner, units, attackPower, -result, "lost");
+			this.killUnits(owner, this.units, 1, 0, "killed");
         }
         return result;
     },
@@ -438,7 +425,7 @@ Main.Building = Main.Button.extend(
     
     // removes units from the given units dictionary based on its original
     // power and its power after the battle
-    killUnits: function(units, originalPower, finalPower, battleOutcome)
+    killUnits: function(owner, units, originalPower, finalPower, battleOutcome)
     {
         var ratio = finalPower / originalPower;
 		//console.log(ratio);
@@ -455,7 +442,9 @@ Main.Building = Main.Button.extend(
 				var killedunits = oldstrength - newstrength;
 				//console.log("newstrength: "+newstrength, "killedunits: "+killedunits, "oldstrength: "+oldstrength);
 				if (killedunits > 0) {
-					Main.levelScreen.addScore(this.owner, keys[i], battleOutcome, killedunits);
+					if (this.owner == "user" || owner == "user" || owner == "comp1" && this.owner == "user" || owner == "user" && this.owner == "comp1") {
+						Main.levelScreen.addScore(this.owner, keys[i], battleOutcome, killedunits);
+					}
 				}	
             }
         }
@@ -520,6 +509,7 @@ Main.Building = Main.Button.extend(
         var oldOwner = Main.levelScreen.getPlayer(this.owner);
         var newOwner = Main.levelScreen.getPlayer(owner);
         this.owner = owner;
+		
         oldOwner.loseBuilding(this);
         newOwner.gainBuilding(this);
         if (this.selected) {

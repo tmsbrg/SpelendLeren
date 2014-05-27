@@ -498,7 +498,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     // shows popup with given name
     showPopup: function(name)
     {
-        me.game.add(new Main.PopupScreen(name, this.onClosePopup.bind(this)),
+        me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
                     200);
         this.popupShown = true;
         this.pause();
@@ -524,15 +524,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
         this.pause();
 
-        var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
-                                                       90, 78),
-                                function(){me.state.change(me.state.READY)});
-        if (userWon) {
-			me.game.add(new Main.Image(0, 0, "popup_win", 1024, 768), 90);
-        } else {
-			me.game.add(new Main.Image(0, 0, "popup_lose", 1024, 768), 90);
-        }
-        me.game.add(endButton, 100);
+        var endpopup = new Main.Endpopup(userWon, this.scoreData, this.name);
+		me.game.add(endpopup, 200);
     },
 
     // pauses the game

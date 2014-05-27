@@ -80,35 +80,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 	
 	addScore: function(owner, unitType, category, amount)
 	{
-		
 		this.scoreData.addScore(unitType, category, amount);
-		/*if (category == "killed_win") {
-			if (owner == "user") {
-				console.log("unit lost");
-				category = "killed";
-			} else {
-				console.log("unit lost");
-				category = "lost";
-			}
-			this.scoreData.addScore(unitType, category, amount);
-		} else if (category == "killed_lose") {
-			if (owner == "user") {
-				console.log("unit lost");
-				category = "lost";
-			} else {
-				console.log("unit lost");
-				category = "killed";
-			}
-			this.scoreData.addScore(unitType, category, amount);
-		} else {
-			if (owner == "user") {
-				
-				this.scoreData.addScore(unitType, category, amount);
-			}
-		}*/
 	},
-
-
 
     // called when the background is clicked
 	click: function()

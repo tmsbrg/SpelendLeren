@@ -26,8 +26,6 @@ Main.ScoreData = Object.extend(
 		if (category == "killed" || category == "lost") {
 			console.log(unitType+"_"+category+" : "+this[category + "_" + unitType]);
 		}
-		
-		
 	},
 	
 	getScore: function(unitType, category)

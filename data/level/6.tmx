@@ -80,6 +80,7 @@
   <object gid="9" x="14" y="311"/>
   <object gid="12" x="-9" y="381"/>
   <object gid="12" x="-3" y="191"/>
+  <object gid="38" x="719" y="721"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="starthoeve" type="user" gid="36" x="448" y="735">
@@ -130,7 +131,6 @@
   <object gid="7" x="848" y="276"/>
   <object gid="1" x="824" y="600"/>
   <object gid="34" x="754" y="136"/>
-  <object gid="38" x="719" y="721"/>
   <object gid="28" x="630" y="419"/>
   <object gid="30" x="808" y="246"/>
   <object gid="28" x="758" y="214"/>

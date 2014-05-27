@@ -4,8 +4,14 @@ Main.LayerContainer = me.ObjectContainer.extend(
     init: function(alwaysSort)
     {
         this.parent(0, 0, Constants.screenWidth, Constants.screenHeight);
-        this.sortOn = "y";
+        this.sortOn = "YB";
         this.alwaysSort = (alwaysSort == null) ? false : alwaysSort;
+    },
+
+    // sorts two elements by position+height, used by sort()
+    _sortYB: function(a, b)
+    {
+        return (b.pos.y + b.height * 0.5) - (a.pos.y + a.height * 0.5)
     },
 
     update: function()

@@ -58,8 +58,12 @@ Main.GUIContainer = me.Renderable.extend(
     },
     // removes object from the GUIContainer
     removeGUIObject: function(object) {
-        for (var i = 0; i < this.GUIObjects.length; i++) {
+        for (var i = 0; i < this.GUIObjects.length; i++)
+        {
             if (this.GUIObjects[i] === object) {
+                if (this.GUIObjects[i].destroy != null) {
+                    this.GUIObjects[i].destroy();
+                }
                 this.GUIObjects.splice(i, 1);
             }
         }
@@ -79,5 +83,14 @@ Main.GUIContainer = me.Renderable.extend(
             this.GUIObjects[i].draw(ctx);
         }
         ctx.restore();
+    },
+    destroy: function()
+    {
+        for (var i = 0; i < this.GUIObjects.length; i++)
+        {
+            if (this.GUIObjects[i].destroy != null) {
+                this.GUIObjects[i].destroy();
+            }
+        }
     },
 });

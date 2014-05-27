@@ -23,6 +23,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     music: "", // background music id string
 
     paused: false, // whether game is paused
+    popupShown: false, //whether a popup is being shown
+    levelEnded: false, // whether the level has been ended
 
     init: function()
     {
@@ -59,7 +61,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.currentAction = 0; 
         this.paused = false;
         this.waitingForTriggers = false;
-
+        this.levelEnded = false;
+        this.popupShown = false;
 
         this.tiles = new Array(1);
         this.actions = [];
@@ -69,7 +72,9 @@ Main.LevelScreen = me.ScreenObject.extend(
 
 		Main.timer = new Main.TimeObject();
 		me.game.add(Main.timer);
-		
+        me.event.subscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
+        me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
+
         this.backLayer.sort();
     },
 	
@@ -77,8 +82,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 	{
 		this.scoreData.addScore(unitType, category, amount);
 	},
-	
-	// TODO: comment
+
+    // called when the background is clicked
 	click: function()
 	{
 		for(var i = 0 ; i < this.buildings.length; i++)
@@ -86,7 +91,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 			this.buildings[i].deselect();
 		}
 	},
-	// TODO: add comment
+	
+    // interprets an xml object that contains level information
     interpretLevel: function(xml)
     {
         switch(xml.localName)
@@ -181,6 +187,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         // TODO
     },
 
+    // sets map triggers(actions that must be performed before the level really
+    // starts)
     setTriggers: function(actions)
     {
         for (var i=0; i < actions.length; i++)
@@ -211,14 +219,17 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
-    // creates and returns an array of building objects based on the an xml
-    // object layer
+    // creates objects from an xml objects layer, and adds them to the
+    // background layer if onBackground is true, otherwise to the front layer
+    // returns an array of all buildings in the objects layer
     createObjects: function(xml, onBackground)
     {
         var r = [];
         for (var i=0; i < xml.childElementCount; i++)
         {
             var obj = xml.children[i];
+            // gid: graphics 'id', unique identifier for the tile this object
+            // uses
             var gid = Number(this.getAttribute(obj, "gid"));
             var pgid = this.getTilesetGid(gid);
             var tileset = this.tiles[pgid];
@@ -251,9 +262,11 @@ Main.LevelScreen = me.ScreenObject.extend(
         return r;
     },
 
+    // returns first gid for the tileset that given gid is part of
     getTilesetGid: function(gid)
     {
-        while (this.tiles[gid] == null) {
+        while (this.tiles[gid] == null)
+        {
             gid--;
         }
         return gid;
@@ -299,6 +312,10 @@ Main.LevelScreen = me.ScreenObject.extend(
             case "win":
             r[0] = this.endLevel.bind(this);
             r[1] = true;
+            break;
+            case "lose":
+            r[0] = this.endLevel.bind(this);
+            r[1] = false;
             break;
         }
         return r;
@@ -361,7 +378,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
-    //TODO: this function should be part of player, but player doesn't exist yet
+    // attacks building with given buildingId using all selected buildings
     attack: function(buildingId) 
 	{
 		for (var i = 0; i < this.buildings.length; i++)
@@ -481,60 +498,80 @@ Main.LevelScreen = me.ScreenObject.extend(
     // shows popup with given name
     showPopup: function(name)
     {
-        me.game.add(new Main.PopupScreen(name, this.unPause.bind(this)), 200);
+        me.game.add(new Main.PopupScreen(name, this.onClosePopup.bind(this)),
+                    200);
+        this.popupShown = true;
         this.pause();
     },
 
+    // called by popup when it is closed
+    onClosePopup: function()
+    {
+        this.popupShown = false;
+        this.unPause();
+    },
+
+    // called to end to level, takes argument of whether the user won or not
     endLevel: function(userWon)
     {
+        this.levelEnded = true;
+
         // TODO: Need an endscreen, really
         try {
             me.audio.stop(this.music);
         } catch (e if e instanceof TypeError) {
-            //
+            // ignore error if there is no music for this level
         }
         this.pause();
 
-        //var endText = new Main.TextObject(460, 340, "", Main.font);
         var endButton = new Main.Button(new Main.Image(500, 400, "back_button",
                                                        90, 78),
                                 function(){me.state.change(me.state.READY)});
-        //var rect = new Main.RectObject(300, 300, 400, 200);
         if (userWon) {
-            //endText.setText("YOU WIN!");
 			me.game.add(new Main.Image(0, 0, "popup_win", 1024, 768), 90);
         } else {
-            //endText.setText("YOU LOSE");
 			me.game.add(new Main.Image(0, 0, "popup_lose", 1024, 768), 90);
         }
-        //me.game.add(endText, 100);
         me.game.add(endButton, 100);
-        //me.game.add(rect, 90);
     },
 
-    closePopup: function()
-    {
-        this.unPause();
-    },
-
+    // pauses the game
     pause: function()
     {
         this.paused = true;
         Main.timer.pause();
     },
 
+    // unpauses the game
     unPause: function()
     {
         this.paused = false;
         Main.timer.unPause();
     },
 
+    // adds an object(building or scenery) to the level
+    // if onBackground is true, adds it to the background layer, if it is false
+    // or not given, adds it to the front layer
     add: function(obj, onBackground)
     {
         if (onBackground) {
             this.backLayer.addChild(obj);
         } else {
             this.frontLayer.addChild(obj);
+        }
+    },
+
+    // called when the player clicks outside of the game
+    onBlur: function()
+    {
+        this.pause();
+    },
+
+    // called when the player returns focus on the game
+    onFocus: function()
+    {
+        if (!this.popupShown && !this.levelEnded) {
+            this.unPause();
         }
     },
 });

@@ -6,7 +6,7 @@ Constants =
     screenHeight: 768,
     resizeToBrowser: true, // resize canvas to browser size 
     playerIsAI: false, // if true, player is played by the AI (for testing) 
-	disableAI: false, // 
+	disableAI: false, // disable enemy AIs
 
     players: [
         "neutral",

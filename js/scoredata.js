@@ -22,9 +22,8 @@ Main.ScoreData = Object.extend(
 	
 	addScore: function(unitType, category, amount)
 	{
-		this[category + "_" + unitType] += amount;
 		if (category == "killed" || category == "lost") {
-			console.log(unitType+"_"+category+" : "+this[category + "_" + unitType]);
+			this[category + "_" + unitType] += amount;
 		}
 	},
 	

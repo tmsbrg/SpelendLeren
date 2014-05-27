@@ -23,17 +23,27 @@ resources = [
 	
 	{name: "trees", type: "image",
      src: "data/img/scenery/trees.png"},
-
+	// buttons
 	{name: "back_button", type: "image",
      src: "data/img/gui/button/back_button.png"},
 	{name: "button", type: "image",
      src: "data/img/gui/button/button.png"},
-
+	 
+	// popup buttons
 	{name: "popup_ok", type: "image",
      src: "data/img/gui/button/popup_ok.png"},
 	{name: "popup_ok_hovered", type: "image",
      src: "data/img/gui/button/popup_ok_hovered.png"},
+	 {name: "popup_retry", type: "image",
+     src: "data/img/gui/button/popup_retry.png"},
+	{name: "popup_retry_hovered", type: "image",
+     src: "data/img/gui/button/popup_retry_hovered.png"},
+	 {name: "popup_campaign", type: "image",
+     src: "data/img/gui/button/popup_campaign.png"},
+	{name: "popup_campaign_hovered", type: "image",
+     src: "data/img/gui/button/popup_campaign_hovered.png"},
 	
+	 // Buildings
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},
     {name: "user_farm", type: "image",
@@ -63,7 +73,7 @@ resources = [
      src: "data/img/buildings/building_selection.png"},
 	{name: "enemy_building_selection", type: "image",
      src: "data/img/buildings/enemy_building_selection.png"},
-	
+	// unbits icons
 	{name: "farmer_icon", type: "image",
 	 src: "data/img/armies/icons/farmer_icon.png"},
 	{name: "knight_icon", type: "image",
@@ -75,7 +85,6 @@ resources = [
      src: "data/img/gui/here_icon.png"},
 	{name: "flag", type: "image",
      src: "data/img/gui/flag_blue.png"},
-	 
 	 
 	{name: "sound_on", type: "image",
      src: "data/img/gui/audio_icon_on.png"},
@@ -139,7 +148,8 @@ resources = [
 
     {name: "battle_animation", type: "image",
      src: "data/img/armies/animations/battle_animation.png"},
-
+	 
+	// fonts
     {name: "ugly_font", type: "image",
      src: "data/img/gui/font/ugly_font.png"},
     {name: "ubuntu_font", type: "image",
@@ -148,8 +158,6 @@ resources = [
      src: "data/img/gui/font/luxi_font.png"},
     {name: "luxio_font", type: "image",
      src: "data/img/gui/font/luxio_font.png"},
-
-    
 
     // Pop up screens for the tutorial
     {name: "popup_blank", type: "image",

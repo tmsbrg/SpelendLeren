@@ -1,5 +1,5 @@
-/* PopupScreen: Shows a tutorial popup */
-Main.PopupScreen = Main.GUIContainer.extend(
+/* Popup: Shows a tutorial popup */
+Main.Popup = Main.GUIContainer.extend(
 {
     // name: name of the popup to show(looks for popup_name)
     // onClose: function to call when closed button is pressed

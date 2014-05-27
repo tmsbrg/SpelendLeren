@@ -442,7 +442,7 @@ Main.Building = Main.Button.extend(
 				var killedunits = oldstrength - newstrength;
 				//console.log("newstrength: "+newstrength, "killedunits: "+killedunits, "oldstrength: "+oldstrength);
 				if (killedunits > 0) {
-					if (this.owner == "user" || owner == "user" || owner == "comp1" && this.owner == "user" || owner == "user" && this.owner == "comp1") {
+					if (this.owner == "user" || owner == "user") {
 						Main.levelScreen.addScore(this.owner, keys[i], battleOutcome, killedunits);
 					}
 				}	

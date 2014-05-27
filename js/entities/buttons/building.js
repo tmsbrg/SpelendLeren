@@ -342,10 +342,10 @@ Main.Building = Main.Button.extend(
 	{
         // temporary hack to get it in the right place
         var img_size = 128;
-        me.game.add(new Main.Effect(this.pos.x + (this.size - img_size)/2,
-                                    this.pos.y + (this.size - img_size)/2),
-                    50);
-		
+        var effect = new Main.Effect(this.pos.x + (this.size - img_size) / 2,
+                                     this.pos.y + (this.size - img_size) / 2);
+        Main.levelScreen.add(effect);
+
 		var battleResult = this.fight(owner, units, buffLevel);
 		
 		if (battleResult < 0) {

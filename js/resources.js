@@ -83,8 +83,15 @@ resources = [
 	 
 	{name: "here_icon", type: "image",
      src: "data/img/gui/here_icon.png"},
-	{name: "flag", type: "image",
-     src: "data/img/gui/flag_blue.png"},
+	// flags
+	{name: "flag_conquered", type: "image",
+     src: "data/img/gui/flag_conquered.png"},
+	 
+	{name: "flag_locked", type: "image",
+     src: "data/img/gui/flag_locked.png"},
+	 
+	{name: "flag_unlocked", type: "image",
+     src: "data/img/gui/flag_unlocked.png"},
 	 
 	{name: "sound_on", type: "image",
      src: "data/img/gui/audio_icon_on.png"},

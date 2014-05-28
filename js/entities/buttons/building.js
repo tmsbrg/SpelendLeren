@@ -161,8 +161,11 @@ Main.Building = Main.Button.extend(
 			if(this.timeSinceLastSpawn > this.spawnResidentTime) {
                 if (!this.checkTrigger("createres")) return;
 				this.changeCapacity(this.growthRate, this.unitType, this.level);
+				
+				if(this.owner == "user")
+					Main.levelScreen.addScore(this.unitType, "spawned", this.growthRate);
+				
 				this.timeSinceLastSpawn = 0;
-				Main.levelScreen.addScore(this.owner, this.unitType, "spawned", this.growthRate);
 			}
 		}
 	},
@@ -393,14 +396,27 @@ Main.Building = Main.Button.extend(
                                                "defense");
 		
         var result = defensePower - attackPower;
-		
+		// TODO: needs to be checked by Thomas
         if (result >= 0) {
-			this.killUnits(owner, this.units, defensePower, result, "lost");
-			this.killUnits(owner, units, 1, 0, "killed");
+			if (this.owner == "user") {
+				this.killUnits(owner, this.units, defensePower, result, "lost");
+				this.killUnits(owner, units, 1, 0, "killed");
+				console.log("Defender WIN");
+			} else {
+				this.killUnits(owner, this.units, defensePower, result, "killed");
+				this.killUnits(owner, units, 1, 0, "lost");
+			}
 			
         } else {
-			this.killUnits(owner, units, attackPower, -result, "lost");
-			this.killUnits(owner, this.units, 1, 0, "killed");
+			// attck: comp1 : defend user
+			if (this.owner == "user") {
+				this.killUnits(owner, units, attackPower, -result, "killed");
+				this.killUnits(owner, this.units, 1, 0, "lost");
+				console.log("defender LOSE");
+			} else {
+				this.killUnits(owner, units, attackPower, -result, "lost");
+				this.killUnits(owner, this.units, 1, 0, "killed");
+			}
         }
         return result;
     },
@@ -443,7 +459,7 @@ Main.Building = Main.Button.extend(
 				//console.log("newstrength: "+newstrength, "killedunits: "+killedunits, "oldstrength: "+oldstrength);
 				if (killedunits > 0) {
 					if (this.owner == "user" || owner == "user") {
-						Main.levelScreen.addScore(this.owner, keys[i], battleOutcome, killedunits);
+						Main.levelScreen.addScore(keys[i], battleOutcome, killedunits);
 					}
 				}	
             }

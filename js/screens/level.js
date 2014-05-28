@@ -46,7 +46,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
-
+		
         this.frontLayer = new Main.LayerContainer(true);
         me.game.add(this.frontLayer, 10)
         this.backLayer = new Main.LayerContainer(false);
@@ -81,7 +81,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.backLayer.sort();
     },
 	
-	addScore: function(owner, unitType, category, amount)
+	addScore: function(unitType, category, amount)
 	{
 		this.scoreData.addScore(unitType, category, amount);
 	},

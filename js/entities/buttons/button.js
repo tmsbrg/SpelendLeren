@@ -1,5 +1,7 @@
-/* Button: clickable object that contains a renderable displayObject which it
-   draws */
+/* 
+ *Button: clickable object that contains a renderable displayObject which it
+ *draws 
+ */
 Main.Button = me.Renderable.extend(
 {
 	mouseEvents: null,

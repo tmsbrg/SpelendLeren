@@ -1,6 +1,6 @@
 /*
  *Text_Button is a clickable Button with a text in it
- the size of the Button is based on the size of the text
+ *the size of the Button is based on the size of the text
 */
 
 Main.TextButton = Main.Button.extend(

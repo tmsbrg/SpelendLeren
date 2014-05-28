@@ -35,6 +35,9 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(levelname)
     {
+		Main.timer = new Main.TimeObject();
+		me.game.add(Main.timer, 0);
+
         levelname = String(levelname);
         this.name = levelname;
 		var level = me.loader.getTMX(levelname);
@@ -70,8 +73,6 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.createPlayers(this.buildings);
         this.setTriggers(this.actions);
 
-		Main.timer = new Main.TimeObject();
-		me.game.add(Main.timer);
         me.event.subscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
         me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
 
@@ -184,7 +185,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     // sets the AI difficulty based on given value
     setDifficulty: function(value)
     {
-        // TODO
+        this.difficulty = value
     },
 
     // sets map triggers(actions that must be performed before the level really
@@ -540,6 +541,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         this.paused = false;
         Main.timer.unPause();
+        Main.timer.reset();
     },
 
     // adds an object(building or scenery) to the level

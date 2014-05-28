@@ -10,8 +10,7 @@ Main.TimeObject = Object.extend(
 	init: function()
 	{
 		this.alwaysUpdate = true;
-		this._currentDate = me.timer.getTime();
-		this._previousDate = me.timer.getTime();
+        this.reset();
 	},
  
 	update: function() 
@@ -25,6 +24,12 @@ Main.TimeObject = Object.extend(
         this._currentDate = me.timer.getTime();
 		return false;
 	},
+
+    reset: function()
+    {
+		this._currentDate = me.timer.getTime();
+		this._previousDate = me.timer.getTime();
+    },
 
     pause: function()
     {

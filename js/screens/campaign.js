@@ -16,15 +16,15 @@ Main.CampaignScreen = me.ScreenObject.extend(
         me.game.add(this.background, 0);
 		
 		
-		
 		for(var i = 0; i < this.levelPos.length; i++)
 		{
-			var xPos = this.levelPos[i][0];
-			var yPos = this.levelPos[i][1];
+			//var xPos = this.levelPos[i][0];
+			//var yPos = this.levelPos[i][1];
+			var pos = new me.Vector2d(this.levelPos[i][0], this.levelPos[i][1]);
 			
 			var level = "level"+(i+1)
-			var flag = new Main.Image(xPos, yPos, "flag", 31, 42);
-			var level_flag = new Main.Button(flag, this.start_level.bind(this), null, null, level);
+			
+			var level_flag = new Main.FlagButton(pos, "conquered", i+1);
 
 			me.game.add(level_flag, 20);
 			this.level_buttons.push(level_flag);
@@ -40,9 +40,9 @@ Main.CampaignScreen = me.ScreenObject.extend(
 		me.state.change(me.state.MENU); 
 	},
 	
-	start_level: function(level)
+	/*start_level: function(level)
 	{
 		me.audio.stop("campaign");
 		me.state.change(me.state.PLAY, level); 
-	},
+	},*/
 });

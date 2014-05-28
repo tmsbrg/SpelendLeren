@@ -14,6 +14,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     currentAction: 0, // keeps what trigger we're currently on
     here: null,
 
+    difficulty: 3,
+
     frontLayer: null, // contains LayerObject for armies, buildings and front
                       // scenery
     backLayer: null, // LayerObject for background scenery
@@ -148,8 +150,12 @@ Main.LevelScreen = me.ScreenObject.extend(
                     this.setDifficulty(value)
                     break;
                 case "music":
-                    me.audio.play(value);
-                    this.music = value;
+                    try {
+                        me.audio.play(value);
+                        this.music = value;
+                    } catch (e if e instanceof TypeError) {
+                        alert("Cannot find music \""+value+"\"");
+                    }
                 default:
                     if (name != null && name[0] >= "0" && name[0] <= "9") {
                         this.interpretNumbered(name, value);
@@ -186,6 +192,13 @@ Main.LevelScreen = me.ScreenObject.extend(
     setDifficulty: function(value)
     {
         this.difficulty = value
+        if (this.players != null) {
+            var players = this.players.values();
+            for (var i=0; i<players.length; i++)
+            {
+                players[i].setDifficulty(value);
+            }
+        }
     },
 
     // sets map triggers(actions that must be performed before the level really
@@ -370,7 +383,12 @@ Main.LevelScreen = me.ScreenObject.extend(
             var ai = null;
             if (player.substr(0, 4) == "comp" ||
                 (player == "user" && Constants.playerIsAI)) {
-                ai = new Main.AI();
+                try {
+                    ai = new Main.AI(this.difficulty);
+                } catch (e if typeof e == "string") {
+                    alert(e); // more friendly error messaging for
+                              // non-programmers
+                }
             }
             this.players.setValue(player,
                                   new Main.Player(player,

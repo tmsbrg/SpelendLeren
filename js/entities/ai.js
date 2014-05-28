@@ -1,18 +1,45 @@
 Main.AI = Object.extend(
 {
+    difficulty: 0, // difficulty this AI has, see js/constants.js
+
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
     timeUntilNextWave: 8000, // amount of miliseconds until sending the next
                              // wave of armies
+    alwaysInactive: false, // if true, always make the AI inactive
     active: true, // whether this AI is doing stuff
     attacking: false, // whether this AI is currently attacking
     wavesSent: 0, // how many waves have been sent to the current target
     wavesToSend: 2, // how many waves of attacks will be sent to any target
+    targetLock: false, // whether the AI locks onto a target until it has
+                       // taken it over
 
     player: null, // reference to the player for this AI
 
-    init: function()
+    init: function(difficulty)
     {
+        if (difficulty == null) {
+            difficulty = 1;
+        }
+        this.setDifficulty(difficulty);
+        if (this.alwaysInactive) {
+            this.active = false;
+        }
+    },
+
+    setDifficulty: function(difficulty)
+    {
+        if (difficulty < 0) {
+            throw ("Trying to set AI difficulty to below 0");
+        } else if (difficulty >= Constants.difficulties.length) {
+            throw ("Difficulties higher than " +
+                   (Constants.difficulties.length-1) + " not supported.");
+        } else {
+            var diff = Constants.difficulties[difficulty];
+            for (key in diff) {
+                this[key] = diff[key];
+            }
+        }
     },
 
     setPlayer: function(player)
@@ -59,7 +86,9 @@ Main.AI = Object.extend(
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
                     this.wavesSent = 0;
-                    this.currentTarget = null;
+                    if (!this.targetLock) {
+                        this.currentTarget = null;
+                    }
                     this.attacking = false;
                 }
             }
@@ -130,6 +159,8 @@ Main.AI = Object.extend(
     // enables this AI
     enable: function()
     {
-        this.active = true;
+        if (!this.alwaysInactive) {
+            this.active = true;
+        }
     },
 });

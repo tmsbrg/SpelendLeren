@@ -21,6 +21,29 @@ Constants =
     ],
 
     textScale : 0.6,
+
+    difficulties: [
+        {
+            alwaysInactive : true,
+        },
+        {
+            timeUntilWave : 16000,
+            targetLock: true
+        },
+        {
+            timeUntilWave : 12000,
+            targetLock: true
+        },
+        {
+            timeUntilWave : 8000,
+            wavesToSend : 2,
+        },
+        {
+            timeUntilWave : 6000,
+            wavesToSend : 3,
+        },
+    ],
+
 }
 
 /* game engine settings */

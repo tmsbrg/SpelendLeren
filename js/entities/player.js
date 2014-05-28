@@ -31,6 +31,13 @@ Main.Player = Object.extend(
         }
     },
 
+    setDifficulty: function(difficulty)
+    {
+        if (this.ai) {
+            this.ai.setDifficulty(difficulty);
+        }
+    },
+
     loseBuilding: function(building)
     {
         for (var i=0; i < this.buildings.length; i++)

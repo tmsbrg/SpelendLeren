@@ -6,7 +6,7 @@ var Main =
 	menuScreen: null, // reference to the menuScreen
     font: null, // standard game font
 	campaignScreen: null, // reference to the campaignScreen
-	playerlevel: 0, // holds the progress of the player
+	playerlevel: 1, // holds the progress of the player
 
 	// Run on page load.
     onload: function () 

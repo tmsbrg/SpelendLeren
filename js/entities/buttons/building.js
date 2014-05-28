@@ -401,7 +401,6 @@ Main.Building = Main.Button.extend(
 			if (this.owner == "user") {
 				this.killUnits(owner, this.units, defensePower, result, "lost");
 				this.killUnits(owner, units, 1, 0, "killed");
-				console.log("Defender WIN");
 			} else {
 				this.killUnits(owner, this.units, defensePower, result, "killed");
 				this.killUnits(owner, units, 1, 0, "lost");
@@ -412,7 +411,6 @@ Main.Building = Main.Button.extend(
 			if (this.owner == "user") {
 				this.killUnits(owner, units, attackPower, -result, "killed");
 				this.killUnits(owner, this.units, 1, 0, "lost");
-				console.log("defender LOSE");
 			} else {
 				this.killUnits(owner, units, attackPower, -result, "lost");
 				this.killUnits(owner, this.units, 1, 0, "killed");

@@ -10,6 +10,8 @@ Constants =
 
     startMuted: false, // whether the game starts muted
 
+    allLevelsPlayable: false, // if true, all levels start playable
+
     players: [
         "neutral",
         "user",

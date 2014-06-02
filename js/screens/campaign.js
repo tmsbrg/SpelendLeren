@@ -14,25 +14,28 @@ Main.CampaignScreen = me.ScreenObject.extend(
                                          Constants.screenWidth,
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
-		console.log("playerlevel " + Main.playerlevel);
 		for(var i = 0; i < this.levelPos.length; i++)
 		{
-			var pos = new me.Vector2d(this.levelPos[i][0], this.levelPos[i][1]);
+			var pos = new me.Vector2d(this.levelPos[i][0],
+                                      this.levelPos[i][1]);
 			
-			var level = "level"+(i+1)
-			if (i+1 < Main.playerlevel) {
-				var level_flag = new Main.FlagButton(pos, "conquered", i+1);
-			} else if (i+1 > Main.playerlevel) {
-				var level_flag = new Main.FlagButton(pos, "locked", i+1);
-			} else if (i+1 == Main.playerlevel) {
-				var level_flag = new Main.FlagButton(pos, "unlocked", i+1);
+            var level = (Constants.allLevelsPlayable) ? Infinity :
+                                                        Main.playerlevel;
+            var level_flag;
+			if (i+1 < level) {
+				level_flag = new Main.FlagButton(pos, "conquered", i+1);
+			} else if (i+1 > level) {
+				level_flag = new Main.FlagButton(pos, "locked", i+1);
+			} else {
+				level_flag = new Main.FlagButton(pos, "unlocked", i+1);
 			}
 
 			me.game.add(level_flag, 20);
 			this.level_buttons.push(level_flag);
 		}
 		
-		var back_button = new Main.TextButton(790, 680, "back",  this.back_menu.bind(this), null, null, level);
+		var back_button = new Main.TextButton(790, 680, "back",
+                          this.back_menu.bind(this));
 		me.game.add(back_button, 21);
 	},
 	

@@ -547,7 +547,9 @@ Main.LevelScreen = me.ScreenObject.extend(
 		console.log("lvevlnumber "+Number(this.name.slice(-1)), "playerlevel "+Main.playerlevel, "levelname " +this.name);
 		if (userWon == true && Main.playerlevel <= Number(this.name.slice(-1))) {
 			Main.playerlevel += 1;
-			console.log("playerlevel ", Main.playerlevel);
+			me.save.playerlevel = Main.playerlevel;
+			console.log(me.save.playerlevel);
+			//console.log("playerlevel ", Main.playerlevel);
 		}
 			
 			

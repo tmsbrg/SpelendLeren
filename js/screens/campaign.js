@@ -14,11 +14,9 @@ Main.CampaignScreen = me.ScreenObject.extend(
                                          Constants.screenWidth,
                                          Constants.screenHeight);
         me.game.add(this.background, 0);
-		console.log("execute " + Main.playerlevel);
+		console.log("playerlevel " + Main.playerlevel);
 		for(var i = 0; i < this.levelPos.length; i++)
 		{
-			//var xPos = this.levelPos[i][0];
-			//var yPos = this.levelPos[i][1];
 			var pos = new me.Vector2d(this.levelPos[i][0], this.levelPos[i][1]);
 			
 			var level = "level"+(i+1)
@@ -29,7 +27,6 @@ Main.CampaignScreen = me.ScreenObject.extend(
 			} else if (i+1 == Main.playerlevel) {
 				var level_flag = new Main.FlagButton(pos, "unlocked", i+1);
 			}
-			
 
 			me.game.add(level_flag, 20);
 			this.level_buttons.push(level_flag);

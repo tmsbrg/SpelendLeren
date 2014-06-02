@@ -5,7 +5,7 @@
   <property name="1target" value="starthoeve"/>
   <property name="2action" value="takeover"/>
   <property name="2target" value="klooster"/>
-  <property name="difficulty" value="1"/>
+  <property name="difficulty" value="0"/>
   <property name="music" value="awesome2"/>
   <property name="victory" value="conquer_all"/>
  </properties>
@@ -164,11 +164,11 @@
   <object gid="7" x="2" y="761"/>
   <object gid="7" x="40" y="678"/>
   <object gid="7" x="74" y="158"/>
-  <object gid="7" x="518" y="791"/>
+  <object gid="7" x="357" y="763"/>
   <object gid="8" x="273" y="700"/>
   <object gid="8" x="143" y="653"/>
   <object gid="8" x="392" y="240"/>
-  <object gid="8" x="537" y="725"/>
+  <object gid="8" x="540" y="735"/>
   <object gid="8" x="955" y="738"/>
   <object gid="5" x="917" y="761"/>
   <object gid="6" x="857" y="731"/>
@@ -178,7 +178,7 @@
   <object gid="32" x="123" y="743"/>
   <object gid="32" x="94" y="716"/>
   <object gid="32" x="129" y="704"/>
-  <object gid="32" x="542" y="742"/>
+  <object gid="32" x="586" y="755"/>
   <object gid="32" x="899" y="757"/>
   <object gid="31" x="961" y="754"/>
   <object gid="28" x="848" y="740"/>
@@ -198,7 +198,7 @@
   <object gid="32" x="387" y="319"/>
   <object gid="32" x="53" y="767"/>
   <object gid="32" x="152" y="762"/>
-  <object gid="32" x="497" y="752"/>
+  <object gid="32" x="527" y="758"/>
   <object gid="28" x="264" y="731"/>
   <object gid="32" x="251" y="663"/>
   <object gid="28" x="-17" y="756"/>
@@ -211,7 +211,7 @@
   <object gid="32" x="826" y="609"/>
   <object gid="27" x="485" y="443"/>
   <object gid="27" x="869" y="766"/>
-  <object gid="27" x="558" y="755"/>
+  <object gid="27" x="492" y="754"/>
   <object gid="26" x="246" y="761"/>
   <object gid="26" x="380" y="342"/>
   <object gid="24" x="133" y="781"/>
@@ -219,7 +219,7 @@
   <object gid="25" x="108" y="577"/>
   <object gid="27" x="20" y="555"/>
   <object gid="24" x="81" y="544"/>
-  <object gid="24" x="578" y="728"/>
+  <object gid="24" x="612" y="747"/>
   <object gid="22" x="73" y="522"/>
   <object gid="5" x="-33" y="450"/>
   <object gid="5" x="-53" y="379"/>

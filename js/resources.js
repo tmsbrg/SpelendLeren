@@ -212,6 +212,16 @@ resources = [
       src: "data/img/scenery/trees.png"},
      {name: "willows", type: "image",
       src: "data/img/scenery/willows.png"},
+	   {name: "mud", type: "image",
+      src: "data/img/scenery/mud.png"},
+	   {name: "fence", type: "image",
+      src: "data/img/scenery/fence.png"},
+	   {name: "smallbushes", type: "image",
+      src: "data/img/scenery/smallbushes.png"},
+	     {name: "flowers", type: "image",
+      src: "data/img/scenery/flowers.png"},
+	       {name: "leafs", type: "image",
+      src: "data/img/scenery/leafs.png"},
 	
 	/* Maps. 
 	 * @example

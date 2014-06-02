@@ -389,11 +389,8 @@ Main.Building = Main.Button.extend(
     {
         
 		me.audio.play("fight");
-		var attackPower = this.calculatePower(owner, units, buffLevel,
-                                              "attack");
-        var defensePower = this.calculatePower(this.owner, this.units,
-                                               this.getBuffLevel(),
-                                               "defense");
+		var attackPower = this.calculateAttackPower(units, buffLevel);
+        var defensePower = this.calculateDefencePower();
 		
         var result = defensePower - attackPower;
 		// TODO: needs to be checked by Thomas
@@ -424,8 +421,11 @@ Main.Building = Main.Button.extend(
     // returns the power of all units in the army combined,
     // attackOrDefense is a string which can be either "attack" or "defense"
     // and determines whether the units are defending or attacking
-    calculatePower: function(owner, units, buffLevel, attackOrDefense)
+    calculatePower: function(units, buffLevel, attackOrDefense)
     {
+        units = (units != null) ? units : this.units;
+        buffLevel = (buffLevel != null) ? buffLevel : this.getBuffLevel();
+
         var power = 0;
         var keys = units.keys();
         for (var i=0; i<keys.length; i++)
@@ -437,6 +437,16 @@ Main.Building = Main.Button.extend(
             }
         }
         return power * buffLevel;
+    },
+
+    calculateAttackPower: function(units, buffLevel)
+    {
+        return this.calculatePower(units, buffLevel, "attack");
+    },
+
+    calculateDefencePower: function(units, buffLevel)
+    {
+        return this.calculatePower(units, buffLevel, "defense");
     },
     
     // removes units from the given units dictionary based on its original
@@ -456,7 +466,6 @@ Main.Building = Main.Button.extend(
 				array[j] = Math.ceil(array[j] * ratio);
 				
 				var killedunits = oldstrength - newstrength;
-				//console.log("newstrength: "+newstrength, "killedunits: "+killedunits, "oldstrength: "+oldstrength);
 				if (killedunits > 0) {
 					if (this.owner == "user" || owner == "user") {
 						Main.levelScreen.addScore(keys[i], battleOutcome, killedunits);

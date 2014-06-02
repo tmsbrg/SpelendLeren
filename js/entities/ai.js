@@ -1,19 +1,19 @@
 Main.AI = Object.extend(
 {
-    difficulty: 0, // difficulty this AI has, see js/constants.js
 
-    currentTarget: null, // reference to current target building
-    counter: 0, // amount of miliseconds since last sending of units
     timeUntilNextWave: 8000, // amount of miliseconds until sending the next
                              // wave of armies
     alwaysInactive: false, // if true, always make the AI inactive
-    active: true, // whether this AI is doing stuff
     attacking: false, // whether this AI is currently attacking
-    wavesSent: 0, // how many waves have been sent to the current target
     wavesToSend: 2, // how many waves of attacks will be sent to any target
     targetLock: false, // whether the AI locks onto a target until it has
                        // taken it over
 
+    active: true, // whether this AI is doing stuff
+    wavesSent: 0, // how many waves have been sent to the current target
+
+    currentTarget: null, // reference to current target building
+    counter: 0, // amount of miliseconds since last sending of units
     player: null, // reference to the player for this AI
 
     init: function(difficulty)
@@ -78,23 +78,28 @@ Main.AI = Object.extend(
     // manages sending waves of attacks over time
     sendWaves: function()
     {
-        if (this.attacking) {
-            this.counter += Main.timer.dt;
-            if (this.counter >= this.timeUntilNextWave) {
+        this.counter += Main.timer.dt;
+        if (this.counter >= this.timeUntilNextWave) {
+            this.counter = 0;
+
+            if (this.getTotalStrength() >=
+                       this.currentTarget.calculateDefencePower()) {
                 this.attack(this.currentTarget);
-                this.counter = 0;
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
-                    this.wavesSent = 0;
-                    if (!this.targetLock) {
-                        this.currentTarget = null;
-                    }
-                    this.attacking = false;
+                    this.stopAttack();
                 }
+            } else {
+                this.stopAttack();
             }
-        } else if (this.getTotalStrength() >=
-                   this.currentTarget.currentCapacity()) {
-            this.attacking = true;
+        }
+    },
+
+    stopAttack: function()
+    {
+        this.wavesSent = 0;
+        if (!this.targetLock) {
+            this.currentTarget = null;
         }
     },
 
@@ -139,13 +144,13 @@ Main.AI = Object.extend(
         }
     },
 
-    // returns total capacity of all owned buildings
+    // returns total attack power of all owned buildings
     getTotalStrength: function()
     {
         var strength = 0;
         for (var i=0; i < this.player.buildings.length; i++)
         {
-            strength += this.player.buildings[i].currentCapacity();
+            strength += this.player.buildings[i].calculateAttackPower();
         }
         return strength;
     },

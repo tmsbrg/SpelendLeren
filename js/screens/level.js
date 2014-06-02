@@ -42,6 +42,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         levelname = String(levelname);
         this.name = levelname;
+		
+		console.log(Number(this.name.slice(-1)))
 		var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
@@ -542,7 +544,13 @@ Main.LevelScreen = me.ScreenObject.extend(
             // ignore error if there is no music for this level
         }
         this.pause();
-
+		console.log("lvevlnumber "+Number(this.name.slice(-1)), "playerlevel "+Main.playerlevel, "levelname " +this.name);
+		if (userWon == true && Main.playerlevel <= Number(this.name.slice(-1))) {
+			Main.playerlevel += 1;
+			console.log("playerlevel ", Main.playerlevel);
+		}
+			
+			
         var endpopup = new Main.Endpopup(userWon, this.scoreData, this.name);
 		me.game.add(endpopup, 200);
     },

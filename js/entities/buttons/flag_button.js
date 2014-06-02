@@ -31,8 +31,6 @@ Main.FlagButton = Main.Button.extend(
 	// initialize the textobject
 	initTextObject: function(pos, levelnumber)
 	{
-		
-		console.log(this.getTextWidth(levelnumber));
 		var offsetX = (this.imageObject.width * 0.5) - (this.getTextWidth(""+levelnumber) * 0.5);
 		var offsetY = (this.imageObject.height * 0.5) - (this.font_size );
 		

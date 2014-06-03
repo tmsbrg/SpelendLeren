@@ -8,6 +8,10 @@ Constants =
     playerIsAI: false, // if true, player is played by the AI (for testing) 
 	disableAI: false, // disable enemy AIs
 
+    startMuted: false, // whether the game starts muted
+
+    allLevelsPlayable: false, // if true, all levels start playable
+
     players: [
         "neutral",
         "user",

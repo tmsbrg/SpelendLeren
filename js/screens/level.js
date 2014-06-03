@@ -546,12 +546,10 @@ Main.LevelScreen = me.ScreenObject.extend(
             // ignore error if there is no music for this level
         }
         this.pause();
-		console.log("lvevlnumber "+Number(this.name.slice(-1)), "playerlevel "+Main.playerlevel, "levelname " +this.name);
-		if (userWon == true && Main.playerlevel <= Number(this.name.slice(-1))) {
+		if (userWon == true && !Constants.allLevelsPlayable && 
+            Main.playerlevel <= Number(this.name.slice(-1))) {
 			Main.playerlevel += 1;
 			me.save.playerlevel = Main.playerlevel;
-			console.log(me.save.playerlevel);
-			//console.log("playerlevel ", Main.playerlevel);
 		}
 			
 			

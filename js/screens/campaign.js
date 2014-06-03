@@ -13,12 +13,10 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	onResetEvent: function()
 	{
 		me.audio.play("campaign", true);
-		
+
 		this.territories = new Main.Dictionary();;
-		
 		this.init_backgrounds();
 		this.init_territories();
-		//console.log("territories: "+this.territories.getValue("friesland").visible);
 		this.init_flags();
 		
 		this.init_button();
@@ -49,9 +47,9 @@ Main.CampaignScreen = me.ScreenObject.extend(
 		for(var i = 0; i < MapData.length; i++)
 		{
 			var pos = new me.Vector2d(MapData[i].x, MapData[i].y);
-			
-			var level = "level"+(i+1)
-			if (i+1 < Main.playerlevel) {
+			var level = (Constants.allLevelsPlayable) ? Infinity :
+                                                        Main.playerlevel;
+			if (i+1 < level) {
 				
 				var level_flag = new Main.FlagButton(pos, "conquered", i+1);
 				
@@ -63,9 +61,9 @@ Main.CampaignScreen = me.ScreenObject.extend(
 					this.lose(MapData[i].lost);
 				}
 					
-			} else if (i+1 > Main.playerlevel) {
+			} else if (i+1 > level) {
 				var level_flag = new Main.FlagButton(pos, "locked", i+1);
-			} else if (i+1 == Main.playerlevel) {
+			} else if (i+1 == level) {
 				var level_flag = new Main.FlagButton(pos, "unlocked", i+1);
 			}
 

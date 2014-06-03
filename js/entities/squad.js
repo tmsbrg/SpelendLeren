@@ -47,24 +47,22 @@ Main.Squad = me.AnimationSheet.extend(
 		this.countText = new Main.TextObject(this.startPoint.x + this.textOffset.x, this.startPoint.y - this.textOffset.y, units.getValue(key)[0], Main.font );
 		me.game.add(this.countText, 60);
 		
-		
-		
 		this.parent(this.startPoint.x , this.startPoint.y, image, GetUnitSize(key));
-		var animationArray = this.getAnimationArray(image.width, GetUnitSize(key));
-		console.log(animationArray);
+		var length = image.width / GetUnitSize(key);
+		var animationArray = this.getAnimationArray(length);
 		this.addAnimation("walk", animationArray, UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
 
         this.halo = new Main.Image(0, 0, "halo");
 	},
-	
-	getAnimationArray: function(width, unitsSize)
+	// returns an array enumerating the values from 0 to (n - 1) 
+	getAnimationArray: function(n)
 	{
-		var length =  width / unitsSize;
+		
 		var array = [];
 		
-		for (var i = 0; i < length; i++)
+		for (var i = 0; i < n; i++)
 		{
 			array.push(i)
 		}

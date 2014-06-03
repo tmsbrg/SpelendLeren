@@ -28,18 +28,18 @@ var Main =
 				me.plugin.register.defer(debugPanel, "debug");
 			});
 		}
+		// Initialize the audio.
+		me.audio.init("ogg,mp3");
 
-        // Initialize the audio.
-        me.audio.init("ogg,mp3");
+		// Set a callback to run when loading is complete.
+		me.loader.onload = this.loaded.bind(this);
+	 
+		// Load the resources.
+		me.loader.preload(resources);
 
-        // Set a callback to run when loading is complete.
-        me.loader.onload = this.loaded.bind(this);
-     
-        // Load the resources.
-        me.loader.preload(resources);
-
-        // Initialize melonJS and display a loading screen.
-        me.state.change(me.state.LOADING);
+		// Initialize melonJS and display a loading screen.
+		me.state.change(me.state.LOADING);
+		
     },
 
     // Run on game resources loaded.

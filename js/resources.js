@@ -86,14 +86,14 @@ resources = [
      src: "data/img/buildings/church/user_church.png"},
 	{name: "comp1_church", type: "image",
      src: "data/img/buildings/church/comp1_church.png"},
-	 
+	
 	{name: "neutral_castle", type: "image",
      src: "data/img/buildings/castle/neutral_castle.png"},
 	{name: "user_castle", type: "image",
      src: "data/img/buildings/castle/user_castle.png"},
 	{name: "comp1_castle", type: "image",
      src: "data/img/buildings/castle/comp1_castle.png"},
-
+	
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
 	{name: "enemy_building_selection", type: "image",
@@ -182,7 +182,7 @@ resources = [
      src: "data/img/armies/animations/monk/comp1_monk_downleft_0.png"},
 	{name: "comp1_monk_downright_0", type: "image",
      src: "data/img/armies/animations/monk/comp1_monk_downright_0.png"},
-	 
+	
 	{name: "user_mounted_knight_topleft_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/user_mounted_knight_topleft_0.png"},
 	{name: "user_mounted_knight_topright_0", type: "image",
@@ -200,7 +200,7 @@ resources = [
      src: "data/img/armies/animations/mounted_knight/comp1_mounted_knight_downleft_0.png"},
 	{name: "comp1_mounted_knight_downright_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/comp1_mounted_knight_downright_0.png"},
-
+	
     {name: "battle_animation", type: "image",
      src: "data/img/armies/animations/battle_animation.png"},
 	 
@@ -236,7 +236,7 @@ resources = [
 
     {name: "halo", type: "image",
      src: "data/img/armies/halo.png"},
-
+	
     // Scenery tilesets
 	{name: "trees", type: "image",
      src: "data/img/scenery/trees.png"},
@@ -258,19 +258,19 @@ resources = [
      src: "data/img/scenery/smalltrees.png"},
     {name: "stones", type: "image",
       src: "data/img/scenery/stones.png"},
-     {name: "trees", type: "image",
+    {name: "trees", type: "image",
       src: "data/img/scenery/trees.png"},
-     {name: "willows", type: "image",
+    {name: "willows", type: "image",
       src: "data/img/scenery/willows.png"},
-	   {name: "mud", type: "image",
+	{name: "mud", type: "image",
       src: "data/img/scenery/mud.png"},
-	   {name: "fence", type: "image",
+	{name: "fence", type: "image",
       src: "data/img/scenery/fence.png"},
-	   {name: "smallbushes", type: "image",
+	{name: "smallbushes", type: "image",
       src: "data/img/scenery/smallbushes.png"},
-	     {name: "flowers", type: "image",
+	{name: "flowers", type: "image",
       src: "data/img/scenery/flowers.png"},
-	       {name: "leafs", type: "image",
+	{name: "leafs", type: "image",
       src: "data/img/scenery/leafs.png"},
 	
 	/* Maps. 
@@ -278,6 +278,7 @@ resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
+	 
     {name: "level1", type: "tmx", src: "data/level/1.tmx"},
 	{name: "level2", type: "tmx", src: "data/level/2.tmx"},
 	{name: "level3", type: "tmx", src: "data/level/3.tmx"},

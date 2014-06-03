@@ -43,7 +43,6 @@ Main.LevelScreen = me.ScreenObject.extend(
         levelname = String(levelname);
         this.name = levelname;
 		
-		console.log(Number(this.name.slice(-1)))
 		var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
@@ -264,6 +263,9 @@ Main.LevelScreen = me.ScreenObject.extend(
                                          (capacity != null) ? Number(capacity) :
                                                               null,
                                         this.getAttribute(obj, "name"));
+				if (type == "castle") {
+					console.log("a");
+				}
                 this.createBuildingTriggers(r[ri], obj);
                 this.add(r[ri], onBackground);
             } else {

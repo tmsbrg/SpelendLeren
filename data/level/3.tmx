@@ -23,7 +23,7 @@
   </object>
   <object type="comp1" gid="2" x="84" y="695">
    <properties>
-    <property name="capacity" value="25"/>
+    <property name="capacity" value="0"/>
    </properties>
   </object>
   <object type="neutral" gid="1" x="617" y="127">
@@ -46,9 +46,9 @@
     <property name="capacity" value="0"/>
    </properties>
   </object>
-  <object type="neutral" gid="1" x="450" y="639">
+  <object type="user" gid="1" x="450" y="639">
    <properties>
-    <property name="capacity" value="9"/>
+    <property name="capacity" value="50"/>
    </properties>
   </object>
   <object type="neutral" gid="1" x="162" y="447">

@@ -33,7 +33,7 @@ Main.Squad = me.AnimationSheet.extend(
 		var centerTargetY = target.pos.y + this.target.halfsize - this.halfUnitWidth;
 		*/
 		
-		this.targetPoint = new me.Vector2d(target.pos.x + target.doorLocation.x - this.halfUnitWidth, target.pos.y + target.doorLocation.y- this.halfUnitWidth);
+		this.targetPoint = new me.Vector2d(target.pos.x + target.doorLocation.x - this.halfUnitWidth, target.pos.y + target.doorLocation.y - this.halfUnitWidth);
 		
 		this.speed = speed;
 		
@@ -47,16 +47,30 @@ Main.Squad = me.AnimationSheet.extend(
 		this.countText = new Main.TextObject(this.startPoint.x + this.textOffset.x, this.startPoint.y - this.textOffset.y, units.getValue(key)[0], Main.font );
 		me.game.add(this.countText, 60);
 		
-		this.parent(this.startPoint.x , this.startPoint.y, image, 64);
 		
-		this.addAnimation("walk", [0,1,2,3,4,5], UnitConfig(key, 0,
+		
+		this.parent(this.startPoint.x , this.startPoint.y, image, GetUnitSize(key));
+		var animationArray = this.getAnimationArray(image.width, GetUnitSize(key));
+		console.log(animationArray);
+		this.addAnimation("walk", animationArray, UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
 
         this.halo = new Main.Image(0, 0, "halo");
 	},
 	
-	
+	getAnimationArray: function(width, unitsSize)
+	{
+		var length =  width / unitsSize;
+		var array = [];
+		
+		for (var i = 0; i < length; i++)
+		{
+			array.push(i)
+		}
+		
+		return array;
+	},
 	
 	// returns the name of the direction the suqad is curretnly moving in
 	getDirectionName: function(dir)

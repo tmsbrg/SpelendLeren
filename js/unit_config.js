@@ -95,16 +95,31 @@ _UnitConfig =
             buffLevel: 2.0,
         },
     ],
-
-
+	mounted_knight:
+    [
+        {
+            attack: 36,
+            defense: 22,
+            speed: 10,
+			animationSpeed: 100,
+           
+        },
+        {
+            attack: 60,
+            defense: 56,
+            speed: 19,
+            
+        },
+    ],
 }
 
- // TODO: buildings should have their own config objects
+ // TODO: buildings should have their owen config objects
 unitForBuilding =
 {
 	farm: "farmer",
 	homestead: "knight",
 	church: "monk",
+	castle: "mounted_knight"
 }
 
 buildingDoorLocation =
@@ -112,6 +127,7 @@ buildingDoorLocation =
 	farm: [44, 47],
 	homestead: [35, 108],
 	church: [71, 74],
+	castle: [155, 202],
 }
 
 buildingSizes =
@@ -119,6 +135,7 @@ buildingSizes =
 	farm: 64,
 	homestead: 128,
 	church: 90,
+	castle: 256,
 }
 
 unitSizes =
@@ -126,6 +143,7 @@ unitSizes =
 	farmer: 64,
 	knight: 64,
 	monk: 64,
+	mounted_knight: 150,
 }
 
 buildingSpawnTime =
@@ -133,4 +151,5 @@ buildingSpawnTime =
 	farm: 1500,
 	homestead: 3000,
 	church: 6000,
+	castle: 4500,
 }

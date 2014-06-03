@@ -304,10 +304,13 @@ Main.Building = Main.Button.extend(
 		for(var j = 0; j < this.units.getValue(key).length; j++)
 		{
 			var amount = 0;
-			if(key == "knight" || key == "farmer")
+			
+			if ( key != "monk" ) {
 				amount = Math.ceil(this.units.getValue(key)[j] * 0.5);
-			else
+				
+			} else {
 				amount = (this.units.getValue(key)[j] > 0) ? 1 : 0;
+			}
 				
 			dictionary.getValue(key)[j] = amount;
 			if(amount !== 0)
@@ -452,7 +455,7 @@ Main.Building = Main.Button.extend(
     killUnits: function(owner, units, originalPower, finalPower, battleOutcome)
     {
         var ratio = finalPower / originalPower;
-		//console.log(ratio);
+		
         var keys = units.keys();
         for (var i=0; i<keys.length; i++)
         {

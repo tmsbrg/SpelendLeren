@@ -30,13 +30,12 @@ var Main =
 		}
 		// Initialize the audio.
 		me.audio.init("ogg,mp3");
-
 		// Set a callback to run when loading is complete.
 		me.loader.onload = this.loaded.bind(this);
-	 
 		// Load the resources.
 		me.loader.preload(resources);
-
+		this.loadingScreen = new Main.LoadingScreen();
+		me.state.set(me.state.LOADING, this.loadingScreen);
 		// Initialize melonJS and display a loading screen.
 		me.state.change(me.state.LOADING);
 		
@@ -66,7 +65,6 @@ var Main =
         me.state.set(me.state.MENU, this.menuScreen);
 		me.state.set(me.state.READY, this.campaignScreen);
 		me.state.set(me.state.PLAY, this.levelScreen);
-
         // me.pool.register("farm", 
 
         // warning, hack: getting mouse down checking to work without using
@@ -81,6 +79,5 @@ var Main =
 		
         // Start the game.
         me.state.change(me.state.MENU);
-		
     },
 };

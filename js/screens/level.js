@@ -60,9 +60,6 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
 		
-		this.scoreData = new Main.ScoreData();
-		
-
         // reinitialize for restart
         this.currentAction = 0; 
         this.paused = false;
@@ -80,6 +77,10 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
 
         this.backLayer.sort();
+
+        var buildingTypes = GetUnits();
+		this.scoreData = new Main.ScoreData(buildingTypes);
+
     },
 	
 	addScore: function(unitType, category, amount)

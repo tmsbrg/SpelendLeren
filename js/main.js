@@ -6,7 +6,7 @@ var Main =
 	menuScreen: null, // reference to the menuScreen
     font: null, // standard game font
 	campaignScreen: null, // reference to the campaignScreen
-	playerlevel: 10, // holds the progress of the player
+	playerlevel: 1, // holds the progress of the player
 
 	// Run on page load.
     onload: function () 
@@ -54,7 +54,7 @@ var Main =
 		me.save.add({playerlevel : this.playerlevel});
 		console.log("saved playerlevel: "+me.save.playerlevel);
 		
-		this.playerlevel =  9;//me.save.playerlevel;
+		this.playerlevel = me.save.playerlevel;
 		
         this.font = new me.BitmapFont("luxi_font", {x:20,y:38},
                                       Constants.textScale);

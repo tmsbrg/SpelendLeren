@@ -3,20 +3,13 @@
 */
 Main.ScoreData = Object.extend(
 {
-	spawned_farmer: 0,
-	lost_farmer: 0,
-	killed_farmer: 0,
-	
-	spawned_knight: 0,
-	lost_knight: 0,
-	killed_knight: 0,
-	
-	spawned_monk: 0,
-	lost_monk: 0,
-	killed_monk: 0,
-	
-	init: function()
+	init: function(units)
 	{
+        for (var i=0; i<units.length; i++) {
+            this["spawned_" + units[i]] = 0;
+            this["lost_" + units[i]] = 0;
+            this["killed_" + units[i]] = 0;
+        }
 		
 	},
 	

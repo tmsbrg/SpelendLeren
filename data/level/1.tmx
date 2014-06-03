@@ -10,58 +10,58 @@
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">
-  <image source="../../../SpelendLeren-master/data/img/scenery/pinktrees.png" width="126" height="116"/>
+  <image source="../img/scenery/pinktrees.png" width="126" height="116"/>
  </tileset>
  <tileset firstgid="5" name="Trees" tilewidth="88" tileheight="95">
-  <image source="../../../SpelendLeren-master/data/img/scenery/trees.png" width="176" height="190"/>
+  <image source="../img/scenery/trees.png" width="176" height="190"/>
  </tileset>
  <tileset firstgid="9" name="stones" tilewidth="65" tileheight="40">
-  <image source="../../../SpelendLeren-master/data/img/scenery/stones.png" width="195" height="120"/>
+  <image source="../img/scenery/stones.png" width="195" height="120"/>
  </tileset>
  <tileset firstgid="18" name="field1" tilewidth="242" tileheight="47">
-  <image source="../../../SpelendLeren-master/data/img/scenery/field1.png" width="242" height="47"/>
+  <image source="../img/scenery/field1.png" width="242" height="47"/>
  </tileset>
  <tileset firstgid="19" name="deadtrees" tilewidth="72" tileheight="66">
-  <image source="../../../SpelendLeren-master/data/img/scenery/deadtrees.png" width="144" height="66"/>
+  <image source="../img/scenery/deadtrees.png" width="144" height="66"/>
  </tileset>
  <tileset firstgid="21" name="willows" tilewidth="81" tileheight="74">
-  <image source="../../../SpelendLeren-master/data/img/scenery/willows.png" width="243" height="74"/>
+  <image source="../img/scenery/willows.png" width="243" height="74"/>
  </tileset>
  <tileset firstgid="24" name="bushes" tilewidth="56" tileheight="63">
-  <image source="../../../SpelendLeren-master/data/img/scenery/bushes.png" width="112" height="126"/>
+  <image source="../img/scenery/bushes.png" width="112" height="126"/>
  </tileset>
  <tileset firstgid="28" name="smalltrees" tilewidth="55" tileheight="55">
-  <image source="../../../SpelendLeren-master/data/img/scenery/smalltrees.png" width="165" height="110"/>
+  <image source="../img/scenery/smalltrees.png" width="165" height="110"/>
  </tileset>
  <tileset firstgid="34" name="scarecrow" tilewidth="52" tileheight="44">
-  <image source="../../../SpelendLeren-master/data/img/scenery/scarecrow.png" width="52" height="44"/>
+  <image source="../img/scenery/scarecrow.png" width="52" height="44"/>
  </tileset>
  <tileset firstgid="35" name="farm" tilewidth="64" tileheight="64">
-  <image source="../../../SpelendLeren-master/data/img/buildings/farm/neutral_farm.png" width="64" height="64"/>
+  <image source="../img/buildings/farm/neutral_farm.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="36" name="homestead" tilewidth="128" tileheight="128">
-  <image source="../../../SpelendLeren-master/data/img/buildings/homestead/neutral_homestead.png" width="128" height="128"/>
+  <image source="../img/buildings/homestead/neutral_homestead.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="37" name="church" tilewidth="90" tileheight="90">
-  <image source="../../../SpelendLeren-master/data/img/buildings/church/neutral_church.png" width="90" height="90"/>
+  <image source="../img/buildings/church/neutral_church.png" width="90" height="90"/>
  </tileset>
  <tileset firstgid="38" name="field2" tilewidth="287" tileheight="67">
-  <image source="../../../SpelendLeren-master/data/img/scenery/field2.png" width="287" height="67"/>
+  <image source="../img/scenery/field2.png" width="287" height="67"/>
  </tileset>
  <tileset firstgid="39" name="smallbushes" tilewidth="40" tileheight="24">
-  <image source="../../../SpelendLeren-master/data/img/scenery/smallbushes.png" width="80" height="48"/>
+  <image source="../img/scenery/smallbushes.png" width="80" height="48"/>
  </tileset>
  <tileset firstgid="43" name="flowers" tilewidth="284" tileheight="71">
-  <image source="../../../SpelendLeren-master/data/img/scenery/flowers.png" width="552" height="142"/>
+  <image source="../img/scenery/flowers.png" width="552" height="142"/>
  </tileset>
  <tileset firstgid="45" name="mud" tilewidth="364" tileheight="71">
-  <image source="../../../SpelendLeren-master/data/img/scenery/mud.png" width="728" height="142"/>
+  <image source="../img/scenery/mud.png" width="728" height="142"/>
  </tileset>
  <tileset firstgid="49" name="leafs" tilewidth="423" tileheight="71">
-  <image source="../../../SpelendLeren-master/data/img/scenery/leafs.png" width="846" height="284"/>
+  <image source="../img/scenery/leafs.png" width="846" height="284"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../../../SpelendLeren-master/data/img/background/bg_test.png"/>
+  <image source="../img/background/bg_level_01.png"/>
  </imagelayer>
  <objectgroup name="background_scenery" width="32" height="24">
   <object gid="13" x="251" y="589"/>

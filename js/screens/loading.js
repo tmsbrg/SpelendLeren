@@ -26,7 +26,6 @@ Main.LoadingScreen =  me.ScreenObject.extend(
 	
 	onBackgroundLoad: function()
 	{
-		console.log("execute");
 		this.background = me.loader.getImage("loading_screen");
 	},
 	

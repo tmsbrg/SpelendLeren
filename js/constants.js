@@ -10,7 +10,7 @@ Constants =
 
     startMuted: false, // whether the game starts muted
 
-    allLevelsPlayable: true, // if true, all levels start playable
+    allLevelsPlayable: false, // if true, all levels start playable
 
     players: [
         "neutral",
@@ -24,7 +24,7 @@ Constants =
         "support",
     ],
 
-    textScale : 0.6,
+    textScale : 0.7,
 
     difficulties: [
         {

@@ -90,19 +90,15 @@ Main.Building = Main.Button.extend(
 	addUnitUI: function(type)
 	{
         // temporary way of doing the position, this should really be dynamic
-        var xpos;
-        switch (type)
+        var xpos = 12;
+        var units = GetUnits();
+        for (var i=0; i<units.length; i++)
         {
-            case "farmer":
-                xpos = 12;
+            if (type == units[i]) {
                 break;
-            case "knight":
-                xpos = 57;
-                break;
-            case "monk":
-                xpos = 102;
-                break;
+            }
         }
+        xpos += 55 * i;
         if (this.unitGUI.getValue(type) == null) {
             
             var icon = new Main.Image(xpos, -35, type+"_icon", 20, 20);

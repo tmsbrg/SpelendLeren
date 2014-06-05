@@ -101,7 +101,7 @@ _UnitConfig =
             attack: 36,
             defense: 22,
             speed: 10,
-			animationSpeed: 60,
+			animationSpeed: 40,
            
         },
         {
@@ -143,7 +143,7 @@ unitSizes =
 	farmer: 64,
 	knight: 64,
 	monk: 64,
-	mounted_knight: 150,
+	mounted_knight: 80,
 }
 
 buildingSpawnTime =

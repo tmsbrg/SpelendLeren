@@ -6,12 +6,12 @@ var Main =
 	menuScreen: null, // reference to the menuScreen
     font: null, // standard game font
 	campaignScreen: null, // reference to the campaignScreen
-	playerlevel: 10, // holds the progress of the player
+	playerlevel: 1, // holds the progress of the player
 
 	// Run on page load.
     onload: function () 
     {
-        // Initialize the video.
+		// Initialize the video.
         if (!me.video.init("screen", Constants.screenWidth,
                                      Constants.screenHeight,
                                      false,
@@ -38,7 +38,6 @@ var Main =
 		me.state.set(me.state.LOADING, this.loadingScreen);
 		// Initialize melonJS and display a loading screen.
 		me.state.change(me.state.LOADING);
-		
     },
 
     // Run on game resources loaded.
@@ -48,8 +47,9 @@ var Main =
         // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, Constants.textScale);
         // this.font = new me.BitmapFont("ugly_font", 32,
                                       // Constants.textScale);
-		
-		//me.save.delete("playerlevel");
+									  
+		//me.save.delete("playerlevel"); // use to reset the playerlevel
+									  
 		me.save.add({playerlevel : this.playerlevel});
 		console.log("saved playerlevel: "+me.save.playerlevel);
 		

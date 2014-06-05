@@ -5,7 +5,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     name: "", // string containing name of the level
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
-    interface: null, // LevelInterface
+   
     players: null, // dictionary containing all players
     actions: null, // array of action objects containing what should happen
                    // at the start of the level
@@ -521,7 +521,9 @@ Main.LevelScreen = me.ScreenObject.extend(
     // shows popup with given name
     showPopup: function(name)
     {
-        me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
+       //buttonArray{[image, onClick, onhover, onhoverout], [image, onClick, onhover, onhoverout]}
+	   var popupButton = new Main.Dictionary();
+		me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
                     200);
         this.popupShown = true;
         this.pause();

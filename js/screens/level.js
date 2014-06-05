@@ -544,10 +544,18 @@ Main.LevelScreen = me.ScreenObject.extend(
     // shows popup with given name
     showPopup: function(name)
     {
-       //buttonArray{[image, onClick, onhover, onhoverout], [image, onClick, onhover, onhoverout]}
-	   var popupButton = new Main.Dictionary();
-		me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
-                    200);
+        //buttonArray{[image, onClick, onhover, onhoverout], [image, onClick, onhover, onhoverout]}
+		
+	    var buttonDictionary = new Main.Dictionary();
+	    buttonDictionary.setValue("image", "popup_ok");
+	    buttonDictionary.setValue("onClick", this.onClosePopup.bind(this));
+		
+	    var buttonArray = [];
+		buttonArray.push(buttonDictionary);
+		
+	    var popupButton = new Main.Dictionary();
+		
+		me.game.add(new Main.Popups("popup_" + name, buttonArray), 200);
         this.popupShown = true;
         this.pause();
     },
@@ -555,7 +563,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called by popup when it is closed
     onClosePopup: function()
     {
-        this.popupShown = false;
+        
+		this.popupShown = false;
         this.unPause();
     },
 

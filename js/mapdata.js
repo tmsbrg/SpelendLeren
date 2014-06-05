@@ -1,6 +1,5 @@
 MapData = 
 [
-	//TODO: 
 	{ x: 478, y: 177, },
 	{ x: 508, y: 135,  },
 	{ x: 555, y: 122, conquered: ["friesland"], lost :["schwaben", "beieren"] },
@@ -8,8 +7,9 @@ MapData =
 	{ x: 611, y: 347,  },
 	{ x: 600, y: 407,  },
 	{ x: 646, y: 389,  },
-	{ x: 646, y: 289,  },
-	
+	{ x: 745, y: 375,  conquered: ["beieren"]},
+	{ x: 440, y: 625,  conquered: ["septimanie"]},
+	{ x: 395, y: 510,  },
 ]
 
 Territories =

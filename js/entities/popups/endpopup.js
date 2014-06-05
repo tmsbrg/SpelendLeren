@@ -4,8 +4,12 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	retryButton: null, // placeholder for the retry button
 	campaignButton: null, // placeholder for the campaing button
 	levelname: null, // name of the current level
-	unitTypes: [], // Array with all the different unittypes
-	categories: [], // Array with all the categories
+    categories:  ["spawned", "lost", "killed"],
+    statY: 220, // y position for unit stats
+    statYSpace: 100, // y space between each unit's stats
+    categoryYSpace: 21, // y space between each category(spawned, killed, etc.)
+    buttonspace: 240, // pixels between the forward and retry buttons
+		
 	
 	init: function(userWon, scoreData, levelname)
 	{	
@@ -13,12 +17,12 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		
 		this.initBackground(userWon);
 		this.initButtons();
+		this.initImages(scoreData);
 		this.initTextobjects(scoreData);
 		
 		this.parent(0, 0, [this.imageObject, this.retryButton, this.campaignButton]);
 	},
 	
-	// TODO: retry, backt to campaign
 	initBackground: function(userWon)
 	{
 		var img = "popup_" + (userWon ? "win" : "lose");
@@ -27,17 +31,13 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	
 	initButtons: function()
 	{
-		var x = (0.5 * Constants.screenWidth) - (0.5 * this.imageObject.width);
-        var y = (0.5 * Constants.screenHeight) - (0.5 * this.imageObject.height);
-		var buttonspace = 240;
+		var x = 0.45 * Constants.screenWidth;
+        var y = 0.81 * Constants.screenHeight;
 		
-		
-		var campaignButtonImage = new Main.Image(x+ this.imageObject.width * 0.6,
-												y + this.imageObject.height * 0.8,
-												"popup_campaign");
-		var retryButtonImage = new Main.Image((x - campaignButtonImage.width - buttonspace) + this.imageObject.width * 0.6,
-												y + this.imageObject.height * 0.8,
+		var retryButtonImage = new Main.Image(x - this.buttonspace, y,
 											"popup_retry");
+		var campaignButtonImage = new Main.Image(x + this.buttonspace, y,
+												"popup_campaign");
 		
 		campaignButtonImage.baseImage = "popup_campaign";
 		retryButtonImage.baseImage = "popup_retry";
@@ -72,23 +72,58 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		me.state.change(me.state.READY); 
 		me.game.remove(this);
 	},
+
+    initImages: function(scoreData)
+    {
+        for (var i=0; i<scoreData.units.length; i++)
+        {
+            var size = GetUnitSize(scoreData.units[i]);
+            var img = new Main.TileImage(320, 
+                                         (this.statY + (this.statYSpace*i)),
+                                         "user_"+scoreData.units[i]+
+                                         "_downright_0",
+                                         size, size,
+                                         0);
+            me.game.add(img, 250);
+        }
+    },
 	
 	initTextobjects: function(scoreData)
 	{
-		this.unitTypes = GetUnits();
-		
-		this.categories = ["spawned", "lost", "killed"];
-		
-		for(var i = 0; i < this.unitTypes.length; i++)
+		for(var i = 0; i < scoreData.units.length; i++)
 		{
 			for(var j = 0; j < this.categories.length; j++)
 			{
-				//console.log(this.unitTypes[i] + " : "+ this.categories[j]+ " " + scoreData.getScore(this.unitTypes[i], this.categories[j]));
-				var text = scoreData.getScore(this.unitTypes[i], this.categories[j]);
-				var textObject = new Main.TextObject(500, (300 + ((100*i) +(20*j))), text, Main.font);
+                var pretext = this.getDutchTextForCategory(this.categories[j])
+                              + ": ";
+				var number = scoreData.getScore(scoreData.units[i],
+                                              this.categories[j]);
+				var textObject = new Main.TextObject(500, (this.statY +
+                                                 ((this.statYSpace*i) +
+                                                  (this.categoryYSpace*j))),
+                                                   pretext + number, Main.font);
 				me.game.add(textObject, 300);
 			}
-		}
+		} // 650 581
+
+        var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
+                                 / 1000);
+        me.game.add(new Main.TextObject(650, 600, winTime + " sec",
+                                        Main.font),
+                    350);
 	},
-	
+
+    getDutchTextForCategory: function(category)
+    {
+        switch(category)
+        {
+            case "spawned":
+            return "Geboren"
+            case "lost":
+            return "Verloren"
+            case "killed":
+            return "Verslagen"
+        }
+        throw "Trying to get Dutch text for unknown category: " + category
+    },
 });

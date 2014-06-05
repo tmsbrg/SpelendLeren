@@ -51,7 +51,6 @@ var Main =
 		//me.save.delete("playerlevel"); // use to reset the playerlevel
 									  
 		me.save.add({playerlevel : this.playerlevel});
-		console.log("saved playerlevel: "+me.save.playerlevel);
 		
 		this.playerlevel = me.save.playerlevel;
 		

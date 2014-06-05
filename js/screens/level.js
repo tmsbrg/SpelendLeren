@@ -5,7 +5,6 @@ Main.LevelScreen = me.ScreenObject.extend(
     name: "", // string containing name of the level
     background: null, // ImageObject with the background image
     buildings: null, // array of building buttons 
-   
     players: null, // dictionary containing all players
     actions: null, // array of action objects containing what should happen
                    // at the start of the level
@@ -53,16 +52,13 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.backLayer = new Main.LayerContainer(false);
         me.game.add(this.backLayer, 5)
 
-		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
+		var img = new Main.Image(0, 0, "bg_test", Constants.screenWidth,
                                  Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
 		
-		this.scoreData = new Main.ScoreData();
-		
-
         // reinitialize for restart
         this.currentAction = 0; 
         this.paused = false;
@@ -80,6 +76,9 @@ Main.LevelScreen = me.ScreenObject.extend(
         me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
 
         this.backLayer.sort();
+
+        var unitTypes = this.getUnitTypes();
+		this.scoreData = new Main.ScoreData(unitTypes);
     },
 	
 	addScore: function(unitType, category, amount)
@@ -152,7 +151,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                     break;
                 case "music":
                     try {
-                        me.audio.play(value);
+                        me.audio.play(value, true);
                         this.music = value;
                     } catch (e if e instanceof TypeError) {
                         alert("Cannot find music \""+value+"\"");
@@ -263,9 +262,6 @@ Main.LevelScreen = me.ScreenObject.extend(
                                          (capacity != null) ? Number(capacity) :
                                                               null,
                                         this.getAttribute(obj, "name"));
-				if (type == "castle") {
-					console.log("a");
-				}
                 this.createBuildingTriggers(r[ri], obj);
                 this.add(r[ri], onBackground);
             } else {
@@ -440,6 +436,33 @@ Main.LevelScreen = me.ScreenObject.extend(
         return null;
     },
 
+    // returns an array of all unit types present in this level
+    getUnitTypes: function()
+    {
+        var units = GetUnits();
+        var unitTypePresent = new Array(units.length);
+        this.buildings.forEach(function(building) {
+            for (var i=0; i<units.length; i++)
+            {
+                if (building.unitType === units[i] &&
+                    unitTypePresent[i] !== true) {
+                    unitTypePresent[i] = true;
+                    return;
+                }
+            }
+        });
+
+        var r = [];
+        for (var i=0; i<units.length; i++)
+        {
+            if (unitTypePresent[i]) {
+                r[r.length] = units[i];
+            }
+        }
+
+        return r;
+    },
+
     // makes the game wait until all the next triggers are completed and
     // disallows other actions while waiting
     waitForTriggers: function()
@@ -541,15 +564,15 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         this.levelEnded = true;
 
-        // TODO: Need an endscreen, really
         try {
             me.audio.stop(this.music);
         } catch (e if e instanceof TypeError) {
             // ignore error if there is no music for this level
         }
         this.pause();
+        var numPos = this.name.search("\\d"); // find first digit
 		if (userWon == true && !Constants.allLevelsPlayable && 
-            Main.playerlevel <= Number(this.name.slice(-1))) {
+            Main.playerlevel <= Number(this.name.substr(numPos))) {
 			Main.playerlevel += 1;
 			me.save.playerlevel = Main.playerlevel;
 		}

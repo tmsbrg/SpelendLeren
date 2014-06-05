@@ -1,7 +1,7 @@
 /* Constants: contains constant values used in the game */
 Constants =
 {
-	upgradeLevels: 1, // feature that never made it in
+	upgradeLevels: 1, // feature that never made it in, RIP
     screenWidth: 1024,
     screenHeight: 768,
     resizeToBrowser: true, // resize canvas to browser size 
@@ -24,7 +24,7 @@ Constants =
         "support",
     ],
 
-    textScale : 0.6,
+    textScale : 0.7,
 
     difficulties: [
         {

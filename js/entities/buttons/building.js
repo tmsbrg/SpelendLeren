@@ -90,18 +90,14 @@ Main.Building = Main.Button.extend(
 	addUnitUI: function(type)
 	{
         // temporary way of doing the position, this should really be dynamic
-        var xpos;
-        switch (type)
+        var xpos = 12;
+        var units = GetUnits();
+        for (var i=0; i<units.length; i++)
         {
-            case "farmer":
-                xpos = 12;
+            if (type == units[i]) {
+                xpos += 55 * i;
                 break;
-            case "knight":
-                xpos = 57;
-                break;
-            case "monk":
-                xpos = 102;
-                break;
+            }
         }
         if (this.unitGUI.getValue(type) == null) {
             

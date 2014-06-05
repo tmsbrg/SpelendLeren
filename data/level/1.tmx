@@ -65,7 +65,7 @@
  </imagelayer>
  <objectgroup name="background_scenery" width="32" height="24">
   <object gid="13" x="251" y="589"/>
-  <object gid="18" x="294" y="596"/>
+  <object gid="18" x="291" y="599"/>
   <object gid="18" x="465" y="135"/>
   <object gid="18" x="785" y="476"/>
   <object gid="5" x="870" y="442"/>
@@ -135,16 +135,16 @@
     <property name="capacity" value="1"/>
    </properties>
   </object>
-  <object name="boerderij 3" type="neutral" gid="35" x="494" y="568">
+  <object name="boerderij 3" type="neutral" gid="35" x="505" y="569">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="steen" gid="9" x="844" y="88"/>
-  <object name="steen" gid="10" x="881" y="71"/>
+  <object name="steen" gid="9" x="850" y="89"/>
+  <object name="steen" gid="10" x="918" y="77"/>
   <object name="steen" gid="11" x="912" y="97"/>
-  <object name="steen" gid="14" x="866" y="104"/>
-  <object name="boom" gid="5" x="914" y="159"/>
+  <object name="steen" gid="14" x="873" y="111"/>
+  <object name="boom" gid="5" x="914" y="162"/>
   <object name="boom" gid="5" x="575" y="221"/>
   <object name="boom" gid="5" x="77" y="138"/>
   <object name="boom" gid="5" x="933" y="727"/>
@@ -160,7 +160,7 @@
   <object name="boom" gid="7" x="269" y="590"/>
   <object name="boom" gid="8" x="399" y="131"/>
   <object name="boom" gid="8" x="651" y="347"/>
-  <object name="boom" gid="8" x="908" y="94"/>
+  <object name="boom" gid="8" x="944" y="97"/>
   <object name="boom" gid="8" x="701" y="730"/>
   <object gid="21" x="609" y="342"/>
   <object gid="21" x="177" y="427"/>
@@ -172,21 +172,21 @@
   <object gid="29" x="621" y="227"/>
   <object gid="29" x="884" y="149"/>
   <object gid="28" x="252" y="363"/>
-  <object gid="32" x="789" y="520"/>
+  <object gid="32" x="772" y="508"/>
   <object gid="32" x="319" y="555"/>
   <object gid="31" x="944" y="613"/>
   <object gid="28" x="204" y="394"/>
   <object gid="28" x="169" y="629"/>
   <object gid="29" x="331" y="116"/>
-  <object gid="30" x="69" y="163"/>
+  <object gid="30" x="78" y="175"/>
   <object gid="25" x="245" y="399"/>
-  <object gid="24" x="81" y="189"/>
+  <object gid="24" x="71" y="157"/>
   <object gid="26" x="322" y="125"/>
   <object gid="24" x="646" y="366"/>
   <object gid="26" x="231" y="603"/>
   <object gid="25" x="914" y="715"/>
   <object gid="1" x="857" y="69"/>
-  <object gid="3" x="892" y="105"/>
+  <object gid="3" x="935" y="112"/>
   <object gid="2" x="894" y="65"/>
   <object gid="7" x="488" y="737"/>
   <object gid="8" x="401" y="638"/>
@@ -201,9 +201,9 @@
   <object gid="23" x="806" y="97"/>
   <object gid="14" x="184" y="627"/>
   <object gid="24" x="735" y="475"/>
-  <object gid="27" x="480" y="592"/>
+  <object gid="27" x="588" y="645"/>
   <object gid="24" x="201" y="186"/>
-  <object gid="26" x="873" y="207"/>
+  <object gid="26" x="874" y="201"/>
   <object gid="25" x="792" y="483"/>
   <object gid="26" x="682" y="555"/>
   <object gid="39" x="862" y="211"/>
@@ -211,7 +211,7 @@
   <object gid="40" x="228" y="431"/>
   <object gid="40" x="450" y="127"/>
   <object gid="42" x="131" y="403"/>
-  <object gid="41" x="856" y="101"/>
+  <object gid="41" x="823" y="100"/>
   <object gid="40" x="74" y="194"/>
   <object gid="42" x="859" y="269"/>
   <object gid="40" x="874" y="261"/>

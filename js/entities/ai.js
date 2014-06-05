@@ -15,17 +15,32 @@ Main.AI = Object.extend(
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
     player: null, // reference to the player for this AI
+	searchTarget: null,
+	randomStartegy: null,
+	closestStrategy: null,
 
     init: function(difficulty)
     {
-        if (difficulty == null) {
+		this.randomStartegy = new SearchTarget(new SearchTargetStrategy());
+		this.closestStrategy = new SearchTarget(new SearchClosestTargetStrategy());
+		
+		
+		this.setSearchTargetStrategy(this.closestStrategy);
+		if (difficulty == null) {
             difficulty = 1;
         }
+		
         this.setDifficulty(difficulty);
+		
         if (this.alwaysInactive) {
             this.active = false;
         }
     },
+	
+	setSearchTargetStrategy: function(startegy)
+	{
+		this.searchTarget = startegy;
+	},
 
     setDifficulty: function(difficulty)
     {
@@ -66,7 +81,7 @@ Main.AI = Object.extend(
     searchForTarget: function()
     {
         if (this.currentTarget == null) {
-            this.currentTarget = this.getNewTarget();
+            this.currentTarget =  this.searchTarget.search(this.player);
             if (this.currentTarget == null) {
                 this.active = false;
                 return false;
@@ -81,9 +96,10 @@ Main.AI = Object.extend(
         this.counter += Main.timer.dt;
         if (this.counter >= this.timeUntilNextWave) {
             this.counter = 0;
-
+			
             if (this.getTotalStrength() >=
                        this.currentTarget.calculateDefencePower()) {
+				console.log(this.currentTarget);
                 this.attack(this.currentTarget);
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
@@ -105,20 +121,25 @@ Main.AI = Object.extend(
 
     // returns a random building not owned by this AI, or null if there is
     // no such building
-    getNewTarget : function()
+    /*getNewTarget : function(player)
     {
-        var buildings = Main.levelScreen.getBuildings();
+       
+		
+		console.log("new function " +searchTarget.search(this.player));
+		
+		var buildings = Main.levelScreen.getBuildings();
         var i = Math.round(Math.random() * (buildings.length-1));
         var start_i = i;
-        while (buildings[i].owner === this.player.name)
+        while (buildings[i].owner === player.name)
         {
             i = (i + 1) % buildings.length;
             if (i == start_i) {
                 return null;
             }
         }
+		console.log("old function " + buildings[i]);
         return buildings[i];
-    },
+    },*/
 
     // sends all his units to attack given target
     attack: function(target)
@@ -132,14 +153,14 @@ Main.AI = Object.extend(
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-        this.currentTarget = this.getNewTarget();
+        this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;
     },
 
     // removes a building from the array of buildings owned by this AI
     loseBuilding: function(building)
     {
-        if (!this.active) {
+        if (!this.active && !this.alwaysInactive) {
             this.active = true;
         }
     },
@@ -153,6 +174,7 @@ Main.AI = Object.extend(
             strength += this.player.buildings[i].calculateAttackPower();
         }
         return strength;
+		
     },
 
     // disables this AI

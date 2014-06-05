@@ -7,6 +7,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
     categories:  ["spawned", "lost", "killed"],
     statY: 220, // y position for unit stats
     statYSpace: 100, // y space between each unit's stats
+    categoryYSpace: 21, // y space between each category(spawned, killed, etc.)
     buttonspace: 240, // pixels between the forward and retry buttons
 		
 	
@@ -98,7 +99,8 @@ Main.Endpopup =  Main.GUIContainer.extend(
 				var number = scoreData.getScore(scoreData.units[i],
                                               this.categories[j]);
 				var textObject = new Main.TextObject(500, (this.statY +
-                                                 ((this.statYSpace*i) +(20*j))),
+                                                 ((this.statYSpace*i) +
+                                                  (this.categoryYSpace*j))),
                                                    pretext + number, Main.font);
 				me.game.add(textObject, 300);
 			}

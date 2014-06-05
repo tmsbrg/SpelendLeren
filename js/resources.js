@@ -4,7 +4,6 @@ resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
-    {name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
     {name: "bg_test", type: "image", src: "data/img/background/bg_test.png"},
     {name: "bg_level_01", type: "image",
      src: "data/img/background/bg_level_01.png"},
@@ -17,7 +16,6 @@ resources = [
 	{name: "bg_level_05", type: "image",
      src: "data/img/background/bg_level_05.png"},
 
-	{name: "bg_01", type: "image", src: "data/img/background/bg_01.png"},
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	
 	{name: "underground_map", type: "image", src: "data/img/background/campaign/underground_map.png"},
@@ -272,6 +270,8 @@ resources = [
       src: "data/img/scenery/flowers.png"},
 	{name: "leafs", type: "image",
       src: "data/img/scenery/leafs.png"},
+	{name: "stonering", type: "image",
+      src: "data/img/scenery/stonering.png"},
 	
 	/* Maps. 
 	 * @example
@@ -287,6 +287,8 @@ resources = [
 	{name: "level6", type: "tmx", src: "data/level/6.tmx"},
 	{name: "level7", type: "tmx", src: "data/level/7.tmx"},
 	{name: "level8", type: "tmx", src: "data/level/8.tmx"},
+	{name: "level9", type: "tmx", src: "data/level/9.tmx"},
+	{name: "level10", type: "tmx", src: "data/level/10.tmx"},
 	
 	/* Background music. 
 	 * @example

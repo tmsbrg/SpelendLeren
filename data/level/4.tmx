@@ -4,7 +4,7 @@
   <property name="1action" value="select"/>
   <property name="1target" value="boerderij 1"/>
   <property name="difficulty" value="1"/>
-  <property name="music" value="drum"/>
+  <property name="music" value="verynice"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">
@@ -59,7 +59,7 @@
   <image source="../img/scenery/leafs.png" width="846" height="284"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_test.png"/>
+  <image source="../img/background/bg_level_04.png"/>
  </imagelayer>
  <objectgroup name="background_scenery" width="32" height="24">
   <object gid="39" x="714" y="260"/>
@@ -114,8 +114,8 @@
   <object gid="53" x="-88" y="638"/>
   <object gid="53" x="234" y="771"/>
   <object gid="53" x="580" y="716"/>
-  <object gid="53" x="672" y="284"/>
-  <object gid="53" x="249" y="281"/>
+  <object gid="53" x="670" y="289"/>
+  <object gid="53" x="251" y="277"/>
   <object gid="53" x="129" y="211"/>
   <object gid="53" x="22" y="229"/>
   <object gid="53" x="304" y="514"/>
@@ -141,6 +141,10 @@
   <object gid="43" x="66" y="721"/>
   <object gid="43" x="26" y="182"/>
   <object gid="43" x="723" y="522"/>
+  <object gid="18" x="769" y="241"/>
+  <object gid="18" x="499" y="386"/>
+  <object gid="18" x="0" y="659"/>
+  <object gid="18" x="762" y="645"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="computer" type="comp1" gid="36" x="435" y="420">
@@ -149,7 +153,7 @@
     <property name="trigger_takeover" value="win"/>
    </properties>
   </object>
-  <object name="boerderij 1" type="user" gid="35" x="169" y="200">
+  <object name="boerderij 1" type="user" gid="35" x="174" y="200">
    <properties>
     <property name="capacity" value="2"/>
     <property name="trigger_select" value="popup heren"/>
@@ -160,7 +164,7 @@
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object name="boerderij 3" type="user" gid="35" x="51" y="188">
+  <object name="boerderij 3" type="user" gid="35" x="64" y="188">
    <properties>
     <property name="capacity" value="5"/>
    </properties>
@@ -180,7 +184,7 @@
     <property name="capacity" value="6"/>
    </properties>
   </object>
-  <object name="boerderij 7" type="neutral" gid="35" x="804" y="676">
+  <object name="boerderij 7" type="comp1" gid="35" x="804" y="676">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
@@ -190,7 +194,7 @@
     <property name="capacity" value="5"/>
    </properties>
   </object>
-  <object name="boerderij 9" type="neutral" gid="35" x="908" y="447">
+  <object name="boerderij 9" type="comp1" gid="35" x="908" y="447">
    <properties>
     <property name="capacity" value="5"/>
    </properties>
@@ -201,46 +205,34 @@
    </properties>
   </object>
   <object gid="5" x="483" y="363"/>
-  <object gid="5" x="699" y="249"/>
+  <object gid="5" x="701" y="246"/>
   <object gid="5" x="826" y="195"/>
   <object gid="5" x="303" y="134"/>
   <object gid="5" x="804" y="144"/>
   <object gid="5" x="756" y="527"/>
   <object gid="5" x="-6" y="227"/>
   <object gid="6" x="728" y="132"/>
-  <object gid="6" x="507" y="426"/>
+  <object gid="6" x="542" y="425"/>
   <object gid="6" x="257" y="189"/>
   <object gid="6" x="110" y="111"/>
-  <object gid="6" x="155" y="575"/>
+  <object gid="6" x="140" y="582"/>
   <object gid="6" x="803" y="436"/>
   <object gid="8" x="827" y="399"/>
-  <object gid="8" x="597" y="601"/>
+  <object gid="8" x="594" y="581"/>
   <object gid="8" x="682" y="461"/>
-  <object gid="8" x="758" y="682"/>
+  <object gid="8" x="751" y="673"/>
   <object gid="7" x="749" y="209"/>
   <object gid="7" x="435" y="710"/>
   <object gid="7" x="605" y="221"/>
   <object gid="7" x="72" y="599"/>
-  <object gid="7" x="94" y="135"/>
-  <object gid="7" x="855" y="451"/>
-  <object gid="8" x="364" y="743"/>
-  <object gid="8" x="174" y="619"/>
+  <object gid="7" x="89" y="135"/>
+  <object gid="7" x="852" y="443"/>
+  <object gid="8" x="329" y="738"/>
+  <object gid="8" x="217" y="641"/>
   <object gid="8" x="334" y="492"/>
   <object gid="8" x="336" y="266"/>
   <object gid="8" x="74" y="375"/>
-  <object gid="1" x="934" y="425"/>
   <object gid="1" x="127" y="563"/>
-  <object gid="4" x="471" y="428">
-   <properties>
-    <property name="" value=""/>
-   </properties>
-  </object>
-  <object gid="4" x="629" y="595"/>
-  <object gid="3" x="74" y="137"/>
-  <object gid="18" x="769" y="241"/>
-  <object gid="18" x="0" y="659"/>
-  <object gid="18" x="762" y="645"/>
-  <object gid="18" x="499" y="386"/>
   <object gid="22" x="318" y="162"/>
   <object gid="22" x="32" y="152"/>
   <object gid="22" x="374" y="702"/>
@@ -253,17 +245,16 @@
   <object gid="5" x="158" y="375"/>
   <object gid="25" x="795" y="262"/>
   <object gid="25" x="139" y="154"/>
-  <object gid="25" x="743" y="694"/>
+  <object gid="25" x="760" y="694"/>
   <object gid="26" x="585" y="263"/>
-  <object gid="26" x="628" y="628"/>
   <object gid="26" x="163" y="408"/>
   <object gid="27" x="303" y="187"/>
-  <object gid="27" x="291" y="313"/>
+  <object gid="27" x="276" y="307"/>
   <object gid="27" x="803" y="205"/>
   <object gid="27" x="43" y="234"/>
-  <object gid="27" x="100" y="617"/>
-  <object gid="24" x="887" y="468"/>
-  <object gid="24" x="470" y="738"/>
+  <object gid="27" x="18" y="621"/>
+  <object gid="24" x="880" y="467"/>
+  <object gid="24" x="486" y="735"/>
   <object gid="24" x="512" y="447"/>
   <object gid="28" x="416" y="209"/>
   <object gid="28" x="399" y="255"/>
@@ -275,8 +266,8 @@
   <object gid="29" x="796" y="207"/>
   <object gid="29" x="454" y="220"/>
   <object gid="30" x="333" y="195"/>
-  <object gid="30" x="368" y="299"/>
-  <object gid="30" x="728" y="257"/>
+  <object gid="30" x="395" y="297"/>
+  <object gid="30" x="783" y="239"/>
   <object gid="30" x="806" y="171"/>
   <object gid="32" x="794" y="356"/>
   <object gid="32" x="768" y="371"/>

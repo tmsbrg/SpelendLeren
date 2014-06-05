@@ -95,10 +95,10 @@ Main.Building = Main.Button.extend(
         for (var i=0; i<units.length; i++)
         {
             if (type == units[i]) {
+                xpos += 55 * i;
                 break;
             }
         }
-        xpos += 55 * i;
         if (this.unitGUI.getValue(type) == null) {
             
             var icon = new Main.Image(xpos, -35, type+"_icon", 20, 20);

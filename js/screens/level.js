@@ -52,7 +52,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.backLayer = new Main.LayerContainer(false);
         me.game.add(this.backLayer, 5)
 
-		var img = new Main.Image(0, 0, "bg_01", Constants.screenWidth,
+		var img = new Main.Image(0, 0, "bg_test", Constants.screenWidth,
                                  Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
@@ -568,8 +568,9 @@ Main.LevelScreen = me.ScreenObject.extend(
             // ignore error if there is no music for this level
         }
         this.pause();
+        var numPos = this.name.search("\\d"); // find first digit
 		if (userWon == true && !Constants.allLevelsPlayable && 
-            Main.playerlevel <= Number(this.name.slice(-1))) {
+            Main.playerlevel <= Number(this.name.substr(numPos))) {
 			Main.playerlevel += 1;
 			me.save.playerlevel = Main.playerlevel;
 		}

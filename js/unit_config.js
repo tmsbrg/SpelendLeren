@@ -20,7 +20,7 @@ GetBuildingDoorLocation = function(type)
 
 GetBuildingSize = function(type) 
 {
-    return buildingSizes[type];
+    return new me.Vector2d(buildingSizes[type][0], buildingSizes[type][1]);
 }
 
 GetUnitSize = function(type) 
@@ -41,6 +41,34 @@ GetUnits = function()
 		array.push(unit);
 	}
 	return array;
+}
+
+// compare function for units
+CompareUnits = function(u1, u2)
+{
+    var units = GetUnits();
+    var v1;
+    for (var i=0; i<units.length; i++)
+    {
+        if (u1 == units[i]) {
+            v1 = i;
+            break;
+        }
+    }
+    var v2;
+    for (var i=0; i<units.length; i++)
+    {
+        if (u2 == units[i]) {
+            v2 = i;
+            break;
+        }
+    }
+    if (v1 == undefined ) {
+        throw "Error: "+ v1 +" is not a unit type";
+    } else if (v2 == undefined) {
+        throw "Error: "+ v2 +" is not a unit type";
+    }
+    return v1 - v2;
 }
 
 UnitForBuilding = function(type) 
@@ -132,10 +160,10 @@ buildingDoorLocation =
 
 buildingSizes =
 {
-	farm: 64,
-	homestead: 128,
-	church: 90,
-	castle: 256,
+	farm: [64, 64],
+	homestead: [128, 128],
+	church: [90, 90],
+	castle: [256, 189],
 }
 
 unitSizes =

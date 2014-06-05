@@ -27,6 +27,7 @@ Main.Building = Main.Button.extend(
     imageObject: null, // reference to the image object
     active: true, // whether this building is creating units
 	unitGUI: null, // dictionary containing the GUI for units
+    unitTypesPresent: 0, // amount of unit types in this building
     triggers: null, // array of triggers with callbacks
 	
 	line: null, // reference to line object
@@ -39,7 +40,6 @@ Main.Building = Main.Button.extend(
 		this.type = type;
         this.owner = owner;
 		
-        this.size = GetBuildingSize(type);
 		this.doorLocation = GetBuildingDoorLocation(type);
 		
 		if(spawnResidentTime != null)
@@ -47,8 +47,7 @@ Main.Building = Main.Button.extend(
 		else
 			this.spawnResidentTime = GetBuildingSpawnTime(this.type);
 		
-        this.imageObject = new Main.Image(0, 0, this.getImage(), this.size,
-                                          this.size);
+        this.imageObject = new Main.Image(0, 0, this.getImage());
 		
 		
         this.id = id;
@@ -68,9 +67,10 @@ Main.Building = Main.Button.extend(
 
         this.parent(gui, this.onClick.bind(this), this.onHover.bind(this));
 		
-		this.halfsize = this.size * 0.5;
-		this.centerPos = new me.Vector2d(this.pos.x + this.halfsize,
-                                         this.pos.y + this.halfsize);
+        this.size = GetBuildingSize(this.type);
+		this.halfsize = new me.Vector2d(this.size.x * 0.5, this.size.y * 0.5);
+		this.centerPos = new me.Vector2d(this.pos.x + this.halfsize.x,
+                                         this.pos.y + this.halfsize.y);
 		
         this.units = new Main.Dictionary();
         this.unitGUI = new Main.Dictionary();
@@ -89,16 +89,7 @@ Main.Building = Main.Button.extend(
 	
 	addUnitUI: function(type)
 	{
-        // temporary way of doing the position, this should really be dynamic
-        var xpos = 12;
-        var units = GetUnits();
-        for (var i=0; i<units.length; i++)
-        {
-            if (type == units[i]) {
-                xpos += 55 * i;
-                break;
-            }
-        }
+        var xpos = 12 + 55 * this.unitTypesPresent;
         if (this.unitGUI.getValue(type) == null) {
             
             var icon = new Main.Image(xpos, -35, type+"_icon", 20, 20);
@@ -108,6 +99,8 @@ Main.Building = Main.Button.extend(
             this.unitGUI.setValue(type, [icon, textObject]);
             
             this.displayObject.addGUIObjects([icon, textObject]);
+
+            this.unitTypesPresent++;
 		}
 	},
 
@@ -115,21 +108,20 @@ Main.Building = Main.Button.extend(
 	addUnitType: function(type) 
 	{
 		if (this.units.getValue(type) == null) {
-			this.addUnitUI(type);
 			this.units.setValue(type, new Array(Constants.upgradeLevels));
 			
 			for(var i = 0; i < this.units.getValue(type).length; i++)
 			{
 				this.units.getValue(type)[i] = 0;
 			}
+			this.updateUnitTexts(type);
 		}
 	},
 
     removeUnitType: function(type) {
         if (this.units.getValue(type) != null) {
-            this.displayObject.removeGUIObjects(this.unitGUI.getValue(type));
-            this.unitGUI.removeKey(type);
             this.units.removeKey(type);
+			this.updateUnitTexts(type);
         }
     },
 
@@ -198,14 +190,8 @@ Main.Building = Main.Button.extend(
             amount = 0;
         }
 		this.units.getValue(type)[upgradeLevel] = amount;
-		var textObjects = this.getTextObjects();
-		var unitArray = this.units.values();
 		
-		for(var i = 0; i < textObjects.length; i++)
-		{
-            textObjects[i].setText(unitArray[i][upgradeLevel]);
-		}
-		
+        this.unitGUI.getValue(type)[1].setText(amount);
 	},
 
     // returns array of current text objects in the UnitGUI
@@ -235,14 +221,15 @@ Main.Building = Main.Button.extend(
         {
             this.displayObject.removeGUIObjects(values[i]);
         }
+        this.unitTypesPresent = 0;
 
         this.unitGUI = new Main.Dictionary();
 
         keys = this.units.keys();
+        keys.sort(CompareUnits);
         for (i=0; i<keys.length; i++)
         {
             this.addUnitUI(keys[i]);
-            // TODO, it should print units of different types
             this.unitGUI.getValue(keys[i])[1].setText(
                                                this.units.getValue(keys[i])[0]);
         }
@@ -342,10 +329,9 @@ Main.Building = Main.Button.extend(
 	// fights with the arriving Army if they losethe building changes from owner
 	defend: function(owner, units, buffLevel)
 	{
-        // temporary hack to get it in the right place
         var img_size = 128;
-        var effect = new Main.Effect(this.pos.x + (this.size - img_size) / 2,
-                                     this.pos.y + (this.size - img_size) / 2);
+        var effect = new Main.Effect(this.pos.x + (this.size.x - img_size) / 2,
+                                     this.pos.y + (this.size.y - img_size) / 2);
         Main.levelScreen.add(effect);
 
 		var battleResult = this.fight(owner, units, buffLevel);

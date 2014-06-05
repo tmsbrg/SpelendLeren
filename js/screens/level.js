@@ -153,7 +153,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                     try {
                         me.audio.play(value, true);
                         this.music = value;
-                    } catch (e if e instanceof TypeError) {
+                    } catch (e) {
                         alert("Cannot find music \""+value+"\"");
                     }
                 default:
@@ -339,7 +339,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     getBuildingPos: function(obj, type)
     {
         var x = Number(this.getAttribute(obj, "x"));
-        var y = Number(this.getAttribute(obj, "y")) - GetBuildingSize(type);
+        var y = Number(this.getAttribute(obj, "y")) - GetBuildingSize(type).y;
         return new me.Vector2d(x, y);
     },
 
@@ -564,7 +564,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         try {
             me.audio.stop(this.music);
-        } catch (e if e instanceof TypeError) {
+        } catch (e) {
             // ignore error if there is no music for this level
         }
         this.pause();

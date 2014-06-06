@@ -37,6 +37,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     onResetEvent: function(levelname)
     {
         Main.timer.reset();
+        Main.timer.unPause();
 
         levelname = String(levelname);
         this.name = levelname;

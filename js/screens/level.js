@@ -36,8 +36,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     // called when the level is started
     onResetEvent: function(levelname)
     {
-		Main.timer = new Main.TimeObject();
-		me.game.add(Main.timer, 0);
+        Main.timer.reset();
 
         levelname = String(levelname);
         this.name = levelname;

@@ -21,11 +21,12 @@ Main.AI = Object.extend(
 
     init: function(difficulty)
     {
-		this.randomStartegy = new SearchTarget(new SearchTargetStrategy());
-		this.closestStrategy = new SearchTarget(new SearchClosestTargetStrategy());
+		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
+		this.closestStrategy =
+                       new SearchTarget(new SearchClosestTargetStrategy());
 		
 		
-		this.setSearchTargetStrategy(this.closestStrategy);
+		this.setSearchTargetStrategy(this.randomStrategy);
 		if (difficulty == null) {
             difficulty = 1;
         }
@@ -37,9 +38,9 @@ Main.AI = Object.extend(
         }
     },
 	
-	setSearchTargetStrategy: function(startegy)
+	setSearchTargetStrategy: function(strategy)
 	{
-		this.searchTarget = startegy;
+		this.searchTarget = strategy;
 	},
 
     setDifficulty: function(difficulty)

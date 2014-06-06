@@ -11,7 +11,7 @@ SearchTargetStrategy.prototype = Object.create(Strategy.prototype);
 SearchTargetStrategy.prototype.execute = function(player) 
 {
 	return this.search(player)
-};
+}
  
 SearchTargetStrategy.prototype.search = function(player) 
 {
@@ -27,7 +27,7 @@ SearchTargetStrategy.prototype.search = function(player)
 		}
 	}
 	return buildings[i];
-};
+}
  
 /*SearchTargetStrategy.prototype.sayBye = function() 
 {
@@ -67,18 +67,4 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 	}
 	console.log(currentTarget);
 	return currentTarget;
-};
- 
-var SearchTargetStrategy = function() {};
-SearchTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
-SearchTargetStrategy.prototype.search = function() 
-{
-	return "Hey, ";
-};
- 
-var BoredGreetingStrategy = function() {};
-BoredGreetingStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
-BoredGreetingStrategy.prototype.search = function() 
-{
-	return "sup, ";
-};
+}

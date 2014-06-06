@@ -49,7 +49,7 @@ var Main =
                                       // Constants.textScale);
 									  
 		//me.save.delete("playerlevel"); // use to reset the playerlevel
-									  
+
 		me.save.add({playerlevel : this.playerlevel});
 		
 		this.playerlevel = me.save.playerlevel;
@@ -61,6 +61,9 @@ var Main =
 		this.menuScreen = new Main.MenuScreen();
 		this.campaignScreen = new Main.CampaignScreen();
 		
+		this.timer = new Main.TimeObject();
+		me.game.add(this.timer, 0);
+									  
         me.state.set(me.state.MENU, this.menuScreen);
 		me.state.set(me.state.READY, this.campaignScreen);
 		me.state.set(me.state.PLAY, this.levelScreen);

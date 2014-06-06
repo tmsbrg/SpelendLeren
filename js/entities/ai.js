@@ -22,7 +22,9 @@ Main.AI = Object.extend(
     init: function(difficulty)
     {
 		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
-		this.closestStrategy = new SearchTarget(new SearchClosestTargetStrategy());
+		this.closestStrategy =
+                       new SearchTarget(new SearchClosestTargetStrategy());
+
 		
 		
 		this.setSearchTargetStrategy(this.randomStrategy);
@@ -37,9 +39,9 @@ Main.AI = Object.extend(
         }
     },
 	
-	setSearchTargetStrategy: function(startegy)
+	setSearchTargetStrategy: function(strategy)
 	{
-		this.searchTarget = startegy;
+		this.searchTarget = strategy;
 	},
 
     setDifficulty: function(difficulty)

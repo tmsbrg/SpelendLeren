@@ -11,7 +11,7 @@ SearchTargetStrategy.prototype = Object.create(Strategy.prototype);
 SearchTargetStrategy.prototype.execute = function(player) 
 {
 	return this.search(player)
-};
+}
  
 SearchTargetStrategy.prototype.search = function(player) 
 {
@@ -27,7 +27,17 @@ SearchTargetStrategy.prototype.search = function(player)
 		}
 	}
 	return buildings[i];
+<<<<<<< HEAD
 };
+=======
+}
+ 
+/*SearchTargetStrategy.prototype.sayBye = function() 
+{
+	return "Goodbye.";
+};
+*/
+>>>>>>> 9085eabf20b1f65a1fab0d46ed63301f936d2300
 
 // searching from on of his buildings for the closest building which is not owend by the player and returns it
 var SearchClosestTargetStrategy = function() {};
@@ -60,3 +70,4 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 	}
 	return currentTarget;
 };
+

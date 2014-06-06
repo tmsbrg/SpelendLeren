@@ -57,17 +57,16 @@ var Main =
         this.font = new me.BitmapFont("luxi_font", {x:20,y:38},
                                       Constants.textScale);
 		
+		this.timer = new Main.TimeObject();
+		me.game.add(this.timer, 0);
+									  
         this.levelScreen = new Main.LevelScreen();
 		this.menuScreen = new Main.MenuScreen();
 		this.campaignScreen = new Main.CampaignScreen();
 		
-		this.timer = new Main.TimeObject();
-		me.game.add(this.timer, 0);
-									  
         me.state.set(me.state.MENU, this.menuScreen);
 		me.state.set(me.state.READY, this.campaignScreen);
 		me.state.set(me.state.PLAY, this.levelScreen);
-        // me.pool.register("farm", 
 
         // warning, hack: getting mouse down checking to work without using
         // a key

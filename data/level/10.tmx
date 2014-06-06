@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
-  <property name="difficulty" value="1"/>
+  <property name="1action" value="select"/>
+  <property name="1target" value="usercastle"/>
+  <property name="difficulty" value="3"/>
   <property name="music" value="awesome2"/>
   <property name="victory" value="conquer_all"/>
  </properties>
@@ -339,6 +341,10 @@
   <object gid="12" x="173" y="155"/>
   <object gid="12" x="179" y="90"/>
   <object gid="15" x="51" y="85"/>
-  <object name="usercastle" type="user" gid="4" x="44" y="308"/>
+  <object name="usercastle" type="user" gid="4" x="44" y="308">
+   <properties>
+    <property name="trigger_select" value="popup castle"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

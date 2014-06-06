@@ -126,7 +126,7 @@ resources = [
 	 
 	{name: "sound_off", type: "image",
      src: "data/img/gui/audio_icon_off.png"},
-	
+	// units animations
 	{name: "user_farmer_topleft_0", type: "image",
      src: "data/img/armies/animations/farmer/user_farmer_topleft_0.png"},
 	{name: "user_farmer_topright_0", type: "image",
@@ -213,16 +213,22 @@ resources = [
      src: "data/img/gui/font/luxio_font.png"},
 
     // Pop up screens for the tutorial
+	{name: "popup_castle", type: "image",
+     src: "data/img/gui/popup/popup_castle.png"},
+	{name: "popup_servant", type: "image",
+     src: "data/img/gui/popup/popup_servant.png"},
+	{name: "popup_selection", type: "image",
+     src: "data/img/gui/popup/popup_selection.png"},
     {name: "popup_blank", type: "image",
      src: "data/img/gui/popup/popup_blank.png"},
-    {name: "popup_adelardus", type: "image",
-     src: "data/img/gui/popup/popup_adelardus.png"},
+    {name: "popup_takeover", type: "image",
+     src: "data/img/gui/popup/popup_takeover.png"},
+	{name: "popup_enemy", type: "image",
+     src: "data/img/gui/popup/popup_enemy.png"},
     {name: "popup_heren", type: "image",
      src: "data/img/gui/popup/popup_heren.png"},
-    {name: "popup_horigen", type: "image",
-     src: "data/img/gui/popup/popup_horigen.png"},
-    {name: "popup_klooster", type: "image",
-     src: "data/img/gui/popup/popup_klooster.png"},
+    {name: "popup_monastery", type: "image",
+     src: "data/img/gui/popup/popup_monastery.png"},
     {name: "popup_standen", type: "image",
      src: "data/img/gui/popup/popup_standen.png"},
     {name: "popup_start", type: "image",

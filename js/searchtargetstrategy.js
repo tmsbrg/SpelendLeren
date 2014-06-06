@@ -28,19 +28,12 @@ SearchTargetStrategy.prototype.search = function(player)
 	}
 	return buildings[i];
 };
- 
-/*SearchTargetStrategy.prototype.sayBye = function() 
-{
-	return "Goodbye.";
-};
-*/
 
 // searching from on of his buildings for the closest building which is not owend by the player and returns it
 var SearchClosestTargetStrategy = function() {};
 SearchClosestTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchClosestTargetStrategy.prototype.search = function(player) 
 {
-	console.log("look for target");
 	var buildings = Main.levelScreen.getBuildings();
 	var ownBuidling = null; 
 	for (var i = 0; i < buildings.length - 1; i++)
@@ -65,20 +58,5 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 			}
 		}
 	}
-	console.log(currentTarget);
 	return currentTarget;
-};
- 
-var SearchTargetStrategy = function() {};
-SearchTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
-SearchTargetStrategy.prototype.search = function() 
-{
-	return "Hey, ";
-};
- 
-var BoredGreetingStrategy = function() {};
-BoredGreetingStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
-BoredGreetingStrategy.prototype.search = function() 
-{
-	return "sup, ";
 };

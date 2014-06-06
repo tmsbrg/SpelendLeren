@@ -5,6 +5,8 @@
   <property name="1target" value="starthoeve"/>
   <property name="2action" value="takeover"/>
   <property name="2target" value="boerderij 1"/>
+  <property name="3action" value="takeover"/>
+  <property name="3target" value="boerderij 2"/>
   <property name="difficulty" value="1"/>
   <property name="music" value="drum"/>
   <property name="victory" value="conquer_all"/>
@@ -119,10 +121,10 @@
     <property name="capacity" value="15"/>
    </properties>
   </object>
-  <object name="boerderij 1" type="neutral" gid="35" x="359" y="123">
+  <object name="boerderij 1" type="neutral" gid="35" x="361" y="122">
    <properties>
     <property name="capacity" value="0"/>
-    <property name="trigger_takeover" value="popup adelardus"/>
+    <property name="trigger_takeover" value="popup takeover"/>
    </properties>
   </object>
   <object name="boerderij 4" type="neutral" gid="35" x="811" y="505">
@@ -133,6 +135,7 @@
   <object name="boerderij 2" type="neutral" gid="35" x="46" y="396">
    <properties>
     <property name="capacity" value="1"/>
+    <property name="trigger_takeover" value="popup enemy"/>
    </properties>
   </object>
   <object name="boerderij 3" type="neutral" gid="35" x="505" y="569">

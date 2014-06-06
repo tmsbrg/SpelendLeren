@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
+  <property name="1action" value="select"/>
+  <property name="1target" value="starthoeve"/>
+  <property name="2action" value="takeover"/>
+  <property name="2target" value="boerderij 1"/>
   <property name="difficulty" value="1"/>
   <property name="music" value="trumpet"/>
   <property name="victory" value="conquer_all"/>
@@ -144,6 +148,7 @@
   <object name="starthoeve" type="user" gid="36" x="830" y="191">
    <properties>
     <property name="capacity" value="30"/>
+    <property name="trigger_select" value="popup selection"/>
    </properties>
   </object>
   <object name="computer" type="comp1" gid="36" x="57" y="743">
@@ -154,6 +159,7 @@
   <object name="boerderij 1" type="neutral" gid="35" x="468" y="160">
    <properties>
     <property name="capacity" value="0"/>
+    <property name="trigger_takeover" value="popup servant"/>
    </properties>
   </object>
   <object name="boerderij 2" type="neutral" gid="35" x="898" y="673">
@@ -171,7 +177,11 @@
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="boerderij 5" gid="35" x="866" y="382"/>
+  <object name="boerderij 5" type="user" gid="35" x="866" y="382">
+   <properties>
+    <property name="capacity" value="6"/>
+   </properties>
+  </object>
   <object name="boerderij 6" gid="35" x="192" y="606"/>
   <object gid="5" x="624" y="303"/>
   <object gid="5" x="166" y="742"/>

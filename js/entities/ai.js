@@ -21,11 +21,11 @@ Main.AI = Object.extend(
 
     init: function(difficulty)
     {
-		this.randomStartegy = new SearchTarget(new SearchTargetStrategy());
+		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
 		this.closestStrategy = new SearchTarget(new SearchClosestTargetStrategy());
 		
 		
-		this.setSearchTargetStrategy(this.closestStrategy);
+		this.setSearchTargetStrategy(this.randomStrategy);
 		if (difficulty == null) {
             difficulty = 1;
         }
@@ -99,7 +99,6 @@ Main.AI = Object.extend(
 			
             if (this.getTotalStrength() >=
                        this.currentTarget.calculateDefencePower()) {
-				console.log(this.currentTarget);
                 this.attack(this.currentTarget);
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
@@ -123,8 +122,6 @@ Main.AI = Object.extend(
     // no such building
     /*getNewTarget : function(player)
     {
-       
-		
 		console.log("new function " +searchTarget.search(this.player));
 		
 		var buildings = Main.levelScreen.getBuildings();

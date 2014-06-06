@@ -1,48 +1,61 @@
-/* Popup: Shows a tutorial popup */
+// will later replace Popup class
 Main.Popup = Main.GUIContainer.extend(
 {
-    // name: name of the popup to show(looks for popup_name)
-    // onClose: function to call when closed button is pressed
-    init: function(name, onClose)
-    {
-        this.onClose = onClose;
-        var img = "popup_" + name;
-        if (me.loader.getImage(img) == null) {
-            img = "popup_blank";
-        }
-
-        var imageObject = new Main.Image(0, 0, img);
-
-        var x = 0.5 * Constants.screenWidth - 0.5 * imageObject.width;
-        var y = 0.5 * Constants.screenHeight - 0.5 * imageObject.height;
-
-        imageObject.pos = new me.Vector2d(x, y);
-
-        var buttonImage = new Main.Image(x + imageObject.width * 0.6,
-                                         y + imageObject.height * 0.8,
-                                         "popup_ok")
-        buttonImage.baseImage = "popup_ok";
-
-        var onhover = function(){
+	guiObjects: null, // all renderable objtes of th guicontainer
+	
+	init: function(name, buttonArray)
+	{
+		this.guiObjects = [],
+		this.initBackground(name);
+		this.initButtons(buttonArray);
+		
+		this.parent(0, 0, this.guiObjects);
+	},
+	
+	initBackground: function(name)
+	{
+		var imageObject = new Main.Image(0, 0, name);
+		this.guiObjects.push(imageObject);
+	},
+	
+	initButtons: function(buttonArray)
+	{
+		//buttonArray{[image, onClick], [image, onClick]}
+		var onhover = function()
+		{
             this.displayObject.loadImage(this.displayObject.baseImage +
                                          "_hovered");
         }
-        var onhoverout = function(){
+		
+        var onhoverout = function()
+		{
             this.displayObject.loadImage(this.displayObject.baseImage);
         }
-
-        var buttonObject = new Main.Button(buttonImage,
-                                           this.onButtonClick.bind(this),
-                                           onhover,
-                                           onhoverout);
-
-        this.parent(0, 0, [imageObject, buttonObject]);
-    },
-
-    // called when the OK button is clicked
-    onButtonClick: function()
-    {
-        this.onClose();
-        me.game.remove(this);
-    },
+		
+		var x = Constants.screenWidth * 0.5;
+		var y = Constants.screenHeight * 0.5;
+		var space = 200;
+		
+		for (var i = 0; i < buttonArray.length; i++)
+		{
+			var buttonImage = new Main.Image(x + (i * space), y, buttonArray[i].getValue("image"));
+			buttonImage.baseImage =  buttonArray[i].getValue("image");
+			
+			var onButtonClick = buttonArray[i].getValue("onClick");
+			
+			var mergefunctions = function()
+			{
+				onButtonClick();
+				this.onClick();
+			}
+			
+			var button = new Main.Button(buttonImage, mergefunctions.bind(this), onhover, onhoverout);
+			this.guiObjects.push(button);
+		}
+	},
+	
+	onClick: function()
+	{
+		me.game.remove(this);
+	},
 });

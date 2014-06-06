@@ -12,7 +12,9 @@ SearchTargetStrategy.prototype.execute = function(player)
 {
 	return this.search(player)
 };
- 
+
+// returns a random building not owned by this AI, or null if there is
+// no such building
 SearchTargetStrategy.prototype.search = function(player) 
 {
 	var buildings = Main.levelScreen.getBuildings();
@@ -40,7 +42,6 @@ var SearchClosestTargetStrategy = function() {};
 SearchClosestTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchClosestTargetStrategy.prototype.search = function(player) 
 {
-	console.log("look for target");
 	var buildings = Main.levelScreen.getBuildings();
 	var ownBuidling = null; 
 	for (var i = 0; i < buildings.length - 1; i++)
@@ -65,15 +66,7 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 			}
 		}
 	}
-	console.log(currentTarget);
 	return currentTarget;
-};
- 
-var SearchTargetStrategy = function() {};
-SearchTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
-SearchTargetStrategy.prototype.search = function() 
-{
-	return "Hey, ";
 };
  
 var BoredGreetingStrategy = function() {};

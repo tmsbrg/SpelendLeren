@@ -555,7 +555,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 		
 	    var popupButton = new Main.Dictionary();
 		
-		me.game.add(new Main.Popups("popup_" + name, buttonArray), 200);
+		me.game.add(new Main.Popup("popup_" + name, buttonArray), 200);
         this.popupShown = true;
         this.pause();
     },

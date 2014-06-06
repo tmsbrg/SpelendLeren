@@ -1,4 +1,4 @@
-Main.Endpopup =  Main.GUIContainer.extend(
+Main.Endpopup =  Main.Popup.extend(
 {
 	imageObject: null, // placeholder for th eimagebackground
 	retryButton: null, // placeholder for the retry button
@@ -10,55 +10,26 @@ Main.Endpopup =  Main.GUIContainer.extend(
     categoryYSpace: 21, // y space between each category(spawned, killed, etc.)
     buttonspace: 240, // pixels between the forward and retry buttons
 		
-	
 	init: function(userWon, scoreData, levelname)
 	{	
 		this.levelname = levelname;
+		var img = "popup_" + (userWon ? "win" : "lose");
+		var buttonArray = [];
 		
-		this.initBackground(userWon);
-		this.initButtons();
+		var campaignButtonDictionary = new Main.Dictionary();
+	    campaignButtonDictionary.setValue("image", "popup_campaign");
+	    campaignButtonDictionary.setValue("onClick", this.onCampaignClick.bind(this));
+		buttonArray.push(campaignButtonDictionary);
+		
+		var retryButtonDictionary = new Main.Dictionary();
+	    retryButtonDictionary.setValue("image", "popup_retry");
+	    retryButtonDictionary.setValue("onClick", this.onRetryClick.bind(this));
+		buttonArray.push(retryButtonDictionary);
+		
 		this.initImages(scoreData);
 		this.initTextobjects(scoreData);
 		
-		this.parent(0, 0, [this.imageObject, this.retryButton, this.campaignButton]);
-	},
-	
-	initBackground: function(userWon)
-	{
-		var img = "popup_" + (userWon ? "win" : "lose");
-		this.imageObject = new Main.Image(0, 0, img);
-	},
-	
-	initButtons: function()
-	{
-		var x = 0.45 * Constants.screenWidth;
-        var y = 0.81 * Constants.screenHeight;
-		
-		var retryButtonImage = new Main.Image(x - this.buttonspace, y,
-											"popup_retry");
-		var campaignButtonImage = new Main.Image(x + this.buttonspace, y,
-												"popup_campaign");
-		
-		campaignButtonImage.baseImage = "popup_campaign";
-		retryButtonImage.baseImage = "popup_retry";
-		
-		var onhover = function(){
-            this.displayObject.loadImage(this.displayObject.baseImage +
-                                         "_hovered");
-        }
-        var onhoverout = function(){
-            this.displayObject.loadImage(this.displayObject.baseImage);
-        }
-		
-		this.retryButton = new Main.Button(retryButtonImage,
-                                           this.onRetryClick.bind(this),
-                                           onhover,
-                                           onhoverout);
-		
-		this.campaignButton = new Main.Button(campaignButtonImage,
-                                           this.onCampaignClick.bind(this),
-                                           onhover,
-                                           onhoverout);
+		this.parent(img, buttonArray);
 	},
 	
 	onRetryClick: function()
@@ -104,7 +75,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
                                                    pretext + number, Main.font);
 				me.game.add(textObject, 300);
 			}
-		} // 650 581
+		}
 
         var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
                                  / 1000);

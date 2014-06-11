@@ -64,13 +64,11 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	onRetryClick: function()
 	{	
 		me.state.change(me.state.PLAY, this.levelname); 
-		me.game.remove(this);
 	},
 	
 	onCampaignClick: function()
 	{
 		me.state.change(me.state.READY); 
-		me.game.remove(this);
 	},
 
     initImages: function(scoreData)

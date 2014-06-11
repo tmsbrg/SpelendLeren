@@ -73,7 +73,8 @@ var Main =
         me.input.bindKey(1000, "mouseleft");
         me.input.bindMouse(me.input.mouse.LEFT, 1000);
 		
-		me.input.bindKey(me.input.KEY.M ,"mute");
+		me.input.bindKey(me.input.KEY.M, "mute");
+		me.input.bindKey(me.input.KEY.ESC, "pause");
 		
 		var gui = new Main.GUI();
 		me.game.add(gui, 101);

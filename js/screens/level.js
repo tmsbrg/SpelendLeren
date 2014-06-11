@@ -13,6 +13,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     currentAction: 0, // keeps what trigger we're currently on
     here: null,
 
+    updateWhenPaused: true,
+
     difficulty: 3,
 
     frontLayer: null, // contains LayerObject for armies, buildings and front
@@ -32,6 +34,17 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.parent(true); // make the game call the levels update function
     },
 	
+    update: function()
+    {
+		if (!me.input.keyStatus("pause")) {
+			this.pausePressed = false;
+		}
+		
+		if (me.input.isKeyPressed("pause") && !this.pausePressed) {
+			this.pausePressed = true;
+			this.onPausePressed();
+		}
+    },
 
     // called when the level is started
     onResetEvent: function(levelname)
@@ -65,6 +78,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.waitingForTriggers = false;
         this.levelEnded = false;
         this.popupShown = false;
+        this.pausePressed = false;
 
         this.tiles = new Array(1);
         this.actions = [];
@@ -597,6 +611,19 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.reset();
     },
 
+    onPausePressed: function()
+    {
+        if (!this.pauseMenu) {
+            if (!this.popupShown && !this.levelEnded) {
+                this.pauseMenu = true;
+                this.pause();
+            }
+        } else {
+            this.pauseMenu = false;
+            this.onFocus();
+        }
+    },
+
     // adds an object(building or scenery) to the level
     // if onBackground is true, adds it to the background layer, if it is false
     // or not given, adds it to the front layer
@@ -613,13 +640,25 @@ Main.LevelScreen = me.ScreenObject.extend(
     onBlur: function()
     {
         this.pause();
+        Main.timer.pause();
     },
 
     // called when the player returns focus on the game
     onFocus: function()
     {
-        if (!this.popupShown && !this.levelEnded) {
+        if (!this.popupShown && !this.levelEnded && !this.pauseMenu) {
             this.unPause();
+            Main.timer.unPause();
+            Main.timer.reset();
+        }
+    },
+
+    draw: function(ctx)
+    {
+        if (this.pauseMenu) {
+            ctx.fillStyle = '#000';
+            ctx.globalAlpha = 0.5;
+            ctx.fillRect(0, 0, Constants.screenWidth, Constants.screenHeight);
         }
     },
 });

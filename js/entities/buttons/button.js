@@ -6,6 +6,7 @@ Main.Button = me.Renderable.extend(
 {
 	mouseEvents: null,
 	displayObject: null,
+    visible: true,
     isHovered: false,
 
 	init: function (displayObject, onClick, onHover, onHoverOut, clickArgs,
@@ -45,6 +46,13 @@ Main.Button = me.Renderable.extend(
         this.onHoverOut = onHoverOut ? onHoverOut : this.onHoverOut;
         this.onHoverOutArgs = args;
     },
+
+    setVisible: function(visible)
+    {
+        this.setOnClick(null, null, visible);
+        this.setOnHover(null, null, visible);
+        this.visible = visible;
+    },
     
 	update: function()
 	{
@@ -60,6 +68,7 @@ Main.Button = me.Renderable.extend(
     // draws displayObject at button's position
 	draw: function(ctx)
 	{
+        if (!this.visible) return;
         ctx.save();
         ctx.translate(this.pos.x, this.pos.y)
 		this.displayObject.draw(ctx);

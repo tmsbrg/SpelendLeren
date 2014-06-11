@@ -79,12 +79,25 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.levelEnded = false;
         this.popupShown = false;
         this.pausePressed = false;
+        this.pauseMenu = false;
 
         this.tiles = new Array(1);
         this.actions = [];
         this.interpretLevel(level);
         this.createPlayers(this.buildings);
         this.setTriggers(this.actions);
+
+        this.backButton = new Main.TextButton(100, 200, "back to campaign",
+            function() {
+                me.state.change(me.state.READY);
+        });
+        this.backButton.setVisible(false);
+        me.game.add(this.backButton, 200);
+
+        this.continueButton = new Main.TextButton(100, 100, "continue",
+                                               this.onPausePressed.bind(this));
+        this.continueButton.setVisible(false);
+        me.game.add(this.continueButton, 200);
 
         me.event.subscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
         me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
@@ -190,7 +203,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
         var n = name.substr(1);
         if (n != "action" && n != "target" && n != "arg") {
-            alert('"'+name+'" is not action or trigger. Spelling mistake?');
+            alert('"'+name+'" is not action, arg or trigger. Spelling mistake?');
         } else {
             this.actions[index][n] = value;
         }
@@ -615,10 +628,14 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         if (!this.pauseMenu) {
             if (!this.popupShown && !this.levelEnded) {
+                this.backButton.setVisible(true);
+                this.continueButton.setVisible(true);
                 this.pauseMenu = true;
                 this.pause();
             }
         } else {
+            this.backButton.setVisible(false);
+            this.continueButton.setVisible(false);
             this.pauseMenu = false;
             this.onFocus();
         }

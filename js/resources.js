@@ -126,7 +126,8 @@ resources = [
 	 
 	{name: "sound_off", type: "image",
      src: "data/img/gui/audio_icon_off.png"},
-	// units animations
+
+	// unit animations
 	{name: "user_farmer_topleft_0", type: "image",
      src: "data/img/armies/animations/farmer/user_farmer_topleft_0.png"},
 	{name: "user_farmer_topright_0", type: "image",
@@ -203,14 +204,8 @@ resources = [
      src: "data/img/armies/animations/battle_animation.png"},
 	 
 	// fonts
-    {name: "ugly_font", type: "image",
-     src: "data/img/gui/font/ugly_font.png"},
-    {name: "ubuntu_font", type: "image",
-     src: "data/img/gui/font/ubuntu_font.png"},
     {name: "luxi_font", type: "image",
      src: "data/img/gui/font/luxi_font.png"},
-    {name: "luxio_font", type: "image",
-     src: "data/img/gui/font/luxio_font.png"},
 
     // Pop up screens for the tutorial
 	{name: "popup_castle", type: "image",

@@ -6,7 +6,7 @@
   <property name="2action" value="takeover"/>
   <property name="2target" value="klooster"/>
   <property name="difficulty" value="1"/>
-  <property name="music" value="trumpet"/>
+  <property name="music" value="harps2"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">
@@ -101,7 +101,7 @@
   <object gid="53" x="-59" y="600"/>
   <object gid="53" x="-71" y="454"/>
   <object gid="53" x="-143" y="487"/>
-  <object gid="53" x="676" y="311"/>
+  <object gid="53" x="666" y="311"/>
   <object gid="53" x="-30" y="250"/>
   <object gid="53" x="518" y="451"/>
   <object gid="53" x="612" y="282"/>
@@ -135,9 +135,11 @@
   <object gid="45" x="669" y="773"/>
   <object gid="45" x="375" y="785"/>
   <object gid="38" x="719" y="721"/>
+  <object gid="53" x="408" y="282"/>
+  <object gid="53" x="388" y="235"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object name="starthoeve" type="user" gid="36" x="445" y="736">
+  <object name="starthoeve" type="user" gid="36" x="448" y="735">
    <properties>
     <property name="capacity" value="20"/>
     <property name="trigger_select" value="popup monastery"/>
@@ -176,8 +178,8 @@
   <object name="boom6" gid="8" x="841" y="147"/>
   <object gid="27" x="714" y="200"/>
   <object gid="27" x="814" y="142"/>
-  <object gid="2" x="923" y="554"/>
-  <object gid="3" x="876" y="534"/>
+  <object gid="2" x="853" y="579"/>
+  <object gid="3" x="928" y="566"/>
   <object gid="4" x="912" y="603"/>
   <object gid="6" x="877" y="598"/>
   <object gid="8" x="831" y="570"/>
@@ -190,7 +192,7 @@
   <object gid="28" x="938" y="614"/>
   <object gid="32" x="806" y="588"/>
   <object gid="29" x="880" y="238"/>
-  <object gid="32" x="629" y="93"/>
+  <object gid="32" x="247" y="111"/>
   <object gid="5" x="112" y="112"/>
   <object gid="26" x="502" y="478"/>
   <object gid="25" x="660" y="440"/>
@@ -243,7 +245,6 @@
   <object gid="33" x="781" y="271"/>
   <object gid="33" x="779" y="291"/>
   <object gid="33" x="766" y="274"/>
-  <object gid="33" x="697" y="361"/>
   <object gid="32" x="387" y="319"/>
   <object gid="32" x="53" y="767"/>
   <object gid="32" x="152" y="762"/>
@@ -263,7 +264,7 @@
   <object gid="26" x="246" y="761"/>
   <object gid="26" x="380" y="342"/>
   <object gid="24" x="133" y="781"/>
-  <object gid="24" x="484" y="295"/>
+  <object gid="24" x="484" y="302"/>
   <object gid="25" x="108" y="577"/>
   <object gid="27" x="20" y="555"/>
   <object gid="24" x="81" y="544"/>
@@ -281,5 +282,20 @@
   <object gid="32" x="4" y="461"/>
   <object gid="28" x="129" y="393"/>
   <object gid="31" x="-11" y="326"/>
+  <object gid="5" x="546" y="437"/>
+  <object gid="8" x="621" y="437"/>
+  <object gid="7" x="144" y="708"/>
+  <object gid="32" x="554" y="479"/>
+  <object gid="29" x="906" y="544"/>
+  <object gid="31" x="912" y="614"/>
+  <object gid="32" x="824" y="614"/>
+  <object gid="32" x="564" y="259"/>
+  <object gid="30" x="585" y="229"/>
+  <object gid="28" x="699" y="344"/>
+  <object gid="32" x="714" y="374"/>
+  <object gid="31" x="552" y="204"/>
+  <object gid="7" x="442" y="608"/>
+  <object gid="8" x="-2" y="100"/>
+  <object gid="5" x="-28" y="145"/>
  </objectgroup>
 </map>

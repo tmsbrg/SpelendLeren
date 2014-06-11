@@ -3,7 +3,7 @@
  <properties>
   <property name="1action" value="select"/>
   <property name="1target" value="boerderij 1"/>
-  <property name="difficulty" value="1"/>
+  <property name="difficulty" value="4"/>
   <property name="music" value="verynice"/>
   <property name="victory" value="conquer_all"/>
  </properties>

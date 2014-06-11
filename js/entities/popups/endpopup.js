@@ -14,7 +14,12 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	init: function(userWon, scoreData, levelname)
 	{	
 		this.levelname = levelname;
-		
+		if (userWon) {
+			me.audio.play("victory");
+		}
+		else {
+			me.audio.play("lose");
+		}
 		this.initBackground(userWon);
 		this.initButtons();
 		this.initImages(scoreData);

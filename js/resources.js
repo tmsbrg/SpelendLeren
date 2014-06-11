@@ -15,6 +15,12 @@ resources = [
      src: "data/img/background/bg_level_04.png"},
 	{name: "bg_level_05", type: "image",
      src: "data/img/background/bg_level_05.png"},
+	{name: "bg_level_06", type: "image",
+     src: "data/img/background/bg_level_06.png"},
+	{name: "bg_level_07", type: "image",
+     src: "data/img/background/bg_level_07.png"},
+	{name: "bg_level_08", type: "image",
+     src: "data/img/background/bg_level_08.png"},
 
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	
@@ -96,7 +102,7 @@ resources = [
      src: "data/img/buildings/building_selection.png"},
 	{name: "enemy_building_selection", type: "image",
      src: "data/img/buildings/enemy_building_selection.png"},
-	// unbits icons
+	// units icons
 	{name: "farmer_icon", type: "image",
 	 src: "data/img/armies/icons/farmer_icon.png"},
 	 
@@ -290,6 +296,11 @@ resources = [
 	{name: "level8", type: "tmx", src: "data/level/8.tmx"},
 	{name: "level9", type: "tmx", src: "data/level/9.tmx"},
 	{name: "level10", type: "tmx", src: "data/level/10.tmx"},
+	{name: "level11", type: "tmx", src: "data/level/11.tmx"},
+	{name: "level12", type: "tmx", src: "data/level/12.tmx"},
+	{name: "level13", type: "tmx", src: "data/level/13.tmx"},
+	{name: "level14", type: "tmx", src: "data/level/14.tmx"},
+	{name: "level15", type: "tmx", src: "data/level/15.tmx"},
 	
 	/* Background music. 
 	 * @example

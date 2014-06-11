@@ -7,9 +7,15 @@ MapData =
 	{ x: 611, y: 347,  },
 	{ x: 600, y: 407,  },
 	{ x: 646, y: 389, conquered: ["schwaben"] },
-	{ x: 745, y: 375,  conquered: ["beieren"]},
-	{ x: 440, y: 625,  conquered: ["septimanie"]},
+	{ x: 745, y: 380, conquered: ["beieren"]},
+	{ x: 440, y: 625, conquered: ["septimanie"]},
 	{ x: 395, y: 510,  },
+	{ x: 295, y: 480, lost: ["beieren"]},
+	{ x: 310, y: 580, conquered: ["aquitanie"]},
+	{ x: 610, y: 548,  },
+	{ x: 710, y: 530,  },
+	{ x: 715, y: 595,  },
+	
 ]
 
 Territories =

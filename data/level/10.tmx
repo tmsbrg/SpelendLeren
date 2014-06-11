@@ -183,7 +183,7 @@
     <property name="trigger_select" value="popup castle"/>
    </properties>
   </object>
-  <object name="klooster" type="user" gid="3" x="72" y="674">
+  <object name="klooster" type="comp1" gid="3" x="72" y="674">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
@@ -193,7 +193,7 @@
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="farm2" type="user" gid="2" x="917" y="631">
+  <object name="farm2" type="neutral" gid="2" x="917" y="631">
    <properties>
     <property name="capacity" value="4"/>
    </properties>

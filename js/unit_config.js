@@ -155,7 +155,7 @@ buildingDoorLocation =
 	farm: [44, 47],
 	homestead: [35, 108],
 	church: [71, 74],
-	castle: [155, 202],
+	castle: [156, 136],
 }
 
 buildingSizes =

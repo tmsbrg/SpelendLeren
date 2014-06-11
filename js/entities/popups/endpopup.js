@@ -108,10 +108,14 @@ Main.Endpopup =  Main.GUIContainer.extend(
 				me.game.add(textObject, 300);
 			}
 		} // 650 581
-
-        var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
+		var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
                                  / 1000);
-        me.game.add(new Main.TextObject(650, 600, winTime + " sec",
+		scoreData.setEndTime(winTime) 
+        scoreData.calculateScore();
+		me.game.add(new Main.TextObject(350, 600, scoreData.score,
+                                        Main.font),
+                    350);
+        me.game.add(new Main.TextObject(650, 600, scoreData.endTime + " sec",
                                         Main.font),
                     350);
 	},

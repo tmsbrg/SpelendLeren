@@ -12,7 +12,7 @@ SearchTargetStrategy.prototype.execute = function(player)
 {
 	return this.search(player)
 }
- 
+// startegy to attack a random building
 SearchTargetStrategy.prototype.search = function(player) 
 {
 	var buildings = Main.levelScreen.getBuildings();
@@ -37,7 +37,7 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 {
 	var buildings = Main.levelScreen.getBuildings();
 	var ownBuidling = null; 
-	for (var i = 0; i < buildings.length - 1; i++)
+	for (var i = 0; i < buildings.length; i++)
 	{
 		if (buildings[i].owner == player.name) {
 			ownBuidling = buildings[i];
@@ -46,6 +46,7 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 	}
 	
 	if ( ownBuidling == null ) {
+		console.log("No owend buildings found!");
 		return null;
 	}
 	
@@ -82,5 +83,51 @@ SearchUserTargetStrategy.prototype.search = function(player)
 		}
 	}
 	return buildings[i];
+};
+
+// strategy to attack the building with the lowest defence power
+var SearchWeakTargetStrategy = function() {};
+SearchWeakTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
+SearchWeakTargetStrategy.prototype.search = function(player) 
+{
+	var buildings = Main.levelScreen.getBuildings();
+	var minStrength = 10000;
+	var target;
+	
+	for (var i = 0; i < buildings.length; i++) 
+	{
+		
+		if (buildings[i].owner != player.name) {
+			
+			if(buildings[i].calculateDefencePower() < minStrength) {
+				target = buildings[i];
+				minStrength = target.calculateDefencePower();
+			}
+		}
+	}
+	return target;
+};
+
+// strategy to attack the building with the lowest defence power
+var SearchWeakUserTargetStrategy = function() {};
+SearchWeakUserTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
+SearchWeakUserTargetStrategy.prototype.search = function(player) 
+{
+	var buildings = Main.levelScreen.getBuildings();
+	var minStrength = 10000;
+	var target;
+	
+	for (var i = 0; i < buildings.length; i++) 
+	{
+		
+		if (buildings[i].owner != player.name && buildings[i].owner == "user") {
+			
+			if(buildings[i].calculateDefencePower() < minStrength) {
+				target = buildings[i];
+				minStrength = target.calculateDefencePower();
+			}
+		}
+	}
+	return target;
 };
 

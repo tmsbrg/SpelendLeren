@@ -19,6 +19,8 @@ Main.AI = Object.extend(
 	randomStartegy: null,
 	closestStrategy: null,
 	userStrategy: null,
+	weakStrategy: null,
+	waekUserStrategy: null,
 
     init: function(difficulty)
     {
@@ -26,7 +28,11 @@ Main.AI = Object.extend(
 		this.closestStrategy =
                        new SearchTarget(new SearchClosestTargetStrategy());
 		this.userStrategy = new SearchTarget(new SearchUserTargetStrategy());
-		this.setSearchTargetStrategy(this.closestStrategy);
+		
+		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
+		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
+		
+		this.setAIStrategy("secret");
 		
 		if (difficulty == null) {
             difficulty = 1;
@@ -42,6 +48,33 @@ Main.AI = Object.extend(
 	setSearchTargetStrategy: function(strategy)
 	{
 		this.searchTarget = strategy;
+	},
+	
+	setAIStrategy: function(strategy)
+	{
+		switch(strategy)
+		{
+			case "close":
+				this.setSearchTargetStrategy(this.closestStrategy);
+				break;
+			case "randome":
+				this.setSearchTargetStrategy(this.randomStrategy);
+				break;
+			case "user":
+				this.setSearchTargetStrategy(this.userStrategy);
+				break;
+			case "weak":
+				this.setSearchTargetStrategy(this.weakStrategy);
+				break;
+			case "weakUser":
+				this.setSearchTargetStrategy(this.weakUserStrategy);
+				break;
+			default:
+				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the randome strategy.");
+				this.setSearchTargetStrategy(this.randomStrategy);
+				break;
+				
+		}
 	},
 
     setDifficulty: function(difficulty)

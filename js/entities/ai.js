@@ -5,7 +5,7 @@ Main.AI = Object.extend(
                              // wave of armies
     alwaysInactive: false, // if true, always make the AI inactive
     attacking: false, // whether this AI is currently attacking
-    wavesToSend: 2, // how many waves of attacks will be sent to any target
+    wavesToSend: 1, // how many waves of attacks will be sent to any target
     targetLock: false, // whether the AI locks onto a target until it has
                        // taken it over
 
@@ -18,16 +18,16 @@ Main.AI = Object.extend(
 	searchTarget: null,
 	randomStartegy: null,
 	closestStrategy: null,
+	userStrategy: null,
 
     init: function(difficulty)
     {
 		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
 		this.closestStrategy =
                        new SearchTarget(new SearchClosestTargetStrategy());
-
+		this.userStrategy = new SearchTarget(new SearchUserTargetStrategy());
+		this.setSearchTargetStrategy(this.closestStrategy);
 		
-		
-		this.setSearchTargetStrategy(this.randomStrategy);
 		if (difficulty == null) {
             difficulty = 1;
         }
@@ -69,7 +69,7 @@ Main.AI = Object.extend(
         if (!this.active) {
             return false;
         }
-
+		//console.log(this.currentTarget);
         if (this.searchForTarget() == false) {
             return false;
         }
@@ -82,8 +82,9 @@ Main.AI = Object.extend(
     // it has found none, otherwise returns true
     searchForTarget: function()
     {
-        if (this.currentTarget == null) {
-            this.currentTarget =  this.searchTarget.search(this.player);
+       
+		if (this.currentTarget == null) {
+			this.currentTarget =  this.searchTarget.search(this.player);
             if (this.currentTarget == null) {
                 this.active = false;
                 return false;
@@ -104,41 +105,26 @@ Main.AI = Object.extend(
                 this.attack(this.currentTarget);
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
-                    this.stopAttack();
+                   
+					this.stopAttack();
+					
                 }
             } else {
-                this.stopAttack();
+                
+				this.stopAttack();
             }
         }
     },
 
     stopAttack: function()
     {
-        this.wavesSent = 0;
+       
+		this.wavesSent = 0;
         if (!this.targetLock) {
-            this.currentTarget = null;
+            
+			this.currentTarget = null;
         }
     },
-
-    // returns a random building not owned by this AI, or null if there is
-    // no such building
-    /*getNewTarget : function(player)
-    {
-		console.log("new function " +searchTarget.search(this.player));
-		
-		var buildings = Main.levelScreen.getBuildings();
-        var i = Math.round(Math.random() * (buildings.length-1));
-        var start_i = i;
-        while (buildings[i].owner === player.name)
-        {
-            i = (i + 1) % buildings.length;
-            if (i == start_i) {
-                return null;
-            }
-        }
-		console.log("old function " + buildings[i]);
-        return buildings[i];
-    },*/
 
     // sends all his units to attack given target
     attack: function(target)

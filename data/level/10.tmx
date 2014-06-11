@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
   <property name="1action" value="select"/>
-  <property name="1target" value="usercastle"/>
+  <property name="1target" value="user"/>
   <property name="difficulty" value="3"/>
   <property name="music" value="awesome2"/>
   <property name="victory" value="conquer_all"/>
@@ -177,9 +177,10 @@
   <object gid="51" x="527" y="62"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object name="comp1" type="comp1" gid="1" x="825" y="744">
+  <object name="user" type="user" gid="1" x="825" y="744">
    <properties>
     <property name="capacity" value="25"/>
+    <property name="trigger_select" value="popup castle"/>
    </properties>
   </object>
   <object name="klooster" type="user" gid="3" x="72" y="674">
@@ -187,12 +188,12 @@
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="farm1" type="neutral" gid="2" x="649" y="610">
+  <object name="farm1" type="user" gid="2" x="649" y="610">
    <properties>
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="farm2" type="neutral" gid="2" x="917" y="631">
+  <object name="farm2" type="user" gid="2" x="917" y="631">
    <properties>
     <property name="capacity" value="4"/>
    </properties>
@@ -341,9 +342,9 @@
   <object gid="12" x="173" y="155"/>
   <object gid="12" x="179" y="90"/>
   <object gid="15" x="51" y="85"/>
-  <object name="usercastle" type="user" gid="4" x="44" y="308">
+  <object name="castle" type="comp1" gid="4" x="44" y="308">
    <properties>
-    <property name="trigger_select" value="popup castle"/>
+    <property name="capacity" value="20"/>
    </properties>
   </object>
  </objectgroup>

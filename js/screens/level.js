@@ -575,8 +575,8 @@ Main.LevelScreen = me.ScreenObject.extend(
             Main.playerlevel <= Number(this.name.substr(numPos))) {
 			Main.playerlevel += 1;
 			me.save.playerlevel = Main.playerlevel;
-		}
 			
+		}	
 			
         var endpopup = new Main.Endpopup(userWon, this.scoreData, this.name);
 		me.game.add(endpopup, 200);

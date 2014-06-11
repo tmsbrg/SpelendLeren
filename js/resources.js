@@ -302,18 +302,22 @@ resources = [
 	 */	
 	 
 	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "menu_lotr", type: "audio", src: "data/audio/background/",channel:1},
 	{name: "campaign", type: "audio", src: "data/audio/background/", channel:1},
 	{name: "drum", type: "audio", src: "data/audio/background/", channel : 1},
 	{name: "harps", type: "audio", src: "data/audio/background/", channel : 1},
+	{name: "harps2", type: "audio", src: "data/audio/background/", channel : 1},
 	{name: "trumpet", type: "audio", src: "data/audio/background/", channel:1},
 	{name: "verynice", type: "audio", src: "data/audio/background/", channel:1},
 	{name: "awesome1", type: "audio", src: "data/audio/background/", channel:1},
 	{name: "awesome2", type: "audio", src: "data/audio/background/", channel:1},
+	{name: "violin", type: "audio", src: "data/audio/background/", channel:1},
+	{name: "flute", type: "audio", src: "data/audio/background/", channel:1},
 	
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
 	 */
-	 {name: "fight", type: "audio", src: "data/audio/sound/", channel : 2}
+	{name: "fight", type: "audio", src: "data/audio/sound/", channel : 2},
+	{name: "lose", type: "audio", src: "data/audio/sound/", channel : 2},
+	{name: "victory", type: "audio", src: "data/audio/sound/", channel : 2},
 ];

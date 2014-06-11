@@ -45,6 +45,10 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 		}
 	}
 	
+	if ( ownBuidling == null ) {
+		return null;
+	}
+	
 	var buildingsPos = ownBuidling.pos;
 	var minDistance = 1000;
 	var currentTarget = null;
@@ -60,5 +64,23 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 		}
 	}
 	return currentTarget;
+};
+// startegy to only attack buildings of the user
+var SearchUserTargetStrategy = function() {};
+SearchUserTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
+SearchUserTargetStrategy.prototype.search = function(player) 
+{
+	var buildings = Main.levelScreen.getBuildings();
+	var i = Math.round(Math.random() * (buildings.length-1));
+	var start_i = i;
+	
+	while (buildings[i].owner !== "user")
+	{
+		i = (i + 1) % buildings.length;
+		if (i == start_i) {
+			return null;
+		}
+	}
+	return buildings[i];
 };
 

@@ -89,8 +89,9 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         this.backButton = new Main.TextButton(100, 200, "back to campaign",
             function() {
+                this.stopMusic();
                 me.state.change(me.state.READY);
-        });
+        }.bind(this));
         this.backButton.setVisible(false);
         me.game.add(this.backButton, 200);
 
@@ -591,11 +592,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         this.levelEnded = true;
 
-        try {
-            me.audio.stop(this.music);
-        } catch (e) {
-            // ignore error if there is no music for this level
-        }
+        this.stopMusic();
         this.pause();
         var numPos = this.name.search("\\d"); // find first digit
 		if (userWon == true && !Constants.allLevelsPlayable && 
@@ -607,6 +604,15 @@ Main.LevelScreen = me.ScreenObject.extend(
 			
         var endpopup = new Main.Endpopup(userWon, this.scoreData, this.name);
 		me.game.add(endpopup, 200);
+    },
+
+    stopMusic: function()
+    {
+        try {
+            me.audio.stop(this.music);
+        } catch (e) {
+            // ignore error if there is no music for this level
+        }
     },
 
     // pauses the game

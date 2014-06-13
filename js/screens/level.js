@@ -83,6 +83,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         this.tiles = new Array(1);
         this.actions = [];
+        this.parTime = Constants.defaultParTime;
         this.interpretLevel(level);
         this.createPlayers(this.buildings);
         this.setTriggers(this.actions);
@@ -106,7 +107,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.backLayer.sort();
 
         var unitTypes = this.getUnitTypes();
-		this.scoreData = new Main.ScoreData(unitTypes);
+		this.scoreData = new Main.ScoreData(unitTypes, this.parTime);
     },
 	
 	addScore: function(unitType, category, amount)
@@ -174,8 +175,11 @@ Main.LevelScreen = me.ScreenObject.extend(
                 case "victory":
                     this.setVictoryCondition(value)
                     break;
+                case "time":
+                    this.parTime = Number(value);
+                    break;
                 case "difficulty":
-                    this.setDifficulty(value)
+                    this.setDifficulty(Number(value))
                     break;
                 case "music":
                     try {

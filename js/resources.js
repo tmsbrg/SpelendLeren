@@ -301,6 +301,13 @@ resources = [
 	{name: "level13", type: "tmx", src: "data/level/13.tmx"},
 	{name: "level14", type: "tmx", src: "data/level/14.tmx"},
 	{name: "level15", type: "tmx", src: "data/level/15.tmx"},
+	{name: "level16", type: "tmx", src: "data/level/16.tmx"},
+	{name: "level17", type: "tmx", src: "data/level/17.tmx"},
+	{name: "level18", type: "tmx", src: "data/level/18.tmx"},
+	{name: "level19", type: "tmx", src: "data/level/19.tmx"},
+	{name: "level20", type: "tmx", src: "data/level/20.tmx"},
+	{name: "level21", type: "tmx", src: "data/level/21.tmx"},
+	{name: "level22", type: "tmx", src: "data/level/22.tmx"},
 	
 	/* Background music. 
 	 * @example

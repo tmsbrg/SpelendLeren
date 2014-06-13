@@ -15,6 +15,13 @@ MapData =
 	{ x: 610, y: 548,  },
 	{ x: 710, y: 530,  },
 	{ x: 715, y: 595,  },
+	{ x: 740, y: 668, conquered: ["lombardije"]},
+	{ x: 585, y: 205,  },
+	{ x: 660, y: 185,  },
+	{ x: 620, y: 130, conquered: ["saksen"]},
+	{ x: 715, y: 445, conquered: ["beieren"]},
+	{ x: 825, y: 440, conquered: ["karinthie"]},
+	{ x: 235, y: 705, conquered: ["spaanse_mark"]},
 	
 ]
 

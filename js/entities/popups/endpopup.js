@@ -78,16 +78,21 @@ Main.Endpopup =  Main.GUIContainer.extend(
 
     initImages: function(scoreData)
     {
-        for (var i=0; i<scoreData.units.length; i++)
+        for (var i=0; i < scoreData.units.length; i++)
         {
-            var size = GetUnitSize(scoreData.units[i]);
-            var img = new Main.TileImage(320, 
-                                         (this.statY + (this.statYSpace*i)),
-                                         "user_"+scoreData.units[i]+
-                                         "_downright_0",
-                                         size, size,
-                                         0);
-            me.game.add(img, 250);
+			var size = GetUnitSize(scoreData.units[i]);
+			var img = me.loader.getImage("user_" + scoreData.units[i] + "_win");
+			var animation = new me.AnimationSheet(320, (this.statY + (this.statYSpace * i)),
+												img, size);
+			
+				
+			var length = animation.image.width / size;
+			var animationArray = getRange(length);
+			animation.addAnimation("win", animationArray, UnitConfig(scoreData.units[i], 0,
+                          "animationSpeed"));
+			animation.setCurrentAnimation("win");
+            
+            me.game.add(animation, 250);
         }
     },
 	

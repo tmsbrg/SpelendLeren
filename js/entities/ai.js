@@ -1,6 +1,5 @@
 Main.AI = Object.extend(
 {
-
     timeUntilNextWave: 8000, // amount of miliseconds until sending the next
                              // wave of armies
     alwaysInactive: false, // if true, always make the AI inactive
@@ -32,7 +31,7 @@ Main.AI = Object.extend(
 		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
 		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
 		
-		this.setAIStrategy("secret");
+		this.setAIStrategy("user");
 		
 		if (difficulty == null) {
             difficulty = 1;
@@ -44,12 +43,13 @@ Main.AI = Object.extend(
             this.active = false;
         }
     },
-	
+	// changes the curretn strategy of the ai to the given startegy
 	setSearchTargetStrategy: function(strategy)
 	{
 		this.searchTarget = strategy;
 	},
 	
+	// changes the ai´s strategy on runtime based on the given string
 	setAIStrategy: function(strategy)
 	{
 		switch(strategy)
@@ -76,7 +76,7 @@ Main.AI = Object.extend(
 				
 		}
 	},
-
+	// TODO: comment
     setDifficulty: function(difficulty)
     {
         if (difficulty < 0) {
@@ -91,7 +91,30 @@ Main.AI = Object.extend(
             }
         }
     },
-
+	
+	buildingAdvance: function()
+	{
+		var buildings = Main.levelScreen.getBuildings();
+		var aiCountBuildings = 0;
+		var userCountBuildings = 0;
+		
+		for ( var i = 0; i < buildings.length; i++) 
+		{
+			if (buildings[i].owner = this.player) {
+				aiCountBuildings ++;
+			} else if (buildings[i].owner == "user") {
+				userCountBuildings ++;
+			}
+		}
+		
+		if ( aiCountBuildings > userCountBuildings ) {
+			return true
+		} else {
+			return false
+		}
+	},
+	
+	// TODO: comment
     setPlayer: function(player)
     {
         this.player = player;
@@ -148,7 +171,7 @@ Main.AI = Object.extend(
             }
         }
     },
-
+	// stops the ai from attack buildings
     stopAttack: function()
     {
        

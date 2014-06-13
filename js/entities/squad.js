@@ -49,26 +49,14 @@ Main.Squad = me.AnimationSheet.extend(
 		
 		this.parent(this.startPoint.x , this.startPoint.y, image, GetUnitSize(key));
 		var length = image.width / GetUnitSize(key);
-		var animationArray = this.getAnimationArray(length);
+		var animationArray = getRange(length);
 		this.addAnimation("walk", animationArray, UnitConfig(key, 0,
                           "animationSpeed"));
 		this.setCurrentAnimation("walk");
 
         this.halo = new Main.Image(0, 0, "halo");
 	},
-	// returns an array enumerating the values from 0 to (n - 1) 
-	getAnimationArray: function(n)
-	{
-		
-		var array = [];
-		
-		for (var i = 0; i < n; i++)
-		{
-			array.push(i)
-		}
-		
-		return array;
-	},
+	
 	
 	// returns the name of the direction the suqad is curretnly moving in
 	getDirectionName: function(dir)

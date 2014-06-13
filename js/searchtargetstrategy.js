@@ -115,11 +115,10 @@ SearchWeakUserTargetStrategy.prototype.search = function(player)
 {
 	var buildings = Main.levelScreen.getBuildings();
 	var minStrength = 10000;
-	var target;
+	var target = null;
 	
 	for (var i = 0; i < buildings.length; i++) 
-	{
-		
+	{	
 		if (buildings[i].owner != player.name && buildings[i].owner == "user") {
 			
 			if(buildings[i].calculateDefencePower() < minStrength) {

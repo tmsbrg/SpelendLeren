@@ -23,6 +23,8 @@ resources = [
      src: "data/img/background/bg_level_08.png"},
 	 {name: "bg_level_09", type: "image",
      src: "data/img/background/bg_level_09.png"},
+    {name: "bg_level_21", type: "image",
+     src: "data/img/background/bg_level_21.png"},
 
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	
@@ -257,6 +259,8 @@ resources = [
      src: "data/img/gui/popup/popup_heren.png"},
     {name: "popup_monastery", type: "image",
      src: "data/img/gui/popup/popup_monastery.png"},
+	{name: "popup_monniken", type: "image",
+     src: "data/img/gui/popup/popup_monniken.png"},
     {name: "popup_standen", type: "image",
      src: "data/img/gui/popup/popup_standen.png"},
     {name: "popup_start", type: "image",

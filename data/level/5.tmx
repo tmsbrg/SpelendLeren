@@ -6,7 +6,7 @@
   <property name="2action" value="takeover"/>
   <property name="2target" value="klooster"/>
   <property name="difficulty" value="1"/>
-  <property name="music" value="harps2"/>
+  <property name="music" value="trumpet"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">
@@ -168,6 +168,7 @@
   <object name="klooster" type="neutral" gid="37" x="582" y="455">
    <properties>
     <property name="capacity" value="2"/>
+    <property name="trigger_takeover" value="popup monniken"/>
    </properties>
   </object>
   <object name="boom1" gid="5" x="817" y="209"/>

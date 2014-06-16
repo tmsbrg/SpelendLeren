@@ -217,14 +217,14 @@
   <object gid="5" x="738" y="215"/>
   <object gid="5" x="814" y="362"/>
   <object gid="5" x="501" y="531"/>
-  <object gid="6" x="846" y="222"/>
+  <object gid="6" x="875" y="234"/>
   <object gid="6" x="650" y="156"/>
   <object gid="6" x="741" y="311"/>
   <object gid="6" x="363" y="458"/>
   <object gid="6" x="570" y="654"/>
-  <object gid="6" x="449" y="449"/>
+  <object gid="6" x="446" y="461"/>
   <object gid="6" x="492" y="486"/>
-  <object gid="6" x="762" y="384"/>
+  <object gid="6" x="772" y="382"/>
   <object gid="7" x="552" y="209"/>
   <object gid="7" x="615" y="601"/>
   <object gid="7" x="913" y="507"/>
@@ -233,7 +233,7 @@
   <object gid="8" x="576" y="545"/>
   <object gid="8" x="326" y="299"/>
   <object gid="8" x="760" y="715"/>
-  <object gid="8" x="299" y="428"/>
+  <object gid="8" x="314" y="453"/>
   <object gid="8" x="494" y="177"/>
   <object gid="8" x="646" y="316"/>
   <object gid="8" x="104" y="651"/>
@@ -278,6 +278,7 @@
   <object gid="7" x="-3" y="513"/>
   <object gid="7" x="534" y="564"/>
   <object gid="7" x="707" y="713"/>
+  <object gid="7" x="874" y="494"/>
   <object gid="6" x="24" y="288"/>
   <object gid="8" x="234" y="786"/>
   <object gid="8" x="755" y="765"/>

@@ -29,9 +29,19 @@ Main.MenuScreen = me.ScreenObject.extend(
 		
 		
 		
-		var start_game_button = new Main.TextButton(410, 220, "Campaign", this.start_game.bind(this));
+		var start_game_button = new Main.TextButton(410, 220, "Doorgaan", this.start_game.bind(this));
 		me.game.add(start_game_button, 20);
+		var restart_game_button = new Main.TextButton(410, 320, "Opnieuw beginnen", this.restart_game.bind(this));
+		me.game.add(restart_game_button, 20);
 	},
+
+    restart_game: function()
+    {
+        // this needs a warning
+        me.save.delete("playerlevel");
+        Main.playerlevel = 1;
+        this.start_game();
+    },
 	
 	start_game: function()
 	{

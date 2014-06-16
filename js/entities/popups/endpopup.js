@@ -22,7 +22,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		}
 		this.initBackground(userWon);
 		this.initButtons();
-		this.initImages(scoreData);
+		this.initImages(userWon, scoreData);
 		this.initTextobjects(scoreData);
 		
 		this.parent(0, 0, [this.imageObject, this.retryButton, this.campaignButton]);
@@ -76,20 +76,21 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		me.state.change(me.state.READY); 
 	},
 
-    initImages: function(scoreData)
+    initImages: function(userWon, scoreData)
     {
-        for (var i=0; i < scoreData.units.length; i++)
+        var winner = userWon ? "user_" : "comp1_";
+		
+		for (var i = 0; i < scoreData.units.length; i++)
         {
 			var size = GetUnitSize(scoreData.units[i]);
-			var img = me.loader.getImage("user_" + scoreData.units[i] + "_win");
+			var img = me.loader.getImage(winner + scoreData.units[i] + "_win");
 			var animation = new me.AnimationSheet(320, (this.statY + (this.statYSpace * i)),
 												img, size);
 			
 				
 			var length = animation.image.width / size;
 			var animationArray = getRange(length);
-			animation.addAnimation("win", animationArray, UnitConfig(scoreData.units[i], 0,
-                          "animationSpeed"));
+			animation.addAnimation("win", animationArray, 0.3);
 			animation.setCurrentAnimation("win");
             
             me.game.add(animation, 250);

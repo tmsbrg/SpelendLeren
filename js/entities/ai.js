@@ -76,8 +76,7 @@ Main.AI = Object.extend(
 				this.setSearchTargetStrategy(this.pointsStrategy);
 				break;
 			default:
-				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the points strategy.");
-				this.setSearchTargetStrategy(this.pointsStrategy);
+				throw "Strategy '"+ strategy + "' does not exist. legitimate strategies include 'points', 'random', 'close', 'user', 'weak' and 'weakUser'";
 				break;
 				
 		}
@@ -131,7 +130,6 @@ Main.AI = Object.extend(
         if (!this.active) {
             return false;
         }
-		//console.log(this.currentTarget);
         if (this.searchForTarget() == false) {
             return false;
         }
@@ -162,7 +160,7 @@ Main.AI = Object.extend(
         if (this.counter >= this.timeUntilNextWave) {
             this.counter = 0;
 			
-            if (this.getTotalStrength() >=
+            if (this.player.getTotalStrength() >=
                        this.currentTarget.calculateDefencePower()) {
                 this.attack(this.currentTarget);
                 this.wavesSent++;
@@ -200,14 +198,8 @@ Main.AI = Object.extend(
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-		if (this.buildingAdvance()) {
-			this.setAIStrategy("weakUser");
-		} else {
-			this.setAIStrategy(this.strategy)
-		}
 		this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;
-		
     },
 
     // removes a building from the array of buildings owned by this AI
@@ -216,18 +208,6 @@ Main.AI = Object.extend(
         if (!this.active && !this.alwaysInactive) {
             this.active = true;
         }
-    },
-
-    // returns total attack power of all owned buildings
-    getTotalStrength: function()
-    {
-        var strength = 0;
-        for (var i=0; i < this.player.buildings.length; i++)
-        {
-            strength += this.player.buildings[i].calculateAttackPower();
-        }
-        return strength;
-		
     },
 
     // disables this AI

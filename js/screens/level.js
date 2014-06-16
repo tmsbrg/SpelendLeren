@@ -83,7 +83,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.pauseMenu = false;
         // AI defaults
         this.difficulty = 3;
-        this.strategy = "random";
+        this.strategy = "points";
 
         this.tiles = new Array(1);
         this.actions = [];
@@ -453,9 +453,13 @@ Main.LevelScreen = me.ScreenObject.extend(
                 (player == "user" && Constants.playerIsAI)) {
                 try {
                     ai = new Main.AI(this.difficulty, this.strategy);
-                } catch (e if typeof e == "string") {
-                    alert(e); // more friendly error messaging for
-                              // non-programmers
+                } catch (e) {
+                    if (typeof e == "string") {
+                        alert(e); // more friendly error messaging for
+                                  // non-programmers
+                    } else {
+                        throw(e);
+                    }
                 }
             }
             this.players.setValue(player,

@@ -21,6 +21,8 @@ resources = [
      src: "data/img/background/bg_level_07.png"},
 	{name: "bg_level_08", type: "image",
      src: "data/img/background/bg_level_08.png"},
+	 {name: "bg_level_09", type: "image",
+     src: "data/img/background/bg_level_09.png"},
 
 	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
 	

@@ -4,7 +4,7 @@
 Main.Squad = me.AnimationSheet.extend(
 {
 	speed: 0, // the speed of the army
-	collisionRadius: 32, // radius for checking collision with target building
+	collisionRadius: Constants.collisionRadius,
 	type: null, // type of the army
 	owner: "", // string containing owner of the squad
     target: null, // reference to target building

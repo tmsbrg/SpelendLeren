@@ -14,6 +14,8 @@ Constants =
 
     defaultParTime: 100, // default time to defeat levels in, in seconds
 
+    collisionRadius: 48,  // radius for checking collision with target building
+
     players: [
         "neutral",
         "user",

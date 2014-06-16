@@ -10,7 +10,7 @@ Main.AI = Object.extend(
 
     active: true, // whether this AI is doing stuff
     wavesSent: 0, // how many waves have been sent to the current target
-
+	strategy: null,
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
     player: null, // reference to the player for this AI
@@ -22,7 +22,7 @@ Main.AI = Object.extend(
 	waekUserStrategy: null,
 	pointsStrategy: null,
 
-    init: function(difficulty)
+    init: function(difficulty, strategy)
     {
 		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
 		this.closestStrategy =
@@ -31,10 +31,10 @@ Main.AI = Object.extend(
 		
 		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
 		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
-		
 		this.pointsStrategy = new SearchTarget(new SearchPointsTargetStrategy());
-		
-		this.setAIStrategy("points");
+
+		this.setAIStrategy(strategy);
+
 		
 		if (difficulty == null) {
             difficulty = 1;
@@ -76,8 +76,8 @@ Main.AI = Object.extend(
 				this.setSearchTargetStrategy(this.pointsStrategy);
 				break;
 			default:
-				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the random strategy.");
-				this.setSearchTargetStrategy(this.randomStrategy);
+				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the points strategy.");
+				this.setSearchTargetStrategy(this.pointsStrategy);
 				break;
 				
 		}
@@ -121,7 +121,6 @@ Main.AI = Object.extend(
 		}
 	},
 	
-	// TODO: comment
     setPlayer: function(player)
     {
         this.player = player;
@@ -204,7 +203,7 @@ Main.AI = Object.extend(
 		if (this.buildingAdvance()) {
 			this.setAIStrategy("weakUser");
 		} else {
-			this.setAIStrategy("points")
+			this.setAIStrategy(this.strategy)
 		}
 		this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;

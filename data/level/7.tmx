@@ -139,7 +139,7 @@
     <property name="capacity" value="30"/>
    </properties>
   </object>
-  <object name="boerderij 1" type="neutral" gid="35" x="470" y="163">
+  <object name="boerderij 1" type="neutral" gid="35" x="830" y="171">
    <properties>
     <property name="capacity" value="2"/>
    </properties>
@@ -154,7 +154,7 @@
     <property name="capacity" value="3"/>
    </properties>
   </object>
-  <object name="klooster" type="neutral" gid="37" x="821" y="173">
+  <object name="klooster" type="neutral" gid="37" x="454" y="160">
    <properties>
     <property name="capacity" value="2"/>
    </properties>

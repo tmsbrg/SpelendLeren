@@ -15,7 +15,6 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     updateWhenPaused: true,
 
-    difficulty: 3,
 
     frontLayer: null, // contains LayerObject for armies, buildings and front
                       // scenery
@@ -44,6 +43,8 @@ Main.LevelScreen = me.ScreenObject.extend(
 			this.pausePressed = true;
 			this.onPausePressed();
 		}
+
+        return false;
     },
 
     // called when the level is started
@@ -80,6 +81,9 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.popupShown = false;
         this.pausePressed = false;
         this.pauseMenu = false;
+        // AI defaults
+        this.difficulty = 3;
+        this.strategy = "random";
 
         this.tiles = new Array(1);
         this.actions = [];
@@ -88,18 +92,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.createPlayers(this.buildings);
         this.setTriggers(this.actions);
 
-        this.backButton = new Main.TextButton(100, 200, "back to campaign",
-            function() {
-                this.stopMusic();
-                me.state.change(me.state.READY);
-        }.bind(this));
-        this.backButton.setVisible(false);
-        me.game.add(this.backButton, 200);
-
-        this.continueButton = new Main.TextButton(100, 100, "continue",
-                                               this.onPausePressed.bind(this));
-        this.continueButton.setVisible(false);
-        me.game.add(this.continueButton, 200);
+        this.createMenu();
 
         me.event.subscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
         me.event.subscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
@@ -109,7 +102,44 @@ Main.LevelScreen = me.ScreenObject.extend(
         var unitTypes = this.getUnitTypes();
 		this.scoreData = new Main.ScoreData(unitTypes, this.parTime);
     },
+
+    createMenu: function()
+    {
+        this.blackRect = new Main.RectObject(0, 0, Constants.screenWidth,
+                                       Constants.screenHeight, "#000", 0.5);
+        me.game.add(this.blackRect, 175);
+        this.menuButtons = [];
+        this.addButton("terug naar level", this.onPausePressed.bind(this));
+        this.addButton("level herstarten", function() {
+            this.stopMusic();
+            me.state.change(me.state.PLAY, this.name);
+        }.bind(this));
+        this.addButton("level opgeven", function() {
+            this.stopMusic();
+            me.state.change(me.state.READY);
+        }.bind(this));
+        this.setMenuVisible(false);
+    },
 	
+    addButton: function(label, onclick)
+    {
+        var button = new Main.TextButton(100,
+                                     100 + 100 * this.menuButtons.length,
+                                     label, onclick);
+        me.game.add(button, 200);
+        this.menuButtons[this.menuButtons.length] = button;
+        return button;
+    },
+
+    setMenuVisible: function(visible)
+    {
+        for (var i=0; i<this.menuButtons.length; i++)
+        {
+            this.menuButtons[i].setVisible(visible);
+        }
+        this.blackRect.visible = visible;
+    },
+
 	addScore: function(unitType, category, amount)
 	{
 		this.scoreData.addScore(unitType, category, amount);
@@ -168,18 +198,18 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         for (var i=0; i<xml.childElementCount; i++)
         {
-            var name = this.getAttribute(xml.children[i], "name")
+            var name = this.getAttribute(xml.children[i], "name");
             var value = this.getAttribute(xml.children[i], "value");
             switch (name)
             {
-                case "victory":
-                    this.setVictoryCondition(value)
-                    break;
                 case "time":
                     this.parTime = Number(value);
                     break;
                 case "difficulty":
-                    this.setDifficulty(Number(value))
+                    this.setDifficulty(Number(value));
+                    break;
+                case "strategy":
+                    this.setStrategy(value);
                     break;
                 case "music":
                     try {
@@ -214,12 +244,6 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
-    // sets the victory condition based on given value
-    setVictoryCondition: function(value)
-    {
-        // TODO
-    },
-
     // sets the AI difficulty based on given value
     setDifficulty: function(value)
     {
@@ -229,6 +253,18 @@ Main.LevelScreen = me.ScreenObject.extend(
             for (var i=0; i<players.length; i++)
             {
                 players[i].setDifficulty(value);
+            }
+        }
+    },
+
+    setStrategy: function(value)
+    {
+        this.strategy = value
+        if (this.players != null) {
+            var players = this.players.values();
+            for (var i=0; i<players.length; i++)
+            {
+                players[i].setStrategy(value);
             }
         }
     },
@@ -416,7 +452,7 @@ Main.LevelScreen = me.ScreenObject.extend(
             if (player.substr(0, 4) == "comp" ||
                 (player == "user" && Constants.playerIsAI)) {
                 try {
-                    ai = new Main.AI(this.difficulty);
+                    ai = new Main.AI(this.difficulty, this.strategy);
                 } catch (e if typeof e == "string") {
                     alert(e); // more friendly error messaging for
                               // non-programmers
@@ -638,14 +674,12 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         if (!this.pauseMenu) {
             if (!this.popupShown && !this.levelEnded) {
-                this.backButton.setVisible(true);
-                this.continueButton.setVisible(true);
+                this.setMenuVisible(true);
                 this.pauseMenu = true;
                 this.pause();
             }
         } else {
-            this.backButton.setVisible(false);
-            this.continueButton.setVisible(false);
+            this.setMenuVisible(false);
             this.pauseMenu = false;
             this.onFocus();
         }
@@ -680,12 +714,4 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
-    draw: function(ctx)
-    {
-        if (this.pauseMenu) {
-            ctx.fillStyle = '#000';
-            ctx.globalAlpha = 0.5;
-            ctx.fillRect(0, 0, Constants.screenWidth, Constants.screenHeight);
-        }
-    },
 });

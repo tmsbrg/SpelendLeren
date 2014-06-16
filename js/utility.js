@@ -20,3 +20,16 @@ function lerp(a, b, t)
 {
     return a + t * (b - a);
 }
+
+// returns an array enumerating the values from 0 to (n - 1)
+function getRange(n)
+{
+	var array = [];
+	
+	for (var i = 0; i < n; i++)
+	{
+		array.push(i)
+	}
+	
+	return array;
+}

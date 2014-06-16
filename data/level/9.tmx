@@ -159,17 +159,17 @@
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="starthoeve" type="user" gid="36" x="31" y="180">
    <properties>
-    <property name="capacity" value="20"/>
+    <property name="capacity" value="25"/>
    </properties>
   </object>
   <object name="computer" type="comp1" gid="36" x="858" y="359">
    <properties>
-    <property name="capacity" value="30"/>
+    <property name="capacity" value="70"/>
    </properties>
   </object>
   <object name="boerderij 1" type="comp1" gid="35" x="377" y="147">
    <properties>
-    <property name="capacity" value="6"/>
+    <property name="capacity" value="10"/>
    </properties>
   </object>
   <object name="boerderij 2" type="neutral" gid="35" x="690" y="329">
@@ -182,9 +182,9 @@
     <property name="capacity" value="5"/>
    </properties>
   </object>
-  <object name="klooster" type="neutral" gid="37" x="862" y="137">
+  <object name="klooster" type="comp1" gid="37" x="862" y="137">
    <properties>
-    <property name="capacity" value="5"/>
+    <property name="capacity" value="80"/>
    </properties>
   </object>
   <object name="boerderij 4" type="neutral" gid="35" x="178" y="489">
@@ -197,19 +197,19 @@
     <property name="capacity" value="2"/>
    </properties>
   </object>
-  <object name="boerderij 6" type="user" gid="35" x="41" y="593">
+  <object name="boerderij 6" type="neutral" gid="35" x="41" y="593">
    <properties>
     <property name="capacity" value="8"/>
    </properties>
   </object>
-  <object name="boerderij 7" type="comp1" gid="35" x="340" y="532">
+  <object name="boerderij 7" type="neutral" gid="35" x="340" y="532">
    <properties>
-    <property name="capacity" value="10"/>
+    <property name="capacity" value="8"/>
    </properties>
   </object>
   <object name="boerderij 8" type="neutral" gid="35" x="502" y="261">
    <properties>
-    <property name="capacity" value="1"/>
+    <property name="capacity" value="5"/>
    </properties>
   </object>
   <object name="boerderij 9" type="comp1" gid="35" x="452" y="422">
@@ -217,14 +217,9 @@
     <property name="capacity" value="7"/>
    </properties>
   </object>
-  <object name="boerderij 10" type="neutral" gid="35" x="688" y="120">
+  <object name="boerderij 10" type="comp1" gid="35" x="688" y="120">
    <properties>
     <property name="capacity" value="6"/>
-   </properties>
-  </object>
-  <object name="klooster2" type="neutral" gid="37" x="64" y="407">
-   <properties>
-    <property name="capacity" value="2"/>
    </properties>
   </object>
   <object gid="1" x="819" y="147"/>
@@ -243,7 +238,7 @@
   <object gid="8" x="241" y="555"/>
   <object gid="22" x="822" y="122"/>
   <object gid="21" x="502" y="160"/>
-  <object gid="22" x="-5" y="157"/>
+  <object gid="22" x="105" y="164"/>
   <object gid="25" x="352" y="361"/>
   <object gid="24" x="580" y="197"/>
   <object gid="26" x="597" y="216"/>
@@ -262,5 +257,10 @@
   <object gid="30" x="133" y="477"/>
   <object gid="29" x="318" y="385"/>
   <object gid="31" x="308" y="297"/>
+  <object type="neutral" gid="37" x="64" y="406">
+   <properties>
+    <property name="capacity" value="6"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

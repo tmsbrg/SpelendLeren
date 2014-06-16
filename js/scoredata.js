@@ -32,13 +32,11 @@ Main.ScoreData = Object.extend(
 		}
 		this.timeScore = (this.parTime - this.endTime) * 25;
 		this.score += this.timeScore ;
-		console.log(this.score);
 	},
 	
 	setEndTime: function(time)
 	{
 		this.endTime = time;
-		console.log(this.endTime);
 	},
 	// changes the amount of the given category from the given unittype by the value of the given amount
 	addScore: function(unitType, category, amount)

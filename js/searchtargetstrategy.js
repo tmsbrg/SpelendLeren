@@ -56,7 +56,7 @@ SearchClosestTargetStrategy.prototype.search = function(player)
 	for (var i = 0; i < buildings.length; i++)
 	{
 		if (buildings[i].owner != player.name) {
-			var distance = buildingsPos.distance(buildings[i].pos)
+			var distance = buildingsPos.distance(buildings[i].pos);
 			
 			if (distance < minDistance) {
 				minDistance = distance;
@@ -108,7 +108,7 @@ SearchWeakTargetStrategy.prototype.search = function(player)
 	return target;
 };
 
-// strategy to attack the building with the lowest defence power
+// strategy to attack a building of the user with the lowest defence power
 var SearchWeakUserTargetStrategy = function() {};
 SearchWeakUserTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchWeakUserTargetStrategy.prototype.search = function(player) 
@@ -129,4 +129,55 @@ SearchWeakUserTargetStrategy.prototype.search = function(player)
 	}
 	return target;
 };
-
+// strategy to attack the building with the highest priority  with a points system
+// the three importent factores Area the type of the building, the disatnce between
+// the buildings and the defence power of the targetting building
+var SearchPointsTargetStrategy = function() {};
+SearchPointsTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
+SearchPointsTargetStrategy.prototype.search = function(player) 
+{
+	var buildings = Main.levelScreen.getBuildings();
+	
+	var ownBuidling = null; 
+	for (var i = 0; i < buildings.length; i++)
+	{
+		if (buildings[i].owner == player.name) {
+			ownBuidling = buildings[i];
+			break;
+		}
+	}
+	
+	if ( ownBuidling == null ) {
+		console.log("No owend buildings found!");
+		return null;
+	}
+	var buildingsPos = ownBuidling.pos;
+	var maxDistance = 1280;
+	var distanceFacotre = 30;
+	var buildingsFactore = 15;
+	var defenceFactore = 50;
+	var maxPoints = 0;
+	var averageDefencePower = 275;
+	var currentTarget = null;
+	
+	for (var i = 0; i < buildings.length; i++)
+	{
+		var points = 0;
+		if (buildings[i].owner != player.name) {
+			
+			var buildingPoints = GetBuildingPoints(buildings[i].type) * buildingsFactore;
+			var distance = buildingsPos.distance(buildings[i].pos);
+			var distancePoints = (1 - (distance / maxDistance)) * distanceFacotre;
+			var defencePoints = (1 - (buildings[i].calculateDefencePower() / averageDefencePower)) * defenceFactore;
+			
+			points = buildingPoints + distancePoints + defenceFactore;
+			if (points > maxPoints ) {
+				maxPoints = points;
+				currentTarget = buildings[i];
+				console.log("maxPoints "+ maxPoints);
+			}
+		}
+	}
+	console.log("currentTarget: " + currentTarget.name);
+	return currentTarget;
+};

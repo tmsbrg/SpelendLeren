@@ -90,7 +90,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
 				
 			var length = animation.image.width / size;
 			var animationArray = getRange(length);
-			animation.addAnimation("win", animationArray, 0.3);
+			animation.addAnimation("win", animationArray, 0.2);
 			animation.setCurrentAnimation("win");
             
             me.game.add(animation, 250);

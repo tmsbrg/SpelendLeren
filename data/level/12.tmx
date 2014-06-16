@@ -124,7 +124,7 @@
     <property name="capacity" value="1"/>
    </properties>
   </object>
-  <object name="farm1" type="comp1" gid="2" x="840" y="327">
+  <object name="farm1" type="comp1" gid="2" x="833" y="318">
    <properties>
     <property name="capacity" value="2"/>
    </properties>

@@ -20,6 +20,7 @@ Main.AI = Object.extend(
 	userStrategy: null,
 	weakStrategy: null,
 	waekUserStrategy: null,
+	pointsStrategy: null,
 
     init: function(difficulty)
     {
@@ -31,7 +32,9 @@ Main.AI = Object.extend(
 		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
 		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
 		
-		this.setAIStrategy("user");
+		this.pointsStrategy = new SearchTarget(new SearchPointsTargetStrategy());
+		
+		this.setAIStrategy("points");
 		
 		if (difficulty == null) {
             difficulty = 1;
@@ -57,7 +60,7 @@ Main.AI = Object.extend(
 			case "close":
 				this.setSearchTargetStrategy(this.closestStrategy);
 				break;
-			case "randome":
+			case "random":
 				this.setSearchTargetStrategy(this.randomStrategy);
 				break;
 			case "user":
@@ -69,8 +72,11 @@ Main.AI = Object.extend(
 			case "weakUser":
 				this.setSearchTargetStrategy(this.weakUserStrategy);
 				break;
+			case "points":
+				this.setSearchTargetStrategy(this.pointsStrategy);
+				break;
 			default:
-				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the randome strategy.");
+				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the random strategy.");
 				this.setSearchTargetStrategy(this.randomStrategy);
 				break;
 				
@@ -81,17 +87,18 @@ Main.AI = Object.extend(
     {
         if (difficulty < 0) {
             throw ("Trying to set AI difficulty to below 0");
-        } else if (difficulty >= Constants.difficulties.length) {
+        } else if (difficulty >= AiConfig.difficulties.length) {
             throw ("Difficulties higher than " +
-                   (Constants.difficulties.length-1) + " not supported.");
+                   (AiConfig.difficulties.length-1) + " not supported.");
         } else {
-            var diff = Constants.difficulties[difficulty];
+            var diff = AiConfig.difficulties[difficulty];
             for (key in diff) {
                 this[key] = diff[key];
             }
         }
     },
-	
+	// compares the numbers of the building from the ai with the player and returns true,
+	// if the ai has more buildings then the player otherwise he returen false
 	buildingAdvance: function()
 	{
 		var buildings = Main.levelScreen.getBuildings();
@@ -100,7 +107,7 @@ Main.AI = Object.extend(
 		
 		for ( var i = 0; i < buildings.length; i++) 
 		{
-			if (buildings[i].owner = this.player) {
+			if (buildings[i].owner == this.player.name) {
 				aiCountBuildings ++;
 			} else if (buildings[i].owner == "user") {
 				userCountBuildings ++;
@@ -108,9 +115,9 @@ Main.AI = Object.extend(
 		}
 		
 		if ( aiCountBuildings > userCountBuildings ) {
-			return true
+			return true;
 		} else {
-			return false
+			return false;
 		}
 	},
 	
@@ -194,8 +201,14 @@ Main.AI = Object.extend(
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-        this.currentTarget = this.searchTarget.search(this.player);
+		if (this.buildingAdvance()) {
+			this.setAIStrategy("weakUser");
+		} else {
+			this.setAIStrategy("points")
+		}
+		this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;
+		
     },
 
     // removes a building from the array of buildings owned by this AI

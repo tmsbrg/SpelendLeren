@@ -119,7 +119,7 @@
   <object gid="46" x="76" y="359"/>
   <object gid="46" x="16" y="346"/>
   <object gid="46" x="-15" y="699"/>
-  <object gid="46" x="-69" y="717"/>
+  <object gid="46" x="-29" y="714"/>
   <object gid="46" x="-45" y="604"/>
   <object gid="48" x="316" y="579"/>
   <object gid="46" x="78" y="159"/>
@@ -132,7 +132,7 @@
   <object gid="55" x="352" y="482"/>
   <object gid="55" x="294" y="511"/>
   <object gid="53" x="-44" y="481"/>
-  <object gid="55" x="226" y="589"/>
+  <object gid="55" x="221" y="589"/>
   <object gid="50" x="-119" y="474"/>
   <object gid="50" x="-14" y="240"/>
   <object gid="50" x="541" y="684"/>
@@ -146,7 +146,7 @@
   <object gid="50" x="181" y="774"/>
   <object gid="54" x="609" y="464"/>
   <object gid="51" x="269" y="317"/>
-  <object gid="54" x="291" y="325"/>
+  <object gid="54" x="296" y="325"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="klooster" type="comp1" gid="3" x="741" y="637">
@@ -229,7 +229,7 @@
     <property name="capacity" value="7"/>
    </properties>
   </object>
-  <object name="castle" type="comp1" gid="4" x="376" y="256">
+  <object name="castle" type="comp1" gid="4" x="386" y="248">
    <properties>
     <property name="capacity" value="40"/>
    </properties>
@@ -240,7 +240,7 @@
   <object gid="5" x="902" y="419"/>
   <object gid="5" x="889" y="491"/>
   <object gid="6" x="502" y="449"/>
-  <object gid="6" x="105" y="731"/>
+  <object gid="6" x="145" y="726"/>
   <object gid="6" x="352" y="731"/>
   <object gid="7" x="885" y="739"/>
   <object gid="7" x="830" y="166"/>
@@ -250,8 +250,8 @@
   <object gid="8" x="196" y="316"/>
   <object gid="8" x="370" y="693"/>
   <object gid="11" x="738" y="379"/>
-  <object gid="11" x="713" y="682"/>
-  <object gid="10" x="181" y="534"/>
+  <object gid="11" x="698" y="684"/>
+  <object gid="10" x="365" y="564"/>
   <object gid="10" x="243" y="279"/>
   <object gid="10" x="476" y="491"/>
   <object gid="11" x="543" y="454"/>
@@ -260,14 +260,14 @@
   <object gid="12" x="928" y="517"/>
   <object gid="15" x="924" y="569"/>
   <object gid="14" x="826" y="419"/>
-  <object gid="14" x="818" y="186"/>
+  <object gid="14" x="815" y="176"/>
   <object gid="15" x="756" y="436"/>
   <object gid="16" x="453" y="299"/>
   <object gid="14" x="228" y="337"/>
   <object gid="15" x="84" y="232"/>
   <object gid="14" x="171" y="561"/>
   <object gid="16" x="331" y="732"/>
-  <object gid="12" x="98" y="621"/>
+  <object gid="12" x="113" y="596"/>
   <object gid="16" x="91" y="467"/>
   <object gid="12" x="66" y="204"/>
   <object gid="12" x="533" y="479"/>
@@ -293,5 +293,8 @@
   <object gid="29" x="316" y="379"/>
   <object gid="29" x="-54" y="517"/>
   <object gid="29" x="726" y="139"/>
+  <object gid="6" x="201" y="138"/>
+  <object gid="16" x="252" y="142"/>
+  <object gid="24" x="299" y="149"/>
  </objectgroup>
 </map>

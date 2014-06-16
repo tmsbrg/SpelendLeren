@@ -453,9 +453,13 @@ Main.LevelScreen = me.ScreenObject.extend(
                 (player == "user" && Constants.playerIsAI)) {
                 try {
                     ai = new Main.AI(this.difficulty, this.strategy);
-                } catch (e if typeof e == "string") {
-                    alert(e); // more friendly error messaging for
-                              // non-programmers
+                } catch (e) {
+                    if (typeof e == "string") {
+                        alert(e); // more friendly error messaging for
+                                  // non-programmers
+                    } else {
+                        throw(e);
+                    }
                 }
             }
             this.players.setValue(player,

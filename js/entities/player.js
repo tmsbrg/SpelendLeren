@@ -81,6 +81,19 @@ Main.Player = Object.extend(
         this.checkLose();
     },
 
+    // returns total attack power of all owned buildings
+    getTotalStrength: function()
+    {
+        var strength = 0;
+        for (var i=0; i < this.buildings.length; i++)
+        {
+            strength += this.buildings[i].calculateAttackPower();
+        }
+        return strength;
+		
+    },
+
+
     checkLose: function()
     {
         if (this.buildings.length == 0 && this.armies <= 0) {

@@ -38,6 +38,13 @@ Main.Player = Object.extend(
         }
     },
 
+    setStrategy: function(strategy)
+    {
+        if (this.ai) {
+            this.ai.setAIStrategy(strategy);
+        }
+    },
+
     loseBuilding: function(building)
     {
         for (var i=0; i < this.buildings.length; i++)

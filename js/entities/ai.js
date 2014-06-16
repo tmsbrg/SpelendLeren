@@ -21,7 +21,7 @@ Main.AI = Object.extend(
 	weakStrategy: null,
 	waekUserStrategy: null,
 
-    init: function(difficulty)
+    init: function(difficulty, strategy)
     {
 		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
 		this.closestStrategy =
@@ -31,7 +31,7 @@ Main.AI = Object.extend(
 		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
 		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
 		
-		this.setAIStrategy("user");
+		this.setAIStrategy(strategy);
 		
 		if (difficulty == null) {
             difficulty = 1;
@@ -57,7 +57,7 @@ Main.AI = Object.extend(
 			case "close":
 				this.setSearchTargetStrategy(this.closestStrategy);
 				break;
-			case "randome":
+			case "random":
 				this.setSearchTargetStrategy(this.randomStrategy);
 				break;
 			case "user":
@@ -70,7 +70,7 @@ Main.AI = Object.extend(
 				this.setSearchTargetStrategy(this.weakUserStrategy);
 				break;
 			default:
-				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the randome strategy.");
+				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the random strategy.");
 				this.setSearchTargetStrategy(this.randomStrategy);
 				break;
 				
@@ -100,7 +100,7 @@ Main.AI = Object.extend(
 		
 		for ( var i = 0; i < buildings.length; i++) 
 		{
-			if (buildings[i].owner = this.player) {
+			if (buildings[i].owner == this.player.name) {
 				aiCountBuildings ++;
 			} else if (buildings[i].owner == "user") {
 				userCountBuildings ++;
@@ -114,7 +114,6 @@ Main.AI = Object.extend(
 		}
 	},
 	
-	// TODO: comment
     setPlayer: function(player)
     {
         this.player = player;

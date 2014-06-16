@@ -259,7 +259,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     setStrategy: function(value)
     {
-        this.strategy = value
+        this.strategy = value;
         if (this.players != null) {
             var players = this.players.values();
             for (var i=0; i<players.length; i++)

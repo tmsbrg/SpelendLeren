@@ -19,7 +19,7 @@ Main.AI = Object.extend(
 	closestStrategy: null,
 	userStrategy: null,
 	weakStrategy: null,
-	waekUserStrategy: null,
+	weakUserStrategy: null,
 	pointsStrategy: null,
 
     init: function(difficulty, strategy)
@@ -46,13 +46,13 @@ Main.AI = Object.extend(
             this.active = false;
         }
     },
-	// changes the curretn strategy of the ai to the given startegy
+	// changes the current strategy of the ai to the given strategy
 	setSearchTargetStrategy: function(strategy)
 	{
 		this.searchTarget = strategy;
 	},
 	
-	// changes the ai´s strategy on runtime based on the given string
+	// changes the ai's strategy on runtime based on the given string
 	setAIStrategy: function(strategy)
 	{
 		switch(strategy)
@@ -80,7 +80,9 @@ Main.AI = Object.extend(
 				break;
 		}
 	},
-	// TODO: comment
+
+    // sets difficulty to given value and changes its settings based on what's
+    // in the AI constants for given difficulty
     setDifficulty: function(difficulty)
     {
         if (difficulty < 0) {

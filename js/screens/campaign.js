@@ -38,7 +38,7 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	
 	init_button: function()
 	{
-		var back_button = new Main.TextButton(790, 680, "back",  this.back_menu.bind(this));
+		var back_button = new Main.TextButton(790, 680, "terug",  this.back_menu.bind(this));
 		me.game.add(back_button, this.highest_layer + 1);
 	},
 	

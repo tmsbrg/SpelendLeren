@@ -76,10 +76,10 @@ Main.AI = Object.extend(
 				this.setSearchTargetStrategy(this.pointsStrategy);
 				break;
 			default:
-				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy + "' strategy yet. The Ai now uses the points strategy.");
+				console.log("Startegy not found! The Ai didn´t learn the '"+ strategy +
+				"' strategy yet. The Ai now uses the points strategy.");
 				this.setSearchTargetStrategy(this.pointsStrategy);
 				break;
-				
 		}
 	},
 	// TODO: comment
@@ -200,11 +200,11 @@ Main.AI = Object.extend(
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-		if (this.buildingAdvance()) {
+		/*if (this.buildingAdvance()) {
 			this.setAIStrategy("weakUser");
 		} else {
 			this.setAIStrategy(this.strategy)
-		}
+		}*/
 		this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;
 		

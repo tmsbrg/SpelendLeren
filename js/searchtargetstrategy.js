@@ -174,10 +174,8 @@ SearchPointsTargetStrategy.prototype.search = function(player)
 			if (points > maxPoints ) {
 				maxPoints = points;
 				currentTarget = buildings[i];
-				console.log("maxPoints "+ maxPoints);
 			}
 		}
 	}
-	console.log("currentTarget: " + currentTarget.name);
 	return currentTarget;
 };

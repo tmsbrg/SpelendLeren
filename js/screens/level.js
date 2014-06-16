@@ -83,7 +83,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.pauseMenu = false;
         // AI defaults
         this.difficulty = 3;
-        this.strategy = "random";
+        this.strategy = "points";
 
         this.tiles = new Array(1);
         this.actions = [];

@@ -5,6 +5,7 @@
   <property name="1target" value="protectchurch"/>
   <property name="difficulty" value="3"/>
   <property name="music" value="flute"/>
+  <property name="strategy" value="random"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="homestead" tilewidth="128" tileheight="128">
@@ -67,7 +68,7 @@
   <image source="../img/scenery/leafs.png" width="846" height="284"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_test.png"/>
+  <image source="../img/background/bg_level_13.png"/>
  </imagelayer>
  <objectgroup name="background_scenery" width="32" height="24">
   <object gid="29" x="656" y="156"/>

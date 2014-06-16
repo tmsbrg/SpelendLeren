@@ -78,7 +78,6 @@ Main.AI = Object.extend(
 			default:
 				throw "Strategy '"+ strategy + "' does not exist. legitimate strategies include 'points', 'random', 'close', 'user', 'weak' and 'weakUser'";
 				break;
-				
 		}
 	},
 	// TODO: comment

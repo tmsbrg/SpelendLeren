@@ -143,6 +143,8 @@ resources = [
 	 
 	{name: "here_icon", type: "image",
      src: "data/img/gui/here_icon.png"},
+	{name: "here_icon_takeover", type: "image",
+     src: "data/img/gui/here_icon_takeover.png"},
 	// flags
 	{name: "flag_conquered", type: "image",
      src: "data/img/gui/flag_conquered.png"},

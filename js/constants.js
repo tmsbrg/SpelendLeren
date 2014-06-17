@@ -30,7 +30,9 @@ Constants =
 
     textScale : 0.7,
 
-   
+    indicator_size : 48, // size of the arrow that's shown when you have to
+                         // select a building, and the exclamation mark when
+                         // you have to take over a building
 }
 
 /* game engine settings */

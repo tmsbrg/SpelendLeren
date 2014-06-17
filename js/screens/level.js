@@ -12,6 +12,7 @@ Main.LevelScreen = me.ScreenObject.extend(
                                // complete before continuing
     currentAction: 0, // keeps what trigger we're currently on
     here: null,
+    here_size: 48,
 
     updateWhenPaused: true,
 
@@ -71,7 +72,8 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
 
-        this.here = new Main.Bouncer(0, 0, 32, "here_icon", 32, 32, 0.5);
+        this.here = new Main.Bouncer(0, 0, 32, "here_icon", this.here_size,
+                                     this.here_size, 0.5);
 		
         // reinitialize for restart
         this.currentAction = 0; 
@@ -563,7 +565,12 @@ Main.LevelScreen = me.ScreenObject.extend(
     setHereIcon: function(ca)
     {
         var building = this.getBuilding(this.actions[ca].target);
-        this.here.setPos(building.centerPos.x, building.pos.y - 32);
+        if (this.actions[ca].action == 'takeover') {
+            this.here.loadImage("here_icon_takeover");
+        } else {
+            this.here.loadImage("here_icon");
+        }
+        this.here.setPos(building.centerPos.x, building.pos.y - this.here_size);
     },
 
     // disables all AIs in the level

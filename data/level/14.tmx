@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
-  <property name="difficulty" value="2"/>
+  <property name="difficulty" value="3"/>
   <property name="music" value="drum"/>
+  <property name="strategy" value="points"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="homestead" tilewidth="128" tileheight="128">

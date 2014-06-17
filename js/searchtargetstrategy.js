@@ -137,16 +137,8 @@ var SearchPointsTargetStrategy = function() {};
 SearchPointsTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchPointsTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
 	
-	var ownBuidling = null; 
-	for (var i = 0; i < buildings.length; i++)
-	{
-		if (buildings[i].owner == player.name) {
-			ownBuidling = buildings[i];
-			break;
-		}
-	}
+	var ownBuidling = player.buildings[0];
 
 	if ( ownBuidling == null ) {
 		return null;
@@ -158,6 +150,7 @@ SearchPointsTargetStrategy.prototype.search = function(player)
 	var maxDefencePower = player.getTotalStrength();
 	var target = null;
 	
+	var buildings = Main.levelScreen.getBuildings();
 	for (var i = 0; i < buildings.length; i++)
 	{
 		var points = 0;
@@ -178,8 +171,11 @@ SearchPointsTargetStrategy.prototype.search = function(player)
                 defencePoints = (1 - (defence / maxDefencePower)) *
                                      AiConfig.factors.defenceFactor;
             }
+
+            var randomPoints = Math.random() * AiConfig.factors.randomFactor;
 			
-			points = buildingPoints + distancePoints + defencePoints;
+			points = buildingPoints + distancePoints + defencePoints +
+                     randomPoints;
 			if (points > maxPoints ) {
 				maxPoints = points;
 				target = buildings[i];

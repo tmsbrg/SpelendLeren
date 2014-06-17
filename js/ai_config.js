@@ -26,10 +26,10 @@ AiConfig =
     // only used when using the (default) Points strategy for the AI
     factors:
     {
-	    distanceFactor: 20,
-	    buildingTypeFactor: 30,
-	    defenceFactor:  50,
-        // TODO: add random factor
+	    distanceFactor: 18,
+	    buildingTypeFactor: 28,
+	    defenceFactor:  48,
+        randomFactor: 6,
         // TODO: add player factor
         // TODO: add ability to have different factors for different
         //       difficulties

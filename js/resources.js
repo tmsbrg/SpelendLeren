@@ -39,6 +39,10 @@ resources = [
      src: "data/img/background/bg_level_17.png"},
 	{name: "bg_level_18", type: "image",
      src: "data/img/background/bg_level_18.png"},
+	{name: "bg_level_19", type: "image",
+     src: "data/img/background/bg_level_19.png"},
+	{name: "bg_level_20", type: "image",
+     src: "data/img/background/bg_level_20.png"},
     {name: "bg_level_21", type: "image",
      src: "data/img/background/bg_level_21.png"},
     {name: "bg_level_22", type: "image",
@@ -150,10 +154,10 @@ resources = [
      src: "data/img/gui/flag_unlocked.png"},
 	 
 	{name: "sound_on", type: "image",
-     src: "data/img/gui/audio_icon_on.png"},
+     src: "data/img/gui/sound_on.png"},
 	 
 	{name: "sound_off", type: "image",
-     src: "data/img/gui/audio_icon_off.png"},
+     src: "data/img/gui/sound_off.png"},
 
 	// unit animations
 	

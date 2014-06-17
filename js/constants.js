@@ -10,7 +10,7 @@ Constants =
 
     startMuted: false, // whether the game starts muted
 
-    allLevelsPlayable: true, // if true, all levels start playable
+    allLevelsPlayable: false, // if true, all levels start playable
 
     defaultParTime: 100, // default time to defeat levels in, in seconds
 

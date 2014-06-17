@@ -67,7 +67,7 @@
   <image source="../img/scenery/leafs.png" width="846" height="284"/>
  </tileset>
  <imagelayer name="Background Layer" width="32" height="24">
-  <image source="../img/background/bg_level_18.png"/>
+  <image source="../img/background/bg_test.png"/>
  </imagelayer>
  <objectgroup name="background_scenery" width="32" height="24">
   <object gid="29" x="479" y="414"/>

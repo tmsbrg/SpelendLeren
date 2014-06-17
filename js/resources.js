@@ -285,8 +285,10 @@ resources = [
      src: "data/img/gui/popup/popup_start.png"},
 	{name: "popup_win", type: "image",
      src: "data/img/gui/popup/popup_win.png"},
-	 {name: "popup_lose", type: "image",
+	{name: "popup_lose", type: "image",
      src: "data/img/gui/popup/popup_lose.png"},
+	{name: "popup_monk", type: "image",
+	 src: "data/img/gui/popup/popup_monk.png"},
 
     {name: "halo", type: "image",
      src: "data/img/armies/halo.png"},

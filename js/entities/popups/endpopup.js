@@ -1,3 +1,7 @@
+/*
+* popups at the end of each level. It gives the layer feedback about how he performed in this level and how long he played.
+* It also gives him feedback if he won the level or not.
+*/
 Main.Endpopup =  Main.GUIContainer.extend(
 {
 	imageObject: null, // placeholder for th eimagebackground
@@ -10,7 +14,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
     categoryYSpace: 21, // y space between each category(spawned, killed, etc.)
     buttonspace: 240, // pixels between the forward and retry buttons
 		
-	
+	// Endpopup takes a boolean, scoreData class and a string 
 	init: function(userWon, scoreData, levelname)
 	{	
 		this.levelname = levelname;
@@ -23,7 +27,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		this.initBackground(userWon);
 		this.initButtons();
 		this.initImages(userWon, scoreData);
-		this.initTextobjects(scoreData);
+		this.initTextobjects(userWon, scoreData);
 		
 		this.parent(0, 0, [this.imageObject, this.retryButton, this.campaignButton]);
 	},
@@ -87,7 +91,6 @@ Main.Endpopup =  Main.GUIContainer.extend(
 			var animation = new me.AnimationSheet(320, (this.statY + (this.statYSpace * i)),
 												img, size);
 			
-				
 			var length = animation.image.width / size;
 			var animationArray = getRange(length);
 			animation.addAnimation("win", animationArray, 0.2);
@@ -97,7 +100,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
         }
     },
 	
-	initTextobjects: function(scoreData)
+	initTextobjects: function(userWon, scoreData)
 	{
 		for(var i = 0; i < scoreData.units.length; i++)
 		{
@@ -113,14 +116,18 @@ Main.Endpopup =  Main.GUIContainer.extend(
                                                    pretext + number, Main.font);
 				me.game.add(textObject, 300);
 			}
-		} // 650 581
-		var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
+		}
+		
+		if (userWon) {
+			var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
                                  / 1000);
-		scoreData.setEndTime(winTime) 
-        scoreData.calculateScore();
-		me.game.add(new Main.TextObject(350, 600, scoreData.score,
-                                        Main.font),
-                    350);
+			scoreData.setEndTime(winTime) 
+			scoreData.calculateScore();
+			me.game.add(new Main.TextObject(350, 600, scoreData.score,
+											Main.font),
+						350);
+		}
+		
         me.game.add(new Main.TextObject(650, 600, scoreData.endTime + " sec",
                                         Main.font),
                     350);

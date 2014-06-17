@@ -159,15 +159,15 @@
  <objectgroup name="Object Layer" width="32" height="24">
   <object name="starthoeve" type="user" gid="36" x="31" y="180">
    <properties>
-    <property name="capacity" value="25"/>
+    <property name="capacity" value="30"/>
    </properties>
   </object>
   <object name="computer" type="comp1" gid="36" x="858" y="359">
    <properties>
-    <property name="capacity" value="70"/>
+    <property name="capacity" value="45"/>
    </properties>
   </object>
-  <object name="boerderij 1" type="comp1" gid="35" x="377" y="147">
+  <object name="boerderij 1" type="neutral" gid="35" x="377" y="147">
    <properties>
     <property name="capacity" value="10"/>
    </properties>
@@ -184,7 +184,7 @@
   </object>
   <object name="klooster" type="comp1" gid="37" x="862" y="137">
    <properties>
-    <property name="capacity" value="80"/>
+    <property name="capacity" value="40"/>
    </properties>
   </object>
   <object name="boerderij 4" type="neutral" gid="35" x="178" y="489">
@@ -217,7 +217,7 @@
     <property name="capacity" value="7"/>
    </properties>
   </object>
-  <object name="boerderij 10" type="comp1" gid="35" x="688" y="120">
+  <object name="boerderij 10" type="neutral" gid="35" x="688" y="120">
    <properties>
     <property name="capacity" value="6"/>
    </properties>
@@ -257,7 +257,7 @@
   <object gid="30" x="133" y="477"/>
   <object gid="29" x="318" y="385"/>
   <object gid="31" x="308" y="297"/>
-  <object type="neutral" gid="37" x="64" y="406">
+  <object type="user" gid="37" x="64" y="406">
    <properties>
     <property name="capacity" value="6"/>
    </properties>

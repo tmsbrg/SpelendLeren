@@ -6,6 +6,7 @@
   <property name="difficulty" value="3"/>
   <property name="music" value="flute"/>
   <property name="strategy" value="random"/>
+  <property name="time" value="49"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="homestead" tilewidth="128" tileheight="128">

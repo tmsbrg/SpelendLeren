@@ -4,6 +4,7 @@
   <property name="difficulty" value="3"/>
   <property name="music" value="drum"/>
   <property name="strategy" value="points"/>
+  <property name="time" value="68"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="homestead" tilewidth="128" tileheight="128">

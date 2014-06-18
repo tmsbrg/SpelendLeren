@@ -10,7 +10,7 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	middle_layer: 10,
 	highest_layer: 20,
     timeUntilFlicker: 500, // in miliseconds
-    timesToFlicker: 3,
+    timesToFlicker: 4,
 
     init: function()
     {

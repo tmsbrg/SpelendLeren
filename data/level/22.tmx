@@ -5,6 +5,7 @@
   <property name="1target" value="klooster"/>
   <property name="difficulty" value="4"/>
   <property name="music" value="awesome2"/>
+  <property name="time" value="62"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="homestead" tilewidth="128" tileheight="128">

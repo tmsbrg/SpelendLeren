@@ -6,6 +6,7 @@
   <property name="difficulty" value="1"/>
   <property name="music" value="verynice"/>
   <property name="strategy" value="user"/>
+  <property name="time" value="43"/>
   <property name="victory" value="conquer_all"/>
  </properties>
  <tileset firstgid="1" name="pinktrees" tilewidth="63" tileheight="58">

@@ -1,5 +1,5 @@
-SpelendLeren
-============
+Spelend Leren
+=============
 
 A fun RTS game where you play Adelardus and try to conquer all Europe with the Franks.
 
@@ -8,34 +8,30 @@ This software contains has a license for its source code and documentation (defi
 Playing the game:
 ---------
 
-Just open index.html. Currently only Mozilla Firefox is supported as browser.
+Just open index.html. Currently the only supported browser is Mozilla Firefox.
 
 Licenses:
 ---------
 
- * Source code (files in 'js' folder and below)
-   GNU GPL v3 (see _GPLv3.txt_)
- * Game data (files in the 'data' folder and below)
-   NOT LICENSED
+ * Source code (files in 'js' folder and below) _GNU GPL v3 (see GPLv3.txt)_
+ * Game data (files in the 'data' folder and below) _NOT LICENSED_
 
 **External**
 
- * MelonJS 0.9.11
-   MIT License (see http://www.opensource.org/licenses/mit-license.php )
- * Luxi font (data/img/gui/font/luxi_font.png)
-   Luxi font license (see _Luxi.txt_)
+ * MelonJS 0.9.11 _MIT License (see http://www.opensource.org/licenses/mit-license.php )_
+ * Luxi font (data/img/gui/font/luxi_font.png) _Luxi font license (see Luxi.txt)_
 
 Credits:
 --------
 
 Animations:
-    Marten Visser
+ * Marten Visser
 
 Programming:
-    Thomas van der Berg & Patrick Malissa
+ * Thomas van der Berg & Patrick Malissa
 
 2D Art:
-    Olmo van der Bruggen
+ * Olmo van der Bruggen
 
 Game Design, Level Design, Audio:
-    Desirée Visser
+ * Desirée Visser

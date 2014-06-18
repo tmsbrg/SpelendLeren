@@ -28,7 +28,8 @@ Animations:
  * Marten Visser
 
 Programming:
- * Thomas van der Berg & Patrick Malissa
+ * Thomas van der Berg
+ * Patrick Malissa
 
 2D Art:
  * Olmo van der Bruggen

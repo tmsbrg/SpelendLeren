@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 Main.CampaignScreen = me.ScreenObject.extend(
 {
 	underground: null, // ImageObject with the background image which has the lowest layer

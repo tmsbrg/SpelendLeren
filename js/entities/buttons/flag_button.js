@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /*
  *the flag button is used to open a level and gives feedback if
  *the player can play this level, already played this level or cant play this level

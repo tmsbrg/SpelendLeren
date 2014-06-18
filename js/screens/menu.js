@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /* MenuScreen: the main menu screen, shows diffretn buttons to start or 
  * config the game */
 Main.MenuScreen = me.ScreenObject.extend(

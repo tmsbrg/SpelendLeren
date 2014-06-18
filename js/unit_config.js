@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /* UnitConfig: contains the stats of the units, and what buildings produce
    which units */
 UnitConfig = function(type, level, attribute) 

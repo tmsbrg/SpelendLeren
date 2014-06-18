@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /*
  *Text_Button is a clickable Button with a text in it
  *the size of the Button is based on the size of the text

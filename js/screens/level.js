@@ -1,9 +1,14 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /* LevelScreen: the main game screen, shows a level and the buildings on the
    level */
 Main.LevelScreen = me.ScreenObject.extend(
 {
     name: "", // string containing name of the level
-    background: null, // ImageObject with the background image
+    background: null, // Button with the background image
     buildings: null, // array of building buttons 
     players: null, // dictionary containing all players
     actions: null, // array of action objects containing what should happen
@@ -34,6 +39,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.parent(true); // make the game call the levels update function
     },
 	
+    // handle input for getting to the menu and back
     update: function()
     {
 		if (!me.input.keyStatus("pause")) {
@@ -103,8 +109,11 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         var unitTypes = this.getUnitTypes();
 		this.scoreData = new Main.ScoreData(unitTypes, this.parTime);
+
+        this.optimizeBackLayer();
     },
 
+    // creates objects for the ingame menu
     createMenu: function()
     {
         this.blackRect = new Main.RectObject(0, 0, Constants.screenWidth,
@@ -123,6 +132,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.setMenuVisible(false);
     },
 	
+    // adds a button to the ingame menu with given label and onclick function
     addButton: function(label, onclick)
     {
         var button = new Main.TextButton(100,
@@ -133,6 +143,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         return button;
     },
 
+    // sets menu visibility to given value
     setMenuVisible: function(visible)
     {
         for (var i=0; i<this.menuButtons.length; i++)
@@ -259,6 +270,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
+    // sets the AI strategy to given value
     setStrategy: function(value)
     {
         this.strategy = value;
@@ -657,6 +669,7 @@ Main.LevelScreen = me.ScreenObject.extend(
 		me.game.add(endpopup, 200);
     },
 
+    // stops music in the current level
     stopMusic: function()
     {
         try {
@@ -681,6 +694,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.reset();
     },
 
+    // called when pause button is pressed
     onPausePressed: function()
     {
         if (!this.pauseMenu) {
@@ -708,6 +722,37 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
+    // creates one image and draws all background scenery and the main
+    // background on it, so that only one draw call is needed to draw all
+    // of it when the game is being played
+    optimizeBackLayer: function()
+    {
+        // create canvas to combine all images on
+        var background = document.createElement('canvas');
+        background.width = Constants.screenWidth;
+        background.height = Constants.screenHeight;
+
+        // get context for drawing onto the canvas
+        var ctx = background.getContext('2d');
+
+        // draw existing background on our canvas
+        this.background.draw(ctx);
+
+        // draw scenery on our canvas
+        var scenery = this.backLayer.children;
+        for (var i=0; i<scenery.length; i++)
+        {
+            scenery[i].draw(ctx);
+        }
+
+        // remove backLayer
+        me.game.remove(this.backLayer);
+        delete this.backLayer;
+
+        // set background's image to our canvas
+        this.background.displayObject.image = background;
+    },
+
     // called when the player clicks outside of the game
     onBlur: function()
     {
@@ -725,10 +770,10 @@ Main.LevelScreen = me.ScreenObject.extend(
         }
     },
 
+    // called when going to another screen
     onDestroyEvent: function()
     {
         me.event.unsubscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
         me.event.unsubscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
     },
-
 });

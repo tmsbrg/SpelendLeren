@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 /*
 * popups at the end of each level. It gives the layer feedback about how he performed in this level and how long he played.
 * It also gives him feedback if he won the level or not.
@@ -96,7 +101,7 @@ Main.Endpopup =  Main.GUIContainer.extend(
 			
 			var length = animation.image.width / size;
 			var animationArray = getRange(length);
-			animation.addAnimation("win", animationArray, 0.2);
+			animation.addAnimation("win", animationArray, 40);
 			animation.setCurrentAnimation("win");
             
             me.game.add(animation, 250);

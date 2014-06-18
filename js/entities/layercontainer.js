@@ -1,3 +1,8 @@
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
 // contains a layer of the level's objects and sorts them based on their y value
 Main.LayerContainer = me.ObjectContainer.extend(
 {

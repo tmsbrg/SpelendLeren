@@ -1,6 +1,9 @@
-/*
-	* TODO: write comment
-*/
+// Copyright 2014, Thomas van der Berg & Patrick Malissa
+//
+// This source code is distributed under the terms of the
+// GNU General Public License v3 (see GPLv3.txt)
+
+// ScoreData: keeps information about the score received in a level
 Main.ScoreData = Object.extend(
 {
     units: null, // array of unit types present in the level

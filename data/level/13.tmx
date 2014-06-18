@@ -111,7 +111,7 @@
   <object name="protectchurch" type="user" gid="3" x="421" y="517">
    <properties>
     <property name="capacity" value="20"/>
-    <property name="trigger_select" value="popup blank"/>
+    <property name="trigger_select" value="popup 13"/>
     <property name="trigger_takeover" value="lose"/>
    </properties>
   </object>

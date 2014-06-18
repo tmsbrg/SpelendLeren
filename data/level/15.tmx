@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
+  <property name="1action" value="select"/>
+  <property name="1target" value="castle"/>
   <property name="difficulty" value="3"/>
   <property name="music" value="flute"/>
   <property name="victory" value="conquer_all"/>
@@ -215,19 +217,21 @@
   <object gid="46" x="568" y="779"/>
  </objectgroup>
  <objectgroup name="Object Layer" width="32" height="24">
-  <object type="user" gid="4" x="395" y="420">
+  <object name="castle" type="user" gid="4" x="395" y="420">
    <properties>
-    <property name="capacity" value="600"/>
+    <property name="capacity" value="350"/>
+    <property name="trigger_select" value="popup 15"/>
+    <property name="trigger_takeover" value="lose"/>
    </properties>
   </object>
   <object type="comp1" gid="1" x="83" y="724">
    <properties>
-    <property name="capacity" value="200"/>
+    <property name="capacity" value="150"/>
    </properties>
   </object>
   <object type="comp1" gid="1" x="862" y="584">
    <properties>
-    <property name="capacity" value="200"/>
+    <property name="capacity" value="150"/>
    </properties>
   </object>
   <object gid="2" x="64" y="179"/>
@@ -236,9 +240,9 @@
     <property name="capacity" value="20"/>
    </properties>
   </object>
-  <object type="user" gid="2" x="655" y="113">
+  <object gid="2" x="655" y="114">
    <properties>
-    <property name="capacity" value="50"/>
+    <property name="capacity" value="12"/>
    </properties>
   </object>
   <object gid="2" x="453" y="194">
@@ -248,7 +252,7 @@
   </object>
   <object type="comp1" gid="1" x="511" y="723">
    <properties>
-    <property name="capacity" value="200"/>
+    <property name="capacity" value="150"/>
    </properties>
   </object>
   <object gid="3" x="264" y="133">

@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="32" height="24" tilewidth="32" tileheight="32">
  <properties>
   <property name="1action" value="select"/>
-  <property name="1target" value="user"/>
+  <property name="1target" value="farm1"/>
   <property name="difficulty" value="4"/>
   <property name="music" value="trumpet"/>
   <property name="victory" value="conquer_all"/>
@@ -157,12 +157,12 @@
   <object name="user" type="user" gid="4" x="753" y="725">
    <properties>
     <property name="capacity" value="60"/>
-    <property name="trigger_popup" value="popup blank"/>
    </properties>
   </object>
   <object name="farm1" type="user" gid="2" x="724" y="274">
    <properties>
     <property name="capacity" value="2"/>
+    <property name="trigger_select" value="popup 19"/>
     <property name="trigger_takeover" value="lose"/>
    </properties>
   </object>

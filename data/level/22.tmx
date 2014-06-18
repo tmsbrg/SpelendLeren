@@ -169,7 +169,7 @@
   <object name="klooster" type="user" gid="3" x="423" y="408">
    <properties>
     <property name="capacity" value="10"/>
-    <property name="trigger_select" value="popup blank"/>
+    <property name="trigger_select" value="popup 22"/>
     <property name="trigger_takeover" value="lose"/>
    </properties>
   </object>

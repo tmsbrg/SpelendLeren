@@ -9,8 +9,8 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	campaignButton: null, // placeholder for the campaing button
 	levelname: null, // name of the current level
     categories:  ["spawned", "lost", "killed"],
-    statY: 220, // y position for unit stats
-    statYSpace: 100, // y space between each unit's stats
+    statY: 200, // y position for unit stats
+    statYSpace: 90, // y space between each unit's stats
     categoryYSpace: 21, // y space between each category(spawned, killed, etc.)
     buttonspace: 240, // pixels between the forward and retry buttons
 		
@@ -88,7 +88,8 @@ Main.Endpopup =  Main.GUIContainer.extend(
         {
 			var size = GetUnitSize(scoreData.units[i]);
 			var img = me.loader.getImage(winner + scoreData.units[i] + "_win");
-			var animation = new me.AnimationSheet(320, (this.statY + (this.statYSpace * i)),
+			var animation = new me.AnimationSheet(320,
+                                           (this.statY + (this.statYSpace * i)),
 												img, size);
 			
 			var length = animation.image.width / size;
@@ -118,15 +119,19 @@ Main.Endpopup =  Main.GUIContainer.extend(
 			}
 		}
 		
-		if (userWon) {
-			var winTime = Math.round((me.timer.getTime() - scoreData.startLevelTime)
-                                 / 1000);
-			scoreData.setEndTime(winTime) 
-			scoreData.calculateScore();
-			me.game.add(new Main.TextObject(350, 600, scoreData.score,
-											Main.font),
-						350);
-		}
+        var winTime = 
+            Math.round((me.timer.getTime() - scoreData.startLevelTime)
+                             / 1000);
+        scoreData.setEndTime(winTime) 
+
+        if (userWon) {
+            scoreData.calculateScore();
+        } else {
+            scoreData.score = 0;
+        }
+        me.game.add(new Main.TextObject(410, 600, scoreData.score,
+                                        Main.font),
+                    350);
 		
         me.game.add(new Main.TextObject(650, 600, scoreData.endTime + " sec",
                                         Main.font),

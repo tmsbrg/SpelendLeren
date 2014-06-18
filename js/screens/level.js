@@ -54,7 +54,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         Main.timer.reset();
         Main.timer.unPause();
 
-        levelname = String(levelname);
+        var levelname = String(levelname);
         this.name = levelname;
 		
 		var level = me.loader.getTMX(levelname);
@@ -723,6 +723,12 @@ Main.LevelScreen = me.ScreenObject.extend(
             Main.timer.unPause();
             Main.timer.reset();
         }
+    },
+
+    onDestroyEvent: function()
+    {
+        me.event.unsubscribe(me.event.STATE_PAUSE, this.onBlur.bind(this));
+        me.event.unsubscribe(me.event.STATE_RESUME, this.onFocus.bind(this));
     },
 
 });

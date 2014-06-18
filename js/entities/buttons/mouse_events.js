@@ -84,7 +84,7 @@ Main.MouseEvents = Object.extend(
     // removed
     destroy: function()
     {
-        me.input.releasePointerEvent('mousedown', this);
+        me.input.releasePointerEvent('mouseup', this);
         me.input.releasePointerEvent('mousemove', this);
     }
 });

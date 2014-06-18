@@ -62,7 +62,7 @@ resources = [
 	{name: "territory_thuringen_south", type: "image", src: "data/img/background/campaign/thuringen_south.png"},
 	{name: "territory_schwaben", type: "image", src: "data/img/background/campaign/schwaben.png"},
 	{name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
-	
+	{name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
 	{name: "territory_karinthie", type: "image", src: "data/img/background/campaign/karinthie.png"},
 	{name: "territory_austrasie", type: "image", src: "data/img/background/campaign/austrasie.png"},
 	{name: "territory_neustrie", type: "image", src: "data/img/background/campaign/neustrie.png"},

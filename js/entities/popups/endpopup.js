@@ -77,7 +77,9 @@ Main.Endpopup =  Main.GUIContainer.extend(
 	
 	onCampaignClick: function()
 	{
-		me.state.change(me.state.READY); 
+        var numPos = this.levelname.search("\\d"); // find first digit
+        var level = Number(this.levelname.substr(numPos));
+		me.state.change(me.state.READY, level + 1 === Main.playerlevel); 
 	},
 
     initImages: function(userWon, scoreData)
@@ -120,8 +122,8 @@ Main.Endpopup =  Main.GUIContainer.extend(
 		}
 		
         var winTime = 
-            Math.round((me.timer.getTime() - scoreData.startLevelTime)
-                             / 1000);
+            Math.round((me.timer.getTime() - scoreData.startLevelTime) /
+                       1000);
         scoreData.setEndTime(winTime) 
 
         if (userWon) {
@@ -133,6 +135,9 @@ Main.Endpopup =  Main.GUIContainer.extend(
                                         Main.font),
                     350);
 		
+        me.game.add(new Main.TextObject(650, 560, scoreData.parTime + " sec",
+                                        Main.font),
+                    350);
         me.game.add(new Main.TextObject(650, 600, scoreData.endTime + " sec",
                                         Main.font),
                     350);

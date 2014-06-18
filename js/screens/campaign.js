@@ -9,10 +9,26 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	lowest_layer: 0,
 	middle_layer: 10,
 	highest_layer: 20,
-	
-	onResetEvent: function()
+    timeUntilFlicker: 500, // in miliseconds
+    timesToFlicker: 3,
+
+    init: function()
+    {
+        this.parent(true);
+    },
+
+	onResetEvent: function(flickerTerritory)
 	{
 		me.audio.play("campaign", true);
+
+        Main.timer.reset();
+        Main.timer.unPause();
+
+        this.timer = 0;
+        this.justConqueredTerritories = [];
+        this.flickers = 0;
+
+        this.showJustConqueredTerritories = flickerTerritory;
 
 		this.territories = new Main.Dictionary();;
 		this.init_backgrounds();
@@ -21,6 +37,26 @@ Main.CampaignScreen = me.ScreenObject.extend(
 		
 		this.init_button();
 	},
+	
+    update: function()
+    {
+        if (this.showJustConqueredTerritories) {
+            this.timer += Main.timer.dt;
+            if (this.timer >= this.timeUntilFlicker) {
+                this.timer = 0;
+                var ter = this.justConqueredTerritories;
+                for (var i = 0; i < ter.length; i++)
+                {
+                    this.territories.getValue(ter[i]).visible = 
+                        !this.territories.getValue(ter[i]).visible;
+                    this.flickers++;
+                    if (this.flickers >= this.timesToFlicker * 2) {
+                        this.showJustConqueredTerritories = false;
+                    }
+                }
+            }
+        }
+    },
 	
 	init_territories: function()
 	{
@@ -44,21 +80,29 @@ Main.CampaignScreen = me.ScreenObject.extend(
 	
 	init_flags: function()
 	{
+        var level = (Constants.allLevelsPlayable) ? Infinity :
+                                                    Main.playerlevel;
 		for(var i = 0; i < MapData.length; i++)
 		{
 			var pos = new me.Vector2d(MapData[i].x, MapData[i].y);
-			var level = (Constants.allLevelsPlayable) ? Infinity :
-                                                        Main.playerlevel;
 			if (i+1 < level) {
 				
 				var level_flag = new Main.FlagButton(pos, "conquered", i+1);
 				
 				if ( MapData[i].conquered ) {
-					this.conquer(MapData[i].conquered);
+                    this.conquer(MapData[i].conquered);
+                    if (i + 1 === level - 1) {
+                        this.justConqueredTerritories = MapData[i].conquered;
+                    }
 				}
 				
 				if ( MapData[i].lost) {
 					this.lose(MapData[i].lost);
+                    if (i + 1 === level - 1) {
+                        this.justConqueredTerritories =
+                            this.justConqueredTerritories.concat(
+                                MapData[i].lost);
+                    }
 				}
 					
 			} else if (i+1 > level) {
@@ -83,7 +127,7 @@ Main.CampaignScreen = me.ScreenObject.extend(
                                          Constants.screenHeight);
         me.game.add(this.aboveground, this.highest_layer);
 	},
-	
+
 	conquer: function(territories)
 	{
 		for (var i = 0; i < territories.length; i++)

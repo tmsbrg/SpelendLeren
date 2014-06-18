@@ -43,19 +43,13 @@ var Main =
     // Run on game resources loaded.
     loaded: function ()
     {
-
-        // this.font = new me.BitmapFont("ubuntu_font", {x:16,y:32}, Constants.textScale);
-        // this.font = new me.BitmapFont("ugly_font", 32,
-                                      // Constants.textScale);
-									  
-		//me.save.delete("playerlevel"); // use to reset the playerlevel
+        this.font = new me.BitmapFont("luxi_font", {x:20,y:38},
+                                      Constants.textScale);
+		
 
 		me.save.add({playerlevel : this.playerlevel});
 		
 		this.playerlevel = me.save.playerlevel;
-		
-        this.font = new me.BitmapFont("luxi_font", {x:20,y:38},
-                                      Constants.textScale);
 		
 		this.timer = new Main.TimeObject();
 		me.game.add(this.timer, 0);
@@ -77,7 +71,7 @@ var Main =
 		me.input.bindKey(me.input.KEY.ESC, "pause");
 		
 		var gui = new Main.GUI();
-		me.game.add(gui, 101);
+		me.game.add(gui, 200);
 		
         // Start the game.
         me.state.change(me.state.MENU);

@@ -26,8 +26,8 @@ AiConfig =
     // only used when using the (default) Points strategy for the AI
     factors:
     {
-	    distanceFactor: 18,
-	    buildingTypeFactor: 28,
+	    distanceFactor: 28,
+	    buildingTypeFactor: 18,
 	    defenceFactor:  48,
         randomFactor: 6,
         // TODO: add player factor
@@ -38,7 +38,7 @@ AiConfig =
     buildingTypePoints:
     {
         farm: 0.1,
-        homestead: 0.3,
+        homestead: 0.2,
         church: 0.7,
         castle: 1,
     },

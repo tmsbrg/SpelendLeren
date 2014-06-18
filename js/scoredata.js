@@ -7,11 +7,11 @@ Main.ScoreData = Object.extend(
     startLevelTime: null, // the time when the level was started
 	score: 0, // score the player getScore for playing a level
 	endTime: 0, // time the userAgent needed to complete the level
-	parTime: 60,
+	parTime: null,
 	beginScore: 1000,
 	timeScore: 0,
 
-	init: function(units)
+	init: function(units, parTime)
 	{
         for (var i = 0; i < units.length; i++) {
             this["spawned_" + units[i]] = 0;
@@ -20,6 +20,7 @@ Main.ScoreData = Object.extend(
         }
 		this.units = units;
         this.startLevelTime = me.timer.getTime();
+        this.parTime = parTime;
 	},
 	
 	calculateScore: function()
@@ -31,7 +32,7 @@ Main.ScoreData = Object.extend(
             this.score += this.getScore(this.units[i], "killed")* 10;
 		}
 		this.timeScore = (this.parTime - this.endTime) * 25;
-		this.score += this.timeScore ;
+		this.score += this.timeScore;
 	},
 	
 	setEndTime: function(time)

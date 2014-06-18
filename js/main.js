@@ -35,14 +35,26 @@ var Main =
 		}
 		// Initialize the audio.
 		me.audio.init("ogg,mp3");
+
+        // load loading screen background
+		me.loader.load({name: "loading_screen",  type:"image",  src: "data/img/background/loading_screen.png"}, this.startLoading.bind(this), this.onerror.bind(this));
+    },
+
+    startLoading: function() {
+
 		// Set a callback to run when loading is complete.
 		me.loader.onload = this.loaded.bind(this);
 		// Load the resources.
 		me.loader.preload(resources);
-		this.loadingScreen = new Main.LoadingScreen();
+		this.loadingScreen = 
+            new Main.LoadingScreen(me.loader.getImage("loading_screen"));
 		me.state.set(me.state.LOADING, this.loadingScreen);
 		// Initialize melonJS and display a loading screen.
 		me.state.change(me.state.LOADING);
+    },
+
+    onerror: function() {
+        alert("Cannot find loading screen image. Are you missing the game data?");
     },
 
     // Run on game resources loaded.

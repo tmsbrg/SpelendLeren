@@ -9,16 +9,16 @@
  */
 Main.Button = me.Renderable.extend(
 {
-	mouseEvents: null,
-	displayObject: null,
+    mouseEvents: null,
+    displayObject: null,
     visible: true,
     isHovered: false,
 
-	init: function (displayObject, onClick, onHover, onHoverOut, clickArgs,
+    init: function (displayObject, onClick, onHover, onHoverOut, clickArgs,
                     hoverArgs, hoverOutArgs)
-	{
-		this.mouseEvents = new Main.MouseEvents(this); 
-		this.displayObject = displayObject;
+    {
+        this.mouseEvents = new Main.MouseEvents(this); 
+        this.displayObject = displayObject;
 
         this.parent(this.displayObject.pos, this.displayObject.width,
                     this.displayObject.height);
@@ -29,7 +29,7 @@ Main.Button = me.Renderable.extend(
         this.setOnClick(onClick, clickArgs);
         this.setOnHover(onHover, hoverArgs);
         this.setOnHoverOut(onHoverOut, hoverOutArgs);
-	},
+    },
 
     // sets onClick to given value, sets clickable to true unless false is given
     setOnClick: function(onClick, args, clickable)
@@ -59,36 +59,36 @@ Main.Button = me.Renderable.extend(
         this.visible = visible;
     },
     
-	update: function()
-	{
+    update: function()
+    {
         // onHoverOut hack
         if (this.isHovered && 
             !this.containsPoint(me.input.mouse.pos.x, me.input.mouse.pos.y)) {
             this.isHovered = false;
             this.onHoverOut(this.onHoverOutArgs);
         }
-		return this.displayObject.update();
-	},
+        return this.displayObject.update();
+    },
 
     // draws displayObject at button's position
-	draw: function(ctx)
-	{
+    draw: function(ctx)
+    {
         if (!this.visible) return;
         ctx.save();
         ctx.translate(this.pos.x, this.pos.y)
-		this.displayObject.draw(ctx);
+        this.displayObject.draw(ctx);
         ctx.restore();
-	},
-	
-	destroy: function()
-	{
-		me.input.releasePointerEvent("mouseup",this);
-		me.input.releasePointerEvent("mousemove",this);
-	},
+    },
+    
+    destroy: function()
+    {
+        me.input.releasePointerEvent("mouseup",this);
+        me.input.releasePointerEvent("mousemove",this);
+    },
 
-	onClick: function(args)
-	{
-	},
+    onClick: function(args)
+    {
+    },
 
     onHoverWrapper: function(args)
     {
@@ -96,11 +96,11 @@ Main.Button = me.Renderable.extend(
         this.onHover(args);
     },
 
-	onHover: function(args)
-	{
-	},
-	
-	onHoverOut: function(args)
-	{
-	},
+    onHover: function(args)
+    {
+    },
+    
+    onHoverOut: function(args)
+    {
+    },
 });

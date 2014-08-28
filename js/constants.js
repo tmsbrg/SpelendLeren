@@ -6,12 +6,12 @@
 /* Constants: contains constant values used in the game */
 Constants =
 {
-	upgradeLevels: 1, // feature that never made it in, RIP
+    upgradeLevels: 1, // feature that never made it in, RIP
     screenWidth: 1024,
     screenHeight: 768,
     resizeToBrowser: true, // resize canvas to browser size 
     playerIsAI: false, // if true, player is played by the AI (for testing) 
-	disableAI: false, // disable enemy AIs
+    disableAI: false, // disable enemy AIs
 
     startMuted: false, // whether the game starts muted
 

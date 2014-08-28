@@ -10,95 +10,95 @@
     </head>
     <body>
         <!-- Canvas placeholder -->
-		<div id="screen"></div>
+        <div id="screen"></div>
         
-		<!-- melonJS Library -->
-		<script type="text/javascript" src="lib/melonJS-0.9.11-min.js"></script>
+        <!-- melonJS Library -->
+        <script type="text/javascript" src="lib/melonJS-0.9.11-min.js"></script>
         
-		<!-- Plugin(s) -->
-		<script type="text/javascript" src="lib/plugins/debugPanel.js"></script>
-		
-		<!-- Game Scripts -->
-		<script type="text/javascript" src="js/strategy.js"></script>
-		<script type="text/javascript" src="js/searchtargetstrategy.js"></script>
-		<script type="text/javascript" src="js/searchtarget.js"></script>
-		
-		<script type="text/javascript" src="js/main.js"></script>
-		
+        <!-- Plugin(s) -->
+        <script type="text/javascript" src="lib/plugins/debugPanel.js"></script>
+        
+        <!-- Game Scripts -->
+        <script type="text/javascript" src="js/strategy.js"></script>
+        <script type="text/javascript" src="js/searchtargetstrategy.js"></script>
+        <script type="text/javascript" src="js/searchtarget.js"></script>
+        
+        <script type="text/javascript" src="js/main.js"></script>
+        
         <script type="text/javascript" src="js/utility.js"></script>
         <script type="text/javascript" src="js/constants.js"></script>
         
         <script type="text/javascript" src="js/resources.js"></script>
-		<script type="text/javascript" src="js/scoredata.js"></script>
-		<script type="text/javascript" src="js/unit_config.js"></script>
-		<script type="text/javascript" src="js/ai_config.js"></script>
-		<script type="text/javascript" src="js/mapdata.js"></script>
-		
+        <script type="text/javascript" src="js/scoredata.js"></script>
+        <script type="text/javascript" src="js/unit_config.js"></script>
+        <script type="text/javascript" src="js/ai_config.js"></script>
+        <script type="text/javascript" src="js/mapdata.js"></script>
+        
         <script type="text/javascript" src="js/screens/level.js"></script>
-		<script type="text/javascript" src="js/screens/menu.js"></script>
-		<script type="text/javascript" src="js/screens/campaign.js"></script>
-		<script type="text/javascript" src="js/screens/loading.js"></script>
-		
-		<!-- Game objects -->
-	
+        <script type="text/javascript" src="js/screens/menu.js"></script>
+        <script type="text/javascript" src="js/screens/campaign.js"></script>
+        <script type="text/javascript" src="js/screens/loading.js"></script>
+        
+        <!-- Game objects -->
+    
         <script type="text/javascript" src="js/entities/buttons/button.js"></script>
         <script type="text/javascript" src="js/entities/buttons/building.js"></script>
         <script type="text/javascript" src="js/entities/buttons/mouse_events.js"></script>
-		<script type="text/javascript" src="js/entities/buttons/text_button.js"></script>
-		<script type="text/javascript" src="js/entities/buttons/flag_button.js"></script>
+        <script type="text/javascript" src="js/entities/buttons/text_button.js"></script>
+        <script type="text/javascript" src="js/entities/buttons/flag_button.js"></script>
         <script type="text/javascript" src="js/entities/dictionary.js"></script>
-		<script type="text/javascript" src="js/entities/timeobject.js"></script>
+        <script type="text/javascript" src="js/entities/timeobject.js"></script>
         <script type="text/javascript" src="js/entities/image.js"></script>
         <script type="text/javascript" src="js/entities/tileimage.js"></script>
         <script type="text/javascript" src="js/entities/bouncer.js"></script>
         <script type="text/javascript" src="js/entities/army.js"></script>
         <script type="text/javascript" src="js/entities/guicontainer.js"></script>
         <script type="text/javascript" src="js/entities/layercontainer.js"></script>
-		<script type="text/javascript" src="js/entities/popups/popup.js"></script>
-		<script type="text/javascript" src="js/entities/popups/endpopup.js"></script>
+        <script type="text/javascript" src="js/entities/popups/popup.js"></script>
+        <script type="text/javascript" src="js/entities/popups/endpopup.js"></script>
         <script type="text/javascript" src="js/entities/rect.js"></script>
         <script type="text/javascript" src="js/entities/text.js"></script>
         <script type="text/javascript" src="js/entities/player.js"></script>
         <script type="text/javascript" src="js/entities/ai.js"></script>
         <script type="text/javascript" src="js/entities/effect.js"></script>
-		<script type="text/javascript" src="js/entities/line.js"></script>
-		<script type="text/javascript" src="js/entities/squad.js"></script>
-		<script type="text/javascript" src="js/entities/gui.js"></script>
-		
-		
-		<!-- Bootstrap & Mobile optimization tricks -->
-		<script type="text/javascript">
-			window.onReady(function onReady() {
-				Main.onload();
+        <script type="text/javascript" src="js/entities/line.js"></script>
+        <script type="text/javascript" src="js/entities/squad.js"></script>
+        <script type="text/javascript" src="js/entities/gui.js"></script>
+        
+        
+        <!-- Bootstrap & Mobile optimization tricks -->
+        <script type="text/javascript">
+            window.onReady(function onReady() {
+                Main.onload();
 
-				// Mobile browser hacks
-				if (me.sys.isMobile && !navigator.isCocoonJS) {
-					// Prevent the webview from moving on a swipe
-					window.document.addEventListener("touchmove", function (e) {
-						e.preventDefault();
-						window.scroll(0, 0);
-						return false;
-					}, false);
+                // Mobile browser hacks
+                if (me.sys.isMobile && !navigator.isCocoonJS) {
+                    // Prevent the webview from moving on a swipe
+                    window.document.addEventListener("touchmove", function (e) {
+                        e.preventDefault();
+                        window.scroll(0, 0);
+                        return false;
+                    }, false);
 
-					// Scroll away mobile GUI
-					(function () {
-						window.scrollTo(0, 1);
-						me.video.onresize(null);
-					}).defer();
+                    // Scroll away mobile GUI
+                    (function () {
+                        window.scrollTo(0, 1);
+                        me.video.onresize(null);
+                    }).defer();
 
-					me.event.subscribe(me.event.WINDOW_ONRESIZE, function (e) {
-						window.scrollTo(0, 1);
-					})
+                    me.event.subscribe(me.event.WINDOW_ONRESIZE, function (e) {
+                        window.scrollTo(0, 1);
+                    })
 
-					// Retina viewport settings
-					if (window.devicePixelRatio > 1) {
-						document.getElementById("viewport").setAttribute(
-							"content",
-							"width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0"
-						);
-					}
-				}
-			});
-		</script>
+                    // Retina viewport settings
+                    if (window.devicePixelRatio > 1) {
+                        document.getElementById("viewport").setAttribute(
+                            "content",
+                            "width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0"
+                        );
+                    }
+                }
+            });
+        </script>
     </body>
 </html>

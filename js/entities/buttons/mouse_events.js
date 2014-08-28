@@ -15,7 +15,7 @@ Main.MouseEvents = Object.extend(
 
     init: function(rect, onClick, onHover, clickArgs, hoverArgs)
     {
-		//TODO: make onhoverout and ondoubleclick work
+        //TODO: make onhoverout and ondoubleclick work
         this.rect = rect;
         if (onClick != null) {
             this.setOnClick(onClick, clickArgs);
@@ -32,7 +32,7 @@ Main.MouseEvents = Object.extend(
     {
         if (this.onClick != null) {
             this.onClick = onClick;
-			this.clickArgs = args;
+            this.clickArgs = args;
         }
         if (clickable != null) {
             this.clickable = clickable;
@@ -47,7 +47,7 @@ Main.MouseEvents = Object.extend(
     {
         if (this.onHover != null) {
             this.onHover = onHover;
-			this.hoverArgs = args;
+            this.hoverArgs = args;
         }
         if (hoverable != null) {
             this.hoverable = hoverable;
@@ -68,7 +68,7 @@ Main.MouseEvents = Object.extend(
     // called when clicked
     clicked: function(ev)
     {
-		if (this.clickable) {
+        if (this.clickable) {
             return this.onClick(this.clickArgs);
         } else {
             return true;

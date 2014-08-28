@@ -29,31 +29,31 @@ Main.Dictionary = Object.extend(
 
     values: function()
     {
-		var values = [];
+        var values = [];
 
-		for(var key in this.dict)
-		{
-			
-			if(this.dict.hasOwnProperty(key)) 
-			{
-				values.push(this.dict[key]);
-			}
-		}
+        for(var key in this.dict)
+        {
+            
+            if(this.dict.hasOwnProperty(key)) 
+            {
+                values.push(this.dict[key]);
+            }
+        }
 
-		return values;
+        return values;
     },
 
     keys: function()
     {
-		var keys = [];
+        var keys = [];
 
-		for(var key in this.dict)
-		{	
-			if(this.dict.hasOwnProperty(key))
-			{
-				keys.push(key);
-			}
-		}
-		return keys;
+        for(var key in this.dict)
+        {    
+            if(this.dict.hasOwnProperty(key))
+            {
+                keys.push(key);
+            }
+        }
+        return keys;
     },
 });

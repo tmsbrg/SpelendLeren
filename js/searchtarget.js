@@ -16,12 +16,12 @@
 
 var SearchTarget = function(strategy) 
 {
-	this.strategy = strategy;
+    this.strategy = strategy;
 };
 
 SearchTarget.prototype.search = function(player) 
 {
-	return this.strategy.execute(player);
+    return this.strategy.execute(player);
 };
 
 

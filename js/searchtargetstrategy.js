@@ -15,23 +15,23 @@ SearchTargetStrategy.prototype = Object.create(Strategy.prototype);
 // of other methods. This pattern is called a Template Method
 SearchTargetStrategy.prototype.execute = function(player) 
 {
-	return this.search(player)
+    return this.search(player)
 }
 // startegy to attack a random building
 SearchTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
-	var i = Math.round(Math.random() * (buildings.length-1));
-	var start_i = i;
-	
-	while (buildings[i].owner === player.name)
-	{
-		i = (i + 1) % buildings.length;
-		if (i == start_i) {
-			return null;
-		}
-	}
-	return buildings[i];
+    var buildings = Main.levelScreen.getBuildings();
+    var i = Math.round(Math.random() * (buildings.length-1));
+    var start_i = i;
+    
+    while (buildings[i].owner === player.name)
+    {
+        i = (i + 1) % buildings.length;
+        if (i == start_i) {
+            return null;
+        }
+    }
+    return buildings[i];
 
 };
 
@@ -40,53 +40,53 @@ var SearchClosestTargetStrategy = function() {};
 SearchClosestTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchClosestTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
-	var ownBuidling = null; 
-	for (var i = 0; i < buildings.length; i++)
-	{
-		if (buildings[i].owner == player.name) {
-			ownBuidling = buildings[i];
-			break;
-		}
-	}
-	
-	if ( ownBuidling == null ) {
-		return null;
-	}
-	
-	var buildingsPos = ownBuidling.pos;
-	var minDistance = 1000;
-	var currentTarget = null;
-	for (var i = 0; i < buildings.length; i++)
-	{
-		if (buildings[i].owner != player.name) {
-			var distance = buildingsPos.distance(buildings[i].pos);
-			
-			if (distance < minDistance) {
-				minDistance = distance;
-				currentTarget = buildings[i];
-			}
-		}
-	}
-	return currentTarget;
+    var buildings = Main.levelScreen.getBuildings();
+    var ownBuidling = null; 
+    for (var i = 0; i < buildings.length; i++)
+    {
+        if (buildings[i].owner == player.name) {
+            ownBuidling = buildings[i];
+            break;
+        }
+    }
+    
+    if ( ownBuidling == null ) {
+        return null;
+    }
+    
+    var buildingsPos = ownBuidling.pos;
+    var minDistance = 1000;
+    var currentTarget = null;
+    for (var i = 0; i < buildings.length; i++)
+    {
+        if (buildings[i].owner != player.name) {
+            var distance = buildingsPos.distance(buildings[i].pos);
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                currentTarget = buildings[i];
+            }
+        }
+    }
+    return currentTarget;
 };
 // startegy to only attack buildings of the user
 var SearchUserTargetStrategy = function() {};
 SearchUserTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchUserTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
-	var i = Math.round(Math.random() * (buildings.length-1));
-	var start_i = i;
-	
-	while (buildings[i].owner !== "user")
-	{
-		i = (i + 1) % buildings.length;
-		if (i == start_i) {
-			return null;
-		}
-	}
-	return buildings[i];
+    var buildings = Main.levelScreen.getBuildings();
+    var i = Math.round(Math.random() * (buildings.length-1));
+    var start_i = i;
+    
+    while (buildings[i].owner !== "user")
+    {
+        i = (i + 1) % buildings.length;
+        if (i == start_i) {
+            return null;
+        }
+    }
+    return buildings[i];
 };
 
 // strategy to attack the building with the lowest defence power
@@ -94,22 +94,22 @@ var SearchWeakTargetStrategy = function() {};
 SearchWeakTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchWeakTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
-	var minStrength = 10000;
-	var target;
-	
-	for (var i = 0; i < buildings.length; i++) 
-	{
-		
-		if (buildings[i].owner != player.name) {
-			
-			if(buildings[i].calculateDefencePower() < minStrength) {
-				target = buildings[i];
-				minStrength = target.calculateDefencePower();
-			}
-		}
-	}
-	return target;
+    var buildings = Main.levelScreen.getBuildings();
+    var minStrength = 10000;
+    var target;
+    
+    for (var i = 0; i < buildings.length; i++) 
+    {
+        
+        if (buildings[i].owner != player.name) {
+            
+            if(buildings[i].calculateDefencePower() < minStrength) {
+                target = buildings[i];
+                minStrength = target.calculateDefencePower();
+            }
+        }
+    }
+    return target;
 };
 
 // strategy to attack a building of the user with the lowest defence power
@@ -117,21 +117,21 @@ var SearchWeakUserTargetStrategy = function() {};
 SearchWeakUserTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchWeakUserTargetStrategy.prototype.search = function(player) 
 {
-	var buildings = Main.levelScreen.getBuildings();
-	var minStrength = 10000;
-	var target = null;
-	
-	for (var i = 0; i < buildings.length; i++) 
-	{	
-		if (buildings[i].owner != player.name && buildings[i].owner == "user") {
-			
-			if(buildings[i].calculateDefencePower() < minStrength) {
-				target = buildings[i];
-				minStrength = target.calculateDefencePower();
-			}
-		}
-	}
-	return target;
+    var buildings = Main.levelScreen.getBuildings();
+    var minStrength = 10000;
+    var target = null;
+    
+    for (var i = 0; i < buildings.length; i++) 
+    {    
+        if (buildings[i].owner != player.name && buildings[i].owner == "user") {
+            
+            if(buildings[i].calculateDefencePower() < minStrength) {
+                target = buildings[i];
+                minStrength = target.calculateDefencePower();
+            }
+        }
+    }
+    return target;
 };
 
 // strategy to attack the building with the highest priority with a points
@@ -142,30 +142,30 @@ var SearchPointsTargetStrategy = function() {};
 SearchPointsTargetStrategy.prototype = Object.create(SearchTargetStrategy.prototype);
 SearchPointsTargetStrategy.prototype.search = function(player) 
 {
-	
-	var ownBuidling = player.buildings[0];
+    
+    var ownBuidling = player.buildings[0];
 
-	if ( ownBuidling == null ) {
-		return null;
-	}
-	var buildingPos = ownBuidling.pos;
-	var maxDistance = 1280;
+    if ( ownBuidling == null ) {
+        return null;
+    }
+    var buildingPos = ownBuidling.pos;
+    var maxDistance = 1280;
 
-	var maxPoints = 0;
-	var maxDefencePower = player.getTotalStrength();
-	var target = null;
-	
-	var buildings = Main.levelScreen.getBuildings();
-	for (var i = 0; i < buildings.length; i++)
-	{
-		var points = 0;
-		if (buildings[i].owner != player.name) {
-			
-			var buildingPoints = GetBuildingPoints(buildings[i].type) *
+    var maxPoints = 0;
+    var maxDefencePower = player.getTotalStrength();
+    var target = null;
+    
+    var buildings = Main.levelScreen.getBuildings();
+    for (var i = 0; i < buildings.length; i++)
+    {
+        var points = 0;
+        if (buildings[i].owner != player.name) {
+            
+            var buildingPoints = GetBuildingPoints(buildings[i].type) *
                                  AiConfig.factors.buildingTypeFactor;
 
-			var distance = buildingPos.distance(buildings[i].pos);
-			var distancePoints = (1 - (distance / maxDistance)) *
+            var distance = buildingPos.distance(buildings[i].pos);
+            var distancePoints = (1 - (distance / maxDistance)) *
                                  AiConfig.factors.distanceFactor;
 
             var defence = buildings[i].calculateDefencePower();
@@ -178,14 +178,14 @@ SearchPointsTargetStrategy.prototype.search = function(player)
             }
 
             var randomPoints = Math.random() * AiConfig.factors.randomFactor;
-			
-			points = buildingPoints + distancePoints + defencePoints +
+            
+            points = buildingPoints + distancePoints + defencePoints +
                      randomPoints;
-			if (points > maxPoints ) {
-				maxPoints = points;
-				target = buildings[i];
-			}
-		}
-	}
-	return target;
+            if (points > maxPoints ) {
+                maxPoints = points;
+                target = buildings[i];
+            }
+        }
+    }
+    return target;
 };

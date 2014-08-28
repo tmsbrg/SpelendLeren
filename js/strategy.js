@@ -13,6 +13,6 @@ var Strategy = function() {};
  
 Strategy.prototype.execute = function() 
 {
-	throw new Error('Strategy#execute needs to be overridden.')
+    throw new Error('Strategy#execute needs to be overridden.')
 };
  

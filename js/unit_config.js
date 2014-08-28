@@ -19,8 +19,8 @@ GetBuildingSpawnTime = function(type)
 
 GetBuildingDoorLocation = function(type) 
 {
-	var pos = buildingDoorLocation[type];
-	return new me.Vector2d(pos[0], pos[1]);
+    var pos = buildingDoorLocation[type];
+    return new me.Vector2d(pos[0], pos[1]);
 }
 
 GetBuildingSize = function(type) 
@@ -40,12 +40,12 @@ GetUnit = function(type)
 
 GetUnits = function() 
 {
-	var array = [];
-	for(unit in _UnitConfig)
-	{
-		array.push(unit);
-	}
-	return array;
+    var array = [];
+    for(unit in _UnitConfig)
+    {
+        array.push(unit);
+    }
+    return array;
 }
 
 // compare function for units
@@ -89,8 +89,8 @@ _UnitConfig =
             attack: 11,
             defense: 9,
             speed: 10,
-			animationSpeed: 100,
-			
+            animationSpeed: 100,
+            
         },
         {
             attack: 22,
@@ -104,7 +104,7 @@ _UnitConfig =
             attack: 24,
             defense: 20,
             speed: 6,
-			animationSpeed: 100,
+            animationSpeed: 100,
         },
         {
             attack: 48,
@@ -118,7 +118,7 @@ _UnitConfig =
             attack: 2,
             defense: 4,
             speed: 6,
-			animationSpeed: 100,
+            animationSpeed: 100,
             buffLevel: 1.5,
         },
         {
@@ -128,13 +128,13 @@ _UnitConfig =
             buffLevel: 2.0,
         },
     ],
-	mounted_knight:
+    mounted_knight:
     [
         {
             attack: 36,
             defense: 22,
             speed: 10,
-			animationSpeed: 40,
+            animationSpeed: 40,
            
         },
         {
@@ -149,40 +149,40 @@ _UnitConfig =
  // TODO: buildings should have their owen config objects
 unitForBuilding =
 {
-	farm: "farmer",
-	homestead: "knight",
-	church: "monk",
-	castle: "mounted_knight"
+    farm: "farmer",
+    homestead: "knight",
+    church: "monk",
+    castle: "mounted_knight"
 }
 
 buildingDoorLocation =
 {
-	farm: [44, 47],
-	homestead: [35, 108],
-	church: [71, 74],
-	castle: [156, 136],
+    farm: [44, 47],
+    homestead: [35, 108],
+    church: [71, 74],
+    castle: [156, 136],
 }
 
 buildingSizes =
 {
-	farm: [64, 64],
-	homestead: [128, 128],
-	church: [90, 90],
-	castle: [256, 189],
+    farm: [64, 64],
+    homestead: [128, 128],
+    church: [90, 90],
+    castle: [256, 189],
 }
 
 unitSizes =
 {
-	farmer: 64,
-	knight: 64,
-	monk: 64,
-	mounted_knight: 80,
+    farmer: 64,
+    knight: 64,
+    monk: 64,
+    mounted_knight: 80,
 }
 
 buildingSpawnTime =
 {
-	farm: 1500,
-	homestead: 3000,
-	church: 6000,
-	castle: 4500,
+    farm: 1500,
+    homestead: 3000,
+    church: 6000,
+    castle: 4500,
 }

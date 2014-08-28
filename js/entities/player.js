@@ -95,7 +95,7 @@ Main.Player = Object.extend(
             strength += this.buildings[i].calculateAttackPower();
         }
         return strength;
-		
+        
     },
 
 

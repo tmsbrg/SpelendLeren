@@ -29,12 +29,12 @@ function lerp(a, b, t)
 // returns an array enumerating the values from 0 to (n - 1)
 function getRange(n)
 {
-	var array = [];
-	
-	for (var i = 0; i < n; i++)
-	{
-		array.push(i)
-	}
-	
-	return array;
+    var array = [];
+    
+    for (var i = 0; i < n; i++)
+    {
+        array.push(i)
+    }
+    
+    return array;
 }

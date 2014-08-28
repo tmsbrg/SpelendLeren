@@ -9,7 +9,7 @@ Main.GUIContainer = me.Renderable.extend(
     init: function(x, y, objects)
     {
         
-		if (x == null) {
+        if (x == null) {
             x = 0;
         }
         if (y == null) {
@@ -45,7 +45,7 @@ Main.GUIContainer = me.Renderable.extend(
     // addGUIObject: adds a child to the GUIContainer
     addGUIObject: function(object) {
        
-		this.GUIObjects[this.GUIObjects.length] = object;
+        this.GUIObjects[this.GUIObjects.length] = object;
         object.floating = false;
         if (object.pos.x + object.width > this.width) {
             this.width = object.pos.x + object.width;

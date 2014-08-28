@@ -15,76 +15,76 @@ Main.AI = Object.extend(
 
     active: true, // whether this AI is doing stuff
     wavesSent: 0, // how many waves have been sent to the current target
-	strategy: null,
+    strategy: null,
     currentTarget: null, // reference to current target building
     counter: 0, // amount of miliseconds since last sending of units
     player: null, // reference to the player for this AI
-	searchTarget: null,
-	randomStartegy: null,
-	closestStrategy: null,
-	userStrategy: null,
-	weakStrategy: null,
-	weakUserStrategy: null,
-	pointsStrategy: null,
+    searchTarget: null,
+    randomStartegy: null,
+    closestStrategy: null,
+    userStrategy: null,
+    weakStrategy: null,
+    weakUserStrategy: null,
+    pointsStrategy: null,
 
     init: function(difficulty, strategy)
     {
-		this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
-		this.closestStrategy =
+        this.randomStrategy = new SearchTarget(new SearchTargetStrategy());
+        this.closestStrategy =
                        new SearchTarget(new SearchClosestTargetStrategy());
-		this.userStrategy = new SearchTarget(new SearchUserTargetStrategy());
-		
-		this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
-		this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
-		this.pointsStrategy = new SearchTarget(new SearchPointsTargetStrategy());
+        this.userStrategy = new SearchTarget(new SearchUserTargetStrategy());
+        
+        this.weakStrategy = new SearchTarget(new SearchWeakTargetStrategy());
+        this.weakUserStrategy = new SearchTarget(new SearchWeakUserTargetStrategy());
+        this.pointsStrategy = new SearchTarget(new SearchPointsTargetStrategy());
 
-		this.setAIStrategy(strategy);
+        this.setAIStrategy(strategy);
 
-		
-		if (difficulty == null) {
+        
+        if (difficulty == null) {
             difficulty = 1;
         }
-		
+        
         this.setDifficulty(difficulty);
-		
+        
         if (this.alwaysInactive) {
             this.active = false;
         }
     },
-	// changes the current strategy of the ai to the given strategy
-	setSearchTargetStrategy: function(strategy)
-	{
-		this.searchTarget = strategy;
-	},
-	
-	// changes the ai's strategy on runtime based on the given string
-	setAIStrategy: function(strategy)
-	{
-		switch(strategy)
-		{
-			case "close":
-				this.setSearchTargetStrategy(this.closestStrategy);
-				break;
-			case "random":
-				this.setSearchTargetStrategy(this.randomStrategy);
-				break;
-			case "user":
-				this.setSearchTargetStrategy(this.userStrategy);
-				break;
-			case "weak":
-				this.setSearchTargetStrategy(this.weakStrategy);
-				break;
-			case "weakUser":
-				this.setSearchTargetStrategy(this.weakUserStrategy);
-				break;
-			case "points":
-				this.setSearchTargetStrategy(this.pointsStrategy);
-				break;
-			default:
-				throw "Strategy '"+ strategy + "' does not exist. legitimate strategies include 'points', 'random', 'close', 'user', 'weak' and 'weakUser'";
-				break;
-		}
-	},
+    // changes the current strategy of the ai to the given strategy
+    setSearchTargetStrategy: function(strategy)
+    {
+        this.searchTarget = strategy;
+    },
+    
+    // changes the ai's strategy on runtime based on the given string
+    setAIStrategy: function(strategy)
+    {
+        switch(strategy)
+        {
+            case "close":
+                this.setSearchTargetStrategy(this.closestStrategy);
+                break;
+            case "random":
+                this.setSearchTargetStrategy(this.randomStrategy);
+                break;
+            case "user":
+                this.setSearchTargetStrategy(this.userStrategy);
+                break;
+            case "weak":
+                this.setSearchTargetStrategy(this.weakStrategy);
+                break;
+            case "weakUser":
+                this.setSearchTargetStrategy(this.weakUserStrategy);
+                break;
+            case "points":
+                this.setSearchTargetStrategy(this.pointsStrategy);
+                break;
+            default:
+                throw "Strategy '"+ strategy + "' does not exist. legitimate strategies include 'points', 'random', 'close', 'user', 'weak' and 'weakUser'";
+                break;
+        }
+    },
 
     // sets difficulty to given value and changes its settings based on what's
     // in the AI constants for given difficulty
@@ -102,30 +102,30 @@ Main.AI = Object.extend(
             }
         }
     },
-	// compares the numbers of the building from the ai with the player and returns true,
-	// if the ai has more buildings then the player otherwise he returen false
-	buildingAdvance: function()
-	{
-		var buildings = Main.levelScreen.getBuildings();
-		var aiCountBuildings = 0;
-		var userCountBuildings = 0;
-		
-		for ( var i = 0; i < buildings.length; i++) 
-		{
-			if (buildings[i].owner == this.player.name) {
-				aiCountBuildings ++;
-			} else if (buildings[i].owner == "user") {
-				userCountBuildings ++;
-			}
-		}
-		
-		if ( aiCountBuildings > userCountBuildings ) {
-			return true;
-		} else {
-			return false;
-		}
-	},
-	
+    // compares the numbers of the building from the ai with the player and returns true,
+    // if the ai has more buildings then the player otherwise he returen false
+    buildingAdvance: function()
+    {
+        var buildings = Main.levelScreen.getBuildings();
+        var aiCountBuildings = 0;
+        var userCountBuildings = 0;
+        
+        for ( var i = 0; i < buildings.length; i++) 
+        {
+            if (buildings[i].owner == this.player.name) {
+                aiCountBuildings ++;
+            } else if (buildings[i].owner == "user") {
+                userCountBuildings ++;
+            }
+        }
+        
+        if ( aiCountBuildings > userCountBuildings ) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    
     setPlayer: function(player)
     {
         this.player = player;
@@ -149,8 +149,8 @@ Main.AI = Object.extend(
     searchForTarget: function()
     {
        
-		if (this.currentTarget == null) {
-			this.currentTarget =  this.searchTarget.search(this.player);
+        if (this.currentTarget == null) {
+            this.currentTarget =  this.searchTarget.search(this.player);
             if (this.currentTarget == null) {
                 this.active = false;
                 return false;
@@ -165,30 +165,30 @@ Main.AI = Object.extend(
         this.counter += Main.timer.dt;
         if (this.counter >= this.timeUntilNextWave) {
             this.counter = 0;
-			
+            
             if (this.player.getTotalStrength() >=
                        this.currentTarget.calculateDefencePower()) {
                 this.attack(this.currentTarget);
                 this.wavesSent++;
                 if (this.wavesSent >= this.wavesToSend) {
                    
-					this.stopAttack();
-					
+                    this.stopAttack();
+                    
                 }
             } else {
                 
-				this.stopAttack();
+                this.stopAttack();
             }
         }
     },
-	// stops the ai from attack buildings
+    // stops the ai from attack buildings
     stopAttack: function()
     {
        
-		this.wavesSent = 0;
+        this.wavesSent = 0;
         if (!this.targetLock) {
             
-			this.currentTarget = null;
+            this.currentTarget = null;
         }
     },
 
@@ -204,7 +204,7 @@ Main.AI = Object.extend(
     // adds a building to the array of buildings owned by this AI
     gainBuilding: function(building)
     {
-		this.currentTarget = this.searchTarget.search(this.player);
+        this.currentTarget = this.searchTarget.search(this.player);
         this.attacking = false;
     },
 

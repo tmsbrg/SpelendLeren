@@ -27,7 +27,7 @@ Main.LevelScreen = me.ScreenObject.extend(
     backLayer: null, // LayerObject for background scenery
 
     scoreData: null, // placeholder for the scoreData class
-	armies: null, // array of currently moving armies
+    armies: null, // array of currently moving armies
     music: "", // background music id string
 
     paused: false, // whether game is paused
@@ -38,18 +38,18 @@ Main.LevelScreen = me.ScreenObject.extend(
     {
         this.parent(true); // make the game call the levels update function
     },
-	
+    
     // handle input for getting to the menu and back
     update: function()
     {
-		if (!me.input.keyStatus("pause")) {
-			this.pausePressed = false;
-		}
-		
-		if (me.input.isKeyPressed("pause") && !this.pausePressed) {
-			this.pausePressed = true;
-			this.onPausePressed();
-		}
+        if (!me.input.keyStatus("pause")) {
+            this.pausePressed = false;
+        }
+        
+        if (me.input.isKeyPressed("pause") && !this.pausePressed) {
+            this.pausePressed = true;
+            this.onPausePressed();
+        }
 
         return false;
     },
@@ -62,25 +62,25 @@ Main.LevelScreen = me.ScreenObject.extend(
 
         var levelname = String(levelname);
         this.name = levelname;
-		
-		var level = me.loader.getTMX(levelname);
+        
+        var level = me.loader.getTMX(levelname);
         if (level == null) {
             throw "Error: cannot find level: \""+levelname+"\"";
         }
-		
+        
         this.frontLayer = new Main.LayerContainer(true);
         me.game.add(this.frontLayer, 10)
         this.backLayer = new Main.LayerContainer(false);
         me.game.add(this.backLayer, 5)
 
-		var img = new Main.Image(0, 0, "bg_test", Constants.screenWidth,
+        var img = new Main.Image(0, 0, "bg_test", Constants.screenWidth,
                                  Constants.screenHeight)
         this.background = new Main.Button(img, this.click.bind(this));
         me.game.add(this.background, 0);
 
         this.here = new Main.Bouncer(0, 0, 32, "here_icon", this.here_size,
                                      this.here_size, 0.5);
-		
+        
         // reinitialize for restart
         this.currentAction = 0; 
         this.paused = false;
@@ -108,7 +108,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.backLayer.sort();
 
         var unitTypes = this.getUnitTypes();
-		this.scoreData = new Main.ScoreData(unitTypes, this.parTime);
+        this.scoreData = new Main.ScoreData(unitTypes, this.parTime);
 
         this.optimizeBackLayer();
     },
@@ -131,7 +131,7 @@ Main.LevelScreen = me.ScreenObject.extend(
         }.bind(this));
         this.setMenuVisible(false);
     },
-	
+    
     // adds a button to the ingame menu with given label and onclick function
     addButton: function(label, onclick)
     {
@@ -153,20 +153,20 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.blackRect.visible = visible;
     },
 
-	addScore: function(unitType, category, amount)
-	{
-		this.scoreData.addScore(unitType, category, amount);
-	},
+    addScore: function(unitType, category, amount)
+    {
+        this.scoreData.addScore(unitType, category, amount);
+    },
 
     // called when the background is clicked
-	click: function()
-	{
-		for(var i = 0 ; i < this.buildings.length; i++)
-		{
-			this.buildings[i].deselect();
-		}
-	},
-	
+    click: function()
+    {
+        for(var i = 0 ; i < this.buildings.length; i++)
+        {
+            this.buildings[i].deselect();
+        }
+    },
+    
     // interprets an xml object that contains level information
     interpretLevel: function(xml)
     {
@@ -485,12 +485,12 @@ Main.LevelScreen = me.ScreenObject.extend(
 
     // attacks building with given buildingId using all selected buildings
     attack: function(buildingId) 
-	{
-		for (var i = 0; i < this.buildings.length; i++)
+    {
+        for (var i = 0; i < this.buildings.length; i++)
         {
             if (this.buildings[i].selected) {
                 if(this.buildings[i].id != buildingId)
-					this.buildings[i].attack(this.buildings[buildingId]);
+                    this.buildings[i].attack(this.buildings[buildingId]);
             }
             if (this.buildings[i].enemySelected) {
                 this.buildings[i].enemyDeselect();
@@ -636,8 +636,8 @@ Main.LevelScreen = me.ScreenObject.extend(
     showPopup: function(name)
     {
        //buttonArray{[image, onClick, onhover, onhoverout], [image, onClick, onhover, onhoverout]}
-	   var popupButton = new Main.Dictionary();
-		me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
+       var popupButton = new Main.Dictionary();
+        me.game.add(new Main.Popup(name, this.onClosePopup.bind(this)),
                     200);
         this.popupShown = true;
         this.pause();
@@ -658,15 +658,15 @@ Main.LevelScreen = me.ScreenObject.extend(
         this.stopMusic();
         this.pause();
         var numPos = this.name.search("\\d"); // find first digit
-		if (userWon == true && !Constants.allLevelsPlayable && 
+        if (userWon == true && !Constants.allLevelsPlayable && 
             Main.playerlevel <= Number(this.name.substr(numPos))) {
-			Main.playerlevel += 1;
-			me.save.playerlevel = Main.playerlevel;
-			
-		}	
-			
+            Main.playerlevel += 1;
+            me.save.playerlevel = Main.playerlevel;
+            
+        }    
+            
         var endpopup = new Main.Endpopup(userWon, this.scoreData, this.name);
-		me.game.add(endpopup, 200);
+        me.game.add(endpopup, 200);
     },
 
     // stops music in the current level

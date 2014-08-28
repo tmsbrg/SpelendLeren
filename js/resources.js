@@ -5,100 +5,100 @@
 
 resources = [
 
-	/* Graphics. 
-	 * @example
-	 * {name: "example", type:"image", src: "data/img/example.png"},
-	 */
+    /* Graphics. 
+     * @example
+     * {name: "example", type:"image", src: "data/img/example.png"},
+     */
     {name: "bg_test", type: "image", src: "data/img/background/bg_test.png"},
     {name: "bg_level_01", type: "image",
      src: "data/img/background/bg_level_01.png"},
-	{name: "bg_level_02", type: "image",
+    {name: "bg_level_02", type: "image",
      src: "data/img/background/bg_level_02.png"},
-	{name: "bg_level_03", type: "image",
+    {name: "bg_level_03", type: "image",
      src: "data/img/background/bg_level_03.png"},
-	{name: "bg_level_04", type: "image",
+    {name: "bg_level_04", type: "image",
      src: "data/img/background/bg_level_04.png"},
-	{name: "bg_level_05", type: "image",
+    {name: "bg_level_05", type: "image",
      src: "data/img/background/bg_level_05.png"},
-	{name: "bg_level_06", type: "image",
+    {name: "bg_level_06", type: "image",
      src: "data/img/background/bg_level_06.png"},
-	{name: "bg_level_07", type: "image",
+    {name: "bg_level_07", type: "image",
      src: "data/img/background/bg_level_07.png"},
-	{name: "bg_level_08", type: "image",
+    {name: "bg_level_08", type: "image",
      src: "data/img/background/bg_level_08.png"},
-	{name: "bg_level_09", type: "image",
+    {name: "bg_level_09", type: "image",
      src: "data/img/background/bg_level_09.png"},
-	{name: "bg_level_10", type: "image",
+    {name: "bg_level_10", type: "image",
      src: "data/img/background/bg_level_10.png"},
-	{name: "bg_level_11", type: "image",
+    {name: "bg_level_11", type: "image",
      src: "data/img/background/bg_level_11.png"},
-	{name: "bg_level_12", type: "image",
+    {name: "bg_level_12", type: "image",
      src: "data/img/background/bg_level_12.png"},
-	{name: "bg_level_13", type: "image",
+    {name: "bg_level_13", type: "image",
      src: "data/img/background/bg_level_13.png"},
-	{name: "bg_level_14", type: "image",
+    {name: "bg_level_14", type: "image",
      src: "data/img/background/bg_level_14.png"},
-	{name: "bg_level_15", type: "image",
+    {name: "bg_level_15", type: "image",
      src: "data/img/background/bg_level_15.png"},
-	 {name: "bg_level_16", type: "image",
+     {name: "bg_level_16", type: "image",
      src: "data/img/background/bg_level_16.png"},
-	{name: "bg_level_17", type: "image",
+    {name: "bg_level_17", type: "image",
      src: "data/img/background/bg_level_17.png"},
-	{name: "bg_level_18", type: "image",
+    {name: "bg_level_18", type: "image",
      src: "data/img/background/bg_level_18.png"},
-	{name: "bg_level_19", type: "image",
+    {name: "bg_level_19", type: "image",
      src: "data/img/background/bg_level_19.png"},
-	{name: "bg_level_20", type: "image",
+    {name: "bg_level_20", type: "image",
      src: "data/img/background/bg_level_20.png"},
     {name: "bg_level_21", type: "image",
      src: "data/img/background/bg_level_21.png"},
     {name: "bg_level_22", type: "image",
      src: "data/img/background/bg_level_22.png"},
 
-	{name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
-	
-	{name: "underground_map", type: "image", src: "data/img/background/campaign/underground_map.png"},
-	{name: "aboveground_map", type: "image", src: "data/img/background/campaign/aboveground_map.png"},
-	
-	// campaign territories
-	{name: "territory_friesland", type: "image", src: "data/img/background/campaign/friesland.png"},
-	{name: "territory_saksen", type: "image", src: "data/img/background/campaign/saksen.png"},
-	{name: "territory_thuringen_north", type: "image", src: "data/img/background/campaign/thuringen_north.png"},
-	{name: "territory_thuringen_south", type: "image", src: "data/img/background/campaign/thuringen_south.png"},
-	{name: "territory_schwaben", type: "image", src: "data/img/background/campaign/schwaben.png"},
-	{name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
-	{name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
-	{name: "territory_karinthie", type: "image", src: "data/img/background/campaign/karinthie.png"},
-	{name: "territory_austrasie", type: "image", src: "data/img/background/campaign/austrasie.png"},
-	{name: "territory_neustrie", type: "image", src: "data/img/background/campaign/neustrie.png"},
-	{name: "territory_bourgondie", type: "image", src: "data/img/background/campaign/bourgondie.png"},
-	{name: "territory_lombardije", type: "image", src: "data/img/background/campaign/lombardije.png"},
-	{name: "territory_aquitanie", type: "image", src: "data/img/background/campaign/aquitanie.png"},
-	{name: "territory_septimanie", type: "image", src: "data/img/background/campaign/septimanie.png"},
-	{name: "territory_gascogne", type: "image", src: "data/img/background/campaign/gascogne.png"},
-	{name: "territory_spaanse_mark", type: "image", src: "data/img/background/campaign/spaanse_mark.png"},
-	
-	// buttons
-	{name: "back_button", type: "image",
+    {name: "bg_menu", type: "image", src: "data/img/background/bg_menu.png"},
+    
+    {name: "underground_map", type: "image", src: "data/img/background/campaign/underground_map.png"},
+    {name: "aboveground_map", type: "image", src: "data/img/background/campaign/aboveground_map.png"},
+    
+    // campaign territories
+    {name: "territory_friesland", type: "image", src: "data/img/background/campaign/friesland.png"},
+    {name: "territory_saksen", type: "image", src: "data/img/background/campaign/saksen.png"},
+    {name: "territory_thuringen_north", type: "image", src: "data/img/background/campaign/thuringen_north.png"},
+    {name: "territory_thuringen_south", type: "image", src: "data/img/background/campaign/thuringen_south.png"},
+    {name: "territory_schwaben", type: "image", src: "data/img/background/campaign/schwaben.png"},
+    {name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
+    {name: "territory_beieren", type: "image", src: "data/img/background/campaign/beieren.png"},
+    {name: "territory_karinthie", type: "image", src: "data/img/background/campaign/karinthie.png"},
+    {name: "territory_austrasie", type: "image", src: "data/img/background/campaign/austrasie.png"},
+    {name: "territory_neustrie", type: "image", src: "data/img/background/campaign/neustrie.png"},
+    {name: "territory_bourgondie", type: "image", src: "data/img/background/campaign/bourgondie.png"},
+    {name: "territory_lombardije", type: "image", src: "data/img/background/campaign/lombardije.png"},
+    {name: "territory_aquitanie", type: "image", src: "data/img/background/campaign/aquitanie.png"},
+    {name: "territory_septimanie", type: "image", src: "data/img/background/campaign/septimanie.png"},
+    {name: "territory_gascogne", type: "image", src: "data/img/background/campaign/gascogne.png"},
+    {name: "territory_spaanse_mark", type: "image", src: "data/img/background/campaign/spaanse_mark.png"},
+    
+    // buttons
+    {name: "back_button", type: "image",
      src: "data/img/gui/button/back_button.png"},
-	{name: "button", type: "image",
+    {name: "button", type: "image",
      src: "data/img/gui/button/button.png"},
-	 
-	// popup buttons
-	{name: "popup_ok", type: "image",
+     
+    // popup buttons
+    {name: "popup_ok", type: "image",
      src: "data/img/gui/button/popup_ok.png"},
-	{name: "popup_ok_hovered", type: "image",
+    {name: "popup_ok_hovered", type: "image",
      src: "data/img/gui/button/popup_ok_hovered.png"},
-	 {name: "popup_retry", type: "image",
+     {name: "popup_retry", type: "image",
      src: "data/img/gui/button/popup_retry.png"},
-	{name: "popup_retry_hovered", type: "image",
+    {name: "popup_retry_hovered", type: "image",
      src: "data/img/gui/button/popup_retry_hovered.png"},
-	 {name: "popup_campaign", type: "image",
+     {name: "popup_campaign", type: "image",
      src: "data/img/gui/button/popup_campaign.png"},
-	{name: "popup_campaign_hovered", type: "image",
+    {name: "popup_campaign_hovered", type: "image",
      src: "data/img/gui/button/popup_campaign_hovered.png"},
-	
-	 // Buildings
+    
+     // Buildings
     {name: "neutral_farm", type: "image",
      src: "data/img/buildings/farm/neutral_farm.png"},
     {name: "user_farm", type: "image",
@@ -116,208 +116,208 @@ resources = [
      src: "data/img/buildings/homestead/comp1_homestead.png"},
     {name: "neutral_homestead", type: "image",
      src: "data/img/buildings/homestead/neutral_homestead.png"},
-	 
-	{name: "neutral_church", type: "image",
+     
+    {name: "neutral_church", type: "image",
      src: "data/img/buildings/church/neutral_church.png"},
-	{name: "user_church", type: "image",
+    {name: "user_church", type: "image",
      src: "data/img/buildings/church/user_church.png"},
-	{name: "comp1_church", type: "image",
+    {name: "comp1_church", type: "image",
      src: "data/img/buildings/church/comp1_church.png"},
-	
-	{name: "neutral_castle", type: "image",
+    
+    {name: "neutral_castle", type: "image",
      src: "data/img/buildings/castle/neutral_castle.png"},
-	{name: "user_castle", type: "image",
+    {name: "user_castle", type: "image",
      src: "data/img/buildings/castle/user_castle.png"},
-	{name: "comp1_castle", type: "image",
+    {name: "comp1_castle", type: "image",
      src: "data/img/buildings/castle/comp1_castle.png"},
-	
+    
     {name: "building_selection", type: "image",
      src: "data/img/buildings/building_selection.png"},
-	{name: "enemy_building_selection", type: "image",
+    {name: "enemy_building_selection", type: "image",
      src: "data/img/buildings/enemy_building_selection.png"},
-	// units icons
-	{name: "farmer_icon", type: "image",
-	 src: "data/img/armies/icons/farmer_icon.png"},
-	 
-	{name: "knight_icon", type: "image",
-	 src: "data/img/armies/icons/knight_icon.png"},
-	 
-	{name: "monk_icon", type: "image",
-	 src: "data/img/armies/icons/monk_icon.png"},
-	 
-	{name: "mounted_knight_icon", type: "image",
-	 src: "data/img/armies/icons/mounted_knight_icon.png"},
-	 
-	{name: "here_icon", type: "image",
+    // units icons
+    {name: "farmer_icon", type: "image",
+     src: "data/img/armies/icons/farmer_icon.png"},
+     
+    {name: "knight_icon", type: "image",
+     src: "data/img/armies/icons/knight_icon.png"},
+     
+    {name: "monk_icon", type: "image",
+     src: "data/img/armies/icons/monk_icon.png"},
+     
+    {name: "mounted_knight_icon", type: "image",
+     src: "data/img/armies/icons/mounted_knight_icon.png"},
+     
+    {name: "here_icon", type: "image",
      src: "data/img/gui/here_icon.png"},
-	{name: "here_icon_takeover", type: "image",
+    {name: "here_icon_takeover", type: "image",
      src: "data/img/gui/here_icon_takeover.png"},
-	// flags
-	{name: "flag_conquered", type: "image",
+    // flags
+    {name: "flag_conquered", type: "image",
      src: "data/img/gui/flag_conquered.png"},
-	 
-	{name: "flag_locked", type: "image",
+     
+    {name: "flag_locked", type: "image",
      src: "data/img/gui/flag_locked.png"},
-	 
-	{name: "flag_unlocked", type: "image",
+     
+    {name: "flag_unlocked", type: "image",
      src: "data/img/gui/flag_unlocked.png"},
-	 
-	{name: "sound_on", type: "image",
+     
+    {name: "sound_on", type: "image",
      src: "data/img/gui/sound_on.png"},
-	 
-	{name: "sound_off", type: "image",
+     
+    {name: "sound_off", type: "image",
      src: "data/img/gui/sound_off.png"},
 
-	// unit animations
-	
-	// 		run
-	// farmer
-	{name: "user_farmer_topleft_0", type: "image",
+    // unit animations
+    
+    //         run
+    // farmer
+    {name: "user_farmer_topleft_0", type: "image",
      src: "data/img/armies/animations/farmer/run/user_farmer_topleft_0.png"},
-	{name: "user_farmer_topright_0", type: "image",
+    {name: "user_farmer_topright_0", type: "image",
      src: "data/img/armies/animations/farmer/run/user_farmer_topright_0.png"},
-	{name: "user_farmer_downleft_0", type: "image",
+    {name: "user_farmer_downleft_0", type: "image",
      src: "data/img/armies/animations/farmer/run/user_farmer_downleft_0.png"},
-	{name: "user_farmer_downright_0", type: "image",
+    {name: "user_farmer_downright_0", type: "image",
      src: "data/img/armies/animations/farmer/run/user_farmer_downright_0.png"},
-	 
-	{name: "comp1_farmer_topleft_0", type: "image",
+     
+    {name: "comp1_farmer_topleft_0", type: "image",
      src: "data/img/armies/animations/farmer/run/comp1_farmer_topleft_0.png"},
-	{name: "comp1_farmer_topright_0", type: "image",
+    {name: "comp1_farmer_topright_0", type: "image",
      src: "data/img/armies/animations/farmer/run/comp1_farmer_topright_0.png"},
-	{name: "comp1_farmer_downleft_0", type: "image",
+    {name: "comp1_farmer_downleft_0", type: "image",
      src: "data/img/armies/animations/farmer/run/comp1_farmer_downleft_0.png"},
-	{name: "comp1_farmer_downright_0", type: "image",
+    {name: "comp1_farmer_downright_0", type: "image",
      src: "data/img/armies/animations/farmer/run/comp1_farmer_downright_0.png"},
-	// knight
+    // knight
     {name: "user_knight_topleft_0", type: "image",
      src: "data/img/armies/animations/knight/run/user_knight_topleft_0.png"},
-	{name: "user_knight_topright_0", type: "image",
+    {name: "user_knight_topright_0", type: "image",
      src: "data/img/armies/animations/knight/run/user_knight_topright_0.png"},
     {name: "user_knight_downleft_0", type: "image",
      src: "data/img/armies/animations/knight/run/user_knight_downleft_0.png"},
-	{name: "user_knight_downright_0", type: "image",
+    {name: "user_knight_downright_0", type: "image",
      src: "data/img/armies/animations/knight/run/user_knight_downright_0.png"},
-	
-	{name: "comp1_knight_topleft_0", type: "image",
+    
+    {name: "comp1_knight_topleft_0", type: "image",
      src: "data/img/armies/animations/knight/run/comp1_knight_topleft_0.png"},
-	{name: "comp1_knight_topright_0", type: "image",
+    {name: "comp1_knight_topright_0", type: "image",
      src: "data/img/armies/animations/knight/run/comp1_knight_topright_0.png"},
     {name: "comp1_knight_downleft_0", type: "image",
      src: "data/img/armies/animations/knight/run/comp1_knight_downleft_0.png"},
-	{name: "comp1_knight_downright_0", type: "image",
+    {name: "comp1_knight_downright_0", type: "image",
      src: "data/img/armies/animations/knight/run/comp1_knight_downright_0.png"},
-	// monk
-	{name: "user_monk_topleft_0", type: "image",
+    // monk
+    {name: "user_monk_topleft_0", type: "image",
      src: "data/img/armies/animations/monk/run/user_monk_topleft_0.png"},
-	{name: "user_monk_topright_0", type: "image",
+    {name: "user_monk_topright_0", type: "image",
      src: "data/img/armies/animations/monk/run/user_monk_topright_0.png"},
-	{name: "user_monk_downleft_0", type: "image",
+    {name: "user_monk_downleft_0", type: "image",
      src: "data/img/armies/animations/monk/run/user_monk_downleft_0.png"},
-	{name: "user_monk_downright_0", type: "image",
+    {name: "user_monk_downright_0", type: "image",
      src: "data/img/armies/animations/monk/run/user_monk_downright_0.png"},
-	
-	{name: "comp1_monk_topleft_0", type: "image",
+    
+    {name: "comp1_monk_topleft_0", type: "image",
      src: "data/img/armies/animations/monk/run/comp1_monk_topleft_0.png"},
-	{name: "comp1_monk_topright_0", type: "image",
+    {name: "comp1_monk_topright_0", type: "image",
      src: "data/img/armies/animations/monk/run/comp1_monk_topright_0.png"},
-	{name: "comp1_monk_downleft_0", type: "image",
+    {name: "comp1_monk_downleft_0", type: "image",
      src: "data/img/armies/animations/monk/run/comp1_monk_downleft_0.png"},
-	{name: "comp1_monk_downright_0", type: "image",
+    {name: "comp1_monk_downright_0", type: "image",
      src: "data/img/armies/animations/monk/run/comp1_monk_downright_0.png"},
-	// mounted_knight 
-	{name: "user_mounted_knight_topleft_0", type: "image",
+    // mounted_knight 
+    {name: "user_mounted_knight_topleft_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/user_mounted_knight_topleft_0.png"},
-	{name: "user_mounted_knight_topright_0", type: "image",
+    {name: "user_mounted_knight_topright_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/user_mounted_knight_topright_0.png"},
-	{name: "user_mounted_knight_downleft_0", type: "image",
+    {name: "user_mounted_knight_downleft_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/user_mounted_knight_downleft_0.png"},
-	{name: "user_mounted_knight_downright_0", type: "image",
+    {name: "user_mounted_knight_downright_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/user_mounted_knight_downright_0.png"},
-	
-	{name: "comp1_mounted_knight_topleft_0", type: "image",
+    
+    {name: "comp1_mounted_knight_topleft_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/comp1_mounted_knight_topleft_0.png"},
-	{name: "comp1_mounted_knight_topright_0", type: "image",
+    {name: "comp1_mounted_knight_topright_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/comp1_mounted_knight_topright_0.png"},
-	{name: "comp1_mounted_knight_downleft_0", type: "image",
+    {name: "comp1_mounted_knight_downleft_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/comp1_mounted_knight_downleft_0.png"},
-	{name: "comp1_mounted_knight_downright_0", type: "image",
+    {name: "comp1_mounted_knight_downright_0", type: "image",
      src: "data/img/armies/animations/mounted_knight/run/comp1_mounted_knight_downright_0.png"},
-	 
-	// 		win
-	// mounted knigth
-	{name: "comp1_mounted_knight_win", type: "image",
+     
+    //         win
+    // mounted knigth
+    {name: "comp1_mounted_knight_win", type: "image",
      src: "data/img/armies/animations/mounted_knight/win/comp1_mounted_knight_win.png"},
-	 {name: "user_mounted_knight_win", type: "image",
+     {name: "user_mounted_knight_win", type: "image",
      src: "data/img/armies/animations/mounted_knight/win/user_mounted_knight_win.png"},
-	// knight
-	{name: "comp1_knight_win", type: "image",
+    // knight
+    {name: "comp1_knight_win", type: "image",
      src: "data/img/armies/animations/knight/win/comp1_knight_win.png"},
-	{name: "user_knight_win", type: "image",
+    {name: "user_knight_win", type: "image",
      src: "data/img/armies/animations/knight/win/user_knight_win.png"},
-	// farmer
-	{name: "comp1_farmer_win", type: "image",
+    // farmer
+    {name: "comp1_farmer_win", type: "image",
      src: "data/img/armies/animations/farmer/win/comp1_farmer_win.png"},
-	{name: "user_farmer_win", type: "image",
+    {name: "user_farmer_win", type: "image",
      src: "data/img/armies/animations/farmer/win/user_farmer_win.png"},
-	// monk
-	{name: "comp1_monk_win", type: "image",
+    // monk
+    {name: "comp1_monk_win", type: "image",
      src: "data/img/armies/animations/monk/win/comp1_monk_win.png"},
-	{name: "user_monk_win", type: "image",
+    {name: "user_monk_win", type: "image",
      src: "data/img/armies/animations/monk/win/user_monk_win.png"},
-	// battle
+    // battle
     {name: "battle_animation", type: "image",
      src: "data/img/armies/animations/battle_animation.png"},
-	 
-	// fonts
+     
+    // fonts
     {name: "luxi_font", type: "image",
      src: "data/img/gui/font/luxi_font.png"},
 
     // Pop up screens for the tutorial
-	{name: "popup_castle", type: "image",
+    {name: "popup_castle", type: "image",
      src: "data/img/gui/popup/popup_castle.png"},
-	{name: "popup_servant", type: "image",
+    {name: "popup_servant", type: "image",
      src: "data/img/gui/popup/popup_servant.png"},
-	{name: "popup_selection", type: "image",
+    {name: "popup_selection", type: "image",
      src: "data/img/gui/popup/popup_selection.png"},
     {name: "popup_blank", type: "image",
      src: "data/img/gui/popup/popup_blank.png"},
     {name: "popup_takeover", type: "image",
      src: "data/img/gui/popup/popup_takeover.png"},
-	{name: "popup_enemy", type: "image",
+    {name: "popup_enemy", type: "image",
      src: "data/img/gui/popup/popup_enemy.png"},
     {name: "popup_heren", type: "image",
      src: "data/img/gui/popup/popup_heren.png"},
     {name: "popup_monastery", type: "image",
      src: "data/img/gui/popup/popup_monastery.png"},
-	{name: "popup_monniken", type: "image",
+    {name: "popup_monniken", type: "image",
      src: "data/img/gui/popup/popup_monniken.png"},
     {name: "popup_standen", type: "image",
      src: "data/img/gui/popup/popup_standen.png"},
     {name: "popup_start", type: "image",
      src: "data/img/gui/popup/popup_start.png"},
-	{name: "popup_win", type: "image",
+    {name: "popup_win", type: "image",
      src: "data/img/gui/popup/popup_win.png"},
-	{name: "popup_lose", type: "image",
+    {name: "popup_lose", type: "image",
      src: "data/img/gui/popup/popup_lose.png"},
-	{name: "popup_monk", type: "image",
-	 src: "data/img/gui/popup/popup_monk.png"},
-	{name: "popup_13", type: "image",
-	 src: "data/img/gui/popup/popup_13.png"},
-	{name: "popup_15", type: "image",
-	 src: "data/img/gui/popup/popup_15.png"},
-	{name: "popup_18", type: "image",
-	 src: "data/img/gui/popup/popup_18.png"},
-	{name: "popup_19", type: "image",
-	 src: "data/img/gui/popup/popup_19.png"},
-	{name: "popup_22", type: "image",
-	 src: "data/img/gui/popup/popup_22.png"},
+    {name: "popup_monk", type: "image",
+     src: "data/img/gui/popup/popup_monk.png"},
+    {name: "popup_13", type: "image",
+     src: "data/img/gui/popup/popup_13.png"},
+    {name: "popup_15", type: "image",
+     src: "data/img/gui/popup/popup_15.png"},
+    {name: "popup_18", type: "image",
+     src: "data/img/gui/popup/popup_18.png"},
+    {name: "popup_19", type: "image",
+     src: "data/img/gui/popup/popup_19.png"},
+    {name: "popup_22", type: "image",
+     src: "data/img/gui/popup/popup_22.png"},
 
     {name: "halo", type: "image",
      src: "data/img/armies/halo.png"},
-	
+    
     // Scenery tilesets
-	{name: "trees", type: "image",
+    {name: "trees", type: "image",
      src: "data/img/scenery/trees.png"},
     {name: "bushes", type: "image",
      src: "data/img/scenery/bushes.png"},
@@ -341,70 +341,70 @@ resources = [
       src: "data/img/scenery/trees.png"},
     {name: "willows", type: "image",
       src: "data/img/scenery/willows.png"},
-	{name: "mud", type: "image",
+    {name: "mud", type: "image",
       src: "data/img/scenery/mud.png"},
-	{name: "fence", type: "image",
+    {name: "fence", type: "image",
       src: "data/img/scenery/fence.png"},
-	{name: "smallbushes", type: "image",
+    {name: "smallbushes", type: "image",
       src: "data/img/scenery/smallbushes.png"},
-	{name: "flowers", type: "image",
+    {name: "flowers", type: "image",
       src: "data/img/scenery/flowers.png"},
-	{name: "leafs", type: "image",
+    {name: "leafs", type: "image",
       src: "data/img/scenery/leafs.png"},
-	{name: "stonering", type: "image",
+    {name: "stonering", type: "image",
       src: "data/img/scenery/stonering.png"},
-	
-	/* Maps. 
-	 * @example
-	 * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
-	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
- 	 */
-	 
+    
+    /* Maps. 
+     * @example
+     * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
+     * {name: "example01", type: "tmx", src: "data/map/example01.json"},
+      */
+     
     {name: "level1", type: "tmx", src: "data/level/1.tmx"},
-	{name: "level2", type: "tmx", src: "data/level/2.tmx"},
-	{name: "level3", type: "tmx", src: "data/level/3.tmx"},
-	{name: "level4", type: "tmx", src: "data/level/4.tmx"},
-	{name: "level5", type: "tmx", src: "data/level/5.tmx"},
-	{name: "level6", type: "tmx", src: "data/level/6.tmx"},
-	{name: "level7", type: "tmx", src: "data/level/7.tmx"},
-	{name: "level8", type: "tmx", src: "data/level/8.tmx"},
-	{name: "level9", type: "tmx", src: "data/level/9.tmx"},
-	{name: "level10", type: "tmx", src: "data/level/10.tmx"},
-	{name: "level11", type: "tmx", src: "data/level/11.tmx"},
-	{name: "level12", type: "tmx", src: "data/level/12.tmx"},
-	{name: "level13", type: "tmx", src: "data/level/13.tmx"},
-	{name: "level14", type: "tmx", src: "data/level/14.tmx"},
-	{name: "level15", type: "tmx", src: "data/level/15.tmx"},
-	{name: "level16", type: "tmx", src: "data/level/16.tmx"},
-	{name: "level17", type: "tmx", src: "data/level/17.tmx"},
-	{name: "level18", type: "tmx", src: "data/level/18.tmx"},
-	{name: "level19", type: "tmx", src: "data/level/19.tmx"},
-	{name: "level20", type: "tmx", src: "data/level/20.tmx"},
-	{name: "level21", type: "tmx", src: "data/level/21.tmx"},
-	{name: "level22", type: "tmx", src: "data/level/22.tmx"},
-	
-	/* Background music. 
-	 * @example
-	 * {name: "example_bgm", type: "audio", src: "data/bgm/", channel : 1},
-	 */	
-	 
-	{name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "campaign", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "drum", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "harps", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "harps2", type: "audio", src: "data/audio/background/", channel : 1},
-	{name: "trumpet", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "verynice", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "awesome1", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "awesome2", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "violin", type: "audio", src: "data/audio/background/", channel:1},
-	{name: "flute", type: "audio", src: "data/audio/background/", channel:1},
-	
-	/* Sound effects. 
-	 * @example
-	 * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
-	 */
-	{name: "fight", type: "audio", src: "data/audio/sound/", channel : 2},
-	{name: "lose", type: "audio", src: "data/audio/sound/", channel : 2},
-	{name: "victory", type: "audio", src: "data/audio/sound/", channel : 2},
+    {name: "level2", type: "tmx", src: "data/level/2.tmx"},
+    {name: "level3", type: "tmx", src: "data/level/3.tmx"},
+    {name: "level4", type: "tmx", src: "data/level/4.tmx"},
+    {name: "level5", type: "tmx", src: "data/level/5.tmx"},
+    {name: "level6", type: "tmx", src: "data/level/6.tmx"},
+    {name: "level7", type: "tmx", src: "data/level/7.tmx"},
+    {name: "level8", type: "tmx", src: "data/level/8.tmx"},
+    {name: "level9", type: "tmx", src: "data/level/9.tmx"},
+    {name: "level10", type: "tmx", src: "data/level/10.tmx"},
+    {name: "level11", type: "tmx", src: "data/level/11.tmx"},
+    {name: "level12", type: "tmx", src: "data/level/12.tmx"},
+    {name: "level13", type: "tmx", src: "data/level/13.tmx"},
+    {name: "level14", type: "tmx", src: "data/level/14.tmx"},
+    {name: "level15", type: "tmx", src: "data/level/15.tmx"},
+    {name: "level16", type: "tmx", src: "data/level/16.tmx"},
+    {name: "level17", type: "tmx", src: "data/level/17.tmx"},
+    {name: "level18", type: "tmx", src: "data/level/18.tmx"},
+    {name: "level19", type: "tmx", src: "data/level/19.tmx"},
+    {name: "level20", type: "tmx", src: "data/level/20.tmx"},
+    {name: "level21", type: "tmx", src: "data/level/21.tmx"},
+    {name: "level22", type: "tmx", src: "data/level/22.tmx"},
+    
+    /* Background music. 
+     * @example
+     * {name: "example_bgm", type: "audio", src: "data/bgm/", channel : 1},
+     */    
+     
+    {name: "menu", type: "audio", src: "data/audio/background/", channel : 1},
+    {name: "campaign", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "drum", type: "audio", src: "data/audio/background/", channel : 1},
+    {name: "harps", type: "audio", src: "data/audio/background/", channel : 1},
+    {name: "harps2", type: "audio", src: "data/audio/background/", channel : 1},
+    {name: "trumpet", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "verynice", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "awesome1", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "awesome2", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "violin", type: "audio", src: "data/audio/background/", channel:1},
+    {name: "flute", type: "audio", src: "data/audio/background/", channel:1},
+    
+    /* Sound effects. 
+     * @example
+     * {name: "example_sfx", type: "audio", src: "data/sfx/", channel : 2}
+     */
+    {name: "fight", type: "audio", src: "data/audio/sound/", channel : 2},
+    {name: "lose", type: "audio", src: "data/audio/sound/", channel : 2},
+    {name: "victory", type: "audio", src: "data/audio/sound/", channel : 2},
 ];
